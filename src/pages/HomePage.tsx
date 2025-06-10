@@ -42,12 +42,16 @@ const HomePage: React.FC = () => {
             TailwindCSS, Redux Toolkit, and modern development tools.
           </p>
           <div className="flex justify-center space-x-4">
-            <Button variant="primary" size="lg">
-              Get Started
-            </Button>
-            <Button variant="secondary" size="lg">
-              Documentation
-            </Button>
+            <Link to="/dashboard">
+              <Button variant="primary" size="lg">
+                View Dashboard
+              </Button>
+            </Link>
+            <Link to="/login">
+              <Button variant="secondary" size="lg">
+                Login Page
+              </Button>
+            </Link>
           </div>
         </div>
 
