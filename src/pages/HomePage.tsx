@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "@/base-components/Button";
+import { Button } from "@/base-components";
 import { FormGroup, FormLabel, FormControl } from "@/base-components/Form";
-import Loading from "@/base-components/Loading";
+import { Loading } from "@/base-components";
 
 const HomePage: React.FC = () => {
   return (
