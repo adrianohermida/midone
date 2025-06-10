@@ -1,9 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthLayout from "../layouts/AuthLayout";
 import { FormGroup, FormLabel, FormControl } from "../base-components/Form";
 import Button from "../base-components/Button";
 
 const Login: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  // Demo credentials
+  const DEMO_EMAIL = "admin@midone.com";
+  const DEMO_PASSWORD = "password123";
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
+
+    // Simulate API call
+    setTimeout(() => {
+      if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
+        // Store authentication state (simplified for demo)
+        localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("userEmail", email);
+
+        // Redirect to dashboard
+        navigate("/dashboard");
+      } else {
+        setError(
+          "Email ou senha inválidos. Use: admin@midone.com / password123",
+        );
+      }
+      setIsLoading(false);
+    }, 1000);
+  };
+
   return (
     <AuthLayout>
       <div>
@@ -15,7 +49,29 @@ const Login: React.FC = () => {
             Welcome back to Midone Dashboard
           </p>
         </div>
-        <form className="space-y-6">
+
+        {/* Demo Credentials Info */}
+        <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
+          <h3 className="text-sm font-medium text-blue-900 mb-2">
+            🔑 Credenciais de Demonstração:
+          </h3>
+          <div className="text-sm text-blue-700">
+            <p>
+              <strong>Email:</strong> admin@midone.com
+            </p>
+            <p>
+              <strong>Senha:</strong> password123
+            </p>
+          </div>
+        </div>
+
+        {error && (
+          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+            <p className="text-sm text-red-700">{error}</p>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-6">
           <FormGroup>
             <FormLabel htmlFor="email">Email address</FormLabel>
             <FormControl
@@ -24,7 +80,9 @@ const Login: React.FC = () => {
               type="email"
               autoComplete="email"
               required
-              placeholder="Enter your email"
+              placeholder="Digite: admin@midone.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </FormGroup>
 
@@ -36,7 +94,9 @@ const Login: React.FC = () => {
               type="password"
               autoComplete="current-password"
               required
-              placeholder="Enter your password"
+              placeholder="Digite: password123"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </FormGroup>
 
@@ -67,8 +127,13 @@ const Login: React.FC = () => {
           </div>
 
           <div>
-            <Button type="submit" variant="primary" className="w-full">
-              Sign in
+            <Button
+              type="submit"
+              variant="primary"
+              className="w-full"
+              disabled={isLoading}
+            >
+              {isLoading ? "Entrando..." : "Sign in"}
             </Button>
           </div>
         </form>
