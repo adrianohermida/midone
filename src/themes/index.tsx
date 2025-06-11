@@ -45,4 +45,4 @@ function Main() {
 export default Main;
 
 // Export as Themes for backward compatibility
-export { default as Themes } from "./index";
+export const Themes = Main;
