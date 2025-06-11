@@ -73,12 +73,12 @@ function Main() {
                       type="checkbox"
                       className="mr-2 border"
                     />
-                    <label
+                    <FormCheck.Label
                       className="cursor-pointer select-none"
                       htmlFor="remember-me"
                     >
                       Remember me
-                    </label>
+                    </FormCheck.Label>
                   </div>
                   <a href="">Forgot Password?</a>
                 </div>
