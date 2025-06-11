@@ -23,7 +23,7 @@ import { FormInput, FormSelect } from "../../components/Base/Form";
 import { Tab, Menu } from "../../components/Base/Headless";
 import Slideover from "../../components/Base/Headless/Slideover";
 import Table from "../../components/Base/Table";
-import Tippy from "../../base-components/Tippy";
+import Tippy from "../../components/Base/Tippy";
 import juridicoData from "../../data/juridico.json";
 
 interface Processo {
