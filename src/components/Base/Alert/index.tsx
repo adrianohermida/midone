@@ -26,11 +26,11 @@ interface AlertProps {
 }
 
 interface AlertComponent extends React.FC<AlertProps> {
-  DismissButton: React.FC<{
-    onClick?: () => void;
-    className?: string;
-    children?: React.ReactNode;
-  }>;
+  DismissButton: React.FC<
+    React.ButtonHTMLAttributes<HTMLButtonElement> & {
+      children?: React.ReactNode;
+    }
+  >;
 }
 
 const AlertMain: AlertComponent = ({
@@ -92,7 +92,7 @@ const AlertMain: AlertComponent = ({
   );
 };
 
-AlertMain.DismissButton = ({ onClick, className, children }) => {
+AlertMain.DismissButton = ({ className, children, ...props }) => {
   return (
     <button
       type="button"
@@ -100,8 +100,8 @@ AlertMain.DismissButton = ({ onClick, className, children }) => {
         "absolute top-3 right-3 opacity-70 hover:opacity-100",
         className,
       )}
-      onClick={onClick}
       aria-label="Close alert"
+      {...props}
     >
       {children || <Lucide icon="X" className="w-4 h-4" />}
     </button>
