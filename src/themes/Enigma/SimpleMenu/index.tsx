@@ -98,7 +98,7 @@ function Main() {
                     {menu.subMenu && (
                       <Transition
                         in={menu.activeDropdown}
-                        onEnter={(el: any) => enter(el)}
+                        onEnter={(el: any, isAppearing?: boolean) => enter(el)}
                         onExit={(el: any) => leave(el)}
                         timeout={300}
                       >
@@ -149,7 +149,9 @@ function Main() {
                               {subMenu.subMenu && (
                                 <Transition
                                   in={subMenu.activeDropdown}
-                                  onEnter={(el: any) => enter(el)}
+                                  onEnter={(el: any, isAppearing?: boolean) =>
+                                    enter(el)
+                                  }
                                   onExit={(el: any) => leave(el)}
                                   timeout={300}
                                 >
