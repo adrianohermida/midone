@@ -58,7 +58,9 @@ const FormCheckLabel = forwardRef(
   },
 );
 
-FormCheck.Input = FormCheckInput;
-FormCheck.Label = FormCheckLabel;
+const FormCheckComponent = Object.assign(FormCheck, {
+  Input: FormCheckInput,
+  Label: FormCheckLabel,
+});
 
-export default FormCheck;
+export default FormCheckComponent;
