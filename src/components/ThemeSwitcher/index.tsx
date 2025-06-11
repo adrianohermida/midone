@@ -25,7 +25,11 @@ import ColorPicker from "@/components/Base/ColorPicker";
 import { useState, useEffect, useCallback } from "react";
 import clsx from "clsx";
 import { themeConfigs, applyThemeStyles } from "@/config/themes";
-import { applyCustomThemeColors, isValidHex } from "@/utils/colorUtils";
+import {
+  applyCustomThemeColors,
+  isValidHex,
+  resetToDefaultColors,
+} from "@/utils/colorUtils";
 
 function Main() {
   const dispatch = useAppDispatch();
@@ -37,6 +41,7 @@ function Main() {
   const [previewSecondary, setPreviewSecondary] = useState("#1e40af");
   const [showCustomForm, setShowCustomForm] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+  const [showColorGuide, setShowColorGuide] = useState(false);
 
   const activeTheme = useAppSelector(selectTheme);
   const activeColorScheme = useAppSelector(selectColorScheme);
@@ -76,7 +81,6 @@ function Main() {
 
   const switchLayout = (layout: Themes["layout"]) => {
     dispatch(setLayout(layout));
-    // Layout changes take effect immediately
     setTimeout(() => {
       window.location.reload();
     }, 100);
@@ -127,7 +131,6 @@ function Main() {
 
   const deleteCustomTheme = (themeId: string) => {
     dispatch(removeCustomTheme(themeId));
-    // If deleting active theme, switch to default
     if (activeCustomTheme?.id === themeId) {
       dispatch(clearCustomTheme());
       applyThemeStyles(activeTheme.name, activeDarkMode);
@@ -146,7 +149,6 @@ function Main() {
     const el = document.documentElement;
     darkMode ? el.classList.add("dark") : el.classList.remove("dark");
 
-    // Apply appropriate theme styles
     if (isUsingCustomTheme && activeCustomTheme) {
       applyCustomThemeColors(
         activeCustomTheme.colors.primary,
@@ -169,7 +171,6 @@ function Main() {
     }
   }, [previewPrimary, previewSecondary, showCustomForm, applyPreviewColors]);
 
-  // Handle color picker changes with preview
   const handlePrimaryColorChange = (color: string) => {
     setPrimaryColor(color);
     setPreviewPrimary(color);
@@ -180,7 +181,6 @@ function Main() {
     setPreviewSecondary(color);
   };
 
-  // Reset preview when canceling
   const handleCancel = () => {
     if (showCustomForm) {
       resetToOriginalTheme();
@@ -190,7 +190,6 @@ function Main() {
     setShowCustomForm(false);
   };
 
-  // Close handler
   const handleClose = () => {
     if (showCustomForm) {
       resetToOriginalTheme();
@@ -198,6 +197,17 @@ function Main() {
     setThemeSwitcherSlideover(false);
     setShowCustomForm(false);
     setActiveTab(0);
+    setShowColorGuide(false);
+  };
+
+  const handleReset = () => {
+    dispatch(setTheme("rubick"));
+    dispatch(setLayout("side-menu"));
+    dispatch(setColorScheme("default"));
+    dispatch(setDarkMode(false));
+    dispatch(clearCustomTheme());
+    resetToDefaultColors(false);
+    setTimeout(() => window.location.reload(), 100);
   };
 
   const themes: Array<Themes["name"]> = [
@@ -228,66 +238,149 @@ function Main() {
     { eager: true },
   );
 
+  // Color usage guide
+  const colorUsageGuide = [
+    {
+      color: "primary",
+      name: "Cor Primária",
+      usage: "Cabeçalhos, botões principais, menu ativo, logo",
+      elements: [
+        "Top Bar",
+        "Botões de Ação",
+        "Links Ativos",
+        "Menu Selecionado",
+      ],
+    },
+    {
+      color: "secondary",
+      name: "Cor Secundária",
+      usage: "Botões secundários, acentos, detalhes",
+      elements: ["Botões Secundários", "Badges", "Acentos", "Ícones Especiais"],
+    },
+  ];
+
   return (
     <div>
       <Slideover open={themeSwitcherSlideover} onClose={handleClose}>
-        <Slideover.Panel className="w-full sm:w-96 rounded-[0.75rem_0_0_0.75rem/1.1rem_0_0_1.1rem]">
+        <Slideover.Panel className="w-full max-w-md rounded-[0.75rem_0_0_0.75rem/1.1rem_0_0_1.1rem]">
           <a
             href=""
-            className="focus:outline-none hover:bg-white/10 bg-white/5 transition-all hover:rotate-180 absolute inset-y-0 left-0 right-auto flex items-center justify-center my-auto -ml-[40px] sm:-ml-[60px] border rounded-full text-white/90 w-8 h-8 sm:w-12 sm:h-12 border-white/90 hover:scale-105"
+            className="focus:outline-none hover:bg-white/10 bg-white/5 transition-all hover:rotate-180 absolute inset-y-0 left-0 right-auto flex items-center justify-center my-auto -ml-[50px] border rounded-full text-white/90 w-10 h-10 border-white/90 hover:scale-105 z-10"
             onClick={(e) => {
               e.preventDefault();
               handleClose();
             }}
           >
-            <Lucide className="w-3 h-3 sm:w-5 sm:h-5 stroke-[1]" icon="X" />
+            <Lucide className="w-4 h-4 stroke-[1.5]" icon="X" />
           </a>
 
-          <Slideover.Description className="p-0">
-            <div className="flex flex-col h-full">
+          <Slideover.Description className="p-0 h-full">
+            <div className="flex flex-col h-full bg-white dark:bg-slate-800">
               {/* Header */}
-              <div className="px-4 sm:px-6 py-4 border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
-                <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-200">
-                  Configurador de Temas
-                </h2>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                  Personalize a aparência do Lawdesk
-                </p>
+              <div className="px-6 py-5 border-b border-slate-200 dark:border-slate-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-700">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200">
+                      🎨 Personalizador de Temas
+                    </h2>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                      Configure a aparência do Lawdesk
+                    </p>
+                  </div>
+                  <Button
+                    variant="outline-secondary"
+                    size="sm"
+                    onClick={() => setShowColorGuide(!showColorGuide)}
+                    className="shrink-0"
+                  >
+                    <Lucide icon="Info" className="w-4 h-4" />
+                  </Button>
+                </div>
+
+                {/* Color Usage Guide */}
+                {showColorGuide && (
+                  <div className="mt-4 p-4 bg-white dark:bg-slate-800 rounded-lg border border-blue-200 dark:border-blue-800">
+                    <h3 className="text-sm font-semibold mb-3 text-slate-800 dark:text-slate-200">
+                      🎯 Guia de Aplicação de Cores
+                    </h3>
+                    <div className="space-y-3">
+                      {colorUsageGuide.map((guide, index) => (
+                        <div key={index} className="flex items-start space-x-3">
+                          <div
+                            className="w-4 h-4 rounded-full border-2 border-white shadow-sm mt-0.5"
+                            style={{
+                              backgroundColor:
+                                guide.color === "primary"
+                                  ? previewPrimary
+                                  : previewSecondary,
+                            }}
+                          />
+                          <div className="flex-1">
+                            <div className="text-xs font-medium text-slate-700 dark:text-slate-300">
+                              {guide.name}
+                            </div>
+                            <div className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
+                              {guide.usage}
+                            </div>
+                            <div className="flex flex-wrap gap-1 mt-1">
+                              {guide.elements.map((element, elemIndex) => (
+                                <span
+                                  key={elemIndex}
+                                  className="inline-block text-xs bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 px-2 py-0.5 rounded"
+                                >
+                                  {element}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Content */}
-              <div className="flex-1 overflow-hidden bg-white dark:bg-slate-800">
+              <div className="flex-1 overflow-hidden">
                 <Tab.Group selectedIndex={activeTab} onChange={setActiveTab}>
-                  <Tab.List className="flex border-b border-slate-200 dark:border-slate-700 px-4 sm:px-6 bg-slate-50 dark:bg-slate-900/50">
-                    <Tab className="px-2 sm:px-4 py-3 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 border-b-2 border-transparent data-[selected]:border-blue-500 data-[selected]:text-blue-600 dark:data-[selected]:text-blue-400 transition-colors">
-                      Temas
+                  <Tab.List className="flex border-b border-slate-200 dark:border-slate-700 px-6 bg-slate-50 dark:bg-slate-900/50">
+                    <Tab className="px-4 py-3 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 border-b-2 border-transparent data-[selected]:border-blue-500 data-[selected]:text-blue-600 dark:data-[selected]:text-blue-400 transition-all">
+                      🎨 Temas
                     </Tab>
-                    <Tab className="px-2 sm:px-4 py-3 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 border-b-2 border-transparent data-[selected]:border-blue-500 data-[selected]:text-blue-600 dark:data-[selected]:text-blue-400 transition-colors">
-                      Personalizado
+                    <Tab className="px-4 py-3 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 border-b-2 border-transparent data-[selected]:border-blue-500 data-[selected]:text-blue-600 dark:data-[selected]:text-blue-400 transition-all">
+                      🌈 Cores
                     </Tab>
-                    <Tab className="px-2 sm:px-4 py-3 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 border-b-2 border-transparent data-[selected]:border-blue-500 data-[selected]:text-blue-600 dark:data-[selected]:text-blue-400 transition-colors">
-                      Layout
+                    <Tab className="px-4 py-3 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 border-b-2 border-transparent data-[selected]:border-blue-500 data-[selected]:text-blue-600 dark:data-[selected]:text-blue-400 transition-all">
+                      ⚙️ Config
                     </Tab>
                   </Tab.List>
 
                   <Tab.Panels className="flex-1 overflow-y-auto">
                     {/* Themes Tab */}
-                    <Tab.Panel className="p-4 sm:p-6 space-y-6">
+                    <Tab.Panel className="p-6 space-y-6">
                       {/* Current Theme Status */}
                       {isUsingCustomTheme && activeCustomTheme && (
-                        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3 sm:p-4">
+                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 shadow-sm">
                           <div className="flex items-center justify-between">
-                            <div className="min-w-0 flex-1">
-                              <h4 className="font-medium text-blue-800 dark:text-blue-200 text-sm">
-                                Tema Personalizado Ativo
-                              </h4>
-                              <p className="text-xs text-blue-600 dark:text-blue-300 truncate">
-                                {activeCustomTheme.name}
-                              </p>
+                            <div className="flex items-center space-x-3">
+                              <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+                                <Lucide
+                                  icon="Palette"
+                                  className="w-4 h-4 text-blue-600 dark:text-blue-400"
+                                />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-blue-800 dark:text-blue-200">
+                                  Tema Personalizado Ativo
+                                </h4>
+                                <p className="text-sm text-blue-600 dark:text-blue-300">
+                                  {activeCustomTheme.name}
+                                </p>
+                              </div>
                             </div>
-                            <div className="flex space-x-1 ml-3">
+                            <div className="flex space-x-2">
                               <div
-                                className="w-5 h-5 rounded border border-white shadow-sm"
+                                className="w-6 h-6 rounded-full border-2 border-white shadow-md"
                                 style={{
                                   backgroundColor:
                                     activeCustomTheme.colors.primary,
@@ -295,7 +388,7 @@ function Main() {
                                 title={`Primária: ${activeCustomTheme.colors.primary}`}
                               />
                               <div
-                                className="w-5 h-5 rounded border border-white shadow-sm"
+                                className="w-6 h-6 rounded-full border-2 border-white shadow-md"
                                 style={{
                                   backgroundColor:
                                     activeCustomTheme.colors.secondary,
@@ -309,23 +402,24 @@ function Main() {
 
                       {/* Predefined Templates */}
                       <div>
-                        <h3 className="text-base font-medium mb-4 text-slate-800 dark:text-slate-200">
+                        <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200 flex items-center">
+                          <Lucide icon="Layout" className="w-5 h-5 mr-2" />
                           Templates Predefinidos
                         </h3>
-                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                        <div className="grid grid-cols-2 gap-4">
                           {themes.map((theme, themeKey) => (
-                            <div key={themeKey} className="space-y-2">
+                            <div key={themeKey} className="space-y-3">
                               <div
                                 onClick={() => switchTheme(theme)}
                                 className={clsx([
-                                  "h-16 sm:h-20 cursor-pointer bg-slate-50 dark:bg-slate-700 box p-1 rounded-lg transition-all hover:scale-105 border-2",
+                                  "relative h-24 cursor-pointer bg-slate-50 dark:bg-slate-700 rounded-xl p-2 transition-all duration-300 hover:scale-105 hover:shadow-lg border-2 group",
                                   !isUsingCustomTheme &&
                                   activeTheme.name === theme
-                                    ? "border-blue-500 ring-2 ring-blue-200 dark:ring-blue-800"
-                                    : "border-transparent hover:border-slate-300 dark:hover:border-slate-600",
+                                    ? "border-blue-500 ring-4 ring-blue-200 dark:ring-blue-800 shadow-lg"
+                                    : "border-slate-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-600",
                                 ])}
                               >
-                                <div className="w-full h-full overflow-hidden rounded">
+                                <div className="w-full h-full overflow-hidden rounded-lg">
                                   {(themeImages[
                                     `/src/assets/images/themes/${theme}.png`
                                   ] ||
@@ -333,7 +427,7 @@ function Main() {
                                       `/src/assets/images/themes/${theme}.svg`
                                     ]) && (
                                     <img
-                                      className="w-full h-full object-cover"
+                                      className="w-full h-full object-cover transition-transform group-hover:scale-110"
                                       src={
                                         (
                                           themeImages[
@@ -348,9 +442,23 @@ function Main() {
                                     />
                                   )}
                                 </div>
+                                {!isUsingCustomTheme &&
+                                  activeTheme.name === theme && (
+                                    <div className="absolute top-2 right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                                      <Lucide
+                                        icon="Check"
+                                        className="w-3 h-3 text-white"
+                                      />
+                                    </div>
+                                  )}
                               </div>
-                              <div className="text-center text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300">
-                                {themeConfigs[theme]?.displayName || theme}
+                              <div className="text-center">
+                                <div className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                                  {themeConfigs[theme]?.displayName || theme}
+                                </div>
+                                <div className="text-xs text-slate-500 dark:text-slate-400">
+                                  Template oficial
+                                </div>
                               </div>
                             </div>
                           ))}
@@ -359,22 +467,24 @@ function Main() {
                     </Tab.Panel>
 
                     {/* Custom Colors Tab */}
-                    <Tab.Panel className="p-4 sm:p-6 space-y-6">
+                    <Tab.Panel className="p-6 space-y-6">
                       {/* Create New Custom Theme */}
                       <div>
                         <div className="flex items-center justify-between mb-4">
-                          <h3 className="text-base font-medium text-slate-800 dark:text-slate-200">
+                          <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 flex items-center">
+                            <Lucide icon="Sparkles" className="w-5 h-5 mr-2" />
                             Criar Tema Personalizado
                           </h3>
                           <Button
-                            variant="primary"
+                            variant={
+                              showCustomForm ? "outline-secondary" : "primary"
+                            }
                             size="sm"
                             onClick={() => {
                               if (showCustomForm) {
                                 handleCancel();
                               } else {
                                 setShowCustomForm(true);
-                                // Initialize preview with current colors
                                 if (isUsingCustomTheme && activeCustomTheme) {
                                   setPrimaryColor(
                                     activeCustomTheme.colors.primary,
@@ -391,73 +501,86 @@ function Main() {
                                 }
                               }
                             }}
+                            className="shadow-sm"
                           >
                             <Lucide
                               icon={showCustomForm ? "X" : "Plus"}
-                              className="w-4 h-4 mr-1"
+                              className="w-4 h-4 mr-2"
                             />
-                            {showCustomForm ? "Cancelar" : "Novo"}
+                            {showCustomForm ? "Cancelar" : "Novo Tema"}
                           </Button>
                         </div>
 
                         {showCustomForm && (
-                          <div className="bg-slate-50 dark:bg-slate-900/50 rounded-lg p-3 sm:p-4 space-y-4 border border-slate-200 dark:border-slate-700">
-                            <div>
-                              <FormLabel
-                                htmlFor="theme-name"
-                                className="text-sm"
-                              >
-                                Nome do Tema
-                              </FormLabel>
-                              <FormInput
-                                id="theme-name"
-                                type="text"
-                                value={customThemeName}
-                                onChange={(e) =>
-                                  setCustomThemeName(e.target.value)
-                                }
-                                placeholder="Ex: Meu Tema Azul"
-                                className="mt-1 text-sm"
-                              />
-                            </div>
+                          <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <div className="space-y-6">
+                              <div>
+                                <FormLabel
+                                  htmlFor="theme-name"
+                                  className="text-sm font-medium flex items-center"
+                                >
+                                  <Lucide
+                                    icon="Type"
+                                    className="w-4 h-4 mr-2"
+                                  />
+                                  Nome do Tema
+                                </FormLabel>
+                                <FormInput
+                                  id="theme-name"
+                                  type="text"
+                                  value={customThemeName}
+                                  onChange={(e) =>
+                                    setCustomThemeName(e.target.value)
+                                  }
+                                  placeholder="Ex: Meu Tema Azul Oceano"
+                                  className="mt-2"
+                                />
+                              </div>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                              <ColorPicker
-                                label="Cor Primária"
-                                value={primaryColor}
-                                onChange={handlePrimaryColorChange}
-                                placeholder="#3b82f6"
-                              />
+                              <div className="grid grid-cols-1 gap-6">
+                                <ColorPicker
+                                  label="🎯 Cor Primária (Cabeçalhos, Menus)"
+                                  value={primaryColor}
+                                  onChange={handlePrimaryColorChange}
+                                  placeholder="#3b82f6"
+                                  showPalettes={true}
+                                />
 
-                              <ColorPicker
-                                label="Cor Secundária"
-                                value={secondaryColor}
-                                onChange={handleSecondaryColorChange}
-                                placeholder="#1e40af"
-                              />
-                            </div>
+                                <ColorPicker
+                                  label="✨ Cor Secundária (Acentos, Botões)"
+                                  value={secondaryColor}
+                                  onChange={handleSecondaryColorChange}
+                                  placeholder="#1e40af"
+                                  showPalettes={true}
+                                />
+                              </div>
 
-                            <div className="flex flex-col sm:flex-row gap-2">
-                              <Button
-                                variant="primary"
-                                onClick={createCustomTheme}
-                                disabled={
-                                  !customThemeName.trim() ||
-                                  !isValidHex(primaryColor) ||
-                                  !isValidHex(secondaryColor)
-                                }
-                                className="flex-1 text-sm"
-                              >
-                                <Lucide icon="Save" className="w-4 h-4 mr-1" />
-                                Salvar Tema
-                              </Button>
-                              <Button
-                                variant="outline-secondary"
-                                onClick={handleCancel}
-                                className="text-sm"
-                              >
-                                Cancelar
-                              </Button>
+                              <div className="flex space-x-3">
+                                <Button
+                                  variant="primary"
+                                  onClick={createCustomTheme}
+                                  disabled={
+                                    !customThemeName.trim() ||
+                                    !isValidHex(primaryColor) ||
+                                    !isValidHex(secondaryColor)
+                                  }
+                                  className="flex-1 shadow-sm"
+                                >
+                                  <Lucide
+                                    icon="Save"
+                                    className="w-4 h-4 mr-2"
+                                  />
+                                  Salvar Tema
+                                </Button>
+                                <Button
+                                  variant="outline-secondary"
+                                  onClick={handleCancel}
+                                  className="shadow-sm"
+                                >
+                                  <Lucide icon="X" className="w-4 h-4 mr-2" />
+                                  Cancelar
+                                </Button>
+                              </div>
                             </div>
                           </div>
                         )}
@@ -466,7 +589,8 @@ function Main() {
                       {/* Saved Custom Themes */}
                       {customThemes.length > 0 && (
                         <div>
-                          <h3 className="text-base font-medium mb-4 text-slate-800 dark:text-slate-200">
+                          <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200 flex items-center">
+                            <Lucide icon="Heart" className="w-5 h-5 mr-2" />
                             Temas Salvos ({customThemes.length})
                           </h3>
                           <div className="space-y-3">
@@ -474,28 +598,18 @@ function Main() {
                               <div
                                 key={customTheme.id}
                                 className={clsx([
-                                  "border rounded-lg p-3 cursor-pointer transition-all hover:bg-slate-50 dark:hover:bg-slate-900/50",
+                                  "relative border rounded-xl p-4 cursor-pointer transition-all duration-300 hover:shadow-lg group",
                                   activeCustomTheme?.id === customTheme.id
-                                    ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
-                                    : "border-slate-200 dark:border-slate-700",
+                                    ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20 ring-2 ring-blue-200 dark:ring-blue-800"
+                                    : "border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-slate-50 dark:hover:bg-slate-800",
                                 ])}
                                 onClick={() => applyCustomTheme(customTheme)}
                               >
                                 <div className="flex items-center justify-between">
-                                  <div className="min-w-0 flex-1">
-                                    <h4 className="font-medium text-sm text-slate-800 dark:text-slate-200 truncate">
-                                      {customTheme.name}
-                                    </h4>
-                                    <p className="text-xs text-slate-600 dark:text-slate-400">
-                                      {new Date(
-                                        customTheme.createdAt,
-                                      ).toLocaleDateString("pt-BR")}
-                                    </p>
-                                  </div>
-                                  <div className="flex items-center space-x-2 ml-3">
+                                  <div className="flex items-center space-x-3">
                                     <div className="flex space-x-1">
                                       <div
-                                        className="w-5 h-5 rounded border border-white shadow-sm"
+                                        className="w-6 h-6 rounded-full border-2 border-white shadow-md"
                                         style={{
                                           backgroundColor:
                                             customTheme.colors.primary,
@@ -503,7 +617,7 @@ function Main() {
                                         title={`Primária: ${customTheme.colors.primary}`}
                                       />
                                       <div
-                                        className="w-5 h-5 rounded border border-white shadow-sm"
+                                        className="w-6 h-6 rounded-full border-2 border-white shadow-md"
                                         style={{
                                           backgroundColor:
                                             customTheme.colors.secondary,
@@ -511,6 +625,28 @@ function Main() {
                                         title={`Secundária: ${customTheme.colors.secondary}`}
                                       />
                                     </div>
+                                    <div>
+                                      <h4 className="font-semibold text-slate-800 dark:text-slate-200">
+                                        {customTheme.name}
+                                      </h4>
+                                      <p className="text-xs text-slate-600 dark:text-slate-400">
+                                        Criado em{" "}
+                                        {new Date(
+                                          customTheme.createdAt,
+                                        ).toLocaleDateString("pt-BR")}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <div className="flex items-center space-x-2">
+                                    {activeCustomTheme?.id ===
+                                      customTheme.id && (
+                                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                                        <Lucide
+                                          icon="Check"
+                                          className="w-3 h-3 text-white"
+                                        />
+                                      </div>
+                                    )}
                                     <Button
                                       variant="outline-secondary"
                                       size="sm"
@@ -518,7 +654,7 @@ function Main() {
                                         e.stopPropagation();
                                         deleteCustomTheme(customTheme.id);
                                       }}
-                                      className="p-1"
+                                      className="opacity-0 group-hover:opacity-100 transition-opacity p-2"
                                     >
                                       <Lucide
                                         icon="Trash2"
@@ -534,26 +670,27 @@ function Main() {
                       )}
                     </Tab.Panel>
 
-                    {/* Layout Tab */}
-                    <Tab.Panel className="p-4 sm:p-6 space-y-6">
+                    {/* Config Tab */}
+                    <Tab.Panel className="p-6 space-y-6">
                       {/* Layouts */}
                       <div>
-                        <h3 className="text-base font-medium mb-4 text-slate-800 dark:text-slate-200">
-                          Layout
+                        <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200 flex items-center">
+                          <Lucide icon="Layout" className="w-5 h-5 mr-2" />
+                          Layout do Sistema
                         </h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                        <div className="grid grid-cols-1 gap-4">
                           {layouts.map((layout, layoutKey) => (
-                            <div key={layoutKey} className="space-y-2">
+                            <div key={layoutKey}>
                               <div
                                 onClick={() => switchLayout(layout)}
                                 className={clsx([
-                                  "h-16 cursor-pointer bg-slate-50 dark:bg-slate-700 box p-1 rounded-lg transition-all hover:scale-105 border-2",
+                                  "relative h-20 cursor-pointer bg-slate-50 dark:bg-slate-700 rounded-xl p-3 transition-all duration-300 hover:scale-105 hover:shadow-lg border-2 group flex items-center space-x-4",
                                   activeTheme.layout === layout
-                                    ? "border-blue-500 ring-2 ring-blue-200 dark:ring-blue-800"
-                                    : "border-transparent hover:border-slate-300 dark:hover:border-slate-600",
+                                    ? "border-blue-500 ring-4 ring-blue-200 dark:ring-blue-800 shadow-lg"
+                                    : "border-slate-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-600",
                                 ])}
                               >
-                                <div className="w-full h-full overflow-hidden rounded">
+                                <div className="w-16 h-full overflow-hidden rounded-lg bg-white dark:bg-slate-600">
                                   {(layoutImages[
                                     `/src/assets/images/layouts/${layout}.png`
                                   ] ||
@@ -576,16 +713,33 @@ function Main() {
                                     />
                                   )}
                                 </div>
-                              </div>
-                              <div className="text-center text-xs font-medium text-slate-700 dark:text-slate-300">
-                                {layout
-                                  .split("-")
-                                  .map(
-                                    (word) =>
-                                      word.charAt(0).toUpperCase() +
-                                      word.slice(1),
-                                  )
-                                  .join(" ")}
+                                <div className="flex-1">
+                                  <h4 className="font-semibold text-slate-800 dark:text-slate-200">
+                                    {layout
+                                      .split("-")
+                                      .map(
+                                        (word) =>
+                                          word.charAt(0).toUpperCase() +
+                                          word.slice(1),
+                                      )
+                                      .join(" ")}
+                                  </h4>
+                                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    {layout === "side-menu" &&
+                                      "Menu lateral clássico"}
+                                    {layout === "simple-menu" &&
+                                      "Menu simplificado"}
+                                    {layout === "top-menu" && "Menu no topo"}
+                                  </p>
+                                </div>
+                                {activeTheme.layout === layout && (
+                                  <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <Lucide
+                                      icon="Check"
+                                      className="w-3 h-3 text-white"
+                                    />
+                                  </div>
+                                )}
                               </div>
                             </div>
                           ))}
@@ -594,23 +748,24 @@ function Main() {
 
                       {/* Color Schemes */}
                       <div>
-                        <h3 className="text-base font-medium mb-4 text-slate-800 dark:text-slate-200">
+                        <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200 flex items-center">
+                          <Lucide icon="Palette" className="w-5 h-5 mr-2" />
                           Esquemas de Cor
                         </h3>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div className="grid grid-cols-2 gap-3">
                           {colorSchemes.map((colorScheme, colorKey) => (
-                            <div key={colorKey} className="space-y-2">
+                            <div key={colorKey}>
                               <div
                                 onClick={() => switchColorScheme(colorScheme)}
                                 className={clsx([
-                                  "h-12 cursor-pointer bg-slate-50 dark:bg-slate-700 box rounded-lg p-1 border-2 transition-all hover:scale-105",
+                                  "relative h-16 cursor-pointer bg-slate-50 dark:bg-slate-700 rounded-xl p-2 border-2 transition-all duration-300 hover:scale-105 hover:shadow-lg",
                                   activeColorScheme === colorScheme
-                                    ? "border-blue-500 ring-2 ring-blue-200 dark:ring-blue-800"
-                                    : "border-transparent hover:border-slate-300 dark:hover:border-slate-600",
+                                    ? "border-blue-500 ring-4 ring-blue-200 dark:ring-blue-800 shadow-lg"
+                                    : "border-slate-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-600",
                                 ])}
                               >
-                                <div className="h-full overflow-hidden rounded">
-                                  <div className="flex items-center h-full gap-1 -mx-2">
+                                <div className="h-full overflow-hidden rounded-lg">
+                                  <div className="flex items-center h-full gap-1 -mx-1">
                                     <div
                                       className={clsx([
                                         "w-1/2 h-[140%] bg-theme-1 rotate-12",
@@ -625,8 +780,16 @@ function Main() {
                                     ></div>
                                   </div>
                                 </div>
+                                {activeColorScheme === colorScheme && (
+                                  <div className="absolute top-2 right-2 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <Lucide
+                                      icon="Check"
+                                      className="w-2 h-2 text-white"
+                                    />
+                                  </div>
+                                )}
                               </div>
-                              <div className="text-center text-xs text-slate-700 dark:text-slate-300">
+                              <div className="mt-2 text-center text-sm font-medium text-slate-700 dark:text-slate-300">
                                 {colorScheme === "default"
                                   ? "Padrão"
                                   : colorScheme}
@@ -638,51 +801,79 @@ function Main() {
 
                       {/* Appearance */}
                       <div>
-                        <h3 className="text-base font-medium mb-4 text-slate-800 dark:text-slate-200">
-                          Aparência
+                        <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200 flex items-center">
+                          <Lucide icon="Monitor" className="w-5 h-5 mr-2" />
+                          Modo de Aparência
                         </h3>
                         <div className="grid grid-cols-2 gap-4">
-                          <div className="space-y-2">
+                          <div>
                             <button
                               onClick={() => switchDarkMode(false)}
                               className={clsx([
-                                "h-12 w-full cursor-pointer bg-slate-50 dark:bg-slate-700 box p-1 border-2 rounded-lg transition-all hover:scale-105",
+                                "relative w-full h-20 cursor-pointer bg-slate-50 dark:bg-slate-700 rounded-xl p-3 border-2 transition-all duration-300 hover:scale-105 hover:shadow-lg",
                                 !activeDarkMode
-                                  ? "border-blue-500 ring-2 ring-blue-200 dark:ring-blue-800"
-                                  : "border-transparent hover:border-slate-300 dark:hover:border-slate-600",
+                                  ? "border-blue-500 ring-4 ring-blue-200 dark:ring-blue-800 shadow-lg"
+                                  : "border-slate-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-600",
                               ])}
                             >
-                              <div className="h-full overflow-hidden rounded bg-slate-200"></div>
+                              <div className="h-full overflow-hidden rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+                                <Lucide
+                                  icon="Sun"
+                                  className="w-8 h-8 text-yellow-500"
+                                />
+                              </div>
+                              {!activeDarkMode && (
+                                <div className="absolute top-2 right-2 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                                  <Lucide
+                                    icon="Check"
+                                    className="w-2 h-2 text-white"
+                                  />
+                                </div>
+                              )}
                             </button>
-                            <div className="text-center text-sm text-slate-700 dark:text-slate-300">
-                              Claro
+                            <div className="mt-2 text-center text-sm font-medium text-slate-700 dark:text-slate-300">
+                              Modo Claro
                             </div>
                           </div>
-                          <div className="space-y-2">
+                          <div>
                             <button
                               onClick={() => switchDarkMode(true)}
                               className={clsx([
-                                "h-12 w-full cursor-pointer bg-slate-50 dark:bg-slate-700 box p-1 border-2 rounded-lg transition-all hover:scale-105",
+                                "relative w-full h-20 cursor-pointer bg-slate-50 dark:bg-slate-700 rounded-xl p-3 border-2 transition-all duration-300 hover:scale-105 hover:shadow-lg",
                                 activeDarkMode
-                                  ? "border-blue-500 ring-2 ring-blue-200 dark:ring-blue-800"
-                                  : "border-transparent hover:border-slate-300 dark:hover:border-slate-600",
+                                  ? "border-blue-500 ring-4 ring-blue-200 dark:ring-blue-800 shadow-lg"
+                                  : "border-slate-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-600",
                               ])}
                             >
-                              <div className="h-full overflow-hidden rounded bg-slate-900"></div>
+                              <div className="h-full overflow-hidden rounded-lg bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+                                <Lucide
+                                  icon="Moon"
+                                  className="w-8 h-8 text-blue-400"
+                                />
+                              </div>
+                              {activeDarkMode && (
+                                <div className="absolute top-2 right-2 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                                  <Lucide
+                                    icon="Check"
+                                    className="w-2 h-2 text-white"
+                                  />
+                                </div>
+                              )}
                             </button>
-                            <div className="text-center text-sm text-slate-700 dark:text-slate-300">
-                              Escuro
+                            <div className="mt-2 text-center text-sm font-medium text-slate-700 dark:text-slate-300">
+                              Modo Escuro
                             </div>
                           </div>
                         </div>
                       </div>
 
                       {/* Reset Options */}
-                      <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
-                        <h3 className="text-base font-medium mb-4 text-slate-800 dark:text-slate-200">
+                      <div className="pt-6 border-t border-slate-200 dark:border-slate-700">
+                        <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200 flex items-center">
+                          <Lucide icon="RotateCcw" className="w-5 h-5 mr-2" />
                           Opções de Reset
                         </h3>
-                        <div className="space-y-2">
+                        <div className="space-y-3">
                           {isUsingCustomTheme && (
                             <Button
                               variant="outline-secondary"
@@ -693,7 +884,7 @@ function Main() {
                                   activeDarkMode,
                                 );
                               }}
-                              className="w-full text-sm"
+                              className="w-full justify-start shadow-sm"
                             >
                               <Lucide
                                 icon="RotateCcw"
@@ -704,19 +895,11 @@ function Main() {
                           )}
                           <Button
                             variant="outline-secondary"
-                            onClick={() => {
-                              dispatch(setTheme("rubick"));
-                              dispatch(setLayout("side-menu"));
-                              dispatch(setColorScheme("default"));
-                              dispatch(setDarkMode(false));
-                              dispatch(clearCustomTheme());
-                              applyThemeStyles("rubick", false);
-                              setTimeout(() => window.location.reload(), 100);
-                            }}
-                            className="w-full text-sm"
+                            onClick={handleReset}
+                            className="w-full justify-start shadow-sm"
                           >
                             <Lucide icon="RefreshCw" className="w-4 h-4 mr-2" />
-                            Reset Completo
+                            Reset Completo (Padrões de Fábrica)
                           </Button>
                         </div>
                       </div>
@@ -734,7 +917,7 @@ function Main() {
           event.preventDefault();
           setThemeSwitcherSlideover(true);
         }}
-        className="fixed bottom-0 right-0 z-50 flex items-center justify-center mb-5 mr-5 text-white header-text-optimal rounded-full shadow-lg cursor-pointer w-12 h-12 sm:w-14 sm:h-14 bg-theme-1 hover:scale-110 transition-all duration-300"
+        className="fixed bottom-0 right-0 z-50 flex items-center justify-center mb-5 mr-5 text-white header-text-optimal rounded-full shadow-xl cursor-pointer w-14 h-14 bg-theme-1 hover:scale-110 transition-all duration-300 group"
         style={{
           backgroundColor:
             isUsingCustomTheme && activeCustomTheme
@@ -743,7 +926,7 @@ function Main() {
         }}
       >
         <Lucide
-          className="w-4 h-4 sm:w-5 sm:h-5 animate-spin text-white header-text-optimal"
+          className="w-5 h-5 group-hover:animate-spin text-white header-text-optimal transition-all duration-300"
           icon="Settings"
         />
       </div>
