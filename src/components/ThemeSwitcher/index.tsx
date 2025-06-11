@@ -734,10 +734,16 @@ function Main() {
           event.preventDefault();
           setThemeSwitcherSlideover(true);
         }}
-        className="fixed bottom-0 right-0 z-50 flex items-center justify-center mb-5 mr-5 text-white rounded-full shadow-lg cursor-pointer w-12 h-12 sm:w-14 sm:h-14 bg-theme-1 hover:scale-110 transition-transform"
+        className="fixed bottom-0 right-0 z-50 flex items-center justify-center mb-5 mr-5 text-white header-text-optimal rounded-full shadow-lg cursor-pointer w-12 h-12 sm:w-14 sm:h-14 bg-theme-1 hover:scale-110 transition-all duration-300"
+        style={{
+          backgroundColor:
+            isUsingCustomTheme && activeCustomTheme
+              ? activeCustomTheme.colors.primary
+              : undefined,
+        }}
       >
         <Lucide
-          className="w-4 h-4 sm:w-5 sm:h-5 animate-spin"
+          className="w-4 h-4 sm:w-5 sm:h-5 animate-spin text-white header-text-optimal"
           icon="Settings"
         />
       </div>
