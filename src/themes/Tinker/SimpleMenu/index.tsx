@@ -1,4 +1,4 @@
-import "@/assets/css/themes/tinker/side-nav.css";
+import "@/assets/css/themes/tinker/top-nav.css";
 import { useState, useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { selectMenu } from "@/stores/menuSlice";
