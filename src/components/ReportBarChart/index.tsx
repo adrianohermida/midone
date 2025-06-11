@@ -63,6 +63,7 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
   const options: ChartOptions = useMemo(() => {
     return {
       maintainAspectRatio: false,
+      responsive: true,
       plugins: {
         legend: {
           display: false,
@@ -89,6 +90,9 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
           },
         },
       },
+      layout: {
+        padding: 0,
+      },
     };
   }, [colorScheme, darkMode]);
 
@@ -101,7 +105,8 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
         if (
           chartInstance &&
           chartInstance.config &&
-          chartInstance.config.data
+          chartInstance.config.data &&
+          chartInstance.isResponsive !== false
         ) {
           try {
             const chartConfig = chartInstance.config;
@@ -111,30 +116,43 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
               datasets &&
               datasets[0] &&
               datasets[0].data &&
+              Array.isArray(datasets[0].data) &&
               datasets[0].data.length > 0
             ) {
-              // Swap visitor data
-              const newData = datasets[0].data[0];
-              datasets[0].data.shift();
-              datasets[0].data.push(newData);
-
-              // Swap visitor bar color
+              // Ensure chart is fully initialized before updating
               if (
-                Array.isArray(datasets[0].backgroundColor) &&
-                datasets[0].backgroundColor.length > 0
+                chartInstance.ctx &&
+                chartInstance.platform &&
+                chartInstance.width > 0
               ) {
-                const newColor = datasets[0].backgroundColor[0];
-                datasets[0].backgroundColor.shift();
-                datasets[0].backgroundColor.push(newColor);
-              }
+                // Swap visitor data
+                const newData = datasets[0].data[0];
+                datasets[0].data.shift();
+                datasets[0].data.push(newData);
 
-              chartInstance.update("none"); // Use 'none' animation mode for performance
+                // Swap visitor bar color
+                if (
+                  Array.isArray(datasets[0].backgroundColor) &&
+                  datasets[0].backgroundColor.length > 0
+                ) {
+                  const newColor = datasets[0].backgroundColor[0];
+                  datasets[0].backgroundColor.shift();
+                  datasets[0].backgroundColor.push(newColor);
+                }
+
+                // Use requestAnimationFrame to ensure proper timing
+                requestAnimationFrame(() => {
+                  if (chartInstance && !chartInstance.destroyed) {
+                    chartInstance.update("none");
+                  }
+                });
+              }
             }
           } catch (error) {
             console.warn("Chart update error:", error);
           }
         }
-      }, 2000); // Increased interval to 2 seconds for stability
+      }, 2000);
     }
 
     return () => {
