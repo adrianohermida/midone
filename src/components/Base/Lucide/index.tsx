@@ -247,7 +247,7 @@ const icons = {
   ThumbsUp: dynamicIconImports["thumbs-up"],
   ToggleLeft: dynamicIconImports["toggle-left"],
   ToggleRight: dynamicIconImports["toggle-right"],
-  Tool: dynamicIconImports.tool,
+  Tool: dynamicIconImports.wrench,
   Trash: dynamicIconImports.trash,
   Trash2: dynamicIconImports["trash-2"],
   Trello: dynamicIconImports.trello,
