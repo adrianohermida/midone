@@ -73,7 +73,7 @@ const icons = {
   Codepen: dynamicIconImports.codepen,
   Coffee: dynamicIconImports.coffee,
   Cog: dynamicIconImports.cog,
-  Columns: dynamicIconImports.columns,
+  Columns: dynamicIconImports["columns-2"],
   Command: dynamicIconImports.command,
   Compass: dynamicIconImports.compass,
   Copy: dynamicIconImports.copy,
