@@ -1,0 +1,261 @@
+{
+  "honorarios": [
+    {
+      "id": 1,
+      "cliente": "Silva & Associados Ltda.",
+      "processo": "5002345-67.2023.5.02.0001",
+      "tipo": "Trabalhista",
+      "servico": "Elaboração de Contestação",
+      "advogado": "Dr. João Silva",
+      "oab": "OAB/SP 123456",
+      "valor": 5832.5,
+      "status": "Pendente",
+      "vencimento": "2024-02-15",
+      "criacao": "2024-01-15",
+      "horas": 12,
+      "valorHora": 350,
+      "descricao": "Elaboração de contestação em reclamação trabalhista",
+      "urgencia": "normal"
+    },
+    {
+      "id": 2,
+      "cliente": "Construtora ABC S.A.",
+      "processo": "1002345-67.2023.8.26.0001",
+      "tipo": "Civil",
+      "servico": "Ação de Cobrança",
+      "advogado": "Dra. Maria Santos",
+      "oab": "OAB/SP 789012",
+      "valor": 8500.0,
+      "status": "Pago",
+      "vencimento": "2024-01-30",
+      "criacao": "2024-01-05",
+      "horas": 20,
+      "valorHora": 425,
+      "descricao": "Ação de cobrança por inadimplemento contratual",
+      "urgencia": "alta"
+    },
+    {
+      "id": 3,
+      "cliente": "Pessoa Física - João Costa",
+      "processo": "Consultoria",
+      "tipo": "Criminal",
+      "servico": "Defesa Criminal",
+      "advogado": "Dr. Pedro Oliveira",
+      "oab": "OAB/SP 345678",
+      "valor": 12000.0,
+      "status": "Pendente",
+      "vencimento": "2024-02-20",
+      "criacao": "2024-01-20",
+      "horas": 30,
+      "valorHora": 400,
+      "descricao": "Defesa em processo criminal - lesão corporal",
+      "urgencia": "urgente"
+    }
+  ],
+  "custas": [
+    {
+      "id": 1,
+      "processo": "5002345-67.2023.5.02.0001",
+      "tipo": "Taxa Judiciária",
+      "valor": 450.0,
+      "status": "Pago",
+      "dataVencimento": "2024-01-25",
+      "dataPagamento": "2024-01-22",
+      "responsavel": "Cliente",
+      "observacoes": "Taxa de distribuição processual"
+    },
+    {
+      "id": 2,
+      "processo": "1002345-67.2023.8.26.0001",
+      "tipo": "Perícia Técnica",
+      "valor": 2500.0,
+      "status": "Pendente",
+      "dataVencimento": "2024-02-10",
+      "responsavel": "Escritório",
+      "observacoes": "Perícia de engenharia civil"
+    },
+    {
+      "id": 3,
+      "processo": "5002345-67.2023.5.02.0001",
+      "tipo": "Publicação Edital",
+      "valor": 180.0,
+      "status": "Vencido",
+      "dataVencimento": "2024-01-15",
+      "responsavel": "Cliente",
+      "observacoes": "Publicação em jornal de grande circulação"
+    }
+  ],
+  "fluxoCaixa": [
+    {
+      "data": "2024-01-01",
+      "entrada": 25000.0,
+      "saida": 8500.0,
+      "saldo": 16500.0,
+      "tipo": "Honorários"
+    },
+    {
+      "data": "2024-01-05",
+      "entrada": 8500.0,
+      "saida": 2500.0,
+      "saldo": 22500.0,
+      "tipo": "Consultoria"
+    },
+    {
+      "data": "2024-01-10",
+      "entrada": 12000.0,
+      "saida": 3200.0,
+      "saldo": 31300.0,
+      "tipo": "Honorários"
+    },
+    {
+      "data": "2024-01-15",
+      "entrada": 7500.0,
+      "saida": 4100.0,
+      "saldo": 34700.0,
+      "tipo": "Custas"
+    },
+    {
+      "data": "2024-01-20",
+      "entrada": 15800.0,
+      "saida": 2800.0,
+      "saldo": 47700.0,
+      "tipo": "Honorários"
+    }
+  ],
+  "relatorios": {
+    "receitaPorArea": [
+      {
+        "area": "Trabalhista",
+        "valor": 125400.0,
+        "percentual": 35.2,
+        "casos": 45
+      },
+      {
+        "area": "Civil",
+        "valor": 89200.0,
+        "percentual": 25.1,
+        "casos": 32
+      },
+      {
+        "area": "Criminal",
+        "valor": 67800.0,
+        "percentual": 19.0,
+        "casos": 18
+      },
+      {
+        "area": "Empresarial",
+        "valor": 45600.0,
+        "percentual": 12.8,
+        "casos": 12
+      },
+      {
+        "area": "Tributário",
+        "valor": 28400.0,
+        "percentual": 7.9,
+        "casos": 8
+      }
+    ],
+    "inadimplencia": [
+      {
+        "mes": "Jan",
+        "total": 356400.0,
+        "vencido": 12800.0,
+        "percentual": 3.6
+      },
+      {
+        "mes": "Fev",
+        "total": 389200.0,
+        "vencido": 15200.0,
+        "percentual": 3.9
+      },
+      {
+        "mes": "Mar",
+        "total": 412600.0,
+        "vencido": 18900.0,
+        "percentual": 4.6
+      },
+      {
+        "mes": "Abr",
+        "total": 445800.0,
+        "vencido": 22100.0,
+        "percentual": 5.0
+      }
+    ],
+    "topClientes": [
+      {
+        "cliente": "Silva & Associados Ltda.",
+        "valor": 89400.0,
+        "processos": 12,
+        "ultimoPagamento": "2024-01-20"
+      },
+      {
+        "cliente": "Construtora ABC S.A.",
+        "valor": 67200.0,
+        "processos": 8,
+        "ultimoPagamento": "2024-01-18"
+      },
+      {
+        "cliente": "Indústrias XYZ Ltda.",
+        "valor": 45800.0,
+        "processos": 6,
+        "ultimoPagamento": "2024-01-15"
+      }
+    ]
+  },
+  "assinaturas": [
+    {
+      "id": 1,
+      "cliente": "Silva & Associados Ltda.",
+      "plano": "Assessoria Jurídica Empresarial",
+      "valor": 2500.0,
+      "periodicidade": "Mensal",
+      "status": "Ativo",
+      "inicioContrato": "2023-06-01",
+      "proximoVencimento": "2024-02-01",
+      "servicos": ["Consultoria", "Análise de Contratos", "Suporte Tributário"]
+    },
+    {
+      "id": 2,
+      "cliente": "Construtora ABC S.A.",
+      "plano": "Suporte Jurídico Completo",
+      "valor": 4800.0,
+      "periodicidade": "Mensal",
+      "status": "Ativo",
+      "inicioContrato": "2023-03-15",
+      "proximoVencimento": "2024-02-15",
+      "servicos": ["Consultoria", "Representação Legal", "Gestão de Contratos"]
+    }
+  ],
+  "produtosServicos": [
+    {
+      "id": 1,
+      "nome": "Elaboração de Petição Inicial",
+      "categoria": "Civil",
+      "valorHora": 350.0,
+      "valorFixo": 1500.0,
+      "complexidade": "Média",
+      "tempoEstimado": "8-12 horas",
+      "status": "Ativo"
+    },
+    {
+      "id": 2,
+      "nome": "Acompanhamento de Audiência",
+      "categoria": "Trabalhista",
+      "valorHora": 450.0,
+      "valorFixo": 800.0,
+      "complexidade": "Alta",
+      "tempoEstimado": "4-6 horas",
+      "status": "Ativo"
+    },
+    {
+      "id": 3,
+      "nome": "Consultoria Empresarial",
+      "categoria": "Empresarial",
+      "valorHora": 500.0,
+      "valorFixo": null,
+      "complexidade": "Alta",
+      "tempoEstimado": "Variável",
+      "status": "Ativo"
+    }
+  ]
+}
