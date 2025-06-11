@@ -1,197 +1,207 @@
 import { type Menu } from "@/stores/menuSlice";
 
 const menu: Array<Menu | "divider"> = [
+  // PAINEL
   {
-    icon: "Home",
+    icon: "LayoutDashboard",
+    pathname: "/dashboard-overview-1",
     title: "Dashboard",
+  },
+  "divider",
+  // CRM
+  {
+    icon: "Users",
+    title: "CRM",
     subMenu: [
       {
-        icon: "Activity",
-        pathname: "/",
-        title: "Overview 1",
+        icon: "UserCheck",
+        pathname: "/users-layout-1",
+        title: "Contatos",
       },
       {
-        icon: "Activity",
-        pathname: "/dashboard-overview-2",
-        title: "Overview 2",
+        icon: "TrendingUp",
+        pathname: "/crud-data-list",
+        title: "Negócios (Pipelines)",
       },
       {
-        icon: "Activity",
-        pathname: "/dashboard-overview-3",
-        title: "Overview 3",
-      },
-      {
-        icon: "Activity",
-        pathname: "/dashboard-overview-4",
-        title: "Overview 4",
+        icon: "CheckSquare",
+        pathname: "/tabulator",
+        title: "Tarefas",
       },
     ],
   },
+  // JURÍDICO
   {
-    icon: "ShoppingBag",
-    title: "E-Commerce",
+    icon: "Scale",
+    title: "Jurídico",
     subMenu: [
       {
-        icon: "Activity",
-        pathname: "/categories",
-        title: "Categories",
+        icon: "FileText",
+        pathname: "/crud-form",
+        title: "Processos",
       },
       {
-        icon: "Activity",
-        pathname: "/add-product",
-        title: "Add Product",
+        icon: "FileSignature",
+        pathname: "/wysiwyg-editor",
+        title: "Contratos",
       },
       {
-        icon: "Activity",
-        pathname: "/products",
-        title: "Products",
-        subMenu: [
-          {
-            icon: "Zap",
-            pathname: "/product-list",
-            title: "Product List",
-          },
-          {
-            icon: "Zap",
-            pathname: "/product-grid",
-            title: "Product Grid",
-          },
-        ],
+        icon: "Newspaper",
+        pathname: "/blog-layout-1",
+        title: "Publicações",
       },
       {
-        icon: "Activity",
-        pathname: "/transactions",
-        title: "Transactions",
-        subMenu: [
-          {
-            icon: "Zap",
-            pathname: "/transaction-list",
-            title: "Transaction List",
-          },
-          {
-            icon: "Zap",
-            pathname: "/transaction-detail",
-            title: "Transaction Detail",
-          },
-        ],
-      },
-      {
-        icon: "Activity",
-        pathname: "/sellers",
-        title: "Sellers",
-        subMenu: [
-          {
-            icon: "Zap",
-            pathname: "/seller-list",
-            title: "Seller List",
-          },
-          {
-            icon: "Zap",
-            pathname: "/seller-detail",
-            title: "Seller Detail",
-          },
-        ],
-      },
-      {
-        icon: "Activity",
-        pathname: "/reviews",
-        title: "Reviews",
+        icon: "Calendar",
+        pathname: "/calendar",
+        title: "Agenda Jurídica",
       },
     ],
   },
+  // FINANCEIRO
   {
-    icon: "Inbox",
-    pathname: "/inbox",
-    title: "Inbox",
+    icon: "DollarSign",
+    title: "Financeiro",
+    subMenu: [
+      {
+        icon: "CreditCard",
+        pathname: "/point-of-sale",
+        title: "Financeiro",
+      },
+      {
+        icon: "Receipt",
+        pathname: "/invoice-layout-1",
+        title: "Faturamento",
+      },
+    ],
   },
+  // DOCUMENTOS
   {
     icon: "HardDrive",
     pathname: "/file-manager",
-    title: "File Manager",
-  },
-  {
-    icon: "CreditCard",
-    pathname: "/point-of-sale",
-    title: "Point of Sale",
-  },
-  {
-    icon: "MessageSquare",
-    pathname: "/chat",
-    title: "Chat",
-  },
-  {
-    icon: "FileText",
-    pathname: "/post",
-    title: "Post",
-  },
-  {
-    icon: "Calendar",
-    pathname: "/calendar",
-    title: "Calendar",
+    title: "GED (Arquivos)",
   },
   "divider",
+  // IA JURÍDICA
   {
-    icon: "FilePenLine",
-    title: "Crud",
+    icon: "Bot",
+    title: "IA Jurídica",
     subMenu: [
       {
-        icon: "Activity",
-        pathname: "/crud-data-list",
-        title: "Data List",
+        icon: "MessageCircle",
+        pathname: "/chat",
+        title: "Assistente de IA",
       },
       {
-        icon: "Activity",
-        pathname: "/crud-form",
-        title: "Form",
+        icon: "FileEdit",
+        pathname: "/post",
+        title: "Documentos Inteligentes",
       },
     ],
   },
+  "divider",
+  // ADMINISTRAÇÃO
   {
-    icon: "Users",
-    title: "Users",
+    icon: "Settings",
+    title: "Administração",
     subMenu: [
       {
-        icon: "Activity",
-        pathname: "/users-layout-1",
-        title: "Layout 1",
+        icon: "Sliders",
+        pathname: "/regular-form",
+        title: "Configurações do Sistema",
       },
       {
-        icon: "Activity",
-        pathname: "/users-layout-2",
-        title: "Layout 2",
-      },
-      {
-        icon: "Activity",
+        icon: "Users",
         pathname: "/users-layout-3",
-        title: "Layout 3",
+        title: "Usuários e Equipe",
+      },
+      {
+        icon: "Plug",
+        pathname: "/regular-table",
+        title: "Integrações",
+      },
+      {
+        icon: "Activity",
+        pathname: "/transaction-list",
+        title: "Logs e Auditoria",
       },
     ],
   },
+  // SUPORTE
   {
-    icon: "Trello",
-    title: "Profile",
+    icon: "HelpCircle",
+    title: "Suporte",
     subMenu: [
       {
-        icon: "Activity",
-        pathname: "/profile-overview-1",
-        title: "Overview 1",
+        icon: "BookOpen",
+        pathname: "/faq-layout-1",
+        title: "Central de Ajuda",
       },
       {
-        icon: "Activity",
-        pathname: "/profile-overview-2",
-        title: "Overview 2",
-      },
-      {
-        icon: "Activity",
-        pathname: "/profile-overview-3",
-        title: "Overview 3",
+        icon: "Inbox",
+        pathname: "/inbox",
+        title: "Tickets de Suporte",
       },
     ],
   },
+  "divider",
+  // BETA/TESTES
   {
-    icon: "PanelsTopLeft",
-    title: "Pages",
+    icon: "TestTube",
+    title: "Painel Beta (Obsoletos/Testes)",
     subMenu: [
+      {
+        icon: "Activity",
+        title: "Dashboard Variants",
+        subMenu: [
+          {
+            icon: "Zap",
+            pathname: "/dashboard-overview-2",
+            title: "Overview 2",
+          },
+          {
+            icon: "Zap",
+            pathname: "/dashboard-overview-3",
+            title: "Overview 3",
+          },
+          {
+            icon: "Zap",
+            pathname: "/dashboard-overview-4",
+            title: "Overview 4",
+          },
+        ],
+      },
+      {
+        icon: "Activity",
+        title: "Profile Layouts",
+        subMenu: [
+          {
+            icon: "Zap",
+            pathname: "/profile-overview-1",
+            title: "Perfil Layout 1",
+          },
+          {
+            icon: "Zap",
+            pathname: "/profile-overview-2",
+            title: "Perfil Layout 2",
+          },
+          {
+            icon: "Zap",
+            pathname: "/profile-overview-3",
+            title: "Perfil Layout 3",
+          },
+        ],
+      },
+      {
+        icon: "Activity",
+        title: "User Layouts",
+        subMenu: [
+          {
+            icon: "Zap",
+            pathname: "/users-layout-2",
+            title: "Users Layout 2",
+          },
+        ],
+      },
       {
         icon: "Activity",
         title: "Wizards",
@@ -199,38 +209,33 @@ const menu: Array<Menu | "divider"> = [
           {
             icon: "Zap",
             pathname: "/wizard-layout-1",
-            title: "Layout 1",
+            title: "Wizard 1",
           },
           {
             icon: "Zap",
             pathname: "/wizard-layout-2",
-            title: "Layout 2",
+            title: "Wizard 2",
           },
           {
             icon: "Zap",
             pathname: "/wizard-layout-3",
-            title: "Layout 3",
+            title: "Wizard 3",
           },
         ],
       },
       {
         icon: "Activity",
-        title: "Blog",
+        title: "Blog Layouts",
         subMenu: [
           {
             icon: "Zap",
-            pathname: "/blog-layout-1",
-            title: "Layout 1",
-          },
-          {
-            icon: "Zap",
             pathname: "/blog-layout-2",
-            title: "Layout 2",
+            title: "Blog Layout 2",
           },
           {
             icon: "Zap",
             pathname: "/blog-layout-3",
-            title: "Layout 3",
+            title: "Blog Layout 3",
           },
         ],
       },
@@ -241,103 +246,91 @@ const menu: Array<Menu | "divider"> = [
           {
             icon: "Zap",
             pathname: "/pricing-layout-1",
-            title: "Layout 1",
+            title: "Pricing 1",
           },
           {
             icon: "Zap",
             pathname: "/pricing-layout-2",
-            title: "Layout 2",
+            title: "Pricing 2",
           },
         ],
       },
       {
         icon: "Activity",
-        title: "Invoice",
+        title: "Invoice Layouts",
         subMenu: [
-          {
-            icon: "Zap",
-            pathname: "/invoice-layout-1",
-            title: "Layout 1",
-          },
           {
             icon: "Zap",
             pathname: "/invoice-layout-2",
-            title: "Layout 2",
+            title: "Invoice Layout 2",
           },
         ],
       },
       {
         icon: "Activity",
-        title: "FAQ",
+        title: "FAQ Layouts",
         subMenu: [
           {
             icon: "Zap",
-            pathname: "/faq-layout-1",
-            title: "Layout 1",
-          },
-          {
-            icon: "Zap",
             pathname: "/faq-layout-2",
-            title: "Layout 2",
+            title: "FAQ Layout 2",
           },
           {
             icon: "Zap",
             pathname: "/faq-layout-3",
-            title: "Layout 3",
+            title: "FAQ Layout 3",
           },
         ],
       },
       {
         icon: "Activity",
-        pathname: "/login",
-        title: "Login",
-      },
-      {
-        icon: "Activity",
-        pathname: "/register",
-        title: "Register",
-      },
-      {
-        icon: "Activity",
-        pathname: "/error-page",
-        title: "Error Page",
-      },
-      {
-        icon: "Activity",
-        pathname: "/update-profile",
-        title: "Update profile",
-      },
-      {
-        icon: "Activity",
-        pathname: "/change-password",
-        title: "Change Password",
-      },
-    ],
-  },
-  "divider",
-  {
-    icon: "Inbox",
-    title: "Components",
-    subMenu: [
-      {
-        icon: "Activity",
-        title: "Table",
+        title: "E-Commerce (Obsoleto)",
         subMenu: [
           {
             icon: "Zap",
-            pathname: "/regular-table",
-            title: "Regular Table",
+            pathname: "/categories",
+            title: "Categories",
           },
           {
             icon: "Zap",
-            pathname: "/tabulator",
-            title: "Tabulator",
+            pathname: "/add-product",
+            title: "Add Product",
+          },
+          {
+            icon: "Zap",
+            pathname: "/product-list",
+            title: "Product List",
+          },
+          {
+            icon: "Zap",
+            pathname: "/product-grid",
+            title: "Product Grid",
+          },
+          {
+            icon: "Zap",
+            pathname: "/transaction-detail",
+            title: "Transaction Detail",
+          },
+          {
+            icon: "Zap",
+            pathname: "/seller-list",
+            title: "Seller List",
+          },
+          {
+            icon: "Zap",
+            pathname: "/seller-detail",
+            title: "Seller Detail",
+          },
+          {
+            icon: "Zap",
+            pathname: "/reviews",
+            title: "Reviews",
           },
         ],
       },
       {
         icon: "Activity",
-        title: "Overlay",
+        title: "Componentes",
         subMenu: [
           {
             icon: "Zap",
@@ -354,114 +347,123 @@ const menu: Array<Menu | "divider"> = [
             pathname: "/notification",
             title: "Notification",
           },
+          {
+            icon: "Zap",
+            pathname: "/tab",
+            title: "Tab",
+          },
+          {
+            icon: "Zap",
+            pathname: "/accordion",
+            title: "Accordion",
+          },
+          {
+            icon: "Zap",
+            pathname: "/button",
+            title: "Button",
+          },
+          {
+            icon: "Zap",
+            pathname: "/alert",
+            title: "Alert",
+          },
+          {
+            icon: "Zap",
+            pathname: "/progress-bar",
+            title: "Progress Bar",
+          },
+          {
+            icon: "Zap",
+            pathname: "/tooltip",
+            title: "Tooltip",
+          },
+          {
+            icon: "Zap",
+            pathname: "/dropdown",
+            title: "Dropdown",
+          },
+          {
+            icon: "Zap",
+            pathname: "/typography",
+            title: "Typography",
+          },
+          {
+            icon: "Zap",
+            pathname: "/icon",
+            title: "Icon",
+          },
+          {
+            icon: "Zap",
+            pathname: "/loading-icon",
+            title: "Loading Icon",
+          },
+          {
+            icon: "Zap",
+            pathname: "/datepicker",
+            title: "Datepicker",
+          },
+          {
+            icon: "Zap",
+            pathname: "/tom-select",
+            title: "Tom Select",
+          },
+          {
+            icon: "Zap",
+            pathname: "/file-upload",
+            title: "File Upload",
+          },
+          {
+            icon: "Zap",
+            pathname: "/validation",
+            title: "Validation",
+          },
+          {
+            icon: "Zap",
+            pathname: "/chart",
+            title: "Chart",
+          },
+          {
+            icon: "Zap",
+            pathname: "/slider",
+            title: "Slider",
+          },
+          {
+            icon: "Zap",
+            pathname: "/image-zoom",
+            title: "Image Zoom",
+          },
         ],
       },
       {
         icon: "Activity",
-        pathname: "/tab",
-        title: "Tab",
-      },
-      {
-        icon: "Activity",
-        pathname: "/accordion",
-        title: "Accordion",
-      },
-      {
-        icon: "Activity",
-        pathname: "/button",
-        title: "Button",
-      },
-      {
-        icon: "Activity",
-        pathname: "/alert",
-        title: "Alert",
-      },
-      {
-        icon: "Activity",
-        pathname: "/progress-bar",
-        title: "Progress Bar",
-      },
-      {
-        icon: "Activity",
-        pathname: "/tooltip",
-        title: "Tooltip",
-      },
-      {
-        icon: "Activity",
-        pathname: "/dropdown",
-        title: "Dropdown",
-      },
-      {
-        icon: "Activity",
-        pathname: "/typography",
-        title: "Typography",
-      },
-      {
-        icon: "Activity",
-        pathname: "/icon",
-        title: "Icon",
-      },
-      {
-        icon: "Activity",
-        pathname: "/loading-icon",
-        title: "Loading Icon",
-      },
-    ],
-  },
-  {
-    icon: "PanelLeft",
-    title: "Forms",
-    subMenu: [
-      {
-        icon: "Activity",
-        pathname: "/regular-form",
-        title: "Regular Form",
-      },
-      {
-        icon: "Activity",
-        pathname: "/datepicker",
-        title: "Datepicker",
-      },
-      {
-        icon: "Activity",
-        pathname: "/tom-select",
-        title: "Tom Select",
-      },
-      {
-        icon: "Activity",
-        pathname: "/file-upload",
-        title: "File Upload",
-      },
-      {
-        icon: "Activity",
-        pathname: "/wysiwyg-editor",
-        title: "Wysiwyg Editor",
-      },
-      {
-        icon: "Activity",
-        pathname: "/validation",
-        title: "Validation",
-      },
-    ],
-  },
-  {
-    icon: "HardDrive",
-    title: "Widgets",
-    subMenu: [
-      {
-        icon: "Activity",
-        pathname: "/chart",
-        title: "Chart",
-      },
-      {
-        icon: "Activity",
-        pathname: "/slider",
-        title: "Slider",
-      },
-      {
-        icon: "Activity",
-        pathname: "/image-zoom",
-        title: "Image Zoom",
+        title: "Auth Pages",
+        subMenu: [
+          {
+            icon: "Zap",
+            pathname: "/login",
+            title: "Login",
+          },
+          {
+            icon: "Zap",
+            pathname: "/register",
+            title: "Register",
+          },
+          {
+            icon: "Zap",
+            pathname: "/error-page",
+            title: "Error Page",
+          },
+          {
+            icon: "Zap",
+            pathname: "/update-profile",
+            title: "Update Profile",
+          },
+          {
+            icon: "Zap",
+            pathname: "/change-password",
+            title: "Change Password",
+          },
+        ],
       },
     ],
   },
