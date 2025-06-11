@@ -160,7 +160,10 @@ function HeaderSearch({ className }: HeaderSearchProps) {
                     <div
                       className={`flex items-center justify-center w-8 h-8 rounded-full ${page.color}`}
                     >
-                      <Lucide icon={page.icon as any} className="w-4 h-4" />
+                      <Lucide
+                        icon={page.icon || "Activity"}
+                        className="w-4 h-4"
+                      />
                     </div>
                     <div className="ml-3">{page.title}</div>
                   </button>
