@@ -59,12 +59,12 @@ function Main() {
           <nav className="side-nav hidden md:block md:w-[100px] xl:w-[250px] px-5 pb-16 overflow-x-hidden z-10">
             <Link to="/" className="flex items-center pt-4 pl-5 mt-3 intro-x">
               <img
-                alt="Tinker Tailwind HTML Admin Template"
-                className="w-6"
-                src={logoUrl}
+                alt="Lawdesk Legal Management System"
+                className="w-6 h-6 justice-scale-icon justice-scale-white"
+                src={justiceScaleUrl}
               />
-              <span className="hidden ml-3 text-lg text-white xl:block">
-                Tinker
+              <span className="hidden ml-3 text-lg font-semibold text-white xl:block">
+                Lawdesk
               </span>
             </Link>
             <div className="my-6 side-nav__divider"></div>
