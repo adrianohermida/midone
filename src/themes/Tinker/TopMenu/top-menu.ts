@@ -50,24 +50,46 @@ const menu: Array<Menu | "divider"> = [
     subMenu: [
       {
         icon: "FileText",
-        pathname: "/crud-form",
         title: "Processos",
+        subMenu: [
+          {
+            icon: "LayoutDashboard",
+            pathname: "/juridico/processos",
+            title: "Dashboard",
+          },
+          {
+            icon: "List",
+            pathname: "/juridico/processos",
+            title: "Listar Processos",
+          },
+          {
+            icon: "Plus",
+            pathname: "/juridico/processos",
+            title: "Novo Processo",
+          },
+          {
+            icon: "Newspaper",
+            pathname: "/juridico/processos/publicacoes",
+            title: "Publicações",
+          },
+          {
+            icon: "Bell",
+            pathname: "/juridico/processos/intimacoes",
+            title: "Intimações",
+          },
+          {
+            icon: "Calendar",
+            pathname: "/juridico/processos/agenda",
+            title: "Agenda",
+          },
+          {
+            icon: "BarChart3",
+            pathname: "/juridico/processos/relatorios",
+            title: "Relatórios",
+          },
+        ],
       },
-      {
-        icon: "FileSignature",
-        pathname: "/wysiwyg-editor",
-        title: "Contratos",
-      },
-      {
-        icon: "Newspaper",
-        pathname: "/blog-layout-1",
-        title: "Publicações",
-      },
-      {
-        icon: "Calendar",
-        pathname: "/calendar",
-        title: "Agenda Jurídica",
-      },
+    ],
     ],
   },
   // FINANCEIRO
