@@ -402,6 +402,7 @@ export function applyCustomThemeColors(
     secondary,
     headerTextColor,
     secondaryTextColor,
+    isDarkMode,
   );
 
   // Force refresh of theme-dependent elements with transition
@@ -417,6 +418,7 @@ function applyColorsToElements(
   secondary: string,
   headerText: string,
   secondaryText: string,
+  isDarkMode: boolean,
 ): void {
   // Theme elements
   const themeElements = document.querySelectorAll(
