@@ -110,6 +110,7 @@ import JuridicoIntimacoes from "@/pages/Juridico/Processos/Intimacoes";
 import JuridicoAgenda from "@/pages/Juridico/Processos/Agenda";
 import JuridicoRelatorios from "@/pages/Juridico/Processos/Relatorios";
 import JuridicoProcessoDetalhes from "@/pages/Juridico/Processos/ProcessoDetalhes";
+import ProcessoDetalhesModerno from "@/pages/Juridico/ProcessoDetalhesModerno";
 
 const Router = () => {
   return (
