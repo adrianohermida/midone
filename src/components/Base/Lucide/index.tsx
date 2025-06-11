@@ -45,6 +45,10 @@ import {
   HelpCircle,
   LogOut,
   Building2,
+  Box,
+  MoreHorizontal,
+  PanelsTopLeft,
+  PanelLeft,
 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
