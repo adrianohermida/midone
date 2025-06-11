@@ -1,24 +1,15 @@
-import { useState, Fragment } from "react";
+import { Fragment } from "react";
 import Lucide from "@/components/Base/Lucide";
-import logoUrl from "@/assets/images/logo.svg";
+import justiceScaleUrl from "@/assets/images/justice-scale.svg";
 import { Link } from "react-router-dom";
 import Breadcrumb from "@/components/Base/Breadcrumb";
-import { FormInput } from "@/components/Base/Form";
-import { Menu, Popover } from "@/components/Base/Headless";
+import { Popover } from "@/components/Base/Headless";
+import UserProfileMenu from "@/components/Base/UserProfileMenu";
+import HeaderSearch from "@/components/Base/HeaderSearch";
 import fakerData from "@/utils/faker";
 import _ from "lodash";
-import clsx from "clsx";
-import { Transition } from "@headlessui/react";
 
 function Main() {
-  const [searchDropdown, setSearchDropdown] = useState(false);
-  const showSearchDropdown = () => {
-    setSearchDropdown(true);
-  };
-  const hideSearchDropdown = () => {
-    setSearchDropdown(false);
-  };
-
   return (
     <>
       {/* BEGIN: Top Bar */}
