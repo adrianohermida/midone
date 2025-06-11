@@ -137,7 +137,7 @@ function Main() {
       {/* Floating Action Button */}
       <div
         className="fixed bottom-0 right-0 z-50 mb-5 mr-5 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-theme-1 text-white shadow-lg hover:bg-theme-1/90 transition-all duration-200"
-        onClick={() => setIsOpen(true)}
+        onClick={handleOpen}
       >
         <Lucide icon="Settings" className="w-5 h-5 animate-spin" />
       </div>
