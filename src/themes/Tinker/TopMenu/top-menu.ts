@@ -76,7 +76,7 @@ const menu: Array<Menu | "divider"> = [
   // APLICAÇÕES
   {
     icon: "Grid3X3",
-    title: "Aplicações",
+    title: "Aplica��ões",
     subMenu: [
       {
         icon: "HardDrive",
@@ -164,7 +164,7 @@ const menu: Array<Menu | "divider"> = [
         subMenu: [
           {
             icon: "Zap",
-            pathname: "/dashboard-overview-2",
+            pathname: "/profile-overview-1",
             title: "Perfil 1",
           },
           {
