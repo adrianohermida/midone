@@ -21,9 +21,8 @@ import {
 import Button from "../../base-components/Button";
 import { FormInput, FormSelect } from "../../base-components/Form";
 import CalendarComponent from "../../components/Base/Calendar";
-import { Menu } from "../../base-components/Headless";
+import { Menu, Tab } from "../../base-components/Headless";
 import Slideover from "../../base-components/Headless/Slideover";
-import { Tab } from "../../base-components/Headless";
 import Tippy from "../../base-components/Tippy";
 import juridicoData from "../../data/juridico.json";
 
