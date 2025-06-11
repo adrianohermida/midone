@@ -25,7 +25,11 @@ import ColorPicker from "@/components/Base/ColorPicker";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
 import { themeConfigs, applyThemeStyles } from "@/config/themes";
-import { applyCustomThemeColors, isValidHex, getOptimalTextColor } from "@/utils/colorUtils";
+import {
+  applyCustomThemeColors,
+  isValidHex,
+  getOptimalTextColor,
+} from "@/utils/colorUtils";
 
 function Main() {
   const dispatch = useAppDispatch();
@@ -54,11 +58,19 @@ function Main() {
 
   const applyCustomTheme = (customTheme: CustomTheme) => {
     dispatch(setActiveCustomTheme(customTheme));
-    applyCustomThemeColors(customTheme.colors.primary, customTheme.colors.secondary, activeDarkMode);
+    applyCustomThemeColors(
+      customTheme.colors.primary,
+      customTheme.colors.secondary,
+      activeDarkMode,
+    );
   };
 
   const createCustomTheme = () => {
-    if (!customThemeName.trim() || !isValidHex(primaryColor) || !isValidHex(secondaryColor)) {
+    if (
+      !customThemeName.trim() ||
+      !isValidHex(primaryColor) ||
+      !isValidHex(secondaryColor)
+    ) {
       return;
     }
 
@@ -98,6 +110,7 @@ function Main() {
     el.setAttribute("class", activeColorScheme);
     activeDarkMode && el.classList.add("dark");
   };
+
   const switchColorScheme = (colorScheme: ColorSchemes) => {
     dispatch(setColorScheme(colorScheme));
     setColorSchemeClass();
@@ -115,7 +128,11 @@ function Main() {
 
     // Apply appropriate theme styles
     if (isUsingCustomTheme && activeCustomTheme) {
-      applyCustomThemeColors(activeCustomTheme.colors.primary, activeCustomTheme.colors.secondary, darkMode);
+      applyCustomThemeColors(
+        activeCustomTheme.colors.primary,
+        activeCustomTheme.colors.secondary,
+        darkMode,
+      );
     } else {
       applyThemeStyles(activeTheme.name, darkMode);
     }
@@ -125,19 +142,24 @@ function Main() {
   // Initialize theme styles on component mount
   useEffect(() => {
     if (isUsingCustomTheme && activeCustomTheme) {
-      applyCustomThemeColors(activeCustomTheme.colors.primary, activeCustomTheme.colors.secondary, activeDarkMode);
+      applyCustomThemeColors(
+        activeCustomTheme.colors.primary,
+        activeCustomTheme.colors.secondary,
+        activeDarkMode,
+      );
     } else {
       applyThemeStyles(activeTheme.name, activeDarkMode);
     }
   }, []);
 
-  // Update colors when primary/secondary colors change
+  // Update colors when primary/secondary colors change (real-time preview)
   useEffect(() => {
-    if (isValidHex(primaryColor) && isValidHex(secondaryColor)) {
-      // Real-time preview while editing
-      if (showCustomForm) {
-        applyCustomThemeColors(primaryColor, secondaryColor, activeDarkMode);
-      }
+    if (
+      isValidHex(primaryColor) &&
+      isValidHex(secondaryColor) &&
+      showCustomForm
+    ) {
+      applyCustomThemeColors(primaryColor, secondaryColor, activeDarkMode);
     }
   }, [primaryColor, secondaryColor, activeDarkMode, showCustomForm]);
 
@@ -233,11 +255,17 @@ function Main() {
                             <div className="flex space-x-2">
                               <div
                                 className="w-6 h-6 rounded border border-white shadow-sm"
-                                style={{ backgroundColor: activeCustomTheme.colors.primary }}
+                                style={{
+                                  backgroundColor:
+                                    activeCustomTheme.colors.primary,
+                                }}
                               />
                               <div
                                 className="w-6 h-6 rounded border border-white shadow-sm"
-                                style={{ backgroundColor: activeCustomTheme.colors.secondary }}
+                                style={{
+                                  backgroundColor:
+                                    activeCustomTheme.colors.secondary,
+                                }}
                               />
                             </div>
                           </div>
@@ -246,7 +274,9 @@ function Main() {
 
                       {/* Predefined Templates */}
                       <div>
-                        <h3 className="text-base font-medium mb-4">Templates Predefinidos</h3>
+                        <h3 className="text-base font-medium mb-4">
+                          Templates Predefinidos
+                        </h3>
                         <div className="grid grid-cols-2 gap-4">
                           {themes.map((theme, themeKey) => (
                             <div key={themeKey}>
@@ -254,24 +284,29 @@ function Main() {
                                 onClick={() => switchTheme(theme)}
                                 className={clsx([
                                   "h-20 cursor-pointer bg-slate-50 dark:bg-slate-800 box p-1 rounded-lg transition-all hover:scale-105",
-                                  !isUsingCustomTheme && activeTheme.name === theme &&
+                                  !isUsingCustomTheme &&
+                                    activeTheme.name === theme &&
                                     "ring-2 ring-blue-500 ring-offset-2",
                                 ])}
                               >
                                 <div className="w-full h-full overflow-hidden rounded">
                                   {(themeImages[
                                     `/src/assets/images/themes/${theme}.png`
-                                  ] || themeImages[
-                                    `/src/assets/images/themes/${theme}.svg`
-                                  ]) && (
+                                  ] ||
+                                    themeImages[
+                                      `/src/assets/images/themes/${theme}.svg`
+                                    ]) && (
                                     <img
                                       className="w-full h-full object-cover"
                                       src={
-                                        (themeImages[
-                                          `/src/assets/images/themes/${theme}.png`
-                                        ] || themeImages[
-                                          `/src/assets/images/themes/${theme}.svg`
-                                        ]).default
+                                        (
+                                          themeImages[
+                                            `/src/assets/images/themes/${theme}.png`
+                                          ] ||
+                                          themeImages[
+                                            `/src/assets/images/themes/${theme}.svg`
+                                          ]
+                                        ).default
                                       }
                                       alt={`${theme} theme`}
                                     />
@@ -292,7 +327,9 @@ function Main() {
                       {/* Create New Custom Theme */}
                       <div>
                         <div className="flex items-center justify-between mb-4">
-                          <h3 className="text-base font-medium">Criar Tema Personalizado</h3>
+                          <h3 className="text-base font-medium">
+                            Criar Tema Personalizado
+                          </h3>
                           <Button
                             variant="primary"
                             size="sm"
@@ -306,12 +343,16 @@ function Main() {
                         {showCustomForm && (
                           <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 space-y-4">
                             <div>
-                              <FormLabel htmlFor="theme-name">Nome do Tema</FormLabel>
+                              <FormLabel htmlFor="theme-name">
+                                Nome do Tema
+                              </FormLabel>
                               <FormInput
                                 id="theme-name"
                                 type="text"
                                 value={customThemeName}
-                                onChange={(e) => setCustomThemeName(e.target.value)}
+                                onChange={(e) =>
+                                  setCustomThemeName(e.target.value)
+                                }
                                 placeholder="Ex: Meu Tema Azul"
                                 className="mt-1"
                               />
@@ -335,7 +376,11 @@ function Main() {
                               <Button
                                 variant="primary"
                                 onClick={createCustomTheme}
-                                disabled={!customThemeName.trim() || !isValidHex(primaryColor) || !isValidHex(secondaryColor)}
+                                disabled={
+                                  !customThemeName.trim() ||
+                                  !isValidHex(primaryColor) ||
+                                  !isValidHex(secondaryColor)
+                                }
                                 className="flex-1"
                               >
                                 Criar Tema
@@ -354,7 +399,9 @@ function Main() {
                       {/* Saved Custom Themes */}
                       {customThemes.length > 0 && (
                         <div>
-                          <h3 className="text-base font-medium mb-4">Temas Salvos</h3>
+                          <h3 className="text-base font-medium mb-4">
+                            Temas Salvos
+                          </h3>
                           <div className="space-y-3">
                             {customThemes.map((customTheme) => (
                               <div
@@ -363,27 +410,38 @@ function Main() {
                                   "border rounded-lg p-4 cursor-pointer transition-all hover:bg-slate-50 dark:hover:bg-slate-800",
                                   activeCustomTheme?.id === customTheme.id
                                     ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
-                                    : "border-slate-200 dark:border-slate-700"
+                                    : "border-slate-200 dark:border-slate-700",
                                 ])}
                                 onClick={() => applyCustomTheme(customTheme)}
                               >
                                 <div className="flex items-center justify-between">
                                   <div>
-                                    <h4 className="font-medium">{customTheme.name}</h4>
+                                    <h4 className="font-medium">
+                                      {customTheme.name}
+                                    </h4>
                                     <p className="text-sm text-slate-600 dark:text-slate-400">
-                                      Criado em {new Date(customTheme.createdAt).toLocaleDateString()}
+                                      Criado em{" "}
+                                      {new Date(
+                                        customTheme.createdAt,
+                                      ).toLocaleDateString()}
                                     </p>
                                   </div>
                                   <div className="flex items-center space-x-3">
                                     <div className="flex space-x-1">
                                       <div
                                         className="w-6 h-6 rounded border border-white shadow-sm"
-                                        style={{ backgroundColor: customTheme.colors.primary }}
+                                        style={{
+                                          backgroundColor:
+                                            customTheme.colors.primary,
+                                        }}
                                         title={`Primária: ${customTheme.colors.primary}`}
                                       />
                                       <div
                                         className="w-6 h-6 rounded border border-white shadow-sm"
-                                        style={{ backgroundColor: customTheme.colors.secondary }}
+                                        style={{
+                                          backgroundColor:
+                                            customTheme.colors.secondary,
+                                        }}
                                         title={`Secundária: ${customTheme.colors.secondary}`}
                                       />
                                     </div>
@@ -395,7 +453,10 @@ function Main() {
                                         deleteCustomTheme(customTheme.id);
                                       }}
                                     >
-                                      <Lucide icon="Trash2" className="w-4 h-4" />
+                                      <Lucide
+                                        icon="Trash2"
+                                        className="w-4 h-4"
+                                      />
                                     </Button>
                                   </div>
                                 </div>
@@ -425,17 +486,21 @@ function Main() {
                                 <div className="w-full h-full overflow-hidden rounded">
                                   {(layoutImages[
                                     `/src/assets/images/layouts/${layout}.png`
-                                  ] || layoutImages[
-                                    `/src/assets/images/layouts/${layout}.svg`
-                                  ]) && (
+                                  ] ||
+                                    layoutImages[
+                                      `/src/assets/images/layouts/${layout}.svg`
+                                    ]) && (
                                     <img
                                       className="w-full h-full object-cover"
                                       src={
-                                        (layoutImages[
-                                          `/src/assets/images/layouts/${layout}.png`
-                                        ] || layoutImages[
-                                          `/src/assets/images/layouts/${layout}.svg`
-                                        ]).default
+                                        (
+                                          layoutImages[
+                                            `/src/assets/images/layouts/${layout}.png`
+                                          ] ||
+                                          layoutImages[
+                                            `/src/assets/images/layouts/${layout}.svg`
+                                          ]
+                                        ).default
                                       }
                                       alt={`${layout} layout`}
                                     />
@@ -443,7 +508,14 @@ function Main() {
                                 </div>
                               </div>
                               <div className="mt-2 text-center text-xs font-medium">
-                                {layout.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+                                {layout
+                                  .split("-")
+                                  .map(
+                                    (word) =>
+                                      word.charAt(0).toUpperCase() +
+                                      word.slice(1),
+                                  )
+                                  .join(" ")}
                               </div>
                             </div>
                           ))}
@@ -452,7 +524,9 @@ function Main() {
 
                       {/* Color Schemes */}
                       <div>
-                        <h3 className="text-base font-medium mb-4">Esquemas de Cor</h3>
+                        <h3 className="text-base font-medium mb-4">
+                          Esquemas de Cor
+                        </h3>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                           {colorSchemes.map((colorScheme, colorKey) => (
                             <div key={colorKey}>
@@ -483,7 +557,9 @@ function Main() {
                                 </div>
                               </div>
                               <div className="mt-2 text-center text-xs">
-                                {colorScheme === "default" ? "Padrão" : colorScheme}
+                                {colorScheme === "default"
+                                  ? "Padrão"
+                                  : colorScheme}
                               </div>
                             </div>
                           ))}
@@ -492,7 +568,9 @@ function Main() {
 
                       {/* Appearance */}
                       <div>
-                        <h3 className="text-base font-medium mb-4">Aparência</h3>
+                        <h3 className="text-base font-medium mb-4">
+                          Aparência
+                        </h3>
                         <div className="grid grid-cols-2 gap-4">
                           <div>
                             <button
@@ -506,7 +584,9 @@ function Main() {
                             >
                               <div className="h-full overflow-hidden rounded bg-slate-200 dark:bg-slate-300"></div>
                             </button>
-                            <div className="mt-2 text-center text-sm">Claro</div>
+                            <div className="mt-2 text-center text-sm">
+                              Claro
+                            </div>
                           </div>
                           <div>
                             <button
@@ -520,25 +600,35 @@ function Main() {
                             >
                               <div className="h-full overflow-hidden rounded bg-slate-900"></div>
                             </button>
-                            <div className="mt-2 text-center text-sm">Escuro</div>
+                            <div className="mt-2 text-center text-sm">
+                              Escuro
+                            </div>
                           </div>
                         </div>
                       </div>
 
                       {/* Reset Options */}
                       <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
-                        <h3 className="text-base font-medium mb-4">Opções de Reset</h3>
+                        <h3 className="text-base font-medium mb-4">
+                          Opções de Reset
+                        </h3>
                         <div className="space-y-3">
                           {isUsingCustomTheme && (
                             <Button
                               variant="outline-secondary"
                               onClick={() => {
                                 dispatch(clearCustomTheme());
-                                applyThemeStyles(activeTheme.name, activeDarkMode);
+                                applyThemeStyles(
+                                  activeTheme.name,
+                                  activeDarkMode,
+                                );
                               }}
                               className="w-full"
                             >
-                              <Lucide icon="RotateCcw" className="w-4 h-4 mr-2" />
+                              <Lucide
+                                icon="RotateCcw"
+                                className="w-4 h-4 mr-2"
+                              />
                               Voltar ao Tema Padrão
                             </Button>
                           )}
@@ -574,181 +664,6 @@ function Main() {
           setThemeSwitcherSlideover(true);
         }}
         className="fixed bottom-0 right-0 z-50 flex items-center justify-center mb-5 mr-5 text-white rounded-full shadow-lg cursor-pointer w-14 h-14 bg-theme-1 hover:scale-110 transition-transform"
-      >
-        <Lucide className="w-5 h-5 animate-spin" icon="Settings" />
-      </div>
-    </div>
-  );
-              <div className="px-8 pt-6 pb-8">
-                <div className="text-base font-medium">Templates</div>
-                <div className="text-slate-500 mt-0.5">
-                  Choose your templates
-                </div>
-                <div className="grid grid-cols-2 mt-5 gap-y-3.5 gap-x-5">
-                  {themes.map((theme, themeKey) => (
-                    <div key={themeKey}>
-                      <div
-                        onClick={() => switchTheme(theme)}
-                        className={clsx([
-                          "h-28 cursor-pointer bg-slate-50 box p-1",
-                          activeTheme.name == theme &&
-                            "border-2 border-theme-1/60",
-                        ])}
-                      >
-                        <div className="w-full h-full overflow-hidden rounded-md">
-                          {(themeImages[
-                            `/src/assets/images/themes/${theme}.png`
-                          ] || themeImages[
-                            `/src/assets/images/themes/${theme}.svg`
-                          ]) && (
-                            <img
-                              className="w-full h-full"
-                              src={
-                                (themeImages[
-                                  `/src/assets/images/themes/${theme}.png`
-                                ] || themeImages[
-                                  `/src/assets/images/themes/${theme}.svg`
-                                ]).default
-                              }
-                            />
-                          )}
-                        </div>
-                      </div>
-                      <div className="mt-2.5 text-center text-xs">
-                        {themeConfigs[theme]?.displayName || theme}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="border-b border-dashed"></div>
-              <div className="px-8 pt-6 pb-8">
-                <div className="text-base font-medium">Layouts</div>
-                <div className="text-slate-500 mt-0.5">Choose your layout</div>
-                <div className="mt-5 grid grid-cols-3 gap-x-5 gap-y-3.5">
-                  {layouts.map((layout, layoutKey) => (
-                    <div key={layoutKey}>
-                      <div
-                        onClick={() => switchLayout(layout)}
-                        className={clsx([
-                          "h-24 cursor-pointer bg-slate-50 box p-1",
-                          activeTheme.layout == layout &&
-                            "border-2 border-theme-1/60",
-                        ])}
-                      >
-                        <div className="w-full h-full overflow-hidden rounded-md">
-                          {(layoutImages[
-                            `/src/assets/images/layouts/${layout}.png`
-                          ] || layoutImages[
-                            `/src/assets/images/layouts/${layout}.svg`
-                          ]) && (
-                            <img
-                              className="w-full h-full"
-                              src={
-                                (layoutImages[
-                                  `/src/assets/images/layouts/${layout}.png`
-                                ] || layoutImages[
-                                  `/src/assets/images/layouts/${layout}.svg`
-                                ]).default
-                              }
-                            />
-                          )}
-                        </div>
-                      </div>
-                      <div className="mt-2.5 text-center text-xs">
-                        {layout.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="border-b border-dashed"></div>
-              <div className="px-8 pt-6 pb-8">
-                <div className="text-base font-medium">Color Schemes</div>
-                <div className="text-slate-500 mt-0.5">
-                  Choose your color schemes
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-3.5 mt-5">
-                  {colorSchemes.map((colorScheme, colorKey) => (
-                    <div key={colorKey}>
-                      <div
-                        onClick={() => switchColorScheme(colorScheme)}
-                        className={clsx([
-                          "h-12 cursor-pointer bg-slate-50 box rounded-full p-1 border-slate-300/80",
-                          activeColorScheme == colorScheme &&
-                            "border-2 border-theme-1/60",
-                        ])}
-                      >
-                        <div className="h-full overflow-hidden rounded-full">
-                          <div className="flex items-center h-full gap-1 -mx-2">
-                            <div
-                              className={clsx([
-                                "w-1/2 h-[140%] bg-theme-1 rotate-12",
-                                colorScheme,
-                              ])}
-                            ></div>
-                            <div
-                              className={clsx([
-                                "w-1/2 h-[140%] bg-theme-2 rotate-12",
-                                colorScheme,
-                              ])}
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="border-b border-dashed"></div>
-              <div className="px-8 pt-6 pb-8">
-                <div className="text-base font-medium">Appearance</div>
-                <div className="mt-0.5 text-slate-500">
-                  Choose your appearance
-                </div>
-                <div className="mt-5 grid grid-cols-2 gap-3.5">
-                  <div>
-                    <a
-                      onClick={() => switchDarkMode(false)}
-                      className={clsx([
-                        "h-12 cursor-pointer bg-slate-50 box p-1 border-slate-300/80 block",
-                        "[&.active]:border-2 [&.active]:border-theme-1/60",
-                        !activeDarkMode ? "active" : "",
-                      ])}
-                    >
-                      <div className="h-full overflow-hidden rounded-md bg-slate-200"></div>
-                    </a>
-                    <div className="mt-2.5 text-center text-xs capitalize">
-                      Light
-                    </div>
-                  </div>
-                  <div>
-                    <a
-                      onClick={() => switchDarkMode(true)}
-                      className={clsx([
-                        "h-12 cursor-pointer bg-slate-50 box p-1 border-slate-300/80 block",
-                        "[&.active]:border-2 [&.active]:border-theme-1/60",
-                        activeDarkMode ? "active" : "",
-                      ])}
-                    >
-                      <div className="h-full overflow-hidden rounded-md bg-slate-900"></div>
-                    </a>
-                    <div className="mt-2.5 text-center text-xs capitalize">
-                      Dark
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Slideover.Description>
-        </Slideover.Panel>
-      </Slideover>
-      <div
-        onClick={(event: React.MouseEvent) => {
-          event.preventDefault();
-          setThemeSwitcherSlideover(true);
-        }}
-        className="fixed bottom-0 right-0 z-50 flex items-center justify-center mb-5 mr-5 text-white rounded-full shadow-lg cursor-pointer w-14 h-14 bg-theme-1"
       >
         <Lucide className="w-5 h-5 animate-spin" icon="Settings" />
       </div>
