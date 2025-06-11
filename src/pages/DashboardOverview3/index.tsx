@@ -126,7 +126,7 @@ function Main() {
                 </div>
                 <Menu className="mt-14 2xl:mt-24 w-44 2xl:w-52">
                   <Menu.Button
-                    as={Button}
+                    as="button"
                     variant="primary"
                     rounded
                     className="relative justify-start w-full px-4"

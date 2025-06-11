@@ -234,7 +234,7 @@ function Main() {
                 </div>
                 <Menu className="mt-5 md:ml-auto md:mt-0">
                   <Menu.Button
-                    as={Button}
+                    as="button"
                     variant="outline-secondary"
                     className="font-normal"
                   >

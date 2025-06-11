@@ -22,7 +22,7 @@ function Main() {
             Start New Chat
           </Button>
           <Menu className="ml-auto sm:ml-0">
-            <Menu.Button as={Button} className="px-2 !box text-slate-500">
+            <Menu.Button as="button" className="px-2 !box text-slate-500">
               <span className="flex items-center justify-center w-5 h-5">
                 <Lucide icon="Plus" className="w-4 h-4" />
               </span>

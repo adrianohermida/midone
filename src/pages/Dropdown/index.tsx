@@ -45,7 +45,7 @@ function Main() {
                   <Preview>
                     <div className="flex justify-center">
                       <Menu>
-                        <Menu.Button as={Button} variant="primary">
+                        <Menu.Button as="button" variant="primary">
                           Show Dropdown
                         </Menu.Button>
                         <Menu.Items className="w-40">
@@ -60,7 +60,7 @@ function Main() {
                       {`
                 <Menu>
                   <Menu.Button
-                    as={Button}
+                    as="button"
                     variant="primary"
                   >
                     Show Dropdown
@@ -102,7 +102,7 @@ function Main() {
                   <Preview>
                     <div className="flex justify-center">
                       <Menu>
-                        <Menu.Button as={Button} variant="primary">
+                        <Menu.Button as="button" variant="primary">
                           Show Dropdown
                         </Menu.Button>
                         <Menu.Items className="w-56">
@@ -156,7 +156,7 @@ function Main() {
                       {`
                 <Menu>
                   <Menu.Button
-                    as={Button}
+                    as="button"
                     variant="primary"
                   >
                     Show Dropdown
@@ -234,7 +234,7 @@ function Main() {
                   <Preview>
                     <div className="flex justify-center">
                       <Menu>
-                        <Menu.Button as={Button} variant="primary">
+                        <Menu.Button as="button" variant="primary">
                           Show Dropdown
                         </Menu.Button>
                         <Menu.Items className="w-48">
@@ -258,7 +258,7 @@ function Main() {
                       {`
                 <Menu>
                   <Menu.Button
-                    as={Button}
+                    as="button"
                     variant="primary"
                   >
                     Show Dropdown
@@ -308,7 +308,7 @@ function Main() {
                       <Popover className="inline-block">
                         {({ close }) => (
                           <>
-                            <Popover.Button as={Button} variant="primary">
+                            <Popover.Button as="button" variant="primary">
                               Filter Dropdown
                               <Lucide
                                 icon="ChevronDown"
@@ -365,7 +365,7 @@ function Main() {
                   {({ close }) => (
                     <>
                       <Popover.Button
-                        as={Button}
+                        as="button"
                         variant="primary"
                       >
                         Filter Dropdown
@@ -449,7 +449,7 @@ function Main() {
                   <Preview>
                     <div className="flex justify-center">
                       <Menu>
-                        <Menu.Button as={Button} variant="primary">
+                        <Menu.Button as="button" variant="primary">
                           Show Dropdown
                         </Menu.Button>
                         <Menu.Items className="w-40 h-32 overflow-y-auto">
@@ -467,7 +467,7 @@ function Main() {
                       {`
                 <Menu>
                   <Menu.Button
-                    as={Button}
+                    as="button"
                     variant="primary"
                   >
                     Show Dropdown
@@ -512,7 +512,7 @@ function Main() {
                   <Preview>
                     <div className="flex justify-center">
                       <Menu>
-                        <Menu.Button as={Button} variant="primary">
+                        <Menu.Button as="button" variant="primary">
                           Show Dropdown
                         </Menu.Button>
                         <Menu.Items className="w-40">
@@ -546,7 +546,7 @@ function Main() {
                       {`
                 <Menu>
                   <Menu.Button
-                    as={Button}
+                    as="button"
                     variant="primary"
                   >
                     Show Dropdown
@@ -608,7 +608,7 @@ function Main() {
                     <div className="text-center">
                       <Menu className="inline-block mb-2 mr-1">
                         <Menu.Button
-                          as={Button}
+                          as="button"
                           variant="primary"
                           className="w-32"
                         >
@@ -621,7 +621,7 @@ function Main() {
                       </Menu>
                       <Menu className="inline-block mb-2 mr-1">
                         <Menu.Button
-                          as={Button}
+                          as="button"
                           variant="primary"
                           className="w-32"
                         >
@@ -634,7 +634,7 @@ function Main() {
                       </Menu>
                       <Menu className="inline-block mb-2 mr-1">
                         <Menu.Button
-                          as={Button}
+                          as="button"
                           variant="primary"
                           className="w-32"
                         >
@@ -647,7 +647,7 @@ function Main() {
                       </Menu>
                       <Menu className="inline-block mb-2 mr-1">
                         <Menu.Button
-                          as={Button}
+                          as="button"
                           variant="primary"
                           className="w-32"
                         >
@@ -660,7 +660,7 @@ function Main() {
                       </Menu>
                       <Menu className="inline-block mb-2 mr-1">
                         <Menu.Button
-                          as={Button}
+                          as="button"
                           variant="primary"
                           className="w-32"
                         >
@@ -673,7 +673,7 @@ function Main() {
                       </Menu>
                       <Menu className="inline-block mb-2 mr-1">
                         <Menu.Button
-                          as={Button}
+                          as="button"
                           variant="primary"
                           className="w-32"
                         >
@@ -686,7 +686,7 @@ function Main() {
                       </Menu>
                       <Menu className="inline-block mb-2 mr-1">
                         <Menu.Button
-                          as={Button}
+                          as="button"
                           variant="primary"
                           className="w-32"
                         >
@@ -699,7 +699,7 @@ function Main() {
                       </Menu>
                       <Menu className="inline-block mb-2 mr-1">
                         <Menu.Button
-                          as={Button}
+                          as="button"
                           variant="primary"
                           className="w-32"
                         >
@@ -712,7 +712,7 @@ function Main() {
                       </Menu>
                       <Menu className="inline-block mb-2 mr-1">
                         <Menu.Button
-                          as={Button}
+                          as="button"
                           variant="primary"
                           className="w-32"
                         >
@@ -725,7 +725,7 @@ function Main() {
                       </Menu>
                       <Menu className="inline-block mb-2 mr-1">
                         <Menu.Button
-                          as={Button}
+                          as="button"
                           variant="primary"
                           className="w-32"
                         >
@@ -738,7 +738,7 @@ function Main() {
                       </Menu>
                       <Menu className="inline-block mb-2 mr-1">
                         <Menu.Button
-                          as={Button}
+                          as="button"
                           variant="primary"
                           className="w-32"
                         >
@@ -751,7 +751,7 @@ function Main() {
                       </Menu>
                       <Menu className="inline-block mb-2 mr-1">
                         <Menu.Button
-                          as={Button}
+                          as="button"
                           variant="primary"
                           className="w-32"
                         >
@@ -770,7 +770,7 @@ function Main() {
                 <div className="text-center">
                   <Menu className="inline-block mb-2 mr-1">
                     <Menu.Button
-                      as={Button}
+                      as="button"
                       variant="primary"
                       className="w-32"
                     >
@@ -783,7 +783,7 @@ function Main() {
                   </Menu>
                   <Menu className="inline-block mb-2 mr-1">
                     <Menu.Button
-                      as={Button}
+                      as="button"
                       variant="primary"
                       className="w-32"
                     >
@@ -796,7 +796,7 @@ function Main() {
                   </Menu>
                   <Menu className="inline-block mb-2 mr-1">
                     <Menu.Button
-                      as={Button}
+                      as="button"
                       variant="primary"
                       className="w-32"
                     >
@@ -809,7 +809,7 @@ function Main() {
                   </Menu>
                   <Menu className="inline-block mb-2 mr-1">
                     <Menu.Button
-                      as={Button}
+                      as="button"
                       variant="primary"
                       className="w-32"
                     >
@@ -822,7 +822,7 @@ function Main() {
                   </Menu>
                   <Menu className="inline-block mb-2 mr-1">
                     <Menu.Button
-                      as={Button}
+                      as="button"
                       variant="primary"
                       className="w-32"
                     >
@@ -835,7 +835,7 @@ function Main() {
                   </Menu>
                   <Menu className="inline-block mb-2 mr-1">
                     <Menu.Button
-                      as={Button}
+                      as="button"
                       variant="primary"
                       className="w-32"
                     >
@@ -848,7 +848,7 @@ function Main() {
                   </Menu>
                   <Menu className="inline-block mb-2 mr-1">
                     <Menu.Button
-                      as={Button}
+                      as="button"
                       variant="primary"
                       className="w-32"
                     >
@@ -861,7 +861,7 @@ function Main() {
                   </Menu>
                   <Menu className="inline-block mb-2 mr-1">
                     <Menu.Button
-                      as={Button}
+                      as="button"
                       variant="primary"
                       className="w-32"
                     >
@@ -874,7 +874,7 @@ function Main() {
                   </Menu>
                   <Menu className="inline-block mb-2 mr-1">
                     <Menu.Button
-                      as={Button}
+                      as="button"
                       variant="primary"
                       className="w-32"
                     >
@@ -887,7 +887,7 @@ function Main() {
                   </Menu>
                   <Menu className="inline-block mb-2 mr-1">
                     <Menu.Button
-                      as={Button}
+                      as="button"
                       variant="primary"
                       className="w-32"
                     >
@@ -900,7 +900,7 @@ function Main() {
                   </Menu>
                   <Menu className="inline-block mb-2 mr-1">
                     <Menu.Button
-                      as={Button}
+                      as="button"
                       variant="primary"
                       className="w-32"
                     >
@@ -913,7 +913,7 @@ function Main() {
                   </Menu>
                   <Menu className="inline-block mb-2 mr-1">
                     <Menu.Button
-                      as={Button}
+                      as="button"
                       variant="primary"
                       className="w-32"
                     >
