@@ -74,115 +74,115 @@ import ImageZoom from "@/pages/ImageZoom";
 
 const Router = () => {
   return (
-    <Themes>
-      <Routes>
+    <Routes>
+      <Route path="/*" element={<Themes />}>
         {/* Dashboard Routes */}
-        <Route path="/" element={<DashboardOverview1 />} />
-        <Route path="/dashboard-overview-2" element={<DashboardOverview2 />} />
-        <Route path="/dashboard-overview-3" element={<DashboardOverview3 />} />
-        <Route path="/dashboard-overview-4" element={<DashboardOverview4 />} />
+        <Route index element={<DashboardOverview1 />} />
+        <Route path="dashboard-overview-2" element={<DashboardOverview2 />} />
+        <Route path="dashboard-overview-3" element={<DashboardOverview3 />} />
+        <Route path="dashboard-overview-4" element={<DashboardOverview4 />} />
 
         {/* E-Commerce Routes */}
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/add-product" element={<AddProduct />} />
-        <Route path="/product-list" element={<ProductList />} />
-        <Route path="/product-grid" element={<ProductGrid />} />
-        <Route path="/transaction-list" element={<TransactionList />} />
-        <Route path="/transaction-detail" element={<TransactionDetail />} />
-        <Route path="/seller-list" element={<SellerList />} />
-        <Route path="/seller-detail" element={<SellerDetail />} />
-        <Route path="/reviews" element={<Reviews />} />
+        <Route path="categories" element={<Categories />} />
+        <Route path="add-product" element={<AddProduct />} />
+        <Route path="product-list" element={<ProductList />} />
+        <Route path="product-grid" element={<ProductGrid />} />
+        <Route path="transaction-list" element={<TransactionList />} />
+        <Route path="transaction-detail" element={<TransactionDetail />} />
+        <Route path="seller-list" element={<SellerList />} />
+        <Route path="seller-detail" element={<SellerDetail />} />
+        <Route path="reviews" element={<Reviews />} />
 
         {/* Main Pages Routes */}
-        <Route path="/inbox" element={<Inbox />} />
-        <Route path="/file-manager" element={<FileManager />} />
-        <Route path="/point-of-sale" element={<PointOfSale />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/post" element={<Post />} />
-        <Route path="/calendar" element={<Calendar />} />
+        <Route path="inbox" element={<Inbox />} />
+        <Route path="file-manager" element={<FileManager />} />
+        <Route path="point-of-sale" element={<PointOfSale />} />
+        <Route path="chat" element={<Chat />} />
+        <Route path="post" element={<Post />} />
+        <Route path="calendar" element={<Calendar />} />
 
         {/* CRUD Routes */}
-        <Route path="/crud-data-list" element={<CrudDataList />} />
-        <Route path="/crud-form" element={<CrudForm />} />
+        <Route path="crud-data-list" element={<CrudDataList />} />
+        <Route path="crud-form" element={<CrudForm />} />
 
         {/* Users Routes */}
-        <Route path="/users-layout-1" element={<UsersLayout1 />} />
-        <Route path="/users-layout-2" element={<UsersLayout2 />} />
-        <Route path="/users-layout-3" element={<UsersLayout3 />} />
+        <Route path="users-layout-1" element={<UsersLayout1 />} />
+        <Route path="users-layout-2" element={<UsersLayout2 />} />
+        <Route path="users-layout-3" element={<UsersLayout3 />} />
 
         {/* Profile Routes */}
-        <Route path="/profile-overview-1" element={<ProfileOverview1 />} />
-        <Route path="/profile-overview-2" element={<ProfileOverview2 />} />
-        <Route path="/profile-overview-3" element={<ProfileOverview3 />} />
+        <Route path="profile-overview-1" element={<ProfileOverview1 />} />
+        <Route path="profile-overview-2" element={<ProfileOverview2 />} />
+        <Route path="profile-overview-3" element={<ProfileOverview3 />} />
 
         {/* Wizard Routes */}
-        <Route path="/wizard-layout-1" element={<WizardLayout1 />} />
-        <Route path="/wizard-layout-2" element={<WizardLayout2 />} />
-        <Route path="/wizard-layout-3" element={<WizardLayout3 />} />
+        <Route path="wizard-layout-1" element={<WizardLayout1 />} />
+        <Route path="wizard-layout-2" element={<WizardLayout2 />} />
+        <Route path="wizard-layout-3" element={<WizardLayout3 />} />
 
         {/* Blog Routes */}
-        <Route path="/blog-layout-1" element={<BlogLayout1 />} />
-        <Route path="/blog-layout-2" element={<BlogLayout2 />} />
-        <Route path="/blog-layout-3" element={<BlogLayout3 />} />
+        <Route path="blog-layout-1" element={<BlogLayout1 />} />
+        <Route path="blog-layout-2" element={<BlogLayout2 />} />
+        <Route path="blog-layout-3" element={<BlogLayout3 />} />
 
         {/* Pricing Routes */}
-        <Route path="/pricing-layout-1" element={<PricingLayout1 />} />
-        <Route path="/pricing-layout-2" element={<PricingLayout2 />} />
+        <Route path="pricing-layout-1" element={<PricingLayout1 />} />
+        <Route path="pricing-layout-2" element={<PricingLayout2 />} />
 
         {/* Invoice Routes */}
-        <Route path="/invoice-layout-1" element={<InvoiceLayout1 />} />
-        <Route path="/invoice-layout-2" element={<InvoiceLayout2 />} />
+        <Route path="invoice-layout-1" element={<InvoiceLayout1 />} />
+        <Route path="invoice-layout-2" element={<InvoiceLayout2 />} />
 
         {/* FAQ Routes */}
-        <Route path="/faq-layout-1" element={<FaqLayout1 />} />
-        <Route path="/faq-layout-2" element={<FaqLayout2 />} />
-        <Route path="/faq-layout-3" element={<FaqLayout3 />} />
+        <Route path="faq-layout-1" element={<FaqLayout1 />} />
+        <Route path="faq-layout-2" element={<FaqLayout2 />} />
+        <Route path="faq-layout-3" element={<FaqLayout3 />} />
 
         {/* Auth & Profile Management Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/error-page" element={<ErrorPage />} />
-        <Route path="/update-profile" element={<UpdateProfile />} />
-        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="error-page" element={<ErrorPage />} />
+        <Route path="update-profile" element={<UpdateProfile />} />
+        <Route path="change-password" element={<ChangePassword />} />
 
         {/* Table Components Routes */}
-        <Route path="/regular-table" element={<RegularTable />} />
-        <Route path="/tabulator" element={<Tabulator />} />
+        <Route path="regular-table" element={<RegularTable />} />
+        <Route path="tabulator" element={<Tabulator />} />
 
         {/* Overlay Components Routes */}
-        <Route path="/modal" element={<Modal />} />
-        <Route path="/slideover" element={<Slideover />} />
-        <Route path="/notification" element={<Notification />} />
+        <Route path="modal" element={<Modal />} />
+        <Route path="slideover" element={<Slideover />} />
+        <Route path="notification" element={<Notification />} />
 
         {/* UI Components Routes */}
-        <Route path="/tab" element={<Tab />} />
-        <Route path="/accordion" element={<Accordion />} />
-        <Route path="/button" element={<Button />} />
-        <Route path="/alert" element={<Alert />} />
-        <Route path="/progress-bar" element={<ProgressBar />} />
-        <Route path="/tooltip" element={<Tooltip />} />
-        <Route path="/dropdown" element={<Dropdown />} />
-        <Route path="/typography" element={<Typography />} />
-        <Route path="/icon" element={<Icon />} />
-        <Route path="/loading-icon" element={<LoadingIcon />} />
+        <Route path="tab" element={<Tab />} />
+        <Route path="accordion" element={<Accordion />} />
+        <Route path="button" element={<Button />} />
+        <Route path="alert" element={<Alert />} />
+        <Route path="progress-bar" element={<ProgressBar />} />
+        <Route path="tooltip" element={<Tooltip />} />
+        <Route path="dropdown" element={<Dropdown />} />
+        <Route path="typography" element={<Typography />} />
+        <Route path="icon" element={<Icon />} />
+        <Route path="loading-icon" element={<LoadingIcon />} />
 
         {/* Form Components Routes */}
-        <Route path="/regular-form" element={<RegularForm />} />
-        <Route path="/datepicker" element={<Datepicker />} />
-        <Route path="/tom-select" element={<TomSelect />} />
-        <Route path="/file-upload" element={<FileUpload />} />
-        <Route path="/wysiwyg-editor" element={<WysiwygEditor />} />
-        <Route path="/validation" element={<Validation />} />
+        <Route path="regular-form" element={<RegularForm />} />
+        <Route path="datepicker" element={<Datepicker />} />
+        <Route path="tom-select" element={<TomSelect />} />
+        <Route path="file-upload" element={<FileUpload />} />
+        <Route path="wysiwyg-editor" element={<WysiwygEditor />} />
+        <Route path="validation" element={<Validation />} />
 
         {/* Widget Components Routes */}
-        <Route path="/chart" element={<Chart />} />
-        <Route path="/slider" element={<Slider />} />
-        <Route path="/image-zoom" element={<ImageZoom />} />
+        <Route path="chart" element={<Chart />} />
+        <Route path="slider" element={<Slider />} />
+        <Route path="image-zoom" element={<ImageZoom />} />
+      </Route>
 
-        {/* 404 Route */}
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </Themes>
+      {/* 404 Route */}
+      <Route path="*" element={<ErrorPage />} />
+    </Routes>
   );
 };
 
