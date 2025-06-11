@@ -105,12 +105,21 @@ export const FormTextarea: React.FC<FormTextareaProps> = ({
   return <textarea className={classes} {...props} />;
 };
 
-// Form Check
+// Form Check with subcomponents
 interface FormCheckProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
 
-export const FormCheck: React.FC<FormCheckProps> = ({
+interface FormCheckComponent extends React.FC<FormCheckProps> {
+  Label: React.FC<{
+    children: React.ReactNode;
+    className?: string;
+    htmlFor?: string;
+  }>;
+  Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>>;
+}
+
+const FormCheckMain: FormCheckComponent = ({
   label,
   className,
   id,
@@ -130,6 +139,35 @@ export const FormCheck: React.FC<FormCheckProps> = ({
     </div>
   );
 };
+
+FormCheckMain.Label = ({ children, className, htmlFor }) => {
+  return (
+    <label
+      htmlFor={htmlFor}
+      className={classNames(
+        "cursor-pointer text-slate-600 dark:text-slate-400",
+        className,
+      )}
+    >
+      {children}
+    </label>
+  );
+};
+
+FormCheckMain.Input = ({ className, ...props }) => {
+  const checkboxClasses =
+    "transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50";
+
+  return (
+    <input
+      type="checkbox"
+      className={classNames(checkboxClasses, className)}
+      {...props}
+    />
+  );
+};
+
+export const FormCheck = FormCheckMain;
 
 // Form Switch with subcomponents
 interface FormSwitchProps extends React.InputHTMLAttributes<HTMLInputElement> {
