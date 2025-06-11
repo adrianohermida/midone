@@ -12,8 +12,7 @@ import clsx from "clsx";
 
 function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
   return (
-    <>
-      {/* BEGIN: Top Bar - removida posição fixa, agora rola com a página */}
+    <Fragment>
       <div
         className={clsx([
           "h-[70px] md:h-[65px] z-[51] border-b border-white/[0.08] mt-12 md:mt-0 -mx-3 sm:-mx-8 md:-mx-0 px-3 md:border-b-0 relative sm:px-8 md:px-10 md:pt-10 md:bg-gradient-to-b md:from-slate-100 md:to-transparent dark:md:from-darkmode-700",
@@ -23,7 +22,6 @@ function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
         ])}
       >
         <div className="flex items-center h-full">
-          {/* BEGIN: Logo */}
           <Link
             to="/"
             className={clsx([
@@ -48,8 +46,6 @@ function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
               Lawdesk
             </span>
           </Link>
-          {/* END: Logo */}
-          {/* BEGIN: Breadcrumb */}
           <Breadcrumb
             light
             className={clsx([
@@ -63,11 +59,7 @@ function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
               Dashboard
             </Breadcrumb.Link>
           </Breadcrumb>
-          {/* END: Breadcrumb */}
-          {/* BEGIN: Search */}
           <HeaderSearch className="mr-3 intro-x sm:mr-6" />
-          {/* END: Search */}
-          {/* BEGIN: Notifications */}
           <Popover className="mr-4 intro-x sm:mr-6">
             <Popover.Button
               className="
@@ -112,13 +104,10 @@ function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
               ))}
             </Popover.Panel>
           </Popover>
-          {/* END: Notifications */}
-          {/* BEGIN: Account Menu */}
           <UserProfileMenu />
-          {/* END: Account Menu */}
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 

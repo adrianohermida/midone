@@ -57,7 +57,6 @@ function Main() {
         <MobileMenu />
         <TopBar layout="side-menu" />
         <div className="flex overflow-hidden">
-          {/* BEGIN: Side Menu */}
           <nav className="side-nav w-[100px] xl:w-[260px] px-5 pb-16 overflow-x-hidden z-50 pt-32 -mt-4 hidden md:block">
             <Link to="/" className="flex items-center intro-x">
               <img
@@ -71,7 +70,6 @@ function Main() {
             </Link>
             <div className="my-6 side-nav__divider"></div>
             <ul>
-              {/* BEGIN: First Child */}
               {formattedMenu.map((menu, menuKey) =>
                 menu == "divider" ? (
                   <li className="my-6 side-nav__divider" key={menuKey}></li>
@@ -113,7 +111,6 @@ function Main() {
                         )}
                       </div>
                     </Tippy>
-                    {/* BEGIN: Second Child */}
                     {menu.subMenu && (
                       <SecondLevelMenuItems
                         menu={menu}
@@ -125,15 +122,11 @@ function Main() {
                         leave={leave}
                       />
                     )}
-                    {/* END: Second Child */}
                   </li>
                 ),
               )}
-              {/* END: First Child */}
             </ul>
           </nav>
-          {/* END: Side Menu */}
-          {/* BEGIN: Content */}
           <div
             className={clsx([
               "max-w-full md:max-w-none rounded-[30px] md:rounded-none px-4 md:px-[22px] min-w-0 min-h-screen bg-slate-100 flex-1 md:pt-20 pb-10 mt-5 md:mt-1 relative dark:bg-darkmode-700",
@@ -142,7 +135,6 @@ function Main() {
           >
             <Outlet />
           </div>
-          {/* END: Content */}
         </div>
       </div>
     </forceActiveMenuContext.Provider>

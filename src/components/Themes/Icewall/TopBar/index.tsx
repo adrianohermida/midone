@@ -12,11 +12,9 @@ import clsx from "clsx";
 
 function Main() {
   return (
-    <>
-      {/* BEGIN: Top Bar - removida posição fixa, agora rola com a página */}
+    <Fragment>
       <div className="relative z-[51] -mx-5 mb-12 mt-12 h-[70px] border-b border-white/[0.08] px-3 sm:-mx-8 sm:px-8 md:-mt-5 md:pt-0">
         <div className="flex items-center h-full">
-          {/* BEGIN: Logo */}
           <Link to="/" className="hidden -intro-x md:flex items-center">
             <img
               alt="Lawdesk Legal Management System"
@@ -27,8 +25,6 @@ function Main() {
               Lawdesk
             </span>
           </Link>
-          {/* END: Logo */}
-          {/* BEGIN: Breadcrumb */}
           <Breadcrumb
             light
             className="h-full md:ml-10 md:pl-10 md:border-l border-white/[0.08] mr-auto -intro-x"
@@ -38,11 +34,7 @@ function Main() {
               Dashboard
             </Breadcrumb.Link>
           </Breadcrumb>
-          {/* END: Breadcrumb */}
-          {/* BEGIN: Search */}
           <HeaderSearch className="mr-3 intro-x sm:mr-6" />
-          {/* END: Search */}
-          {/* BEGIN: Notifications */}
           <Popover className="mr-4 intro-x sm:mr-6">
             <Popover.Button
               className="
@@ -87,14 +79,10 @@ function Main() {
               ))}
             </Popover.Panel>
           </Popover>
-          {/* END: Notifications */}
-          {/* BEGIN: Account Menu */}
           <UserProfileMenu />
-          {/* END: Account Menu */}
         </div>
       </div>
-      {/* END: Top Bar */}
-    </>
+    </Fragment>
   );
 }
 

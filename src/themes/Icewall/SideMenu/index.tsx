@@ -67,7 +67,6 @@ function Main() {
               "before:block before:absolute before:inset-0 before:bg-black/[0.15] before:rounded-[1.3rem] before:z-[-1]",
             ])}
           >
-            {/* BEGIN: Side Menu */}
             <nav className="side-nav hidden md:block w-[100px] xl:w-[250px] px-5 pt-8 pb-16 overflow-x-hidden">
               <Link to="/" className="flex items-center intro-x">
                 <img
@@ -81,7 +80,6 @@ function Main() {
               </Link>
               <div className="my-6 side-nav__divider"></div>
               <ul>
-                {/* BEGIN: First Child */}
                 {formattedMenu.map((menu, menuKey) =>
                   menu == "divider" ? (
                     <li className="my-6 side-nav__divider" key={menuKey}></li>
@@ -123,7 +121,6 @@ function Main() {
                           )}
                         </div>
                       </Tippy>
-                      {/* BEGIN: Second Child */}
                       {menu.subMenu && (
                         <SecondLevelMenuItems
                           menu={menu}
@@ -135,19 +132,14 @@ function Main() {
                           leave={leave}
                         />
                       )}
-                      {/* END: Second Child */}
                     </li>
                   ),
                 )}
-                {/* END: First Child */}
               </ul>
             </nav>
-            {/* END: Side Menu */}
-            {/* BEGIN: Content */}
             <div className="md:max-w-auto min-h-screen min-w-0 max-w-full flex-1 rounded-[1.3rem] bg-slate-100 px-4 pb-10 shadow-sm before:block before:h-px before:w-full before:content-[''] dark:bg-darkmode-700 md:px-[22px]">
               <Outlet />
             </div>
-            {/* END: Content */}
           </div>
         </div>
       </div>
