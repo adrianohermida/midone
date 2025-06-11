@@ -113,12 +113,15 @@ function Main() {
                     </Tippy>
                     {/* BEGIN: Second Child */}
                     {menu.subMenu && (
-                      <Transition
-                        in={menu.activeDropdown}
-                        onEnter={enter}
-                        onExit={leave}
-                        timeout={300}
-                      >
+                      <SecondLevelMenuItems
+                        menu={menu}
+                        formattedMenu={formattedMenu}
+                        setFormattedMenu={setFormattedMenu}
+                        windowWidth={windowWidth}
+                        linkTo={linkTo}
+                        enter={enter}
+                        leave={leave}
+                      />
                         <ul
                           className={clsx({
                             "side-menu__sub-open": menu.activeDropdown,
@@ -195,7 +198,7 @@ function Main() {
                                                 : lastSubMenu.pathname
                                             }
                                             onClick={(
-                                              event: React.MouseEvent,
+                                              event: React.MouseEvent
                                             ) => {
                                               event.preventDefault();
                                               linkTo(lastSubMenu, navigate);
@@ -217,7 +220,7 @@ function Main() {
                                             </div>
                                           </Tippy>
                                         </li>
-                                      ),
+                                      )
                                     )}
                                   </ul>
                                 </Transition>
@@ -230,7 +233,7 @@ function Main() {
                     )}
                     {/* END: Second Child */}
                   </li>
-                ),
+                )
               )}
               {/* END: First Child */}
             </ul>
