@@ -90,6 +90,10 @@ import FinanceiroTransacoes from "@/pages/Financeiro/Transacoes";
 import FinanceiroTransacaoDetalhes from "@/pages/Financeiro/TransacaoDetalhes";
 import FinanceiroProdutos from "@/pages/Financeiro/Produtos";
 import FinanceiroProdutoNovo from "@/pages/Financeiro/ProdutoNovo";
+import FinanceiroHonorarios from "@/pages/Financeiro/Honorarios";
+import FinanceiroCustas from "@/pages/Financeiro/Custas";
+import FinanceiroFluxoCaixa from "@/pages/Financeiro/FluxoCaixa";
+import FinanceiroRelatorios from "@/pages/Financeiro/Relatorios";
 
 const Router = () => {
   return (
@@ -128,6 +132,23 @@ const Router = () => {
         {/* Financial Module Routes */}
         <Route path="financeiro" element={<FinanceiroDashboard />} />
         <Route path="financeiro/dashboard" element={<FinanceiroDashboard />} />
+        <Route
+          path="financeiro/honorarios"
+          element={<FinanceiroHonorarios />}
+        />
+        <Route path="financeiro/custas" element={<FinanceiroCustas />} />
+        <Route
+          path="financeiro/processo/:id"
+          element={<FinanceiroTransacaoDetalhes />}
+        />
+        <Route
+          path="financeiro/fluxo-caixa"
+          element={<FinanceiroFluxoCaixa />}
+        />
+        <Route
+          path="financeiro/relatorios"
+          element={<FinanceiroRelatorios />}
+        />
         <Route
           path="financeiro/faturamento"
           element={<FinanceiroFaturamento />}
