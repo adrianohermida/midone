@@ -122,11 +122,6 @@ function Main() {
                           enter={enter}
                           leave={leave}
                         />
-                          <ul
-                            className={clsx({
-                              "side-menu__sub-open": menu.activeDropdown,
-                            })}
-                          >
                             {menu.subMenu.map((subMenu, subMenuKey) => (
                               <li key={subMenuKey}>
                                 <Tippy
