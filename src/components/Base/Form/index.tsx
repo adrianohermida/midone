@@ -278,22 +278,7 @@ FormSwitchMain.Input = ({
 
 export const FormSwitch = FormSwitchMain;
 
-// Form Inline
-interface FormInlineProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export const FormInline: React.FC<FormInlineProps> = ({
-  children,
-  className,
-}) => {
-  return (
-    <div className={classNames("flex flex-col gap-4 sm:flex-row", className)}>
-      {children}
-    </div>
-  );
-};
+// Form Inline - exported separately
 
 // Form Help
 interface FormHelpProps {
