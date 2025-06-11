@@ -249,8 +249,8 @@ function Main() {
           <div className="mt-2 text-xs text-center">CloudLightningIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="CloudOff" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">CloudOffIcon</div>
+          <Lucide icon="Cloud" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">CloudIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="CloudRain" className="block mx-auto" />
