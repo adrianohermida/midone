@@ -16,8 +16,8 @@ function Main() {
   const metricas = crmData.metricas;
 
   const negociosRecentes = negocios.slice(0, 5);
-  const ticketsAbertos = tickets.filter(t => t.status === "Aberto");
-  const clientesVIP = contatos.filter(c => c.tags.includes("VIP"));
+  const ticketsAbertos = tickets.filter((t) => t.status === "Aberto");
+  const clientesVIP = contatos.filter((c) => c.tags.includes("VIP"));
 
   return (
     <>
@@ -69,7 +69,10 @@ function Main() {
           <div className="report-box zoom-in">
             <div className="box p-5">
               <div className="flex">
-                <Lucide icon="Users" className="report-box__icon text-primary" />
+                <Lucide
+                  icon="Users"
+                  className="report-box__icon text-primary"
+                />
                 <div className="ml-auto">
                   <div className="report-box__indicator bg-success cursor-pointer">
                     +{metricas.contatos.novosUltimoMes}
@@ -91,16 +94,25 @@ function Main() {
           <div className="report-box zoom-in">
             <div className="box p-5">
               <div className="flex">
-                <Lucide icon="DollarSign" className="report-box__icon text-success" />
+                <Lucide
+                  icon="DollarSign"
+                  className="report-box__icon text-success"
+                />
                 <div className="ml-auto">
                   <div className="report-box__indicator bg-success cursor-pointer">
-                    R$ {new Intl.NumberFormat('pt-BR').format(metricas.negocios.ticketMedio)}
+                    R${" "}
+                    {new Intl.NumberFormat("pt-BR").format(
+                      metricas.negocios.ticketMedio,
+                    )}
                     <Lucide icon="ChevronUp" className="w-4 h-4 ml-0.5" />
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-medium leading-8 mt-6">
-                R$ {new Intl.NumberFormat('pt-BR').format(metricas.negocios.totalPipeline)}
+                R${" "}
+                {new Intl.NumberFormat("pt-BR").format(
+                  metricas.negocios.totalPipeline,
+                )}
               </div>
               <div className="text-base text-slate-500 mt-1">
                 Pipeline de Vendas
@@ -113,7 +125,10 @@ function Main() {
           <div className="report-box zoom-in">
             <div className="box p-5">
               <div className="flex">
-                <Lucide icon="TrendingUp" className="report-box__icon text-warning" />
+                <Lucide
+                  icon="TrendingUp"
+                  className="report-box__icon text-warning"
+                />
                 <div className="ml-auto">
                   <div className="report-box__indicator bg-success cursor-pointer">
                     {metricas.negocios.taxaConversao}%
@@ -135,7 +150,10 @@ function Main() {
           <div className="report-box zoom-in">
             <div className="box p-5">
               <div className="flex">
-                <Lucide icon="MessageSquare" className="report-box__icon text-danger" />
+                <Lucide
+                  icon="MessageSquare"
+                  className="report-box__icon text-danger"
+                />
                 <div className="ml-auto">
                   <div className="report-box__indicator bg-warning cursor-pointer">
                     {metricas.suporte.ticketsAbertos}
@@ -246,7 +264,7 @@ function Main() {
                     <Table.Th>NEGÓCIO</Table.Th>
                     <Table.Th className="text-center">VALOR</Table.Th>
                     <Table.Th className="text-center">ETAPA</Table.Th>
-                    <Table.Th className="text-center">RESPONSÁVEL</Tag.Th>
+                    <Table.Th className="text-center">RESPONSÁVEL</Table.Th>
                     <Table.Th className="text-center">PROB.</Table.Th>
                     <Table.Th className="text-center">AÇÕES</Table.Th>
                   </Table.Tr>
@@ -256,10 +274,13 @@ function Main() {
                     <Table.Tr key={index}>
                       <Table.Td>
                         <div className="font-medium">{negocio.titulo}</div>
-                        <div className="text-slate-500 text-sm">{negocio.descricao}</div>
+                        <div className="text-slate-500 text-sm">
+                          {negocio.descricao}
+                        </div>
                       </Table.Td>
                       <Table.Td className="text-center font-medium text-success">
-                        R$ {new Intl.NumberFormat('pt-BR').format(negocio.valor)}
+                        R${" "}
+                        {new Intl.NumberFormat("pt-BR").format(negocio.valor)}
                       </Table.Td>
                       <Table.Td className="text-center">
                         <span className="px-2 py-1 rounded-full text-xs bg-primary/10 text-primary">
@@ -274,7 +295,10 @@ function Main() {
                       </Table.Td>
                       <Table.Td className="text-center">
                         <div className="flex items-center justify-center">
-                          <a className="flex items-center mr-3 text-primary" href={`/crm/negocios/${negocio.id}`}>
+                          <a
+                            className="flex items-center mr-3 text-primary"
+                            href={`/crm/negocios/${negocio.id}`}
+                          >
                             <Lucide icon="Eye" className="w-4 h-4" />
                           </a>
                           <a className="flex items-center text-success" href="">
@@ -297,18 +321,29 @@ function Main() {
             <div className="box p-5">
               <div className="flex items-center">
                 <h2 className="text-base font-medium">Tickets Urgentes</h2>
-                <a href="/crm/suporte" className="ml-auto text-primary text-xs">Ver Todos</a>
+                <a href="/crm/suporte" className="ml-auto text-primary text-xs">
+                  Ver Todos
+                </a>
               </div>
               <div className="mt-5">
                 {ticketsAbertos.slice(0, 3).map((ticket, index) => (
                   <div key={index} className="flex items-center mt-4">
                     <div className="w-8 h-8 bg-danger/10 rounded-full flex items-center justify-center mr-3">
-                      <Lucide icon="AlertTriangle" className="w-4 h-4 text-danger" />
+                      <Lucide
+                        icon="AlertTriangle"
+                        className="w-4 h-4 text-danger"
+                      />
                     </div>
                     <div className="flex-1">
-                      <div className="font-medium text-sm">#{ticket.id} - {ticket.titulo}</div>
+                      <div className="font-medium text-sm">
+                        #{ticket.id} - {ticket.titulo}
+                      </div>
                       <div className="text-slate-500 text-xs">
-                        {crmData.contatos.find(c => c.id === ticket.contatoId)?.nome}
+                        {
+                          crmData.contatos.find(
+                            (c) => c.id === ticket.contatoId,
+                          )?.nome
+                        }
                       </div>
                     </div>
                     <div className="text-xs text-slate-500">
@@ -319,7 +354,7 @@ function Main() {
                 <Button
                   variant="outline-secondary"
                   className="w-full mt-4"
-                  onClick={() => window.location.href = '/crm/suporte'}
+                  onClick={() => (window.location.href = "/crm/suporte")}
                 >
                   Gerenciar Suporte
                 </Button>
@@ -331,7 +366,9 @@ function Main() {
           <div className="intro-y box p-5 mt-6">
             <div className="flex items-center">
               <h2 className="text-base font-medium">Clientes VIP</h2>
-              <a href="/crm/contatos" className="ml-auto text-primary text-xs">Ver Todos</a>
+              <a href="/crm/contatos" className="ml-auto text-primary text-xs">
+                Ver Todos
+              </a>
             </div>
             <div className="mt-5">
               {clientesVIP.slice(0, 4).map((cliente, index) => (
@@ -342,11 +379,17 @@ function Main() {
                   <div className="flex-1">
                     <div className="font-medium text-sm">{cliente.nome}</div>
                     <div className="text-slate-500 text-xs">
-                      {cliente.valorMedio && `R$ ${new Intl.NumberFormat('pt-BR').format(cliente.valorMedio)} médio`}
+                      {cliente.valorMedio &&
+                        `R$ ${new Intl.NumberFormat("pt-BR").format(cliente.valorMedio)} médio`}
                     </div>
                   </div>
                   <div className="text-xs text-slate-500">
-                    {Math.ceil((new Date().getTime() - new Date(cliente.ultimoContato).getTime()) / (1000 * 60 * 60 * 24))}d
+                    {Math.ceil(
+                      (new Date().getTime() -
+                        new Date(cliente.ultimoContato).getTime()) /
+                        (1000 * 60 * 60 * 24),
+                    )}
+                    d
                   </div>
                 </div>
               ))}
@@ -360,14 +403,14 @@ function Main() {
               <SimpleLineChart4 height={120} />
             </div>
             <div className="flex items-center mt-5">
-              <div className="text-2xl font-medium">+{metricas.contatos.conversaoLeadCliente.toFixed(1)}%</div>
+              <div className="text-2xl font-medium">
+                +{metricas.contatos.conversaoLeadCliente.toFixed(1)}%
+              </div>
               <div className="ml-auto text-success font-medium text-xs bg-success/10 px-2 py-1 rounded">
                 Conversão
               </div>
             </div>
-            <div className="text-slate-500 mt-1">
-              vs. mês anterior
-            </div>
+            <div className="text-slate-500 mt-1">vs. mês anterior</div>
           </div>
         </div>
       </div>
@@ -383,7 +426,7 @@ function Main() {
               <Button
                 variant="outline-primary"
                 className="h-20 flex flex-col items-center justify-center"
-                onClick={() => window.location.href = '/crm/contatos'}
+                onClick={() => (window.location.href = "/crm/contatos")}
               >
                 <Lucide icon="UserPlus" className="w-6 h-6 mb-2" />
                 <span className="text-sm">Novo Contato</span>
@@ -391,7 +434,7 @@ function Main() {
               <Button
                 variant="outline-primary"
                 className="h-20 flex flex-col items-center justify-center"
-                onClick={() => window.location.href = '/crm/negocios'}
+                onClick={() => (window.location.href = "/crm/negocios")}
               >
                 <Lucide icon="Target" className="w-6 h-6 mb-2" />
                 <span className="text-sm">Novo Negócio</span>
@@ -399,7 +442,7 @@ function Main() {
               <Button
                 variant="outline-primary"
                 className="h-20 flex flex-col items-center justify-center"
-                onClick={() => window.location.href = '/crm/suporte'}
+                onClick={() => (window.location.href = "/crm/suporte")}
               >
                 <Lucide icon="MessageSquare" className="w-6 h-6 mb-2" />
                 <span className="text-sm">Abrir Ticket</span>
