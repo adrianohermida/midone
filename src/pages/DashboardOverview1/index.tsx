@@ -30,15 +30,6 @@ function Main() {
 
   return (
     <div className="grid grid-cols-12 gap-6">
-      {/* TEMPORARY DEBUG - Dashboard is rendering */}
-      <div className="col-span-12 p-4 bg-green-100 border border-green-300 rounded">
-        <h1 className="text-xl font-bold text-green-800">
-          ✅ Dashboard Overview 1 está carregando!
-        </h1>
-        <p className="text-green-600">
-          Se você vê isto, as rotas estão funcionando corretamente.
-        </p>
-      </div>
       <div className="col-span-12 2xl:col-span-9">
         <div className="grid grid-cols-12 gap-6">
           {/* BEGIN: General Report */}
