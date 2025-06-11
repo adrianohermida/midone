@@ -1,0 +1,466 @@
+{
+  "dashboard": {
+    "metricas": {
+      "processos_ativos": 156,
+      "prazos_vencendo": 12,
+      "intimacoes_pendentes": 8,
+      "publicacoes_hoje": 5,
+      "agenda_eventos": 18,
+      "tickets_abertos": 3
+    },
+    "processos_urgentes": [
+      {
+        "id": "1",
+        "numero": "5012345-67.2024.4.03.6109",
+        "cliente": "Empresa ABC Ltda",
+        "tipo": "Trabalhista",
+        "status": "Em Andamento",
+        "prazo": "2024-02-15",
+        "urgencia": "alta",
+        "responsavel": "Dr. João Silva"
+      },
+      {
+        "id": "2",
+        "numero": "1023456-78.2024.8.26.0100",
+        "cliente": "Maria Santos",
+        "tipo": "Cível",
+        "status": "Aguardando Julgamento",
+        "prazo": "2024-02-18",
+        "urgencia": "media",
+        "responsavel": "Dra. Ana Costa"
+      }
+    ],
+    "agenda_proximos": [
+      {
+        "id": "1",
+        "titulo": "Audiência de Conciliação",
+        "processo": "5012345-67.2024.4.03.6109",
+        "data": "2024-02-16T10:00:00",
+        "local": "TRT 3ª Região - Sala 15",
+        "tipo": "audiencia"
+      },
+      {
+        "id": "2",
+        "titulo": "Prazo para Contestação",
+        "processo": "1023456-78.2024.8.26.0100",
+        "data": "2024-02-18T23:59:00",
+        "tipo": "prazo"
+      }
+    ]
+  },
+  "processos": [
+    {
+      "id": "1",
+      "numero": "5012345-67.2024.4.03.6109",
+      "cliente": {
+        "nome": "Empresa ABC Ltda",
+        "tipo": "PJ",
+        "cnpj": "12.345.678/0001-90",
+        "contato": "(11) 98765-4321"
+      },
+      "tipo": "Trabalhista",
+      "area": "Direito do Trabalho",
+      "status": "Em Andamento",
+      "valor_causa": 45000.0,
+      "data_distribuicao": "2024-01-15",
+      "comarca": "São Paulo/SP",
+      "vara": "15ª Vara do Trabalho",
+      "responsavel": "Dr. João Silva",
+      "descricao": "Ação de cobrança de horas extras e adicional noturno",
+      "partes": {
+        "requerente": "João da Silva",
+        "requerido": "Empresa ABC Ltda"
+      },
+      "prazos": [
+        {
+          "id": "1",
+          "tipo": "Contestação",
+          "data_limite": "2024-02-15",
+          "status": "pendente",
+          "dias_restantes": 5
+        }
+      ],
+      "documentos": [
+        {
+          "id": "1",
+          "nome": "Petição Inicial",
+          "tipo": "PDF",
+          "tamanho": "2.5 MB",
+          "data_upload": "2024-01-15",
+          "categoria": "Petições"
+        },
+        {
+          "id": "2",
+          "nome": "Documentos Pessoais",
+          "tipo": "PDF",
+          "tamanho": "1.8 MB",
+          "data_upload": "2024-01-15",
+          "categoria": "Documentos"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "1",
+          "data": "2024-01-15",
+          "tipo": "Distribuição",
+          "descricao": "Processo distribuído para a 15ª Vara do Trabalho",
+          "responsavel": "Sistema"
+        },
+        {
+          "id": "2",
+          "data": "2024-01-20",
+          "tipo": "Citação",
+          "descricao": "Empresa citada para apresentar defesa",
+          "responsavel": "Oficial de Justiça"
+        }
+      ],
+      "agenda": [
+        {
+          "id": "1",
+          "titulo": "Audiência de Conciliação",
+          "data": "2024-02-16T10:00:00",
+          "local": "TRT 3ª Região - Sala 15",
+          "tipo": "audiencia",
+          "status": "agendado"
+        }
+      ],
+      "publicacoes": [
+        {
+          "id": "1",
+          "data": "2024-01-20",
+          "tipo": "Citação",
+          "conteudo": "Citação da parte requerida para apresentar defesa no prazo de 15 dias",
+          "fonte": "DJE",
+          "status": "visualizada"
+        }
+      ],
+      "intimacoes": [
+        {
+          "id": "1",
+          "data": "2024-02-01",
+          "tipo": "Prazo",
+          "assunto": "Prazo para apresentação de contestação",
+          "prazo": "2024-02-15",
+          "status": "pendente",
+          "urgencia": "alta"
+        }
+      ],
+      "mensagens": [
+        {
+          "id": "1",
+          "autor": "Dr. João Silva",
+          "data": "2024-02-10T14:30:00",
+          "mensagem": "Cliente confirmou disponibilidade para audiência de conciliação",
+          "tipo": "interna"
+        }
+      ],
+      "tickets": [
+        {
+          "id": "1",
+          "titulo": "Dúvida sobre documentação",
+          "status": "aberto",
+          "prioridade": "media",
+          "cliente": "Empresa ABC Ltda",
+          "data_abertura": "2024-02-10",
+          "ultima_atualizacao": "2024-02-10"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "numero": "1023456-78.2024.8.26.0100",
+      "cliente": {
+        "nome": "Maria Santos",
+        "tipo": "PF",
+        "cpf": "123.456.789-00",
+        "contato": "(11) 91234-5678"
+      },
+      "tipo": "Cível",
+      "area": "Direito Civil",
+      "status": "Aguardando Julgamento",
+      "valor_causa": 25000.0,
+      "data_distribuicao": "2024-01-10",
+      "comarca": "São Paulo/SP",
+      "vara": "3ª Vara Cível",
+      "responsavel": "Dra. Ana Costa",
+      "descricao": "Ação de cobrança de danos morais",
+      "partes": {
+        "requerente": "Maria Santos",
+        "requerido": "Empresa XYZ S.A."
+      },
+      "prazos": [
+        {
+          "id": "1",
+          "tipo": "Alegações Finais",
+          "data_limite": "2024-02-18",
+          "status": "pendente",
+          "dias_restantes": 8
+        }
+      ],
+      "documentos": [
+        {
+          "id": "3",
+          "nome": "Inicial e Documentos",
+          "tipo": "PDF",
+          "tamanho": "3.2 MB",
+          "data_upload": "2024-01-10",
+          "categoria": "Petições"
+        }
+      ],
+      "andamentos": [
+        {
+          "id": "3",
+          "data": "2024-01-10",
+          "tipo": "Distribuição",
+          "descricao": "Processo distribuído para a 3ª Vara Cível",
+          "responsavel": "Sistema"
+        }
+      ],
+      "agenda": [],
+      "publicacoes": [],
+      "intimacoes": [],
+      "mensagens": [],
+      "tickets": []
+    }
+  ],
+  "publicacoes": [
+    {
+      "id": "1",
+      "processo": "5012345-67.2024.4.03.6109",
+      "cliente": "Empresa ABC Ltda",
+      "data": "2024-02-10",
+      "tipo": "Intimação",
+      "assunto": "Intimação para audiência de conciliação",
+      "conteudo": "Intima-se a parte autora para comparecimento em audiência de conciliação designada para o dia 16/02/2024, às 10h, na sala 15 do TRT 3ª Região.",
+      "fonte": "DJE-TRT3",
+      "status": "lida",
+      "urgencia": "alta",
+      "prazo": "2024-02-16",
+      "responsavel": "Dr. João Silva"
+    },
+    {
+      "id": "2",
+      "processo": "1023456-78.2024.8.26.0100",
+      "cliente": "Maria Santos",
+      "data": "2024-02-09",
+      "tipo": "Despacho",
+      "assunto": "Despacho saneador",
+      "conteudo": "Processo saneado. Fixo como ponto controvertido a existência de danos morais. Defiro a produção de prova oral. Designo audiência de instrução.",
+      "fonte": "DJE-TJSP",
+      "status": "lida",
+      "urgencia": "media",
+      "responsavel": "Dra. Ana Costa"
+    },
+    {
+      "id": "3",
+      "processo": "5678901-23.2024.5.02.0001",
+      "cliente": "Pedro Oliveira",
+      "data": "2024-02-08",
+      "tipo": "Citação",
+      "assunto": "Citação da parte requerida",
+      "conteudo": "Cite-se a parte requerida para apresentar resposta no prazo de 15 dias, sob pena de revelia.",
+      "fonte": "DJE-TRT2",
+      "status": "nao_lida",
+      "urgencia": "alta",
+      "prazo": "2024-02-23",
+      "responsavel": "Dr. Carlos Mendes"
+    }
+  ],
+  "intimacoes": [
+    {
+      "id": "1",
+      "processo": "5012345-67.2024.4.03.6109",
+      "cliente": "Empresa ABC Ltda",
+      "numero_intimacao": "INT-2024-001",
+      "data_recebimento": "2024-02-10T08:30:00",
+      "tipo": "Audiência",
+      "assunto": "Intimação para comparecimento em audiência",
+      "conteudo": "Intima-se a parte requerente para comparecimento em audiência de conciliação designada para o dia 16/02/2024, às 10h00min, na Sala de Audiências nº 15 do TRT 3ª Região.",
+      "prazo_cumprimento": "2024-02-16T10:00:00",
+      "status": "pendente",
+      "urgencia": "alta",
+      "responsavel": "Dr. João Silva",
+      "origem": "TRT 3ª Região",
+      "meio_intimacao": "Eletrônica",
+      "acao_necessaria": "Comparecer à audiência",
+      "observacoes": "Levar documentos originais e testemunhas arroladas"
+    },
+    {
+      "id": "2",
+      "processo": "1023456-78.2024.8.26.0100",
+      "cliente": "Maria Santos",
+      "numero_intimacao": "INT-2024-002",
+      "data_recebimento": "2024-02-09T16:45:00",
+      "tipo": "Prazo",
+      "assunto": "Prazo para alegações finais",
+      "conteudo": "Intima-se a parte autora para apresentar alegações finais no prazo de 10 dias, nos termos do art. 364 do CPC.",
+      "prazo_cumprimento": "2024-02-19T23:59:59",
+      "status": "pendente",
+      "urgencia": "media",
+      "responsavel": "Dra. Ana Costa",
+      "origem": "TJSP - 3ª Vara Cível",
+      "meio_intimacao": "Eletrônica",
+      "acao_necessaria": "Elaborar e protocolar alegações finais",
+      "observacoes": "Destacar pontos controvertidos e fundamentos jurídicos"
+    },
+    {
+      "id": "3",
+      "processo": "2345678-90.2024.4.01.3800",
+      "cliente": "Construtora XYZ",
+      "numero_intimacao": "INT-2024-003",
+      "data_recebimento": "2024-02-08T14:20:00",
+      "tipo": "Decisão",
+      "assunto": "Intimação de decisão interlocutória",
+      "conteudo": "Intima-se a parte requerida da decisão que deferiu parcialmente a antecipação de tutela, determinando o depósito de 50% do valor discutido.",
+      "prazo_cumprimento": "2024-02-15T23:59:59",
+      "status": "cumprida",
+      "urgencia": "alta",
+      "responsavel": "Dr. Rafael Santos",
+      "origem": "TRF 1ª Região",
+      "meio_intimacao": "Eletrônica",
+      "acao_necessaria": "Realizar depósito judicial",
+      "observacoes": "Depósito realizado em 12/02/2024"
+    }
+  ],
+  "agenda": [
+    {
+      "id": "1",
+      "titulo": "Audiência de Conciliação",
+      "processo": "5012345-67.2024.4.03.6109",
+      "cliente": "Empresa ABC Ltda",
+      "data": "2024-02-16T10:00:00",
+      "data_fim": "2024-02-16T11:00:00",
+      "local": "TRT 3ª Região - Sala 15",
+      "endereco": "Rua Curitiba, 835 - Centro, Belo Horizonte/MG",
+      "tipo": "audiencia",
+      "status": "agendado",
+      "responsavel": "Dr. João Silva",
+      "participantes": [
+        "Dr. João Silva (Advogado)",
+        "Empresa ABC Ltda (Cliente)",
+        "João da Silva (Reclamante)"
+      ],
+      "observacoes": "Levar documentos originais e testemunhas",
+      "notificacoes": {
+        "cliente": true,
+        "responsavel": true,
+        "antecedencia": "24h"
+      }
+    },
+    {
+      "id": "2",
+      "titulo": "Prazo para Contestação",
+      "processo": "1023456-78.2024.8.26.0100",
+      "cliente": "Maria Santos",
+      "data": "2024-02-18T23:59:00",
+      "tipo": "prazo",
+      "status": "pendente",
+      "responsavel": "Dra. Ana Costa",
+      "acao": "Protocolar alegações finais",
+      "observacoes": "Prazo fatal - não prorroga"
+    },
+    {
+      "id": "3",
+      "titulo": "Audiência de Instrução",
+      "processo": "2345678-90.2024.4.01.3800",
+      "cliente": "Construtora XYZ",
+      "data": "2024-02-22T14:30:00",
+      "data_fim": "2024-02-22T16:30:00",
+      "local": "TRF 1ª Região - Sala 8",
+      "endereco": "SAS Quadra 6, Lote 1, Bloco A - Asa Sul, Brasília/DF",
+      "tipo": "audiencia",
+      "status": "agendado",
+      "responsavel": "Dr. Rafael Santos",
+      "participantes": [
+        "Dr. Rafael Santos (Advogado)",
+        "Construtora XYZ (Cliente)",
+        "Perito Engenheiro"
+      ],
+      "observacoes": "Audiência de oitiva de testemunhas e depoimento das partes"
+    },
+    {
+      "id": "4",
+      "titulo": "Reunião com Cliente",
+      "processo": "5012345-67.2024.4.03.6109",
+      "cliente": "Empresa ABC Ltda",
+      "data": "2024-02-14T15:00:00",
+      "data_fim": "2024-02-14T16:00:00",
+      "local": "Escritório - Sala de Reuniões",
+      "tipo": "reuniao",
+      "status": "agendado",
+      "responsavel": "Dr. João Silva",
+      "assunto": "Preparação para audiência de conciliação",
+      "observacoes": "Discutir estratégia e possibilidade de acordo"
+    }
+  ],
+  "relatorios": {
+    "produtividade": {
+      "periodo": "2024-02",
+      "processos_novos": 8,
+      "processos_finalizados": 5,
+      "prazos_cumpridos": 42,
+      "prazos_perdidos": 1,
+      "audiencias_realizadas": 12,
+      "peticoes_protocoladas": 28,
+      "taxa_sucesso": 89.5
+    },
+    "por_area": [
+      {
+        "area": "Direito do Trabalho",
+        "total_processos": 45,
+        "valor_total": 890000.0,
+        "taxa_sucesso": 92.3,
+        "tempo_medio": 8.5
+      },
+      {
+        "area": "Direito Civil",
+        "total_processos": 32,
+        "valor_total": 560000.0,
+        "taxa_sucesso": 87.1,
+        "tempo_medio": 12.2
+      },
+      {
+        "area": "Direito Empresarial",
+        "total_processos": 18,
+        "valor_total": 1200000.0,
+        "taxa_sucesso": 94.4,
+        "tempo_medio": 6.8
+      }
+    ],
+    "prazos": {
+      "periodo": "2024-02",
+      "total_prazos": 156,
+      "cumpridos": 142,
+      "vencidos": 8,
+      "vencendo": 6,
+      "percentual_cumprimento": 91.0
+    },
+    "financeiro": {
+      "honorarios_mes": 125000.0,
+      "custas_mes": 8500.0,
+      "valor_causas": 2650000.0,
+      "ticket_medio": 28500.0
+    }
+  },
+  "configuracoes": {
+    "notificacoes": {
+      "prazos": {
+        "antecedencia_dias": [1, 3, 7],
+        "horarios": ["09:00", "14:00"]
+      },
+      "audiencias": {
+        "antecedencia_dias": [1, 7],
+        "incluir_cliente": true
+      },
+      "publicacoes": {
+        "tempo_real": true,
+        "resumo_diario": true
+      }
+    },
+    "integracao": {
+      "advise_api": true,
+      "tribunais": ["TJSP", "TRT3", "TRF1"],
+      "dje_automatico": true
+    }
+  }
+}
