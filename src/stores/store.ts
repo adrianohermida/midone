@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "./authSlice";
 
-// Create a basic store configuration
+// Store configuration for Lawdesk CRM
 export const store = configureStore({
   reducer: {
-    // Add your reducers here as you develop features
-    // Example: auth: authSlice.reducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
