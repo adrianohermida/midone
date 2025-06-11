@@ -15,7 +15,7 @@ import {
 import SecondLevelMenuItems from "@/components/Base/SideMenuItems";
 import Tippy from "@/components/Base/Tippy";
 import Lucide from "@/components/Base/Lucide";
-import lawdeskLogoUrl from "@/assets/images/lawdesk-logo.svg";
+import justiceScaleUrl from "@/assets/images/justice-scale.svg";
 import clsx from "clsx";
 import TopBar from "@/components/Themes/Rubick/TopBar";
 import MobileMenu from "@/components/MobileMenu";
@@ -55,19 +55,21 @@ function Main() {
       >
         <MobileMenu />
         <div className="flex mt-[4.7rem] md:mt-0">
+          {/* BEGIN: Side Menu */}
           <nav className="side-nav hidden w-[80px] overflow-x-hidden pb-16 pr-5 md:block xl:w-[230px]">
             <Link to="/" className="flex items-center pt-4 pl-5 intro-x">
               <img
-                alt="Lawdesk Legal Management System"
-                className="w-6 h-6 lawdesk-logo"
-                src={lawdeskLogoUrl}
+                alt="Midone Tailwind HTML Admin Template"
+                className="w-6 h-6"
+                src={justiceScaleUrl}
               />
-              <span className="hidden ml-3 text-lg font-semibold text-white xl:block lawdesk-title">
-                Lawdesk
+              <span className="hidden ml-3 text-lg font-semibold text-white xl:block">
+                Midone
               </span>
             </Link>
             <div className="my-6 side-nav__divider"></div>
             <ul>
+              {/* BEGIN: First Child */}
               {formattedMenu.map((menu, menuKey) =>
                 menu == "divider" ? (
                   <li className="my-6 side-nav__divider" key={menuKey}></li>
@@ -109,6 +111,7 @@ function Main() {
                         )}
                       </div>
                     </Tippy>
+                    {/* BEGIN: Second Child */}
                     {menu.subMenu && (
                       <SecondLevelMenuItems
                         menu={menu}
@@ -120,15 +123,20 @@ function Main() {
                         leave={leave}
                       />
                     )}
+                    {/* END: Second Child */}
                   </li>
                 ),
               )}
+              {/* END: First Child */}
             </ul>
           </nav>
+          {/* END: Side Menu */}
+          {/* BEGIN: Content */}
           <div className="md:max-w-auto min-h-screen min-w-0 max-w-full flex-1 rounded-[30px] bg-slate-100 px-4 pb-10 before:block before:h-px before:w-full before:content-[''] dark:bg-darkmode-700 md:px-[22px]">
             <TopBar />
             <Outlet />
           </div>
+          {/* END: Content */}
         </div>
       </div>
     </forceActiveMenuContext.Provider>

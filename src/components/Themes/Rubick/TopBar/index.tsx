@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Lucide from "@/components/Base/Lucide";
-import lawdeskLogoUrl from "@/assets/images/lawdesk-logo.svg";
+import justiceScaleUrl from "@/assets/images/justice-scale.svg";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import { Popover } from "@/components/Base/Headless";
 import UserProfileMenu from "@/components/Base/UserProfileMenu";
@@ -12,25 +12,33 @@ import clsx from "clsx";
 
 function Main() {
   return (
-    <Fragment>
-      <div className="relative z-[51] flex h-[67px] items-center border-b border-slate-200 dark:border-slate-700 mt-8 mb-8">
+    <>
+      {/* BEGIN: Top Bar */}
+      <div className="h-[67px] z-[51] flex items-center relative border-b border-slate-200 dark:border-slate-700">
+        {/* BEGIN: Logo */}
         <Link to="/" className="hidden -intro-x md:flex items-center mr-6">
           <img
-            alt="Lawdesk Legal Management System"
-            className="w-6 h-6 lawdesk-logo"
-            src={lawdeskLogoUrl}
+            alt="Midone Tailwind HTML Admin Template"
+            className="w-6 h-6"
+            src={justiceScaleUrl}
           />
-          <span className="ml-3 text-lg font-semibold text-slate-800 dark:text-slate-200 lawdesk-title">
-            Lawdesk
+          <span className="ml-3 text-lg font-semibold text-slate-800 dark:text-slate-200">
+            Midone
           </span>
         </Link>
+        {/* END: Logo */}
+        {/* BEGIN: Breadcrumb */}
         <Breadcrumb className="hidden mr-auto -intro-x sm:flex">
           <Breadcrumb.Link to="/">Application</Breadcrumb.Link>
           <Breadcrumb.Link to="/" active={true}>
             Dashboard
           </Breadcrumb.Link>
         </Breadcrumb>
+        {/* END: Breadcrumb */}
+        {/* BEGIN: Search */}
         <HeaderSearch className="mr-3 intro-x sm:mr-6" />
+        {/* END: Search  */}
+        {/* BEGIN: Notifications */}
         <Popover className="mr-auto intro-x sm:mr-6">
           <Popover.Button
             className="
@@ -55,7 +63,7 @@ function Main() {
               >
                 <div className="relative flex-none w-12 h-12 mr-1 image-fit">
                   <img
-                    alt="Lawdesk User"
+                    alt="Midone Tailwind HTML Admin Template"
                     className="rounded-full"
                     src={faker.photos[0]}
                   />
@@ -78,9 +86,13 @@ function Main() {
             ))}
           </Popover.Panel>
         </Popover>
+        {/* END: Notifications  */}
+        {/* BEGIN: Account Menu */}
         <UserProfileMenu />
+        {/* END: Account Menu */}
       </div>
-    </Fragment>
+      {/* END: Top Bar */}
+    </>
   );
 }
 
