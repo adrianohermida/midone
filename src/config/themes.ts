@@ -210,23 +210,51 @@ function applyColorsToElements(
     '.bg-theme-1, [class*="bg-theme-1"]',
   );
   themeElements.forEach((element) => {
-    (element as HTMLElement).style.backgroundColor = primary;
-    (element as HTMLElement).style.color = headerText;
+    (element as HTMLElement).style.setProperty(
+      "background-color",
+      primary,
+      "important",
+    );
+    (element as HTMLElement).style.setProperty(
+      "color",
+      headerText,
+      "important",
+    );
   });
 
   const theme2Elements = document.querySelectorAll(
     '.bg-theme-2, [class*="bg-theme-2"]',
   );
   theme2Elements.forEach((element) => {
-    (element as HTMLElement).style.backgroundColor = secondary;
-    (element as HTMLElement).style.color = getContrastColor(secondary);
+    (element as HTMLElement).style.setProperty(
+      "background-color",
+      secondary,
+      "important",
+    );
+    (element as HTMLElement).style.setProperty(
+      "color",
+      getContrastColor(secondary),
+      "important",
+    );
   });
 
   // Update text elements
   const headerTextElements = document.querySelectorAll(".header-text-optimal");
   headerTextElements.forEach((element) => {
-    (element as HTMLElement).style.color = headerText;
+    (element as HTMLElement).style.setProperty(
+      "color",
+      headerText,
+      "important",
+    );
   });
+
+  // Apply to floating theme button
+  const themeButton = document.querySelector(
+    "[data-theme-button]",
+  ) as HTMLElement;
+  if (themeButton) {
+    themeButton.style.setProperty("background-color", primary, "important");
+  }
 }
 
 /**
