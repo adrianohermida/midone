@@ -22,6 +22,7 @@ function Main() {
 
   const switchTheme = (theme: Themes["name"]) => {
     dispatch(setTheme(theme));
+    applyThemeStyles(theme, activeDarkMode);
   };
   const switchLayout = (layout: Themes["layout"]) => {
     dispatch(setLayout(layout));
