@@ -149,7 +149,7 @@ function SecondLevelMenuItems(props: MenuItemsProps) {
               ])}
             >
               <div className="side-menu__icon">
-                <Lucide icon={subMenu.icon} />
+                <Lucide icon={subMenu.icon || "Activity"} />
               </div>
               <div className="side-menu__title">
                 {subMenu.title}
