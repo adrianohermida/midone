@@ -156,17 +156,23 @@ function Main() {
                         ])}
                       >
                         <div className="w-full h-full overflow-hidden rounded-md">
-                          {layoutImages[
+                          {(layoutImages[
                             `/src/assets/images/layouts/${layout}.png`
-                          ] !== undefined && (
+                          ] ||
+                            layoutImages[
+                              `/src/assets/images/layouts/${layout}.svg`
+                            ]) && (
                             <img
                               className="w-full h-full"
                               src={
-                                layoutImages[
-                                  "/src/assets/images/layouts/" +
-                                    layout +
-                                    ".png"
-                                ].default
+                                (
+                                  layoutImages[
+                                    `/src/assets/images/layouts/${layout}.png`
+                                  ] ||
+                                  layoutImages[
+                                    `/src/assets/images/layouts/${layout}.svg`
+                                  ]
+                                ).default
                               }
                             />
                           )}
