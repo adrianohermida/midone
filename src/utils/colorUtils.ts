@@ -178,9 +178,13 @@ export const generateColorPalettes = (baseColor: string): ColorPalette[] => {
   ];
 };
 
-export const generateRandomPalettes = (): ColorPalette[] => {
-  const randomColor = generateRandomColor();
-  return generateColorPalettes(randomColor);
+export const generateRandomPalettes = (count: number = 6): ColorPalette[] => {
+  const palettes: ColorPalette[] = [];
+  for (let i = 0; i < count; i++) {
+    const randomColor = generateRandomColor();
+    palettes.push(...generateColorPalettes(randomColor));
+  }
+  return palettes.slice(0, count);
 };
 
 // Theme application function
