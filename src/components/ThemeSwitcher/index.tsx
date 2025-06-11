@@ -967,7 +967,7 @@ function Main() {
                             onClick={handleReset}
                             className="w-full justify-start shadow-sm"
                           >
-                            <Lucide icon="RefreshCw" className="w-4 h-4 mr-2" />
+                            <Lucide icon="RotateCcw" className="w-4 h-4 mr-2" />
                             Reset Completo (Padrões de Fábrica)
                           </Button>
                         </div>
