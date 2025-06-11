@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom/client";
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
@@ -11,15 +12,19 @@ function App() {
         backgroundColor: "yellow",
       }}
     >
-      REACT IS NOW WORKING WITH JSX!
+      REACT + ROUTER WORKING!
     </div>
   );
 }
 
 const root = document.getElementById("root");
 if (root) {
-  console.log("Root element found, rendering React with JSX...");
-  ReactDOM.createRoot(root).render(<App />);
+  console.log("Root element found, rendering React with Router...");
+  ReactDOM.createRoot(root).render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+  );
 } else {
   console.error("Root element not found!");
 }
