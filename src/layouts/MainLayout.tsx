@@ -1,77 +1,53 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Button from "../base-components/Button";
+import {
+  selectTheme,
+  getTheme,
+  setTheme,
+  themes,
+  Themes as ThemeType,
+} from "@/stores/themeSlice";
+import { useAppDispatch, useAppSelector } from "@/stores/hooks";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-  const navigate = useNavigate();
-  const userEmail = localStorage.getItem("userEmail");
-  const isAuthenticated = localStorage.getItem("isAuthenticated");
+function MainLayout({ children }: MainLayoutProps) {
+  const dispatch = useAppDispatch();
+  const theme = useAppSelector(selectTheme);
+  const Component = getTheme(theme).component;
 
-  const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated");
-    localStorage.removeItem("userEmail");
-    navigate("/");
+  const { search } = useLocation();
+  const queryParams = new URLSearchParams(search);
+
+  const switchTheme = (theme: ThemeType["name"]) => {
+    dispatch(setTheme(theme));
   };
 
-  return (
-    <div className="min-h-screen bg-slate-100">
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <Link to="/" className="flex items-center">
-                <img
-                  src="/src/assets/images/logo.svg"
-                  alt="Midone"
-                  className="w-8 h-8 mr-3"
-                />
-                <h1 className="text-xl font-bold text-primary">Midone React</h1>
-              </Link>
-            </div>
+  useEffect(() => {
+    if (queryParams.get("theme")) {
+      const selectedTheme = themes.find(
+        (theme) => theme.name === queryParams.get("theme"),
+      );
 
-            <div className="flex items-center space-x-4">
-              {isAuthenticated ? (
-                <>
-                  <span className="text-sm text-gray-600">
-                    Olá,{" "}
-                    <span className="font-medium text-primary">
-                      {userEmail}
-                    </span>
-                  </span>
-                  <Link to="/dashboard">
-                    <Button variant="secondary" size="sm">
-                      Dashboard
-                    </Button>
-                  </Link>
-                  <Button variant="danger" size="sm" onClick={handleLogout}>
-                    Logout
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Link to="/login">
-                    <Button variant="primary" size="sm">
-                      Login
-                    </Button>
-                  </Link>
-                  <Link to="/">
-                    <Button variant="secondary" size="sm">
-                      Home
-                    </Button>
-                  </Link>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      </header>
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">{children}</main>
-    </div>
+      if (selectedTheme) {
+        switchTheme(selectedTheme.name);
+      }
+    }
+  }, []);
+
+  // Create a wrapper component that renders the theme with children
+  const ThemeWrapper = () => <Component>{children}</Component>;
+
+  return (
+    <>
+      <ThemeSwitcher />
+      <ThemeWrapper />
+    </>
   );
-};
+}
 
 export default MainLayout;
