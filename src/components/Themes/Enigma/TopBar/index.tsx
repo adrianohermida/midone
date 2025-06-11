@@ -39,7 +39,7 @@ function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
             />
             <span
               className={clsx([
-                "ml-3 text-lg font-semibold text-white",
+                "ml-3 text-lg font-semibold text-white header-text-optimal",
                 props.layout == "side-menu" && "hidden xl:block",
                 props.layout == "simple-menu" && "hidden",
               ])}
@@ -70,11 +70,14 @@ function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
           <Popover className="mr-4 intro-x sm:mr-6">
             <Popover.Button
               className="
-              relative text-white/70 outline-none block
+              relative text-white/70 header-text-optimal outline-none block
               before:content-[''] before:w-[8px] before:h-[8px] before:rounded-full before:absolute before:top-[-2px] before:right-0 before:bg-danger
             "
             >
-              <Lucide icon="Bell" className="w-5 h-5 dark:text-slate-500" />
+              <Lucide
+                icon="Bell"
+                className="w-5 h-5 text-white/70 header-text-optimal"
+              />
             </Popover.Button>
             <Popover.Panel className="w-[280px] sm:w-[350px] p-5 mt-2">
               <div className="mb-5 font-medium">Notifications</div>
