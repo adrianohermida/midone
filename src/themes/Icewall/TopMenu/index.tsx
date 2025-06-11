@@ -64,7 +64,7 @@ function Main() {
                       }}
                     >
                       <div className="top-menu__icon">
-                        <Lucide icon={menu.icon} />
+                        <Lucide icon={menu.icon || "Home"} />
                       </div>
                       <div className="top-menu__title">
                         {menu.title}
@@ -132,7 +132,7 @@ function Main() {
                                         </div>
                                       </a>
                                     </li>
-                                  )
+                                  ),
                                 )}
                               </ul>
                             )}
@@ -141,7 +141,7 @@ function Main() {
                       </ul>
                     )}
                   </li>
-                )
+                ),
             )}
           </ul>
         </nav>
