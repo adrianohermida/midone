@@ -150,7 +150,12 @@ function Main() {
             onClick={handleClose}
           ></div>
 
-          <div className="absolute right-0 top-0 h-full w-80 bg-white shadow-xl dark:bg-darkmode-600 overflow-y-auto transform transition-transform duration-300 ease-out">
+          <div
+            className={clsx([
+              "absolute right-0 top-0 h-full w-80 bg-white shadow-xl dark:bg-darkmode-600 overflow-y-auto transform transition-transform duration-300 ease-out",
+              isAnimating ? "translate-x-0" : "translate-x-full",
+            ])}
+          >
             {/* Header */}
             <div className="flex items-center justify-between p-5 border-b border-slate-200/60 dark:border-darkmode-400">
               <div>
