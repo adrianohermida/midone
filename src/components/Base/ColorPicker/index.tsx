@@ -280,7 +280,7 @@ function ColorPicker({
                             {palette.name}
                           </span>
                           <span className="text-xs text-slate-500 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded">
-                            {palette.category}
+                            {palette.colors.length} cores
                           </span>
                         </div>
                         <div className="flex space-x-1">
