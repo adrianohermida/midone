@@ -23,7 +23,7 @@ function Main() {
         <h2 className="mr-auto text-lg font-medium">Add New Post</h2>
         <div className="flex w-full mt-4 sm:w-auto sm:mt-0">
           <Menu className="mr-2">
-            <Menu.Button as={Button} className="flex items-center !box">
+            <Menu.Button as="button" className="flex items-center !box">
               English <Lucide icon="ChevronDown" className="w-4 h-4 ml-2" />
             </Menu.Button>
             <Menu.Items className="w-40">
@@ -45,7 +45,7 @@ function Main() {
           </Button>
           <Menu>
             <Menu.Button
-              as={Button}
+              as="button"
               variant="primary"
               className="flex items-center shadow-md"
             >
@@ -229,7 +229,7 @@ function Main() {
               <FormLabel>Written By</FormLabel>
               <Menu className="[&>div:nth-child(2)]:w-full">
                 <Menu.Button
-                  as={Button}
+                  as="button"
                   variant="outline-secondary"
                   className="flex items-center justify-start w-full dark:bg-darkmode-800 dark:border-darkmode-800"
                   role="button"

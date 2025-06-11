@@ -43,7 +43,7 @@ function Main() {
                   <Preview>
                     <div className="text-center">
                       <Tippy
-                        as={Button}
+                        as="button"
                         variant="primary"
                         content="This is awesome tooltip example!"
                       >
@@ -56,7 +56,7 @@ function Main() {
                       {`
               <div className="text-center">
                 <Tippy
-                  as={Button}
+                  as="button"
                   variant="primary"
                   content="This is awesome tooltip example!"
                 >
@@ -95,7 +95,7 @@ function Main() {
                   <Preview>
                     <div className="text-center">
                       <Tippy
-                        as={Button}
+                        as="button"
                         variant="primary"
                         content="This is awesome tooltip example!"
                         options={{
@@ -111,7 +111,7 @@ function Main() {
                       {`
               <div className="text-center">
                 <Tippy
-                  as={Button}
+                  as="button"
                   variant="primary"
                   content="This is awesome tooltip example!"
                   options={{
@@ -153,7 +153,7 @@ function Main() {
                   <Preview>
                     <div className="text-center">
                       <Tippy
-                        as={Button}
+                        as="button"
                         variant="primary"
                         content="This is awesome tooltip example!"
                         options={{
@@ -169,7 +169,7 @@ function Main() {
                       {`
               <div className="text-center">
                 <Tippy
-                  as={Button}
+                  as="button"
                   variant="primary"
                   content="This is awesome tooltip example!"
                   options={{
