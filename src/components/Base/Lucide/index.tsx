@@ -67,6 +67,9 @@ export const icons = {
   Users,
   FileText,
   Activity,
+  Upload,
+  Trash2,
+  Brush,
 };
 
 interface LucideProps extends React.ComponentPropsWithoutRef<"svg"> {
