@@ -292,21 +292,49 @@ const icons = {
 function Lucide(props: LucideProps) {
   const { icon, className, ...computedProps } = props;
 
-  // Type guard to ensure icon is a valid string and exists in icons
-  if (!icon || typeof icon !== "string" || !(icon in icons)) {
-    console.warn(`Invalid icon prop passed to Lucide component: ${icon}`);
-    // Return a default icon or null to prevent the error
-    return null;
+  // Enhanced type guard to ensure icon is a valid string and exists in icons
+  try {
+    if (
+      !icon ||
+      typeof icon !== "string" ||
+      icon.trim() === "" ||
+      !(icon in icons)
+    ) {
+      console.warn(`Invalid icon prop passed to Lucide component:`, {
+        icon,
+        type: typeof icon,
+        value: icon,
+        availableIcons: Object.keys(icons).slice(0, 5),
+      });
+      // Return a fallback icon instead of null to ensure something renders
+      const Component = createLucideIcon(icons["Activity"]);
+      return (
+        <Component
+          {...computedProps}
+          className={twMerge(["stroke-1.5 w-5 h-5", className])}
+        />
+      );
+    }
+
+    const Component = createLucideIcon(icons[icon]);
+
+    return (
+      <Component
+        {...computedProps}
+        className={twMerge(["stroke-1.5 w-5 h-5", className])}
+      />
+    );
+  } catch (error) {
+    console.error("Error in Lucide component:", error, "Props:", props);
+    // Return a safe fallback in case of any error
+    const Component = createLucideIcon(icons["Activity"]);
+    return (
+      <Component
+        {...computedProps}
+        className={twMerge(["stroke-1.5 w-5 h-5", className])}
+      />
+    );
   }
-
-  const Component = createLucideIcon(icons[icon]);
-
-  return (
-    <Component
-      {...computedProps}
-      className={twMerge(["stroke-1.5 w-5 h-5", className])}
-    />
-  );
 }
 
 export { icons };
