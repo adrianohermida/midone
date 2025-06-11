@@ -87,6 +87,7 @@ import LegalCasesAnalytics from "@/pages/LegalCases/Analytics";
 import FinanceiroDashboard from "@/pages/Financeiro/Dashboard";
 import FinanceiroFaturamento from "@/pages/Financeiro/Faturamento";
 import FinanceiroTransacoes from "@/pages/Financeiro/Transacoes";
+import FinanceiroTransacaoDetalhes from "@/pages/Financeiro/TransacaoDetalhes";
 import FinanceiroProdutos from "@/pages/Financeiro/Produtos";
 import FinanceiroProdutoNovo from "@/pages/Financeiro/ProdutoNovo";
 
@@ -138,7 +139,7 @@ const Router = () => {
         />
         <Route
           path="financeiro/transacoes/:id"
-          element={<TransactionDetail />}
+          element={<FinanceiroTransacaoDetalhes />}
         />
         <Route path="financeiro/produtos" element={<FinanceiroProdutos />} />
         <Route
