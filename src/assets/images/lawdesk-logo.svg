@@ -1,36 +1,47 @@
-<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Base/Pilar central -->
-  <g stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round">
-    <!-- Topo decorativo -->
-    <rect x="10" y="2" width="4" height="1" fill="currentColor"/>
-    <rect x="9" y="3.5" width="6" height="0.8" fill="currentColor"/>
-    <rect x="8.5" y="5" width="7" height="0.8" fill="currentColor"/>
+<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <!-- Estrutura superior (base do topo) -->
+  <rect x="9" y="2" width="6" height="1" rx="0.5"/>
+  <rect x="8.5" y="3.5" width="7" height="0.8" rx="0.4"/>
+  <rect x="8" y="5" width="8" height="0.8" rx="0.4"/>
+  
+  <!-- Pilares centrais -->
+  <rect x="10.2" y="6" width="1.2" height="14" rx="0.6"/>
+  <rect x="12.6" y="6" width="1.2" height="14" rx="0.6"/>
+  
+  <!-- Braço horizontal da balança -->
+  <rect x="4" y="8.6" width="16" height="0.8" rx="0.4"/>
+  
+  <!-- Prato esquerdo da balança -->
+  <g>
+    <!-- Cordas -->
+    <line x1="6" y1="9" x2="5" y2="12" stroke="currentColor" stroke-width="0.3"/>
+    <line x1="9" y1="9" x2="10" y2="12" stroke="currentColor" stroke-width="0.3"/>
+    <line x1="7.5" y1="9" x2="7.5" y2="12" stroke="currentColor" stroke-width="0.3"/>
     
-    <!-- Haste central -->
-    <line x1="12" y1="6" x2="12" y2="20"/>
-    
-    <!-- Braço horizontal da balança -->
-    <line x1="5" y1="9" x2="19" y2="9"/>
-    
-    <!-- Prato esquerdo -->
-    <path d="M5 9 L3 9 C3 9 2 10 2 11 C2 12 3 13 5 13 L8 13 C10 13 11 12 11 11 C11 10 10 9 8 9 L5 9 Z"/>
-    <!-- Cordas do prato esquerdo -->
-    <line x1="5" y1="9" x2="3.5" y2="11"/>
-    <line x1="8" y1="9" x2="9.5" y2="11"/>
-    
-    <!-- Prato direito -->
-    <path d="M19 9 L21 9 C21 9 22 10 22 11 C22 12 21 13 19 13 L16 13 C14 13 13 12 13 11 C13 10 14 9 16 9 L19 9 Z"/>
-    <!-- Cordas do prato direito -->
-    <line x1="19" y1="9" x2="20.5" y2="11"/>
-    <line x1="16" y1="9" x2="14.5" y2="11"/>
-    
-    <!-- Suporte do braço -->
-    <circle cx="12" cy="8.5" r="0.8" fill="currentColor"/>
-    
-    <!-- Base da balança -->
-    <path d="M10 20 L14 20 L13.5 22 L10.5 22 Z" fill="currentColor"/>
-    
-    <!-- Ponto central -->
-    <circle cx="12" cy="9" r="0.3" fill="currentColor"/>
+    <!-- Prato -->
+    <ellipse cx="7.5" cy="12" rx="2.8" ry="0.6"/>
+    <path d="M 4.7 12 Q 4.7 13.5 7.5 13.5 Q 10.3 13.5 10.3 12"/>
   </g>
+  
+  <!-- Prato direito da balança -->
+  <g>
+    <!-- Cordas -->
+    <line x1="18" y1="9" x2="19" y2="12" stroke="currentColor" stroke-width="0.3"/>
+    <line x1="15" y1="9" x2="14" y2="12" stroke="currentColor" stroke-width="0.3"/>
+    <line x1="16.5" y1="9" x2="16.5" y2="12" stroke="currentColor" stroke-width="0.3"/>
+    
+    <!-- Prato -->
+    <ellipse cx="16.5" cy="12" rx="2.8" ry="0.6"/>
+    <path d="M 13.7 12 Q 13.7 13.5 16.5 13.5 Q 19.3 13.5 19.3 12"/>
+  </g>
+  
+  <!-- Ponto central de apoio -->
+  <circle cx="12" cy="9" r="0.4"/>
+  
+  <!-- Extensão inferior decorativa (espada) -->
+  <path d="M 11.4 20 L 11.4 21.5 Q 11.4 22.2 12 22.2 Q 12.6 22.2 12.6 21.5 L 12.6 20"/>
+  <circle cx="12" cy="20.8" r="0.2"/>
+  
+  <!-- Base inferior -->
+  <rect x="10" y="20" width="4" height="0.8" rx="0.4"/>
 </svg>

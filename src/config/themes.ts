@@ -22,60 +22,60 @@ export const themeConfigs: Record<string, ThemeConfig> = {
   rubick: {
     name: "rubick",
     displayName: "Rubick",
-    description: "Clean and modern blue theme",
-    primaryColor: "#3b82f6",
-    secondaryColor: "#1e40af",
+    description: "Template azul profissional e moderno",
+    primaryColor: "#1e40af", // Azul original do Rubick
+    secondaryColor: "#3b82f6",
     textColor: {
       light: "#1f2937",
       dark: "#ffffff",
     },
     logo: {
-      className: "justice-scale-white",
+      className: "text-white",
       filter: "brightness(0) invert(1)",
     },
   },
   icewall: {
     name: "icewall",
     displayName: "Icewall",
-    description: "Cool cyan theme for a professional look",
-    primaryColor: "#06b6d4",
-    secondaryColor: "#0891b2",
+    description: "Template cyan gelado e elegante",
+    primaryColor: "#0891b2", // Cyan original do Icewall
+    secondaryColor: "#06b6d4",
     textColor: {
       light: "#1f2937",
       dark: "#ffffff",
     },
     logo: {
-      className: "justice-scale-white",
+      className: "text-white",
       filter: "brightness(0) invert(1)",
     },
   },
   tinker: {
     name: "tinker",
     displayName: "Tinker",
-    description: "Fresh green theme for growth and balance",
-    primaryColor: "#10b981",
-    secondaryColor: "#059669",
+    description: "Template verde natural e equilibrado",
+    primaryColor: "#059669", // Verde original do Tinker
+    secondaryColor: "#10b981",
     textColor: {
       light: "#1f2937",
       dark: "#ffffff",
     },
     logo: {
-      className: "justice-scale-white",
+      className: "text-white",
       filter: "brightness(0) invert(1)",
     },
   },
   enigma: {
     name: "enigma",
     displayName: "Enigma",
-    description: "Elegant purple theme for sophistication",
-    primaryColor: "#8b5cf6",
-    secondaryColor: "#7c3aed",
+    description: "Template roxo sofisticado e misterioso",
+    primaryColor: "#7c3aed", // Roxo original do Enigma
+    secondaryColor: "#8b5cf6",
     textColor: {
       light: "#1f2937",
       dark: "#ffffff",
     },
     logo: {
-      className: "justice-scale-white",
+      className: "text-white",
       filter: "brightness(0) invert(1)",
     },
   },
@@ -153,7 +153,23 @@ export function applyThemeStyles(
 
   const root = document.documentElement;
 
-  // Apply CSS custom properties
+  // Apply theme colors from configuration
+  root.style.setProperty("--color-theme-1", config.primaryColor);
+  root.style.setProperty("--color-theme-2", config.secondaryColor);
+  root.style.setProperty(
+    "--color-header-text",
+    getContrastColor(config.primaryColor),
+  );
+  root.style.setProperty(
+    "--color-secondary-text",
+    getContrastColor(config.secondaryColor),
+  );
+  root.style.setProperty(
+    "--color-content-text",
+    isDarkMode ? config.textColor.dark : config.textColor.light,
+  );
+
+  // Apply to CSS custom properties for consistency
   root.style.setProperty("--theme-primary", config.primaryColor);
   root.style.setProperty("--theme-secondary", config.secondaryColor);
   root.style.setProperty(
@@ -161,9 +177,54 @@ export function applyThemeStyles(
     isDarkMode ? config.textColor.dark : config.textColor.light,
   );
 
+  // Apply theme colors to elements immediately
+  applyColorsToElements(
+    config.primaryColor,
+    config.secondaryColor,
+    getContrastColor(config.primaryColor),
+  );
+
   // Add theme class to body
   document.body.className = document.body.className.replace(/theme-\w+/g, "");
   document.body.classList.add(`theme-${themeName}`);
+
+  // Force transition
+  document.body.classList.add("theme-transition");
+  setTimeout(() => {
+    document.body.classList.remove("theme-transition");
+  }, 300);
+}
+
+/**
+ * Apply colors to specific DOM elements
+ */
+function applyColorsToElements(
+  primary: string,
+  secondary: string,
+  headerText: string,
+): void {
+  // Theme elements
+  const themeElements = document.querySelectorAll(
+    '.bg-theme-1, [class*="bg-theme-1"]',
+  );
+  themeElements.forEach((element) => {
+    (element as HTMLElement).style.backgroundColor = primary;
+    (element as HTMLElement).style.color = headerText;
+  });
+
+  const theme2Elements = document.querySelectorAll(
+    '.bg-theme-2, [class*="bg-theme-2"]',
+  );
+  theme2Elements.forEach((element) => {
+    (element as HTMLElement).style.backgroundColor = secondary;
+    (element as HTMLElement).style.color = getContrastColor(secondary);
+  });
+
+  // Update text elements
+  const headerTextElements = document.querySelectorAll(".header-text-optimal");
+  headerTextElements.forEach((element) => {
+    (element as HTMLElement).style.color = headerText;
+  });
 }
 
 /**

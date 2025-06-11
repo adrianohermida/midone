@@ -24,7 +24,11 @@ import { FormInput, FormLabel } from "@/components/Base/Form";
 import ColorPicker from "@/components/Base/ColorPicker";
 import { useState, useEffect, useCallback } from "react";
 import clsx from "clsx";
-import { themeConfigs, applyThemeStyles } from "@/config/themes";
+import {
+  themeConfigs,
+  applyThemeStyles,
+  getThemeConfig,
+} from "@/config/themes";
 import {
   applyCustomThemeColors,
   isValidHex,
@@ -69,13 +73,15 @@ function Main() {
         activeDarkMode,
       );
     } else {
+      // Use original theme colors from configuration
       applyThemeStyles(activeTheme.name, activeDarkMode);
     }
   }, [isUsingCustomTheme, activeCustomTheme, activeTheme.name, activeDarkMode]);
 
   const switchTheme = (theme: Themes["name"]) => {
     dispatch(setTheme(theme));
-    dispatch(clearCustomTheme());
+    dispatch(clearCustomTheme()); // Clear any custom theme
+    // Apply original theme colors from configuration
     applyThemeStyles(theme, activeDarkMode);
   };
 
@@ -206,7 +212,8 @@ function Main() {
     dispatch(setColorScheme("default"));
     dispatch(setDarkMode(false));
     dispatch(clearCustomTheme());
-    resetToDefaultColors(false);
+    // Reset to Rubick theme original colors
+    applyThemeStyles("rubick", false);
     setTimeout(() => window.location.reload(), 100);
   };
 
@@ -281,10 +288,10 @@ function Main() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200">
-                      🎨 Personalizador de Temas
+                      ⚖️ Configurador de Temas Lawdesk
                     </h2>
                     <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                      Configure a aparência do Lawdesk
+                      Personalize a aparência do sistema jurídico
                     </p>
                   </div>
                   <Button
@@ -345,13 +352,13 @@ function Main() {
                 <Tab.Group selectedIndex={activeTab} onChange={setActiveTab}>
                   <Tab.List className="flex border-b border-slate-200 dark:border-slate-700 px-6 bg-slate-50 dark:bg-slate-900/50">
                     <Tab className="px-4 py-3 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 border-b-2 border-transparent data-[selected]:border-blue-500 data-[selected]:text-blue-600 dark:data-[selected]:text-blue-400 transition-all">
-                      🎨 Temas
+                      🎨 Templates
                     </Tab>
                     <Tab className="px-4 py-3 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 border-b-2 border-transparent data-[selected]:border-blue-500 data-[selected]:text-blue-600 dark:data-[selected]:text-blue-400 transition-all">
-                      🌈 Cores
+                      🌈 Personalizado
                     </Tab>
                     <Tab className="px-4 py-3 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 border-b-2 border-transparent data-[selected]:border-blue-500 data-[selected]:text-blue-600 dark:data-[selected]:text-blue-400 transition-all">
-                      ⚙️ Config
+                      ⚙️ Configurações
                     </Tab>
                   </Tab.List>
 
@@ -359,21 +366,21 @@ function Main() {
                     {/* Themes Tab */}
                     <Tab.Panel className="p-6 space-y-6">
                       {/* Current Theme Status */}
-                      {isUsingCustomTheme && activeCustomTheme && (
-                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 shadow-sm">
+                      {isUsingCustomTheme && activeCustomTheme ? (
+                        <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border border-purple-200 dark:border-purple-800 rounded-xl p-4 shadow-sm">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
-                              <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+                              <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
                                 <Lucide
                                   icon="Palette"
-                                  className="w-4 h-4 text-blue-600 dark:text-blue-400"
+                                  className="w-4 h-4 text-purple-600 dark:text-purple-400"
                                 />
                               </div>
                               <div>
-                                <h4 className="font-semibold text-blue-800 dark:text-blue-200">
+                                <h4 className="font-semibold text-purple-800 dark:text-purple-200">
                                   Tema Personalizado Ativo
                                 </h4>
-                                <p className="text-sm text-blue-600 dark:text-blue-300">
+                                <p className="text-sm text-purple-600 dark:text-purple-300">
                                   {activeCustomTheme.name}
                                 </p>
                               </div>
@@ -398,70 +405,135 @@ function Main() {
                             </div>
                           </div>
                         </div>
+                      ) : (
+                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 shadow-sm">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+                                <Lucide
+                                  icon="Layout"
+                                  className="w-4 h-4 text-blue-600 dark:text-blue-400"
+                                />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-blue-800 dark:text-blue-200">
+                                  Template Oficial Ativo
+                                </h4>
+                                <p className="text-sm text-blue-600 dark:text-blue-300">
+                                  {themeConfigs[activeTheme.name]
+                                    ?.displayName || activeTheme.name}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="flex space-x-2">
+                              <div
+                                className="w-6 h-6 rounded-full border-2 border-white shadow-md"
+                                style={{
+                                  backgroundColor:
+                                    themeConfigs[activeTheme.name]
+                                      ?.primaryColor || "#3b82f6",
+                                }}
+                                title={`Primária: ${themeConfigs[activeTheme.name]?.primaryColor}`}
+                              />
+                              <div
+                                className="w-6 h-6 rounded-full border-2 border-white shadow-md"
+                                style={{
+                                  backgroundColor:
+                                    themeConfigs[activeTheme.name]
+                                      ?.secondaryColor || "#1e40af",
+                                }}
+                                title={`Secundária: ${themeConfigs[activeTheme.name]?.secondaryColor}`}
+                              />
+                            </div>
+                          </div>
+                        </div>
                       )}
 
                       {/* Predefined Templates */}
                       <div>
                         <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200 flex items-center">
-                          <Lucide icon="Layout" className="w-5 h-5 mr-2" />
-                          Templates Predefinidos
+                          <Lucide icon="Layers" className="w-5 h-5 mr-2" />
+                          Templates Oficiais
                         </h3>
                         <div className="grid grid-cols-2 gap-4">
-                          {themes.map((theme, themeKey) => (
-                            <div key={themeKey} className="space-y-3">
-                              <div
-                                onClick={() => switchTheme(theme)}
-                                className={clsx([
-                                  "relative h-24 cursor-pointer bg-slate-50 dark:bg-slate-700 rounded-xl p-2 transition-all duration-300 hover:scale-105 hover:shadow-lg border-2 group",
-                                  !isUsingCustomTheme &&
-                                  activeTheme.name === theme
-                                    ? "border-blue-500 ring-4 ring-blue-200 dark:ring-blue-800 shadow-lg"
-                                    : "border-slate-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-600",
-                                ])}
-                              >
-                                <div className="w-full h-full overflow-hidden rounded-lg">
-                                  {(themeImages[
-                                    `/src/assets/images/themes/${theme}.png`
-                                  ] ||
-                                    themeImages[
-                                      `/src/assets/images/themes/${theme}.svg`
-                                    ]) && (
-                                    <img
-                                      className="w-full h-full object-cover transition-transform group-hover:scale-110"
-                                      src={
-                                        (
-                                          themeImages[
-                                            `/src/assets/images/themes/${theme}.png`
-                                          ] ||
-                                          themeImages[
-                                            `/src/assets/images/themes/${theme}.svg`
-                                          ]
-                                        ).default
-                                      }
-                                      alt={`${theme} theme`}
-                                    />
-                                  )}
-                                </div>
-                                {!isUsingCustomTheme &&
-                                  activeTheme.name === theme && (
-                                    <div className="absolute top-2 right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                                      <Lucide
-                                        icon="Check"
-                                        className="w-3 h-3 text-white"
+                          {themes.map((theme, themeKey) => {
+                            const themeConfig = getThemeConfig(theme);
+                            return (
+                              <div key={themeKey} className="space-y-3">
+                                <div
+                                  onClick={() => switchTheme(theme)}
+                                  className={clsx([
+                                    "relative h-24 cursor-pointer bg-slate-50 dark:bg-slate-700 rounded-xl p-2 transition-all duration-300 hover:scale-105 hover:shadow-lg border-2 group",
+                                    !isUsingCustomTheme &&
+                                    activeTheme.name === theme
+                                      ? "border-blue-500 ring-4 ring-blue-200 dark:ring-blue-800 shadow-lg"
+                                      : "border-slate-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-600",
+                                  ])}
+                                >
+                                  <div className="w-full h-full overflow-hidden rounded-lg">
+                                    {(themeImages[
+                                      `/src/assets/images/themes/${theme}.png`
+                                    ] ||
+                                      themeImages[
+                                        `/src/assets/images/themes/${theme}.svg`
+                                      ]) && (
+                                      <img
+                                        className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                                        src={
+                                          (
+                                            themeImages[
+                                              `/src/assets/images/themes/${theme}.png`
+                                            ] ||
+                                            themeImages[
+                                              `/src/assets/images/themes/${theme}.svg`
+                                            ]
+                                          ).default
+                                        }
+                                        alt={`${theme} theme`}
                                       />
-                                    </div>
-                                  )}
-                              </div>
-                              <div className="text-center">
-                                <div className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                                  {themeConfigs[theme]?.displayName || theme}
+                                    )}
+                                  </div>
+                                  {!isUsingCustomTheme &&
+                                    activeTheme.name === theme && (
+                                      <div className="absolute top-2 right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                                        <Lucide
+                                          icon="Check"
+                                          className="w-3 h-3 text-white"
+                                        />
+                                      </div>
+                                    )}
+                                  {/* Color indicator */}
+                                  <div className="absolute bottom-2 left-2 flex space-x-1">
+                                    <div
+                                      className="w-3 h-3 rounded-full border border-white shadow-sm"
+                                      style={{
+                                        backgroundColor:
+                                          themeConfig?.primaryColor ||
+                                          "#3b82f6",
+                                      }}
+                                    />
+                                    <div
+                                      className="w-3 h-3 rounded-full border border-white shadow-sm"
+                                      style={{
+                                        backgroundColor:
+                                          themeConfig?.secondaryColor ||
+                                          "#1e40af",
+                                      }}
+                                    />
+                                  </div>
                                 </div>
-                                <div className="text-xs text-slate-500 dark:text-slate-400">
-                                  Template oficial
+                                <div className="text-center">
+                                  <div className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                                    {themeConfig?.displayName || theme}
+                                  </div>
+                                  <div className="text-xs text-slate-500 dark:text-slate-400">
+                                    {themeConfig?.description ||
+                                      "Template oficial"}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          ))}
+                            );
+                          })}
                         </div>
                       </div>
                     </Tab.Panel>
@@ -532,14 +604,14 @@ function Main() {
                                   onChange={(e) =>
                                     setCustomThemeName(e.target.value)
                                   }
-                                  placeholder="Ex: Meu Tema Azul Oceano"
+                                  placeholder="Ex: Meu Tema Jurídico Azul"
                                   className="mt-2"
                                 />
                               </div>
 
                               <div className="grid grid-cols-1 gap-6">
                                 <ColorPicker
-                                  label="🎯 Cor Primária (Cabeçalhos, Menus)"
+                                  label="⚖️ Cor Primária (Cabeçalhos, Menus)"
                                   value={primaryColor}
                                   onChange={handlePrimaryColorChange}
                                   placeholder="#3b82f6"
@@ -890,7 +962,7 @@ function Main() {
                                 icon="RotateCcw"
                                 className="w-4 h-4 mr-2"
                               />
-                              Voltar ao Tema Padrão
+                              Voltar ao Template Oficial
                             </Button>
                           )}
                           <Button
@@ -922,7 +994,7 @@ function Main() {
           backgroundColor:
             isUsingCustomTheme && activeCustomTheme
               ? activeCustomTheme.colors.primary
-              : undefined,
+              : themeConfigs[activeTheme.name]?.primaryColor || "#3b82f6",
         }}
       >
         <Lucide
