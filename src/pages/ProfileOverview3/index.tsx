@@ -13,6 +13,7 @@ import { Menu, Tab } from "@/components/Base/Headless";
 import { Tab as HeadlessTab } from "@headlessui/react";
 
 function Main() {
+  const navigate = useNavigate();
   const announcementRef = useRef<TinySliderElement>();
   const newProjectsRef = useRef<TinySliderElement>();
   const todaySchedulesRef = useRef<TinySliderElement>();
