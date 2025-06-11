@@ -80,4 +80,5 @@ const Chart: React.FC<ChartProps> = ({
   );
 };
 
+export type ChartElement = ChartJS;
 export default Chart;
