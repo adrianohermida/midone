@@ -19,6 +19,8 @@ const FormCheck: React.FC<FormCheckProps> = ({
   className,
   id,
   type = "checkbox",
+  children,
+  dangerouslySetInnerHTML,
   ...props
 }) => {
   const baseClasses =
