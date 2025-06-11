@@ -553,7 +553,7 @@ const RelatoriosView: React.FC = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-slate-600 dark:text-slate-400 text-sm">
-                        Ticket M��dio
+                        Ticket Médio
                       </p>
                       <p className="text-2xl font-bold text-blue-600 mt-1">
                         {formatarMoeda(dadosRelatorio.financeiro.ticket_medio)}
