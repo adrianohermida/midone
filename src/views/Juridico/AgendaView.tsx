@@ -18,12 +18,12 @@ import {
   Mail,
   MoreHorizontal,
 } from "lucide-react";
-import Button from "../../base-components/Button";
-import { FormInput, FormSelect } from "../../base-components/Form";
+import Button from "../../components/Base/Button";
+import { FormInput, FormSelect } from "../../components/Base/Form";
 import CalendarComponent from "../../components/Base/Calendar";
-import { Menu, Tab } from "../../base-components/Headless";
-import Slideover from "../../base-components/Headless/Slideover";
-import Tippy from "../../base-components/Tippy";
+import { Menu, Tab } from "../../components/Base/Headless";
+import Slideover from "../../components/Base/Headless/Slideover";
+import Tippy from "../../components/Base/Tippy";
 import juridicoData from "../../data/juridico.json";
 
 interface EventoAgenda {
