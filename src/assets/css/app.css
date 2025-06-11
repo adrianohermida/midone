@@ -1,4 +1,4 @@
-@import "./tailwind.css";
+@import "./_tailwind.css";
 @import "./components/base/_global.css";
 @import "./components/base/_intro.css";
 @import "./components/base/_box.css";
