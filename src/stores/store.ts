@@ -1,23 +1,18 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import darkModeReducer from "./darkModeSlice";
-import colorSchemeReducer from "./colorSchemeSlice";
-import menuReducer from "./menuSlice";
-import themeReducer from "./themeSlice";
+import { configureStore } from "@reduxjs/toolkit";
 
+// Create a basic store configuration
 export const store = configureStore({
   reducer: {
-    darkMode: darkModeReducer,
-    colorScheme: colorSchemeReducer,
-    menu: menuReducer,
-    theme: themeReducer,
+    // Add your reducers here as you develop features
+    // Example: auth: authSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["persist/PERSIST"],
+      },
+    }),
 });
 
-export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+export type AppDispatch = typeof store.dispatch;
