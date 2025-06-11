@@ -85,19 +85,8 @@ const menu: Array<Menu | "divider"> = [
   // FINANCEIRO
   {
     icon: "DollarSign",
+    pathname: "/financeiro",
     title: "Financeiro",
-    subMenu: [
-      {
-        icon: "CreditCard",
-        pathname: "/point-of-sale",
-        title: "Financeiro",
-      },
-      {
-        icon: "Receipt",
-        pathname: "/invoice-layout-1",
-        title: "Faturamento",
-      },
-    ],
   },
   // APLICAÇÕES
   {
