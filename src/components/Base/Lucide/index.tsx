@@ -3,7 +3,7 @@ import dynamicIconImports from "lucide-react/dynamicIconImports";
 import { twMerge } from "tailwind-merge";
 
 export interface LucideProps extends React.SVGAttributes<SVGElement> {
-  icon: keyof typeof icons;
+  icon: keyof typeof icons | string | any; // Allow any type to handle edge cases
   title?: string;
 }
 
