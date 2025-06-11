@@ -529,17 +529,17 @@ class AdviseApiService {
 
 // Default instance for production use
 export const adviseApi = new AdviseApiService({
-  baseUrl: process.env.REACT_APP_ADVISE_API_URL || "https://api.advise.com.br",
-  token: process.env.REACT_APP_ADVISE_API_TOKEN || "",
+  baseUrl: import.meta.env.VITE_ADVISE_API_URL || "https://api.advise.com.br",
+  token: import.meta.env.VITE_ADVISE_API_TOKEN || "",
   environment:
-    (process.env.REACT_APP_ADVISE_ENV as "sandbox" | "production") ||
+    (import.meta.env.VITE_ADVISE_ENV as "sandbox" | "production") ||
     "production",
 });
 
 // Sandbox instance for testing
 export const adviseApiSandbox = new AdviseApiService({
   baseUrl: "https://sandbox-api.advise.com.br",
-  token: process.env.REACT_APP_ADVISE_SANDBOX_TOKEN || "",
+  token: import.meta.env.VITE_ADVISE_SANDBOX_TOKEN || "",
   environment: "sandbox",
 });
 
