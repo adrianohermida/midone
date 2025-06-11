@@ -3,7 +3,7 @@ import {
   getTheme,
   setTheme,
   themes,
-  Themes,
+  Themes as ThemeType,
 } from "@/stores/themeSlice";
 import { useAppDispatch, useAppSelector } from "@/stores/hooks";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
@@ -18,7 +18,7 @@ function Main() {
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
 
-  const switchTheme = (theme: Themes["name"]) => {
+  const switchTheme = (theme: ThemeType["name"]) => {
     dispatch(setTheme(theme));
   };
 
