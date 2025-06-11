@@ -25,7 +25,7 @@ function Main() {
   useEffect(() => {
     if (queryParams.get("theme")) {
       const selectedTheme = themes.find(
-        (theme) => theme.name === queryParams.get("theme")
+        (theme) => theme.name === queryParams.get("theme"),
       );
 
       if (selectedTheme) {
@@ -43,3 +43,6 @@ function Main() {
 }
 
 export default Main;
+
+// Export as Themes for backward compatibility
+export { default as Themes } from "./index";
