@@ -35,7 +35,7 @@ const GeneralReport: React.FC = () => {
 
         {/* Metrics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Item Sales */}
+          {/* Processos Ativos */}
           <div className="bg-white rounded-lg p-6 shadow-sm border">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 bg-blue-50 rounded-lg">
@@ -49,85 +49,7 @@ const GeneralReport: React.FC = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-              </div>
-              <div className="flex items-center bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
-                <span className="mr-1">+33%</span>
-                <svg
-                  className="w-3 h-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-gray-900">4.710</p>
-              <p className="text-sm text-gray-500 mt-1">Item Sales</p>
-            </div>
-          </div>
-
-          {/* New Orders */}
-          <div className="bg-white rounded-lg p-6 shadow-sm border">
-            <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-orange-50 rounded-lg">
-                <svg
-                  className="w-6 h-6 text-orange-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-              </div>
-              <div className="flex items-center bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-medium">
-                <span className="mr-1">-2%</span>
-                <svg
-                  className="w-3 h-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-gray-900">3.721</p>
-              <p className="text-sm text-gray-500 mt-1">New Orders</p>
-            </div>
-          </div>
-
-          {/* Total Products */}
-          <div className="bg-white rounded-lg p-6 shadow-sm border">
-            <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-yellow-50 rounded-lg">
-                <svg
-                  className="w-6 h-6 text-yellow-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
                   />
                 </svg>
               </div>
@@ -147,17 +69,17 @@ const GeneralReport: React.FC = () => {
               </div>
             </div>
             <div>
-              <p className="text-3xl font-bold text-gray-900">2.149</p>
-              <p className="text-sm text-gray-500 mt-1">Total Products</p>
+              <p className="text-3xl font-bold text-gray-900">347</p>
+              <p className="text-sm text-gray-500 mt-1">Processos Ativos</p>
             </div>
           </div>
 
-          {/* Unique Visitor */}
+          {/* Novos Clientes */}
           <div className="bg-white rounded-lg p-6 shadow-sm border">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-purple-50 rounded-lg">
+              <div className="p-3 bg-green-50 rounded-lg">
                 <svg
-                  className="w-6 h-6 text-purple-500"
+                  className="w-6 h-6 text-green-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -171,7 +93,7 @@ const GeneralReport: React.FC = () => {
                 </svg>
               </div>
               <div className="flex items-center bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
-                <span className="mr-1">+22%</span>
+                <span className="mr-1">+8%</span>
                 <svg
                   className="w-3 h-3"
                   fill="currentColor"
@@ -186,8 +108,86 @@ const GeneralReport: React.FC = () => {
               </div>
             </div>
             <div>
-              <p className="text-3xl font-bold text-gray-900">152.040</p>
-              <p className="text-sm text-gray-500 mt-1">Unique Visitor</p>
+              <p className="text-3xl font-bold text-gray-900">89</p>
+              <p className="text-sm text-gray-500 mt-1">Novos Clientes</p>
+            </div>
+          </div>
+
+          {/* Audiências Agendadas */}
+          <div className="bg-white rounded-lg p-6 shadow-sm border">
+            <div className="flex items-center justify-between mb-4">
+              <div className="p-3 bg-yellow-50 rounded-lg">
+                <svg
+                  className="w-6 h-6 text-yellow-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <div className="flex items-center bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">
+                <span className="mr-1">+5%</span>
+                <svg
+                  className="w-3 h-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <p className="text-3xl font-bold text-gray-900">23</p>
+              <p className="text-sm text-gray-500 mt-1">Audiências Agendadas</p>
+            </div>
+          </div>
+
+          {/* Prazos Vencendo */}
+          <div className="bg-white rounded-lg p-6 shadow-sm border">
+            <div className="flex items-center justify-between mb-4">
+              <div className="p-3 bg-red-50 rounded-lg">
+                <svg
+                  className="w-6 h-6 text-red-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <div className="flex items-center bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-medium">
+                <span className="mr-1">Urgente</span>
+                <svg
+                  className="w-3 h-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <p className="text-3xl font-bold text-gray-900">7</p>
+              <p className="text-sm text-gray-500 mt-1">Prazos Vencendo</p>
             </div>
           </div>
         </div>
