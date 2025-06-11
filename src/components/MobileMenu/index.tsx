@@ -88,6 +88,14 @@ function Main() {
               }}
             />
           </a>
+          <div className="flex items-center px-5 pt-6 pb-4 border-b border-white/10">
+            <img
+              alt="Lawdesk Legal Management System"
+              className="w-8 h-8 justice-scale-icon justice-scale-white mr-3"
+              src={justiceScaleUrl}
+            />
+            <span className="text-xl font-bold text-white">Lawdesk</span>
+          </div>
           <ul className="py-2">
             {/* BEGIN: First Child */}
             {formattedMenu.map((menu, menuKey) =>
