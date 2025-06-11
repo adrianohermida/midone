@@ -39,14 +39,14 @@ function Main() {
       active: 45,
       won: 128,
       pending: 12,
-      total: 185
+      total: 185,
     },
     performance: {
       successRate: 89,
       clientSatisfaction: 95,
       avgCaseDuration: 8.5,
-      revenue: 450000
-    }
+      revenue: 450000,
+    },
   };
 
   const recentCases = [
@@ -57,7 +57,7 @@ function Main() {
       type: "Ação de Cobrança",
       status: "Em andamento",
       value: 15000,
-      lastUpdate: "2 dias atrás"
+      lastUpdate: "2 dias atrás",
     },
     {
       id: 2,
@@ -66,7 +66,7 @@ function Main() {
       type: "Rescisão Contratual",
       status: "Audiência marcada",
       value: 25000,
-      lastUpdate: "1 dia atrás"
+      lastUpdate: "1 dia atrás",
     },
     {
       id: 3,
@@ -75,8 +75,8 @@ function Main() {
       type: "Danos Morais",
       status: "Aguardando sentença",
       value: 50000,
-      lastUpdate: "3 horas atrás"
-    }
+      lastUpdate: "3 horas atrás",
+    },
   ];
 
   const upcomingHearings = [
@@ -87,7 +87,7 @@ function Main() {
       date: "2024-02-15",
       time: "14:00",
       court: "1ª Vara Cível",
-      type: "Audiência de Instrução"
+      type: "Audiência de Instrução",
     },
     {
       id: 2,
@@ -96,7 +96,7 @@ function Main() {
       date: "2024-02-16",
       time: "10:30",
       court: "2ª Vara Trabalhista",
-      type: "Audiência de Conciliação"
+      type: "Audiência de Conciliação",
     },
     {
       id: 3,
@@ -105,14 +105,14 @@ function Main() {
       date: "2024-02-18",
       time: "15:00",
       court: "Tribunal de Justiça",
-      type: "Julgamento de Recurso"
-    }
+      type: "Julgamento de Recurso",
+    },
   ];
 
   const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
     }).format(value);
   };
 
@@ -139,8 +139,12 @@ function Main() {
                   {lawyerData.name}
                 </div>
                 <div className="text-slate-500">{lawyerData.oab}</div>
-                <div className="text-slate-600 mt-1">{lawyerData.specialization}</div>
-                <div className="text-slate-500 text-sm mt-1">{lawyerData.experience} de experiência</div>
+                <div className="text-slate-600 mt-1">
+                  {lawyerData.specialization}
+                </div>
+                <div className="text-slate-500 text-sm mt-1">
+                  {lawyerData.experience} de experiência
+                </div>
               </div>
             </div>
 
@@ -170,15 +174,21 @@ function Main() {
 
             <div className="flex items-center justify-center flex-1 px-5 pt-5 mt-6 border-t lg:mt-0 lg:border-0 border-slate-200/60 dark:border-darkmode-400 lg:pt-0">
               <div className="w-20 py-3 text-center rounded-md">
-                <div className="text-xl font-medium text-primary">{lawyerData.cases.active}</div>
+                <div className="text-xl font-medium text-primary">
+                  {lawyerData.cases.active}
+                </div>
                 <div className="text-slate-500">Casos Ativos</div>
               </div>
               <div className="w-20 py-3 text-center rounded-md">
-                <div className="text-xl font-medium text-success">{lawyerData.cases.won}</div>
+                <div className="text-xl font-medium text-success">
+                  {lawyerData.cases.won}
+                </div>
                 <div className="text-slate-500">Casos Ganhos</div>
               </div>
               <div className="w-20 py-3 text-center rounded-md">
-                <div className="text-xl font-medium text-warning">{lawyerData.cases.pending}</div>
+                <div className="text-xl font-medium text-warning">
+                  {lawyerData.cases.pending}
+                </div>
                 <div className="text-slate-500">Pendentes</div>
               </div>
             </div>
@@ -210,7 +220,8 @@ function Main() {
             </Tab>
             <Tab fullWidth={false}>
               <Tab.Button className="flex items-center py-4 cursor-pointer">
-                <Lucide icon="Settings" className="w-4 h-4 mr-2" /> Configurações
+                <Lucide icon="Settings" className="w-4 h-4 mr-2" />{" "}
+                Configurações
               </Tab.Button>
             </Tab>
           </Tab.List>
@@ -225,8 +236,12 @@ function Main() {
                 <div className="p-5 box">
                   <div className="flex items-center">
                     <div className="flex-none w-2/4">
-                      <div className="text-lg font-medium truncate">Taxa de Sucesso</div>
-                      <div className="mt-1 text-slate-500">{lawyerData.performance.successRate}%</div>
+                      <div className="text-lg font-medium truncate">
+                        Taxa de Sucesso
+                      </div>
+                      <div className="mt-1 text-slate-500">
+                        {lawyerData.performance.successRate}%
+                      </div>
                     </div>
                     <div className="relative flex-none ml-auto">
                       <ReportDonutChart width={90} height={90} />
@@ -261,11 +276,16 @@ function Main() {
                       <div className="text-lg font-medium truncate">
                         Receita Anual
                       </div>
-                      <div className="mt-1 text-slate-500">{formatCurrency(lawyerData.performance.revenue)}</div>
+                      <div className="mt-1 text-slate-500">
+                        {formatCurrency(lawyerData.performance.revenue)}
+                      </div>
                     </div>
                     <div className="relative flex-none ml-auto">
                       <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
-                        <Lucide icon="DollarSign" className="w-6 h-6 text-success" />
+                        <Lucide
+                          icon="DollarSign"
+                          className="w-6 h-6 text-success"
+                        />
                       </div>
                     </div>
                   </div>
@@ -291,10 +311,15 @@ function Main() {
               {/* Recent Cases */}
               <div className="col-span-12 mt-6">
                 <div className="items-center block h-10 intro-y sm:flex">
-                  <h2 className="mr-5 text-lg font-medium truncate">Casos Recentes</h2>
+                  <h2 className="mr-5 text-lg font-medium truncate">
+                    Casos Recentes
+                  </h2>
                   <div className="flex items-center mt-3 sm:ml-auto sm:mt-0">
                     <Button className="flex items-center !box text-slate-600 dark:text-slate-300">
-                      <Lucide icon="FileText" className="hidden w-4 h-4 mr-2 sm:block" />
+                      <Lucide
+                        icon="FileText"
+                        className="hidden w-4 h-4 mr-2 sm:block"
+                      />
                       Ver Todos os Casos
                     </Button>
                   </div>
@@ -305,25 +330,41 @@ function Main() {
                       {recentCases.map((legalCase, caseKey) => (
                         <div key={caseKey} className="p-5 mr-6 intro-y box">
                           <div className="flex items-center border-b border-slate-200 dark:border-darkmode-400 pb-4 mb-4">
-                            <div className="font-medium text-base">Caso {legalCase.number}</div>
-                            <div className="ml-auto text-xs text-slate-500">{legalCase.lastUpdate}</div>
+                            <div className="font-medium text-base">
+                              Caso {legalCase.number}
+                            </div>
+                            <div className="ml-auto text-xs text-slate-500">
+                              {legalCase.lastUpdate}
+                            </div>
                           </div>
                           <div className="text-slate-600 dark:text-slate-500">
                             <div className="flex items-center mb-2">
                               <Lucide icon="User" className="w-4 h-4 mr-2" />
-                              <span className="text-sm">{legalCase.client}</span>
+                              <span className="text-sm">
+                                {legalCase.client}
+                              </span>
                             </div>
                             <div className="flex items-center mb-2">
                               <Lucide icon="Scale" className="w-4 h-4 mr-2" />
                               <span className="text-sm">{legalCase.type}</span>
                             </div>
                             <div className="flex items-center mb-2">
-                              <Lucide icon="DollarSign" className="w-4 h-4 mr-2" />
-                              <span className="text-sm">{formatCurrency(case.value)}</span>
+                              <Lucide
+                                icon="DollarSign"
+                                className="w-4 h-4 mr-2"
+                              />
+                              <span className="text-sm">
+                                {formatCurrency(legalCase.value)}
+                              </span>
                             </div>
                             <div className="flex items-center">
-                              <Lucide icon="Activity" className="w-4 h-4 mr-2" />
-                              <span className="text-sm">{case.status}</span>
+                              <Lucide
+                                icon="Activity"
+                                className="w-4 h-4 mr-2"
+                              />
+                              <span className="text-sm">
+                                {legalCase.status}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -332,9 +373,7 @@ function Main() {
                   </div>
                   <div className="flex justify-center mt-8 sm:justify-end">
                     <div className="flex items-center">
-                      <div className="mr-2 text-slate-600">
-                        Casos Recentes
-                      </div>
+                      <div className="mr-2 text-slate-600">Casos Recentes</div>
                       <div className="flex items-center space-x-2">
                         <div
                           className="cursor-pointer w-7 h-7 rounded-full border border-slate-300 flex items-center justify-center"
@@ -357,10 +396,15 @@ function Main() {
               {/* Upcoming Hearings */}
               <div className="col-span-12 mt-6">
                 <div className="items-center block h-10 intro-y sm:flex">
-                  <h2 className="mr-5 text-lg font-medium truncate">Próximas Audiências</h2>
+                  <h2 className="mr-5 text-lg font-medium truncate">
+                    Próximas Audiências
+                  </h2>
                   <div className="flex items-center mt-3 sm:ml-auto sm:mt-0">
                     <Button className="flex items-center !box text-slate-600 dark:text-slate-300">
-                      <Lucide icon="Calendar" className="hidden w-4 h-4 mr-2 sm:block" />
+                      <Lucide
+                        icon="Calendar"
+                        className="hidden w-4 h-4 mr-2 sm:block"
+                      />
                       Ver Agenda Completa
                     </Button>
                   </div>
@@ -371,10 +415,14 @@ function Main() {
                       {upcomingHearings.map((hearing, hearingKey) => (
                         <div key={hearingKey} className="p-5 mr-6 intro-y box">
                           <div className="flex items-center border-b border-slate-200 dark:border-darkmode-400 pb-4 mb-4">
-                            <div className="font-medium text-base">{hearing.case}</div>
+                            <div className="font-medium text-base">
+                              {hearing.case}
+                            </div>
                             <div className="ml-auto">
                               <span className="px-2 py-1 text-xs bg-primary/10 text-primary rounded-full">
-                                {new Date(hearing.date).toLocaleDateString('pt-BR')}
+                                {new Date(hearing.date).toLocaleDateString(
+                                  "pt-BR",
+                                )}
                               </span>
                             </div>
                           </div>
@@ -392,7 +440,10 @@ function Main() {
                               <span className="text-sm">{hearing.court}</span>
                             </div>
                             <div className="flex items-center">
-                              <Lucide icon="FileText" className="w-4 h-4 mr-2" />
+                              <Lucide
+                                icon="FileText"
+                                className="w-4 h-4 mr-2"
+                              />
                               <span className="text-sm">{hearing.type}</span>
                             </div>
                           </div>
