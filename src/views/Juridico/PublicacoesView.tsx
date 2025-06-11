@@ -16,7 +16,6 @@ import {
 import Button from "../../base-components/Button";
 import { FormInput, FormSelect } from "../../base-components/Form";
 import Table from "../../base-components/Table";
-import Notification from "../../base-components/Notification";
 import Tippy from "../../base-components/Tippy";
 import juridicoData from "../../data/juridico.json";
 
