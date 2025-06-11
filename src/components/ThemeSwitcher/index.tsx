@@ -6,11 +6,30 @@ import {
 } from "@/stores/colorSchemeSlice";
 import { selectTheme, setTheme, setLayout, Themes } from "@/stores/themeSlice";
 import { selectDarkMode, setDarkMode } from "@/stores/darkModeSlice";
+import {
+  selectCustomThemes,
+  selectActiveCustomTheme,
+  selectIsUsingCustomTheme,
+  addCustomTheme,
+  setActiveCustomTheme,
+  clearCustomTheme,
+  removeCustomTheme,
+  CustomTheme,
+} from "@/stores/customThemeSlice";
 import { Slideover } from "@/components/Base/Headless";
+import { Tab } from "@/components/Base/Headless";
 import Lucide from "@/components/Base/Lucide";
+import Button from "@/components/Base/Button";
+import { FormInput, FormLabel } from "@/components/Base/Form";
+import ColorPicker from "@/components/Base/ColorPicker";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
 import { themeConfigs, applyThemeStyles } from "@/config/themes";
+import {
+  applyCustomThemeColors,
+  isValidHex,
+  getOptimalTextColor,
+} from "@/utils/colorUtils";
 
 function Main() {
   const dispatch = useAppDispatch();
