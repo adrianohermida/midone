@@ -258,8 +258,21 @@ img[src*="justice-scale"]:hover {
   transform: scale(1.05);
 }
 
-/* Responsive logo sizing */
+/* Responsive logo sizing - seguindo padrão da interface */
 @media (max-width: 640px) {
+  img[src*="lawdesk-logo"],
+  img[src*="justice-scale"] {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .lawdesk-title {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
   img[src*="lawdesk-logo"],
   img[src*="justice-scale"] {
     width: 20px !important;
@@ -268,10 +281,24 @@ img[src*="justice-scale"]:hover {
 
   .lawdesk-title {
     font-size: 16px !important;
+    font-weight: 600 !important;
   }
 }
 
-@media (min-width: 641px) and (max-width: 768px) {
+@media (min-width: 769px) and (max-width: 1024px) {
+  img[src*="lawdesk-logo"],
+  img[src*="justice-scale"] {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .lawdesk-title {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+  }
+}
+
+@media (min-width: 1025px) {
   img[src*="lawdesk-logo"],
   img[src*="justice-scale"] {
     width: 24px !important;
@@ -279,20 +306,62 @@ img[src*="justice-scale"]:hover {
   }
 
   .lawdesk-title {
-    font-size: 18px !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
   }
 }
 
-@media (min-width: 769px) {
-  img[src*="lawdesk-logo"],
-  img[src*="justice-scale"] {
-    width: 32px !important;
-    height: 32px !important;
-  }
+/* Logo adaptation for different themes */
+.theme-rubick img[src*="lawdesk-logo"] {
+  color: #1e40af;
+}
 
-  .lawdesk-title {
-    font-size: 20px !important;
-  }
+.theme-icewall img[src*="lawdesk-logo"] {
+  color: #0891b2;
+}
+
+.theme-tinker img[src*="lawdesk-logo"] {
+  color: #059669;
+}
+
+.theme-enigma img[src*="lawdesk-logo"] {
+  color: #7c3aed;
+}
+
+/* Dark mode specific adaptations */
+.dark .theme-rubick img[src*="lawdesk-logo"],
+.dark .theme-icewall img[src*="lawdesk-logo"],
+.dark .theme-tinker img[src*="lawdesk-logo"],
+.dark .theme-enigma img[src*="lawdesk-logo"] {
+  color: #ffffff;
+  filter: none;
+}
+
+/* Title color adaptation */
+.lawdesk-title {
+  transition:
+    color 0.3s ease-in-out,
+    font-size 0.2s ease-in-out;
+}
+
+.theme-rubick .lawdesk-title {
+  color: #1e40af;
+}
+
+.theme-icewall .lawdesk-title {
+  color: #0891b2;
+}
+
+.theme-tinker .lawdesk-title {
+  color: #059669;
+}
+
+.theme-enigma .lawdesk-title {
+  color: #7c3aed;
+}
+
+.dark .lawdesk-title {
+  color: #ffffff !important;
 }
 
 /* Sidebar adaptive colors */

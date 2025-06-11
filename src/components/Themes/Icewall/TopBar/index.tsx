@@ -20,10 +20,10 @@ function Main() {
           <Link to="/" className="hidden -intro-x md:flex items-center">
             <img
               alt="Lawdesk Legal Management System"
-              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white header-text-optimal lawdesk-logo"
+              className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 text-white header-text-optimal lawdesk-logo"
               src={lawdeskLogoUrl}
             />
-            <span className="ml-3 text-lg sm:text-xl font-bold text-white header-text-optimal lawdesk-title">
+            <span className="ml-3 text-base sm:text-lg md:text-lg font-semibold text-white header-text-optimal lawdesk-title">
               Lawdesk
             </span>
           </Link>
