@@ -19,25 +19,27 @@ interface BaseButtonProps {
   size?: "sm" | "md" | "lg";
   elevated?: boolean;
   rounded?: boolean;
-  children: React.ReactNode;
 }
 
 interface ButtonAsButton
   extends BaseButtonProps,
-    React.ButtonHTMLAttributes<HTMLButtonElement> {
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
   as?: "button";
+  children: React.ReactNode;
 }
 
 interface ButtonAsAnchor
   extends BaseButtonProps,
-    React.AnchorHTMLAttributes<HTMLAnchorElement> {
+    Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "children"> {
   as: "a";
+  children: React.ReactNode;
 }
 
 interface ButtonAsDiv
   extends BaseButtonProps,
-    React.HTMLAttributes<HTMLDivElement> {
+    Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
   as: "div";
+  children: React.ReactNode;
 }
 
 type ButtonProps = ButtonAsButton | ButtonAsAnchor | ButtonAsDiv;
