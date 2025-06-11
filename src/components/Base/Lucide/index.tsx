@@ -307,6 +307,7 @@ function Lucide(props: LucideProps) {
       type: typeof iconValue,
       value: iconValue,
       availableIcons: Object.keys(icons).slice(0, 5),
+      stackTrace: new Error().stack,
     });
     // Return a fallback icon instead of null to ensure something renders
     const Component = createLucideIcon(icons["Activity"]);
