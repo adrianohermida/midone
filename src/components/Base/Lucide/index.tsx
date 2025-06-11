@@ -40,6 +40,11 @@ import {
   ChevronsLeft,
   ChevronLeft,
   ChevronsRight,
+  UserPlus,
+  Lock,
+  HelpCircle,
+  LogOut,
+  Building2,
 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
