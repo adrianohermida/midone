@@ -6,7 +6,7 @@ import {
 } from "@/stores/colorSchemeSlice";
 import { selectTheme, setTheme, setLayout, Themes } from "@/stores/themeSlice";
 import { selectDarkMode, setDarkMode } from "@/stores/darkModeSlice";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 import Lucide from "@/components/Base/Lucide";
 import RubickImage from "@/assets/images/themes/rubick.svg";
