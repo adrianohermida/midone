@@ -232,4 +232,5 @@ const Dropzone: React.FC<DropzoneProps> = ({
   );
 };
 
+export type DropzoneElement = HTMLDivElement;
 export default Dropzone;
