@@ -15,7 +15,7 @@ import {
 import SecondLevelMenuItems from "@/components/Base/SideMenuItems";
 import Tippy from "@/components/Base/Tippy";
 import Lucide from "@/components/Base/Lucide";
-import justiceScaleUrl from "@/assets/images/justice-scale.svg";
+import lawdeskLogoUrl from "@/assets/images/lawdesk-logo.svg";
 import clsx from "clsx";
 import TopBar from "@/components/Themes/Rubick/TopBar";
 import MobileMenu from "@/components/MobileMenu";
@@ -60,10 +60,10 @@ function Main() {
             <Link to="/" className="flex items-center pt-4 pl-5 intro-x">
               <img
                 alt="Lawdesk Legal Management System"
-                className="w-6 h-6 justice-scale-icon justice-scale-white"
-                src={justiceScaleUrl}
+                className="w-6 h-6 lawdesk-logo"
+                src={lawdeskLogoUrl}
               />
-              <span className="hidden ml-3 text-lg font-semibold text-white xl:block">
+              <span className="hidden ml-3 text-lg font-semibold text-white xl:block lawdesk-title">
                 Lawdesk
               </span>
             </Link>

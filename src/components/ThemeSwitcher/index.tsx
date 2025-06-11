@@ -34,6 +34,7 @@ interface LogoUpload {
   file: File | null;
   preview: string;
   name: string;
+  isApplied: boolean;
 }
 
 function Main() {
@@ -49,6 +50,7 @@ function Main() {
     file: null,
     preview: "",
     name: "",
+    isApplied: false,
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -213,13 +215,39 @@ function Main() {
 
       const reader = new FileReader();
       reader.onload = (e) => {
+        const truncatedName =
+          file.name.length > 25
+            ? file.name.substring(0, 22) + "..." + file.name.split(".").pop()
+            : file.name;
+
         setLogoUpload({
           file,
           preview: e.target?.result as string,
-          name: file.name,
+          name: truncatedName,
+          isApplied: false,
         });
       };
       reader.readAsDataURL(file);
+    }
+  };
+
+  const applyLogo = () => {
+    if (logoUpload.file) {
+      // Simular aplicação da logo (sem banco de dados)
+      setLogoUpload((prev) => ({ ...prev, isApplied: true }));
+
+      // Criar placeholder se não conseguir carregar
+      const placeholderUrl = "/src/assets/images/lawdesk-logo.svg";
+
+      // Aqui aplicaria a logo no sistema
+      const logoElements = document.querySelectorAll(".lawdesk-logo");
+      logoElements.forEach((el: any) => {
+        if (logoUpload.preview) {
+          el.src = logoUpload.preview;
+        } else {
+          el.src = placeholderUrl;
+        }
+      });
     }
   };
 
@@ -228,7 +256,15 @@ function Main() {
       file: null,
       preview: "",
       name: "",
+      isApplied: false,
     });
+
+    // Restaurar logo padrão
+    const logoElements = document.querySelectorAll(".lawdesk-logo");
+    logoElements.forEach((el: any) => {
+      el.src = "/src/assets/images/lawdesk-logo.svg";
+    });
+
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -270,14 +306,26 @@ function Main() {
     "theme-4",
   ];
 
-  const themeImages = import.meta.glob<{ default: string }>(
-    "/src/assets/images/themes/*.{jpg,jpeg,png,svg}",
-    { eager: true },
-  );
-  const layoutImages = import.meta.glob<{ default: string }>(
-    "/src/assets/images/layouts/*.{jpg,jpeg,png,svg}",
-    { eager: true },
-  );
+  // Corrigir caminhos das imagens
+  const getThemeImagePath = (theme: string) => {
+    try {
+      return new URL(`/src/assets/images/themes/${theme}.png`, import.meta.url)
+        .href;
+    } catch {
+      return `/src/assets/images/themes/${theme}.png`;
+    }
+  };
+
+  const getLayoutImagePath = (layout: string) => {
+    try {
+      return new URL(
+        `/src/assets/images/layouts/${layout}.png`,
+        import.meta.url,
+      ).href;
+    } catch {
+      return `/src/assets/images/layouts/${layout}.png`;
+    }
+  };
 
   return (
     <div>
@@ -316,11 +364,16 @@ function Main() {
                             className="w-10 h-10 object-contain"
                           />
                           <div className="flex-1 text-left">
-                            <div className="text-sm font-medium text-slate-700">
+                            <div
+                              className="text-sm font-medium text-slate-700 truncate"
+                              title={logoUpload.name}
+                            >
                               {logoUpload.name}
                             </div>
                             <div className="text-xs text-slate-500">
-                              Clique para alterar
+                              {logoUpload.isApplied
+                                ? "Aplicada"
+                                : "Clique para alterar"}
                             </div>
                           </div>
                           <Button
@@ -350,6 +403,18 @@ function Main() {
                         </div>
                       )}
                     </div>
+
+                    {/* Botão Aplicar Logo */}
+                    {logoUpload.file && !logoUpload.isApplied && (
+                      <Button
+                        variant="primary"
+                        onClick={applyLogo}
+                        className="w-full"
+                      >
+                        <Lucide icon="Check" className="w-4 h-4 mr-2" />
+                        Aplicar Logo
+                      </Button>
+                    )}
                   </div>
                   <input
                     ref={fileInputRef}
@@ -384,27 +449,22 @@ function Main() {
                           ])}
                         >
                           <div className="image-fit h-full w-full overflow-hidden rounded-md">
-                            {(themeImages[
-                              `/src/assets/images/themes/${theme}.png`
-                            ] ||
-                              themeImages[
-                                `/src/assets/images/themes/${theme}.svg`
-                              ]) && (
-                              <img
-                                className="h-full w-full object-cover"
-                                src={
-                                  (
-                                    themeImages[
-                                      `/src/assets/images/themes/${theme}.png`
-                                    ] ||
-                                    themeImages[
-                                      `/src/assets/images/themes/${theme}.svg`
-                                    ]
-                                  ).default
-                                }
-                                alt={`${theme} theme`}
-                              />
-                            )}
+                            <img
+                              className="h-full w-full object-cover"
+                              src={getThemeImagePath(theme)}
+                              alt={`${theme} theme`}
+                              onError={(e) => {
+                                // Fallback para placeholder se imagem não carregar
+                                e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="150" viewBox="0 0 200 150">
+                                    <rect width="200" height="150" fill="#f1f5f9"/>
+                                    <text x="100" y="75" text-anchor="middle" font-family="Arial" font-size="14" fill="#64748b">
+                                      ${themeConfig?.displayName || theme}
+                                    </text>
+                                  </svg>
+                                `)}`;
+                              }}
+                            />
                           </div>
                         </a>
                         <div className="mt-2.5 text-center text-xs capitalize text-slate-600 dark:text-slate-400">
@@ -527,7 +587,7 @@ function Main() {
                         <div
                           key={customTheme.id}
                           className={clsx([
-                            "flex items-center justify-between p-3 rounded-md border cursor-pointer transition-all",
+                            "flex items-center justify-between p-3 rounded-md border cursor-pointer transition-all group",
                             activeCustomTheme?.id === customTheme.id
                               ? "border-theme-1/60 bg-theme-1/5"
                               : "border-slate-200 hover:border-theme-1/40 hover:bg-slate-50",
@@ -599,27 +659,22 @@ function Main() {
                           ])}
                         >
                           <div className="h-full w-full overflow-hidden rounded-md">
-                            {(layoutImages[
-                              `/src/assets/images/layouts/${layout}.png`
-                            ] ||
-                              layoutImages[
-                                `/src/assets/images/layouts/${layout}.svg`
-                              ]) && (
-                              <img
-                                className="h-full w-full object-cover"
-                                src={
-                                  (
-                                    layoutImages[
-                                      `/src/assets/images/layouts/${layout}.png`
-                                    ] ||
-                                    layoutImages[
-                                      `/src/assets/images/layouts/${layout}.svg`
-                                    ]
-                                  ).default
-                                }
-                                alt={`${layout} layout`}
-                              />
-                            )}
+                            <img
+                              className="h-full w-full object-cover"
+                              src={getLayoutImagePath(layout)}
+                              alt={`${layout} layout`}
+                              onError={(e) => {
+                                // Fallback para placeholder se imagem não carregar
+                                e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="120" viewBox="0 0 200 120">
+                                    <rect width="200" height="120" fill="#f1f5f9"/>
+                                    <text x="100" y="60" text-anchor="middle" font-family="Arial" font-size="12" fill="#64748b">
+                                      ${layout.replace("-", " ")}
+                                    </text>
+                                  </svg>
+                                `)}`;
+                              }}
+                            />
                           </div>
                         </a>
                         <div className="mt-2.5 text-center text-xs capitalize text-slate-600 dark:text-slate-400">
@@ -633,7 +688,7 @@ function Main() {
 
               <div className="border-b border-dashed"></div>
 
-              {/* Accent Colors Section - seguindo design original */}
+              {/* Esquemas de Cor Section - cores originais dos templates + paleta ativa */}
               <div className="px-8 pb-8 pt-6">
                 <div className="text-base font-medium">Esquemas de Cor</div>
                 <div className="mt-0.5 text-slate-500">
@@ -670,6 +725,11 @@ function Main() {
                             </div>
                           </div>
                         </a>
+                        <div className="mt-2.5 text-center text-xs capitalize text-slate-600 dark:text-slate-400">
+                          {colorScheme === "default"
+                            ? "Padrão"
+                            : colorScheme.replace("-", " ")}
+                        </div>
                       </div>
                     );
                   })}
@@ -726,7 +786,7 @@ function Main() {
 
       {/* Floating Action Button - seguindo design original */}
       <div
-        className="fixed bottom-0 right-0 z-50 mb-5 mr-5 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-theme-1 text-white shadow-lg"
+        className="fixed bottom-0 right-0 z-50 mb-5 mr-5 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-theme-1 text-white shadow-lg theme-switcher-btn"
         onClick={(event: React.MouseEvent) => {
           event.preventDefault();
           setThemeSwitcherOpen(true);

@@ -13,16 +13,16 @@ import clsx from "clsx";
 function Main() {
   return (
     <>
-      {/* BEGIN: Top Bar */}
-      <div className="h-[67px] z-[51] flex items-center relative border-b border-slate-200 dark:border-slate-700">
+      {/* BEGIN: Top Bar - removida posição fixa, agora rola com a página */}
+      <div className="relative z-[51] flex h-[67px] items-center border-b border-slate-200 dark:border-slate-700 mt-8 mb-8">
         {/* BEGIN: Logo */}
         <Link to="/" className="hidden -intro-x md:flex items-center mr-6">
           <img
             alt="Lawdesk Legal Management System"
-            className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 text-blue-600 dark:text-white lawdesk-logo"
+            className="w-6 h-6 lawdesk-logo"
             src={lawdeskLogoUrl}
           />
-          <span className="ml-3 text-base sm:text-lg md:text-lg font-semibold text-slate-800 dark:text-slate-200 content-text-optimal lawdesk-title">
+          <span className="ml-3 text-lg font-semibold text-slate-800 dark:text-slate-200 lawdesk-title">
             Lawdesk
           </span>
         </Link>

@@ -13,17 +13,17 @@ import clsx from "clsx";
 function Main() {
   return (
     <>
-      {/* BEGIN: Top Bar */}
-      <div className="top-bar-boxed relative z-[51] -mx-5 mb-12 mt-12 h-[70px] border-b border-white/[0.08] px-3 sm:-mx-8 sm:px-8 md:-mt-5 md:pt-0">
+      {/* BEGIN: Top Bar - removida posição fixa, agora rola com a página */}
+      <div className="relative z-[51] -mx-5 mb-12 mt-12 h-[70px] border-b border-white/[0.08] px-3 sm:-mx-8 sm:px-8 md:-mt-5 md:pt-0">
         <div className="flex items-center h-full">
           {/* BEGIN: Logo */}
           <Link to="/" className="hidden -intro-x md:flex items-center">
             <img
               alt="Lawdesk Legal Management System"
-              className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 text-white header-text-optimal lawdesk-logo"
+              className="w-6 h-6 lawdesk-logo"
               src={lawdeskLogoUrl}
             />
-            <span className="ml-3 text-base sm:text-lg md:text-lg font-semibold text-white header-text-optimal lawdesk-title">
+            <span className="ml-3 text-lg font-semibold text-white lawdesk-title">
               Lawdesk
             </span>
           </Link>
@@ -46,14 +46,11 @@ function Main() {
           <Popover className="mr-4 intro-x sm:mr-6">
             <Popover.Button
               className="
-              relative text-white/70 header-text-optimal outline-none block
+              relative text-white/70 outline-none block
               before:content-[''] before:w-[8px] before:h-[8px] before:rounded-full before:absolute before:top-[-2px] before:right-0 before:bg-danger
             "
             >
-              <Lucide
-                icon="Bell"
-                className="w-5 h-5 text-white/70 header-text-optimal"
-              />
+              <Lucide icon="Bell" className="w-5 h-5 text-white/70" />
             </Popover.Button>
             <Popover.Panel className="w-[280px] sm:w-[350px] p-5 mt-2">
               <div className="mb-5 font-medium">Notifications</div>
