@@ -183,6 +183,12 @@ const slideDown = (
   duration = 300,
   callback = (el: HTMLElement) => {},
 ) => {
+  // Null/undefined check to prevent errors
+  if (!el || !el.style) {
+    console.warn("slideDown: Element is null or undefined");
+    return;
+  }
+
   el.style.removeProperty("display");
   let display = window.getComputedStyle(el).display;
   if (display === "none") display = "block";
@@ -203,11 +209,17 @@ const slideDown = (
   el.style.removeProperty("margin-top");
   el.style.removeProperty("margin-bottom");
   window.setTimeout(() => {
+    // Additional check inside timeout to ensure element still exists
+    if (!el || !el.style) {
+      return;
+    }
     el.style.removeProperty("height");
     el.style.removeProperty("overflow");
     el.style.removeProperty("transition-duration");
     el.style.removeProperty("transition-property");
-    callback(el);
+    if (callback && el) {
+      callback(el);
+    }
   }, duration);
 };
 
