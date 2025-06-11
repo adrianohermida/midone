@@ -182,6 +182,7 @@ export function applyThemeStyles(
     config.primaryColor,
     config.secondaryColor,
     getContrastColor(config.primaryColor),
+    isDarkMode,
   );
 
   // Add theme class to body
@@ -202,6 +203,7 @@ function applyColorsToElements(
   primary: string,
   secondary: string,
   headerText: string,
+  isDarkMode: boolean,
 ): void {
   // Theme elements
   const themeElements = document.querySelectorAll(
