@@ -67,13 +67,13 @@ function Litepicker({
     <FormInput
       type="text"
       value={props.value}
+      {...computedProps}
+      ref={litepickerRef}
       onChange={(e) => {
         if (props.onChange) {
           props.onChange(e);
         }
       }}
-      {...computedProps}
-      ref={litepickerRef}
     />
   );
 }
