@@ -3,16 +3,14 @@ import themeSlice from "./themeSlice";
 import darkModeSlice from "./darkModeSlice";
 import colorSchemeSlice from "./colorSchemeSlice";
 import menuSlice from "./menuSlice";
-import customThemeSlice from "./customThemeSlice";
 
-// Create a store configuration with all slices
+// Store configuration with original Midone template slices only
 export const store = configureStore({
   reducer: {
     theme: themeSlice,
     darkMode: darkModeSlice,
     colorScheme: colorSchemeSlice,
     menu: menuSlice,
-    customTheme: customThemeSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
