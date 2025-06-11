@@ -1,28 +1,32 @@
 import ReactDOM from "react-dom/client";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./stores/store";
 
 function App() {
   return (
     <div
       style={{
-        color: "red",
+        color: "green",
         fontSize: "30px",
         padding: "50px",
-        backgroundColor: "yellow",
+        backgroundColor: "lightblue",
       }}
     >
-      REACT + ROUTER WORKING!
+      REACT + ROUTER + REDUX WORKING!
     </div>
   );
 }
 
 const root = document.getElementById("root");
 if (root) {
-  console.log("Root element found, rendering React with Router...");
+  console.log("Root element found, rendering React with Router and Redux...");
   ReactDOM.createRoot(root).render(
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>,
   );
 } else {
