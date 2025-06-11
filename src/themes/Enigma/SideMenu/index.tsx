@@ -108,6 +108,9 @@ function Main() {
                         formattedMenu={formattedMenu}
                         setFormattedMenu={setFormattedMenu}
                         windowWidth={windowWidth}
+                        linkTo={linkTo}
+                        enter={enter}
+                        leave={leave}
                       />
                     )}
                     {/* END: Second Child */}
