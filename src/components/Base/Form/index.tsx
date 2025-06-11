@@ -181,3 +181,6 @@ export const FormHelp: React.FC<FormHelpProps> = ({ children, className }) => {
   const classes = classNames("text-xs text-slate-500 mt-1", className);
   return <div className={classes}>{children}</div>;
 };
+
+// Export InputGroup from its separate file
+export { default as InputGroup } from "./InputGroup";
