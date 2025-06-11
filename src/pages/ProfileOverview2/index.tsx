@@ -61,7 +61,7 @@ function Main() {
     },
     {
       id: 2,
-      number: "002/2024", 
+      number: "002/2024",
       client: "Maria Santos",
       type: "Rescisão Contratual",
       status: "Audiência marcada",
@@ -143,7 +143,7 @@ function Main() {
                 <div className="text-slate-500 text-sm mt-1">{lawyerData.experience} de experiência</div>
               </div>
             </div>
-            
+
             <div className="flex-1 px-5 pt-5 mt-6 border-t border-l border-r lg:mt-0 border-slate-200/60 dark:border-darkmode-400 lg:border-t-0 lg:pt-0">
               <div className="font-medium text-center lg:text-left lg:mt-3">
                 Informações de Contato
@@ -167,7 +167,7 @@ function Main() {
                 </div>
               </div>
             </div>
-            
+
             <div className="flex items-center justify-center flex-1 px-5 pt-5 mt-6 border-t lg:mt-0 lg:border-0 border-slate-200/60 dark:border-darkmode-400 lg:pt-0">
               <div className="w-20 py-3 text-center rounded-md">
                 <div className="text-xl font-medium text-primary">{lawyerData.cases.active}</div>
@@ -183,7 +183,7 @@ function Main() {
               </div>
             </div>
           </div>
-          
+
           <Tab.List
             variant="link-tabs"
             className="flex-col justify-center text-center sm:flex-row lg:justify-start"
@@ -302,20 +302,20 @@ function Main() {
                 <div className="mt-8 overflow-auto intro-y lg:overflow-visible sm:mt-0">
                   <div className="min-w-screen max-w-none sm:max-w-none">
                     <TinySlider ref={recentCasesRef}>
-                      {recentCases.map((case, caseKey) => (
+                      {recentCases.map((legalCase, caseKey) => (
                         <div key={caseKey} className="p-5 mr-6 intro-y box">
                           <div className="flex items-center border-b border-slate-200 dark:border-darkmode-400 pb-4 mb-4">
-                            <div className="font-medium text-base">Caso {case.number}</div>
-                            <div className="ml-auto text-xs text-slate-500">{case.lastUpdate}</div>
+                            <div className="font-medium text-base">Caso {legalCase.number}</div>
+                            <div className="ml-auto text-xs text-slate-500">{legalCase.lastUpdate}</div>
                           </div>
                           <div className="text-slate-600 dark:text-slate-500">
                             <div className="flex items-center mb-2">
                               <Lucide icon="User" className="w-4 h-4 mr-2" />
-                              <span className="text-sm">{case.client}</span>
+                              <span className="text-sm">{legalCase.client}</span>
                             </div>
                             <div className="flex items-center mb-2">
                               <Lucide icon="Scale" className="w-4 h-4 mr-2" />
-                              <span className="text-sm">{case.type}</span>
+                              <span className="text-sm">{legalCase.type}</span>
                             </div>
                             <div className="flex items-center mb-2">
                               <Lucide icon="DollarSign" className="w-4 h-4 mr-2" />
@@ -336,13 +336,13 @@ function Main() {
                         Casos Recentes
                       </div>
                       <div className="flex items-center space-x-2">
-                        <div 
+                        <div
                           className="cursor-pointer w-7 h-7 rounded-full border border-slate-300 flex items-center justify-center"
                           onClick={prevRecentCases}
                         >
                           <Lucide icon="ChevronLeft" className="w-3 h-3" />
                         </div>
-                        <div 
+                        <div
                           className="cursor-pointer w-7 h-7 rounded-full border border-slate-300 flex items-center justify-center"
                           onClick={nextRecentCases}
                         >
@@ -406,13 +406,13 @@ function Main() {
                         Próximas Audiências
                       </div>
                       <div className="flex items-center space-x-2">
-                        <div 
+                        <div
                           className="cursor-pointer w-7 h-7 rounded-full border border-slate-300 flex items-center justify-center"
                           onClick={prevUpcomingHearings}
                         >
                           <Lucide icon="ChevronLeft" className="w-3 h-3" />
                         </div>
-                        <div 
+                        <div
                           className="cursor-pointer w-7 h-7 rounded-full border border-slate-300 flex items-center justify-center"
                           onClick={nextUpcomingHearings}
                         >
