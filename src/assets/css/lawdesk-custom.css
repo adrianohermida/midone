@@ -1,4 +1,4 @@
-/* Lawdesk Custom Styles */
+/* Midone Template - Original Styles */
 
 /* Dark mode text color adaptations */
 .dark .text-slate-500 {
@@ -51,218 +51,6 @@
   background-color: rgb(51 65 85) !important;
 }
 
-/* Logo do Lawdesk - usar apenas a do Tinker como padrão */
-.lawdesk-logo {
-  filter: none;
-  transition:
-    filter 0.3s ease-in-out,
-    transform 0.2s ease-in-out;
-}
-
-/* Logo branca para fundos escuros */
-.dark .lawdesk-logo,
-.tinker .lawdesk-logo,
-.rubick .lawdesk-logo,
-.icewall .lawdesk-logo,
-.enigma .lawdesk-logo {
-  filter: brightness(0) invert(1);
-}
-
-/* Logo hover effect */
-.lawdesk-logo:hover {
-  transform: scale(1.05);
-}
-
-/* Título Lawdesk com cores adaptativas */
-.lawdesk-title {
-  transition: color 0.3s ease-in-out;
-  color: inherit;
-}
-
-/* Cores específicas por tema para o título */
-.tinker .lawdesk-title {
-  color: rgb(255 255 255);
-}
-
-.rubick .lawdesk-title {
-  color: rgb(255 255 255);
-}
-
-.icewall .lawdesk-title {
-  color: rgb(255 255 255);
-}
-
-.enigma .lawdesk-title {
-  color: rgb(255 255 255);
-}
-
-/* Em modo claro para os títulos */
-.tinker .dark .lawdesk-title,
-.rubick .dark .lawdesk-title,
-.icewall .dark .lawdesk-title,
-.enigma .dark .lawdesk-title {
-  color: rgb(255 255 255) !important;
-}
-
-/* Responsividade da logo e título */
-@media (max-width: 640px) {
-  .lawdesk-logo {
-    width: 18px !important;
-    height: 18px !important;
-  }
-  .lawdesk-title {
-    font-size: 14px !important;
-    font-weight: 600 !important;
-  }
-}
-
-@media (min-width: 641px) and (max-width: 768px) {
-  .lawdesk-logo {
-    width: 20px !important;
-    height: 20px !important;
-  }
-  .lawdesk-title {
-    font-size: 16px !important;
-    font-weight: 600 !important;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .lawdesk-logo {
-    width: 22px !important;
-    height: 22px !important;
-  }
-  .lawdesk-title {
-    font-size: 18px !important;
-    font-weight: 700 !important;
-  }
-}
-
-@media (min-width: 1025px) {
-  .lawdesk-logo {
-    width: 24px !important;
-    height: 24px !important;
-  }
-  .lawdesk-title {
-    font-size: 20px !important;
-    font-weight: 700 !important;
-  }
-}
-
-/* Corrigir navegação no sidebar - evitar múltiplas seleções */
-.side-menu {
-  color: var(--color-sidebar-text, rgb(100 116 139)) !important;
-  transition: all 0.3s ease-in-out;
-  position: relative;
-}
-
-.dark .side-menu {
-  color: var(--color-sidebar-text-dark, rgb(203 213 225)) !important;
-}
-
-/* Estado ativo único no sidebar */
-.side-menu--active {
-  background-color: var(--color-theme-1, rgb(59 130 246)) !important;
-  color: var(--color-header-text, rgb(255 255 255)) !important;
-}
-
-/* Hover apenas para itens não ativos */
-.side-menu:hover:not(.side-menu--active) {
-  background-color: rgba(
-    var(--color-theme-1-rgb, 59, 130, 246),
-    0.1
-  ) !important;
-  color: var(--color-theme-1, rgb(59 130 246)) !important;
-}
-
-/* Remover múltiplas seleções */
-.side-menu:not(.side-menu--active) {
-  background-color: transparent !important;
-}
-
-/* Top menu states */
-.top-menu {
-  transition: all 0.3s ease-in-out;
-}
-
-.top-menu--active {
-  background-color: var(--color-theme-1, rgb(59 130 246)) !important;
-  color: var(--color-header-text, rgb(255 255 255)) !important;
-}
-
-.top-menu:hover:not(.top-menu--active) {
-  background-color: rgba(
-    var(--color-theme-1-rgb, 59, 130, 246),
-    0.1
-  ) !important;
-  color: var(--color-theme-1, rgb(59 130 246)) !important;
-}
-
-/* Simple menu states */
-.simple-menu {
-  transition: all 0.3s ease-in-out;
-}
-
-.simple-menu--active {
-  background-color: var(--color-theme-1, rgb(59 130 246)) !important;
-  color: var(--color-header-text, rgb(255 255 255)) !important;
-}
-
-.simple-menu:hover:not(.simple-menu--active) {
-  background-color: rgba(
-    var(--color-theme-1-rgb, 59, 130, 246),
-    0.1
-  ) !important;
-  color: var(--color-theme-1, rgb(59 130 246)) !important;
-}
-
-/* Theme switcher original design styling */
-.dark .box {
-  background-color: rgb(30 41 59);
-  border-color: rgb(51 65 85);
-}
-
-/* Modal backdrop */
-.modal-backdrop {
-  background: rgba(0, 0, 0, 0.6);
-  transition:
-    visibility 0.2s,
-    opacity 0.4s;
-}
-
-.modal-backdrop:not(.show) {
-  visibility: hidden;
-  opacity: 0;
-}
-
-.modal-backdrop.show {
-  visibility: visible;
-  opacity: 1;
-}
-
-/* Theme switcher panel transition */
-.theme-switcher-panel {
-  transition: margin-right 0.6s ease-in-out;
-  margin-right: -100%;
-}
-
-.theme-switcher-panel.show {
-  margin-right: 0;
-}
-
-/* Image fit utility for theme previews */
-.image-fit {
-  object-fit: cover;
-  object-position: center;
-}
-
-.image-fit img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
 /* Better visibility for menu items in dark mode */
 .dark .side-menu {
   color: rgb(203 213 225);
@@ -298,25 +86,26 @@
   border: 1px solid rgb(51 65 85);
 }
 
-/* Theme-specific customizations */
-.theme-rubick .justice-scale-icon {
-  filter: brightness(0) invert(1);
+/* Image fit utility */
+.image-fit {
+  object-fit: cover;
+  object-position: center;
 }
 
-.theme-icewall .justice-scale-icon {
-  filter: brightness(0) invert(1);
+.image-fit img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
-.theme-tinker .justice-scale-icon {
-  filter: brightness(0) invert(1);
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-.theme-enigma .justice-scale-icon {
-  filter: brightness(0) invert(1);
-}
-
-/* Custom animations */
-.lawdesk-fade-in {
+/* Basic animations */
+.fade-in {
   animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -339,280 +128,67 @@
     color 0.3s ease-in-out !important;
 }
 
-/* Custom theme color variables */
-:root {
-  --color-theme-1: #3b82f6;
-  --color-theme-2: #1e40af;
-  --color-header-text: #ffffff;
-  --color-secondary-text: #ffffff;
-  --color-content-text: #1e293b;
-  --color-sidebar-text: #64748b;
-  --color-sidebar-text-dark: #cbd5e1;
-  --color-theme-1-rgb: 59, 130, 246;
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .responsive-text {
+    font-size: 0.875rem !important;
+  }
 }
 
-/* Theme color classes that use CSS variables */
-.bg-theme-1 {
-  background-color: rgb(var(--color-theme-1-rgb)) !important;
+/* Focus states for accessibility */
+.focus-visible:focus {
+  outline: 2px solid rgb(59 130 246);
+  outline-offset: 2px;
 }
 
-.bg-theme-2 {
-  background-color: var(--color-theme-2) !important;
-}
-
-.text-theme-1 {
-  color: rgb(var(--color-theme-1-rgb)) !important;
-}
-
-.text-theme-2 {
-  color: var(--color-theme-2) !important;
-}
-
-.border-theme-1 {
-  border-color: rgb(var(--color-theme-1-rgb)) !important;
-}
-
-.border-theme-2 {
-  border-color: var(--color-theme-2) !important;
-}
-
-/* Enhanced contrast for accessibility */
-.high-contrast-text {
-  color: var(--color-header-text);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-/* Auto-contrast for theme elements */
-.bg-theme-1,
-[class*="bg-theme-1"] {
-  background-color: rgb(var(--color-theme-1-rgb)) !important;
-  color: var(--color-header-text) !important;
-}
-
-.bg-theme-2,
-[class*="bg-theme-2"] {
-  background-color: var(--color-theme-2) !important;
-  color: var(--color-secondary-text) !important;
-}
-
-/* Floating action button enhancement */
-.theme-switcher-btn {
-  background: linear-gradient(
-    135deg,
-    rgb(var(--color-theme-1-rgb)),
-    var(--color-theme-2)
-  ) !important;
-  box-shadow: 0 10px 25px rgba(var(--color-theme-1-rgb), 0.4) !important;
-  transition: all 0.3s ease-in-out;
-}
-
-.theme-switcher-btn:hover {
-  box-shadow: 0 15px 35px rgba(var(--color-theme-1-rgb), 0.6) !important;
-  transform: scale(1.1) !important;
-}
-
-/* Corrigir problema de navegação - garantir que apenas um item esteja ativo */
-.side-nav ul li .side-menu.side-menu--active ~ .side-menu {
-  background-color: transparent !important;
-}
-
-/* Assegurar que apenas um menu item tenha estado ativo */
-.side-nav ul li:not(:has(.side-menu--active)) .side-menu:hover {
-  background-color: rgba(var(--color-theme-1-rgb), 0.1) !important;
-}
-
-/* Melhorar contraste dos ícones */
-.side-menu .lucide {
-  color: inherit;
-  transition: color 0.3s ease-in-out;
-}
-
-.side-menu--active .lucide {
-  color: var(--color-header-text) !important;
-}
-
-/* Better contrast for notifications and buttons */
+/* Better contrast for notifications */
 .notification-dot {
   background-color: #ef4444 !important;
 }
 
-.btn-primary {
-  background-color: rgb(var(--color-theme-1-rgb)) !important;
-  color: var(--color-header-text) !important;
-  border-color: rgb(var(--color-theme-1-rgb)) !important;
-}
-
-.btn-primary:hover {
-  background-color: rgba(var(--color-theme-1-rgb), 0.9) !important;
-  border-color: rgba(var(--color-theme-1-rgb), 0.9) !important;
-}
-
-/* Scrollbar styling for theme panels */
-.theme-panel-scroll::-webkit-scrollbar {
+/* Scrollbar styling */
+::-webkit-scrollbar {
   width: 6px;
 }
 
-.theme-panel-scroll::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 3px;
 }
 
-.theme-panel-scroll::-webkit-scrollbar-thumb {
-  background: rgb(var(--color-theme-1-rgb));
+::-webkit-scrollbar-thumb {
+  background: rgb(59 130 246);
   border-radius: 3px;
 }
 
-.theme-panel-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--color-theme-1-rgb), 0.8);
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(37 99 235);
 }
 
-/* Improved form inputs in theme switcher */
-.theme-form-input:focus {
-  border-color: rgb(var(--color-theme-1-rgb)) !important;
-  box-shadow: 0 0 0 3px rgba(var(--color-theme-1-rgb), 0.1) !important;
-}
-
-/* Color picker enhancements */
-.color-picker-palette {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(2rem, 1fr));
-  gap: 0.5rem;
-}
-
-.color-picker-swatch {
-  aspect-ratio: 1;
-  border-radius: 0.5rem;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.color-picker-swatch:hover {
-  transform: scale(1.1);
-  border-color: rgba(0, 0, 0, 0.2);
-}
-
-.color-picker-swatch.active {
-  border-color: rgb(var(--color-theme-1-rgb));
-  box-shadow: 0 0 0 2px rgba(var(--color-theme-1-rgb), 0.3);
-}
-
-/* Responsive improvements */
-@media (max-width: 640px) {
-  .slideover-panel {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-  }
-
-  .theme-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-
-  .layout-grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .color-picker-dropdown {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    max-height: 100vh !important;
-    border-radius: 0 !important;
-    z-index: 9999 !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .lawdesk-title {
-    font-size: 1.125rem !important;
-  }
-
-  .theme-switcher-tabs {
-    font-size: 0.75rem !important;
-    padding: 0.5rem !important;
-  }
-}
-
-/* Widget lateral direita (se necessário) */
-.right-sidebar {
-  position: fixed;
-  right: 0;
-  top: 0;
-  height: 100vh;
-  width: 300px;
-  background: white;
-  border-left: 1px solid #e2e8f0;
-  z-index: 40;
-  overflow-y: auto;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
-}
-
-.right-sidebar.show {
-  transform: translateX(0);
-}
-
-.dark .right-sidebar {
-  background: rgb(30 41 59);
-  border-left-color: rgb(51 65 85);
-}
-
-/* Melhorar performance de animações */
-.side-menu,
-.top-menu,
-.simple-menu,
-.lawdesk-logo,
-.lawdesk-title {
-  will-change: transform, background-color, color;
-}
-
-/* Correção para ThemeSwitcher */
-.theme-switcher-container {
-  isolation: isolate;
-}
-
-/* Garantir que o header não seja fixo */
-.topbar-fixed {
-  position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-}
-
-/* Melhorar a experiência do usuário */
-.interactive {
-  cursor: pointer;
-  user-select: none;
-}
-
-.loading {
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-/* Acessibilidade */
-.focus-visible:focus {
-  outline: 2px solid rgb(var(--color-theme-1-rgb));
-  outline-offset: 2px;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Otimizações de performance */
+/* Performance optimizations */
 * {
   box-sizing: border-box;
 }
 
-.gpu-accelerated {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .high-contrast {
+    filter: contrast(150%);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

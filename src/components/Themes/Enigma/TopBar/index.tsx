@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Lucide from "@/components/Base/Lucide";
-import lawdeskLogoUrl from "@/assets/images/lawdesk-logo.svg";
+import logoUrl from "@/assets/images/logo.svg";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import { Popover } from "@/components/Base/Headless";
 import UserProfileMenu from "@/components/Base/UserProfileMenu";
@@ -15,7 +15,7 @@ function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
     <Fragment>
       <div
         className={clsx([
-          "h-[70px] md:h-[65px] z-[51] border-b border-white/[0.08] mt-12 md:mt-0 -mx-3 sm:-mx-8 md:-mx-0 px-3 md:border-b-0 relative sm:px-8 md:px-10 md:pt-10 md:bg-gradient-to-b md:from-slate-100 md:to-transparent dark:md:from-darkmode-700",
+          "h-[70px] md:h-[65px] z-[51] border-b border-white/[0.08] mt-12 md:mt-0 -mx-3 sm:-mx-8 md:-mx-0 px-3 md:border-b-0 relative md:fixed md:inset-x-0 md:top-0 sm:px-8 md:px-10 md:pt-10 md:bg-gradient-to-b md:from-slate-100 md:to-transparent dark:md:from-darkmode-700",
           props.layout == "top-menu" && "dark:md:from-darkmode-800",
           "before:content-[''] before:absolute before:h-[65px] before:inset-0 before:top-0 before:mx-7 before:bg-primary/30 before:mt-3 before:rounded-xl before:hidden before:md:block before:dark:bg-darkmode-600/30",
           "after:content-[''] after:absolute after:inset-0 after:h-[65px] after:mx-3 after:bg-primary after:mt-5 after:rounded-xl after:shadow-md after:hidden after:md:block after:dark:bg-darkmode-600",
@@ -32,18 +32,18 @@ function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
             ])}
           >
             <img
-              alt="Lawdesk Legal Management System"
-              className="w-6 h-6 lawdesk-logo"
-              src={lawdeskLogoUrl}
+              alt="Midone Tailwind HTML Admin Template"
+              className="w-6 h-6"
+              src={logoUrl}
             />
             <span
               className={clsx([
-                "ml-3 text-lg font-semibold text-white lawdesk-title",
+                "ml-3 text-lg font-semibold text-white",
                 props.layout == "side-menu" && "hidden xl:block",
                 props.layout == "simple-menu" && "hidden",
               ])}
             >
-              Lawdesk
+              Midone
             </span>
           </Link>
           <Breadcrumb

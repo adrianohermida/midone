@@ -14,7 +14,7 @@ import {
 } from "./simple-menu";
 import Tippy from "@/components/Base/Tippy";
 import Lucide from "@/components/Base/Lucide";
-import lawdeskLogoUrl from "@/assets/images/lawdesk-logo.svg";
+import justiceScaleUrl from "@/assets/images/justice-scale.svg";
 import clsx from "clsx";
 import TopBar from "@/components/Themes/Tinker/TopBar";
 import MobileMenu from "@/components/MobileMenu";
@@ -52,12 +52,12 @@ function Main() {
           <nav className="side-nav hidden md:block md:w-[100px] xl:w-[250px] px-5 pb-16 overflow-x-hidden z-10">
             <Link to="/" className="flex items-center pt-4 pl-5 mt-3 intro-x">
               <img
-                alt="Lawdesk Legal Management System"
-                className="w-6 h-6 lawdesk-logo"
-                src={lawdeskLogoUrl}
+                alt="Midone Tailwind HTML Admin Template"
+                className="w-6 h-6"
+                src={justiceScaleUrl}
               />
-              <span className="hidden ml-3 text-lg font-semibold text-white xl:block lawdesk-title">
-                Lawdesk
+              <span className="hidden ml-3 text-lg font-semibold text-white xl:block">
+                Midone
               </span>
             </Link>
             <div className="my-6 side-nav__divider"></div>

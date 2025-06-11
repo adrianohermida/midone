@@ -17,7 +17,7 @@ import Breadcrumb from "@/components/Base/Breadcrumb";
 import { FormInput } from "@/components/Base/Form";
 import { Menu, Popover } from "@/components/Base/Headless";
 import { Transition } from "@headlessui/react";
-import lawdeskLogoUrl from "@/assets/images/lawdesk-logo.svg";
+import justiceScaleUrl from "@/assets/images/justice-scale.svg";
 import clsx from "clsx";
 import MobileMenu from "@/components/MobileMenu";
 
@@ -61,12 +61,12 @@ function Main() {
           <div className="flex items-center h-full">
             <Link to="/" className="hidden -intro-x md:flex items-center">
               <img
-                alt="Lawdesk Legal Management System"
-                className="w-6 h-6 lawdesk-logo"
-                src={lawdeskLogoUrl}
+                alt="Midone Tailwind HTML Admin Template"
+                className="w-6 h-6"
+                src={justiceScaleUrl}
               />
-              <span className="ml-3 text-lg font-semibold text-white lawdesk-title">
-                Lawdesk
+              <span className="ml-3 text-lg font-semibold text-white">
+                Midone
               </span>
             </Link>
             <Breadcrumb
