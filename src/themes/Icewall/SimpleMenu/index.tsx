@@ -109,8 +109,8 @@ function Main() {
                       {menu.subMenu && (
                         <Transition
                           in={menu.activeDropdown}
-                          onEnter={enter}
-                          onExit={leave}
+                          onEnter={() => enter(secondLevelRef.current!)}
+                          onExit={() => leave(secondLevelRef.current!)}
                           timeout={300}
                         >
                           <ul
@@ -162,8 +162,10 @@ function Main() {
                                 {subMenu.subMenu && (
                                   <Transition
                                     in={subMenu.activeDropdown}
-                                    onEnter={enter}
-                                    onExit={leave}
+                                    onEnter={() =>
+                                      enter(thirdLevelRef.current!)
+                                    }
+                                    onExit={() => leave(thirdLevelRef.current!)}
                                     timeout={300}
                                   >
                                     <ul
