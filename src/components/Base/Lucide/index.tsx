@@ -328,7 +328,7 @@ function Lucide(props: LucideProps) {
       throw new Error(`Icon "${safeIconKey}" not found in icons object`);
     }
 
-    const Component = createLucideIcon(icons[safeIconKey]);
+    const Component = createLucideIcon(safeIconKey, icons[safeIconKey]);
 
     return (
       <Component
