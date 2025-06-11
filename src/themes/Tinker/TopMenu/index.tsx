@@ -61,12 +61,12 @@ function Main() {
           <div className="flex items-center h-full">
             <Link to="/" className="hidden -intro-x md:flex items-center">
               <img
-                alt="Midone Tailwind HTML Admin Template"
+                alt="Lawdesk Legal Management System"
                 className="w-6 h-6"
                 src={justiceScaleUrl}
               />
               <span className="ml-3 text-lg font-semibold text-white">
-                Midone
+                Lawdesk
               </span>
             </Link>
             <Breadcrumb
@@ -138,7 +138,7 @@ function Main() {
                         >
                           <div className="w-8 h-8 image-fit">
                             <img
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="Lawdesk Legal Management System"
                               className="rounded-full"
                               src={faker.photos[0]}
                             />
@@ -159,7 +159,7 @@ function Main() {
                       >
                         <div className="w-8 h-8 image-fit">
                           <img
-                            alt="Midone Tailwind HTML Admin Template"
+                            alt="Lawdesk Legal Management System"
                             className="rounded-full"
                             src={faker.images[0]}
                           />
@@ -195,7 +195,7 @@ function Main() {
                   >
                     <div className="relative flex-none w-12 h-12 mr-1 image-fit">
                       <img
-                        alt="Midone Tailwind HTML Admin Template"
+                        alt="Lawdesk Legal Management System"
                         className="rounded-full"
                         src={faker.photos[0]}
                       />
@@ -221,7 +221,7 @@ function Main() {
             <Menu>
               <Menu.Button className="block w-8 h-8 overflow-hidden scale-110 rounded-full shadow-lg image-fit zoom-in intro-x">
                 <img
-                  alt="Midone Tailwind HTML Admin Template"
+                  alt="Lawdesk Legal Management System"
                   src={fakerData[9].photos[0]}
                 />
               </Menu.Button>
@@ -239,8 +239,8 @@ function Main() {
                   <Lucide icon="User" className="w-4 h-4 mr-2" /> Profile
                 </Menu.Item>
                 <Menu.Item className="hover:bg-white/5">
-                  <Lucide icon="FilePenLine" className="w-4 h-4 mr-2" /> Add
-                  Account
+                  <Lucide icon="Building2" className="w-4 h-4 mr-2" />{" "}
+                  Departamentos
                 </Menu.Item>
                 <Menu.Item className="hover:bg-white/5">
                   <Lucide icon="Lock" className="w-4 h-4 mr-2" /> Reset Password
@@ -250,7 +250,7 @@ function Main() {
                 </Menu.Item>
                 <Menu.Divider className="bg-white/[0.08]" />
                 <Menu.Item className="hover:bg-white/5">
-                  <Lucide icon="ToggleRight" className="w-4 h-4 mr-2" /> Logout
+                  <Lucide icon="LogOut" className="w-4 h-4 mr-2" /> Logout
                 </Menu.Item>
               </Menu.Items>
             </Menu>

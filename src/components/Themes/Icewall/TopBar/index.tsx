@@ -17,12 +17,12 @@ function Main() {
         <div className="flex items-center h-full">
           <Link to="/" className="hidden -intro-x md:flex items-center">
             <img
-              alt="Midone Tailwind HTML Admin Template"
+              alt="Lawdesk Legal Management System"
               className="w-6 h-6"
               src={logoUrl}
             />
             <span className="ml-3 text-lg font-semibold text-white">
-              Midone
+              Lawdesk
             </span>
           </Link>
           <Breadcrumb
@@ -56,7 +56,7 @@ function Main() {
                 >
                   <div className="relative flex-none w-12 h-12 mr-1 image-fit">
                     <img
-                      alt="Midone Tailwind HTML Admin Template"
+                      alt="Lawdesk Legal Management System"
                       className="rounded-full"
                       src={faker.photos[0]}
                     />

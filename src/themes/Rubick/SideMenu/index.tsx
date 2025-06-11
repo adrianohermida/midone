@@ -58,12 +58,12 @@ function Main() {
           <nav className="side-nav hidden w-[80px] overflow-x-hidden pb-16 pr-5 md:block xl:w-[230px]">
             <Link to="/" className="flex items-center pt-4 pl-5 intro-x">
               <img
-                alt="Midone Tailwind HTML Admin Template"
+                alt="Lawdesk Legal Management System"
                 className="w-6 h-6"
                 src={justiceScaleUrl}
               />
               <span className="hidden ml-3 text-lg font-semibold text-white xl:block">
-                Midone
+                Lawdesk
               </span>
             </Link>
             <div className="my-6 side-nav__divider"></div>
