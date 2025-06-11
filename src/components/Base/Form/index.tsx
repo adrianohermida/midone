@@ -323,3 +323,6 @@ export const FormGroup: React.FC<FormGroupProps> = ({
   const classes = classNames("mb-4", className);
   return <div className={classes}>{children}</div>;
 };
+
+// Re-export InputGroup
+export { default as InputGroup } from "./InputGroup";
