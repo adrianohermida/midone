@@ -118,7 +118,7 @@ function SecondLevelMenu({
               }}
             >
               <div className="menu__icon">
-                <Lucide icon={subMenu.icon} />
+                <Lucide icon={subMenu.icon || "Activity"} />
               </div>
               <div className="menu__title">
                 {subMenu.title}
