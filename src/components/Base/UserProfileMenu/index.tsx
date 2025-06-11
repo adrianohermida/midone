@@ -1,46 +1,18 @@
-import { Menu } from "@/components/Base/Headless";
-import { useNavigate } from "react-router-dom";
+import { Fragment } from "react";
 import Lucide from "@/components/Base/Lucide";
+import { Menu } from "@/components/Base/Headless";
 import fakerData from "@/utils/faker";
-import authService from "@/services/auth";
 
-interface UserProfileMenuProps {
-  className?: string;
-}
-
-function UserProfileMenu({ className }: UserProfileMenuProps) {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    // Use auth service to handle logout
-    authService.logout();
-
-    // Navigate to login page
-    navigate("/login");
-  };
-
-  const handleProfile = () => {
-    navigate("/profile-overview-3");
-  };
-
-  const handleDepartments = () => {
-    navigate("/users-layout-3");
-  };
-
-  const handleResetPassword = () => {
-    navigate("/change-password");
-  };
-
-  const handleHelp = () => {
-    navigate("/faq-layout-1");
-  };
-
+function Main() {
   return (
-    <Menu className={className}>
-      <Menu.Button className="block w-8 h-8 overflow-hidden rounded-full shadow-lg image-fit zoom-in intro-x">
-        <img alt="Lawdesk User Profile" src={fakerData[9].photos[0]} />
+    <Menu>
+      <Menu.Button className="block w-8 h-8 overflow-hidden scale-110 rounded-full shadow-lg image-fit zoom-in intro-x">
+        <img
+          alt="Midone Tailwind HTML Admin Template"
+          src={fakerData[9].photos[0]}
+        />
       </Menu.Button>
-      <Menu.Items className="w-56 mt-px relative bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white">
+      <Menu.Items className="w-56 mt-px text-white bg-primary">
         <Menu.Header className="font-normal">
           <div className="font-medium">{fakerData[0].users[0].name}</div>
           <div className="text-xs text-white/70 mt-0.5 dark:text-slate-500">
@@ -48,40 +20,30 @@ function UserProfileMenu({ className }: UserProfileMenuProps) {
           </div>
         </Menu.Header>
         <Menu.Divider className="bg-white/[0.08]" />
-        <Menu.Item
-          className="hover:bg-white/5 cursor-pointer"
-          onClick={handleProfile}
-        >
-          <Lucide icon="User" className="w-4 h-4 mr-2" /> Profile
+        <Menu.Item>
+          <Lucide icon="User" className="w-4 h-4 mr-2" />
+          Profile
         </Menu.Item>
-        <Menu.Item
-          className="hover:bg-white/5 cursor-pointer"
-          onClick={handleDepartments}
-        >
-          <Lucide icon="Building2" className="w-4 h-4 mr-2" /> Departamentos
+        <Menu.Item>
+          <Lucide icon="FilePenLine" className="w-4 h-4 mr-2" />
+          Add Account
         </Menu.Item>
-        <Menu.Item
-          className="hover:bg-white/5 cursor-pointer"
-          onClick={handleResetPassword}
-        >
-          <Lucide icon="Lock" className="w-4 h-4 mr-2" /> Reset Password
+        <Menu.Item>
+          <Lucide icon="Lock" className="w-4 h-4 mr-2" />
+          Reset Password
         </Menu.Item>
-        <Menu.Item
-          className="hover:bg-white/5 cursor-pointer"
-          onClick={handleHelp}
-        >
-          <Lucide icon="HelpCircle" className="w-4 h-4 mr-2" /> Help
+        <Menu.Item>
+          <Lucide icon="HelpCircle" className="w-4 h-4 mr-2" />
+          Help
         </Menu.Item>
         <Menu.Divider className="bg-white/[0.08]" />
-        <Menu.Item
-          className="hover:bg-white/5 cursor-pointer"
-          onClick={handleLogout}
-        >
-          <Lucide icon="LogOut" className="w-4 h-4 mr-2" /> Logout
+        <Menu.Item>
+          <Lucide icon="ToggleRight" className="w-4 h-4 mr-2" />
+          Logout
         </Menu.Item>
       </Menu.Items>
     </Menu>
   );
 }
 
-export default UserProfileMenu;
+export default Main;

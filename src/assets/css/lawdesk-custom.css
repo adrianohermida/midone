@@ -1,6 +1,6 @@
-/* Midone Template - Original Styles */
+/* Midone Template - Minimal Required Styles Only */
 
-/* Dark mode text color adaptations */
+/* Dark mode text adaptations - only essential ones */
 .dark .text-slate-500 {
   color: rgb(148 163 184) !important;
 }
@@ -21,27 +21,6 @@
   color: rgb(248 250 252) !important;
 }
 
-/* General dark mode text improvements */
-.dark .text-gray-500 {
-  color: rgb(156 163 175) !important;
-}
-
-.dark .text-gray-600 {
-  color: rgb(209 213 219) !important;
-}
-
-.dark .text-gray-700 {
-  color: rgb(229 231 235) !important;
-}
-
-.dark .text-gray-800 {
-  color: rgb(243 244 246) !important;
-}
-
-.dark .text-gray-900 {
-  color: rgb(249 250 251) !important;
-}
-
 /* Dark mode background adaptations */
 .dark .bg-slate-100 {
   background-color: rgb(30 41 59) !important;
@@ -49,41 +28,6 @@
 
 .dark .bg-slate-200 {
   background-color: rgb(51 65 85) !important;
-}
-
-/* Better visibility for menu items in dark mode */
-.dark .side-menu {
-  color: rgb(203 213 225);
-}
-
-.dark .side-menu:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.dark .side-menu--active {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: rgb(255 255 255);
-}
-
-/* Search dropdown dark mode styling */
-.dark .HeaderSearch .box {
-  background-color: rgb(30 41 59);
-  border: 1px solid rgb(51 65 85);
-}
-
-.dark .HeaderSearch .hover\:bg-slate-100:hover {
-  background-color: rgb(51 65 85) !important;
-}
-
-/* User profile menu dark mode */
-.dark .Menu .Menu-items {
-  background-color: rgba(30, 41, 59, 0.95);
-}
-
-/* Notification panel dark mode */
-.dark .Popover .Popover-panel {
-  background-color: rgb(30 41 59);
-  border: 1px solid rgb(51 65 85);
 }
 
 /* Image fit utility */
@@ -99,96 +43,12 @@
   object-position: center;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Basic animations */
-.fade-in {
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Theme transition animation */
-.theme-transition * {
-  transition:
-    background-color 0.3s ease-in-out,
-    border-color 0.3s ease-in-out,
-    color 0.3s ease-in-out !important;
-}
-
-/* Responsive improvements */
-@media (max-width: 768px) {
-  .responsive-text {
-    font-size: 0.875rem !important;
-  }
-}
-
-/* Focus states for accessibility */
-.focus-visible:focus {
-  outline: 2px solid rgb(59 130 246);
-  outline-offset: 2px;
-}
-
-/* Better contrast for notifications */
-.notification-dot {
-  background-color: #ef4444 !important;
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgb(59 130 246);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(37 99 235);
-}
-
-/* Performance optimizations */
+/* Basic box-sizing */
 * {
   box-sizing: border-box;
 }
 
-/* Print styles */
-@media print {
-  .no-print {
-    display: none !important;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .high-contrast {
-    filter: contrast(150%);
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
