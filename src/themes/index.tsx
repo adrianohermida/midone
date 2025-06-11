@@ -10,7 +10,11 @@ import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-function Main() {
+interface MainProps {
+  children?: React.ReactNode;
+}
+
+function Main({ children }: MainProps) {
   const dispatch = useAppDispatch();
   const theme = useAppSelector(selectTheme);
   const Component = getTheme(theme).component;
@@ -37,7 +41,7 @@ function Main() {
   return (
     <div>
       <ThemeSwitcher />
-      <Component />
+      <Component>{children}</Component>
     </div>
   );
 }
