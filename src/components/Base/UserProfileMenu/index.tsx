@@ -20,11 +20,11 @@ function UserProfileMenu({ className }: UserProfileMenuProps) {
   };
 
   const handleProfile = () => {
-    navigate("/profile-overview-1");
+    navigate("/profile-overview-3");
   };
 
-  const handleAddAccount = () => {
-    navigate("/register");
+  const handleDepartments = () => {
+    navigate("/users-layout-3");
   };
 
   const handleResetPassword = () => {
@@ -56,9 +56,9 @@ function UserProfileMenu({ className }: UserProfileMenuProps) {
         </Menu.Item>
         <Menu.Item
           className="hover:bg-white/5 cursor-pointer"
-          onClick={handleAddAccount}
+          onClick={handleDepartments}
         >
-          <Lucide icon="UserPlus" className="w-4 h-4 mr-2" /> Add Account
+          <Lucide icon="Building2" className="w-4 h-4 mr-2" /> Departamentos
         </Menu.Item>
         <Menu.Item
           className="hover:bg-white/5 cursor-pointer"
