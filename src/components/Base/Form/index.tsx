@@ -324,5 +324,6 @@ export const FormGroup: React.FC<FormGroupProps> = ({
   return <div className={classes}>{children}</div>;
 };
 
-// Re-export InputGroup
+// Re-export individual components
 export { default as InputGroup } from "./InputGroup";
+export { default as FormTextarea } from "./FormTextarea";
