@@ -469,8 +469,8 @@ function Main() {
           <div className="mt-2 text-xs text-center">GitBranchIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="GitCommitHorizontal" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">GitCommitHorizontal</div>
+          <Lucide icon="GitCommit" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">GitCommitIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="GitMerge" className="block mx-auto" />
