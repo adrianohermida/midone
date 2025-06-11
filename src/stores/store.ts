@@ -3,6 +3,7 @@ import themeSlice from "./themeSlice";
 import darkModeSlice from "./darkModeSlice";
 import colorSchemeSlice from "./colorSchemeSlice";
 import menuSlice from "./menuSlice";
+import customThemeSlice from "./customThemeSlice";
 
 // Create a store configuration with all slices
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     darkMode: darkModeSlice,
     colorScheme: colorSchemeSlice,
     menu: menuSlice,
+    customTheme: customThemeSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
