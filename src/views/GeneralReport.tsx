@@ -7,7 +7,14 @@ const GeneralReport: React.FC = () => {
       <div className="space-y-6">
         {/* Page Header */}
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-gray-900">General Report</h1>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">
+              Dashboard Lawdesk CRM
+            </h1>
+            <p className="text-gray-600 mt-1">
+              Visão geral do sistema jurídico
+            </p>
+          </div>
           <button className="flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
             <svg
               className="w-4 h-4 mr-2"
@@ -22,7 +29,7 @@ const GeneralReport: React.FC = () => {
                 d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
               />
             </svg>
-            Reload Data
+            Atualizar Dados
           </button>
         </div>
 
