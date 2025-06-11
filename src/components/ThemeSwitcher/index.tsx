@@ -120,17 +120,46 @@ function Main() {
     const el = document.querySelectorAll("html")[0];
     activeDarkMode ? el.classList.add("dark") : el.classList.remove("dark");
   };
+
   const switchDarkMode = (darkMode: boolean) => {
     dispatch(setDarkMode(darkMode));
     setDarkModeClass();
-    applyThemeStyles(activeTheme.name, darkMode);
+
+    // Apply appropriate theme styles
+    if (isUsingCustomTheme && activeCustomTheme) {
+      applyCustomThemeColors(
+        activeCustomTheme.colors.primary,
+        activeCustomTheme.colors.secondary,
+        darkMode,
+      );
+    } else {
+      applyThemeStyles(activeTheme.name, darkMode);
+    }
   };
   setDarkModeClass();
 
   // Initialize theme styles on component mount
   useEffect(() => {
-    applyThemeStyles(activeTheme.name, activeDarkMode);
+    if (isUsingCustomTheme && activeCustomTheme) {
+      applyCustomThemeColors(
+        activeCustomTheme.colors.primary,
+        activeCustomTheme.colors.secondary,
+        activeDarkMode,
+      );
+    } else {
+      applyThemeStyles(activeTheme.name, activeDarkMode);
+    }
   }, []);
+
+  // Update colors when primary/secondary colors change
+  useEffect(() => {
+    if (isValidHex(primaryColor) && isValidHex(secondaryColor)) {
+      // Real-time preview while editing
+      if (showCustomForm) {
+        applyCustomThemeColors(primaryColor, secondaryColor, activeDarkMode);
+      }
+    }
+  }, [primaryColor, secondaryColor, activeDarkMode, showCustomForm]);
 
   const themes: Array<Themes["name"]> = [
     "rubick",
