@@ -383,7 +383,6 @@ function Main() {
               </Tab.Group>
             </div>
           </div>
-          {/* END: Upsert Product */}
         </div>
         <div className="col-span-11 2xl:col-span-2">
           <div className="2xl:border-l -mb-10 pb-10">
