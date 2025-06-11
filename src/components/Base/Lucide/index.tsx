@@ -322,6 +322,12 @@ function Lucide(props: LucideProps) {
   try {
     // Ensure the icon value is definitely a string and exists in icons
     const safeIconKey = iconValue as keyof typeof icons;
+
+    // Double-check that the icon exists before creating
+    if (!icons[safeIconKey]) {
+      throw new Error(`Icon "${safeIconKey}" not found in icons object`);
+    }
+
     const Component = createLucideIcon(icons[safeIconKey]);
 
     return (
