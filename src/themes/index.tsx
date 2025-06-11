@@ -7,7 +7,7 @@ import {
 } from "@/stores/themeSlice";
 import { useAppDispatch, useAppSelector } from "@/stores/hooks";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
-import { useLocation } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 import { useEffect } from "react";
 
 interface MainProps {
@@ -39,10 +39,10 @@ function Main({ children }: MainProps) {
   }, []);
 
   return (
-    <div>
+    <>
       <ThemeSwitcher />
       <Component />
-    </div>
+    </>
   );
 }
 
