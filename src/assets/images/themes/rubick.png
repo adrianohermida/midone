@@ -1,1 +1,6 @@
-data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iIzM2N2JmNCIvPgogIDx0ZXh0IHg9IjEwMCIgeT0iNjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjE4cHgiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiI+UnViaWNrPC90ZXh0Pgo8L3N2Zz4=
+<svg width="200" height="120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="120" fill="#3b82f6"/>
+  <rect x="0" y="0" width="60" height="120" fill="#1e40af"/>
+  <rect x="0" y="0" width="200" height="30" fill="#1d4ed8"/>
+  <text x="100" y="75" text-anchor="middle" fill="white" font-size="16px" font-family="Arial, sans-serif">Rubick</text>
+</svg>
