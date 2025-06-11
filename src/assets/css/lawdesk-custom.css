@@ -145,6 +145,62 @@
   }
 }
 
+/* Theme transition animation */
+.theme-transition * {
+  transition:
+    background-color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out,
+    color 0.3s ease-in-out !important;
+}
+
+/* Custom theme color variables */
+:root {
+  --color-theme-1: #3b82f6;
+  --color-theme-2: #1e40af;
+  --color-header-text: #ffffff;
+  --color-content-text: #1e293b;
+}
+
+/* Theme color classes that use CSS variables */
+.bg-theme-1 {
+  background-color: var(--color-theme-1) !important;
+}
+
+.bg-theme-2 {
+  background-color: var(--color-theme-2) !important;
+}
+
+.text-theme-1 {
+  color: var(--color-theme-1) !important;
+}
+
+.text-theme-2 {
+  color: var(--color-theme-2) !important;
+}
+
+.border-theme-1 {
+  border-color: var(--color-theme-1) !important;
+}
+
+.border-theme-2 {
+  border-color: var(--color-theme-2) !important;
+}
+
+/* Header text with optimal contrast */
+.header-text-optimal {
+  color: var(--color-header-text);
+}
+
+.content-text-optimal {
+  color: var(--color-content-text);
+}
+
+/* Enhanced contrast for accessibility */
+.high-contrast-text {
+  color: var(--color-header-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
 /* Justice scale icon hover effect */
 .justice-scale-icon:hover {
   transform: scale(1.05);
