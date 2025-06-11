@@ -69,27 +69,40 @@ const Chart: React.FC<ChartProps> = ({
     // Destroy existing chart instance
     if (chartInstance.current) {
       chartInstance.current.destroy();
+      chartInstance.current = null;
     }
 
-    // Create new chart instance
-    chartInstance.current = new ChartJS(ctx, {
-      type,
-      data,
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        ...options,
-      },
-    });
+    try {
+      // Create new chart instance with error handling
+      chartInstance.current = new ChartJS(ctx, {
+        type,
+        data,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          ...options,
+        },
+      });
 
-    // Call getRef callback if provided
-    if (getRef) {
-      getRef({ instance: chartInstance.current });
+      // Call getRef callback if provided
+      if (getRef) {
+        getRef({ instance: chartInstance.current });
+      }
+    } catch (error) {
+      console.error("Failed to create chart instance:", error);
+      if (getRef) {
+        getRef({ instance: null });
+      }
     }
 
     return () => {
-      if (chartInstance.current) {
-        chartInstance.current.destroy();
+      if (chartInstance.current && !chartInstance.current.destroyed) {
+        try {
+          chartInstance.current.destroy();
+        } catch (error) {
+          console.warn("Error destroying chart:", error);
+        }
+        chartInstance.current = null;
       }
     };
   }, [type, data, options]);
