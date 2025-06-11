@@ -289,17 +289,17 @@ const menu: Array<Menu | "divider"> = [
       },
       {
         icon: "Activity",
-        pathname: "login",
+        pathname: "/login",
         title: "Login",
       },
       {
         icon: "Activity",
-        pathname: "register",
+        pathname: "/register",
         title: "Register",
       },
       {
         icon: "Activity",
-        pathname: "error-page",
+        pathname: "/error-page",
         title: "Error Page",
       },
       {
