@@ -51,8 +51,34 @@ const menu: Array<Menu | "divider"> = [
     subMenu: [
       {
         icon: "FileText",
-        pathname: "/crud-form",
         title: "Processos",
+        subMenu: [
+          {
+            icon: "LayoutDashboard",
+            pathname: "/legal-cases",
+            title: "Dashboard",
+          },
+          {
+            icon: "List",
+            pathname: "/legal-cases/list",
+            title: "Listar Processos",
+          },
+          {
+            icon: "Plus",
+            pathname: "/legal-cases/create",
+            title: "Novo Processo",
+          },
+          {
+            icon: "Bell",
+            pathname: "/legal-cases/intimations",
+            title: "Intimações",
+          },
+          {
+            icon: "BarChart3",
+            pathname: "/legal-cases/analytics",
+            title: "Relatórios",
+          },
+        ],
       },
       {
         icon: "FileSignature",
