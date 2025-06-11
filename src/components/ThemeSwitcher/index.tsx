@@ -9,13 +9,13 @@ import { selectDarkMode, setDarkMode } from "@/stores/darkModeSlice";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
 import Lucide from "@/components/Base/Lucide";
-import RubickImage from "@/assets/images/themes/rubick.svg";
-import IcewallImage from "@/assets/images/themes/icewall.svg";
-import TinkerImage from "@/assets/images/themes/tinker.svg";
-import EnigmaImage from "@/assets/images/themes/enigma.svg";
-import SideMenuImage from "@/assets/images/layouts/side-menu.svg";
-import SimpleMenuImage from "@/assets/images/layouts/simple-menu.svg";
-import TopMenuImage from "@/assets/images/layouts/top-menu.svg";
+import RubickImage from "@/assets/images/themes/rubick.svg?url";
+import IcewallImage from "@/assets/images/themes/icewall.svg?url";
+import TinkerImage from "@/assets/images/themes/tinker.svg?url";
+import EnigmaImage from "@/assets/images/themes/enigma.svg?url";
+import SideMenuImage from "@/assets/images/layouts/side-menu.svg?url";
+import SimpleMenuImage from "@/assets/images/layouts/simple-menu.svg?url";
+import TopMenuImage from "@/assets/images/layouts/top-menu.svg?url";
 
 function Main() {
   const dispatch = useAppDispatch();
