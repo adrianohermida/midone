@@ -151,7 +151,13 @@ const FileIcon: React.FC<FileIconProps> = ({ variant, className, file }) => {
 
   return (
     <div className={classes}>
-      <Lucide icon={iconName as any} className="w-full h-full" />
+      <Lucide
+        icon={
+          (iconName ||
+            "File") as keyof typeof import("@/components/Base/Lucide").icons
+        }
+        className="w-full h-full"
+      />
     </div>
   );
 };
