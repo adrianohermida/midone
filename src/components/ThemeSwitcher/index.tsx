@@ -186,8 +186,14 @@ function Main() {
                           )}
                         </div>
                       </div>
-                      <div className="mt-2.5 capitalize text-center text-xs">
-                        {layout.replace("-", " ")}
+                      <div className="mt-2.5 text-center text-xs">
+                        {layout
+                          .split("-")
+                          .map(
+                            (word) =>
+                              word.charAt(0).toUpperCase() + word.slice(1),
+                          )
+                          .join(" ")}
                       </div>
                     </div>
                   ))}
