@@ -310,7 +310,7 @@ function Lucide(props: LucideProps) {
       stackTrace: new Error().stack,
     });
     // Return a fallback icon instead of null to ensure something renders
-    const Component = createLucideIcon(icons["Activity"]);
+    const Component = createLucideIcon("Activity", icons["Activity"]);
     return (
       <Component
         {...computedProps}
