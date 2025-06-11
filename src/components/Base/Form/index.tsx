@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { classNames } from "@/utils/helpers";
 
 // Form Input
@@ -8,36 +8,41 @@ interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   formInputSize?: "sm" | "lg";
 }
 
-export const FormInput: React.FC<FormInputProps> = ({
-  variant = "default",
-  rounded = false,
-  formInputSize,
-  className,
-  children,
-  dangerouslySetInnerHTML,
-  ...props
-}) => {
-  const baseClasses =
-    "w-full text-sm border-slate-200 shadow-sm placeholder:text-slate-400/70 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80";
+export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
+  (
+    {
+      variant = "default",
+      rounded = false,
+      formInputSize,
+      className,
+      children,
+      dangerouslySetInnerHTML,
+      ...props
+    },
+    ref,
+  ) => {
+    const baseClasses =
+      "w-full text-sm border-slate-200 shadow-sm placeholder:text-slate-400/70 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80";
 
-  const variantClasses = {
-    default: "",
-    success: "border-success focus:ring-success focus:border-success",
-    warning: "border-warning focus:ring-warning focus:border-warning",
-    danger: "border-danger focus:ring-danger focus:border-danger",
-  };
+    const variantClasses = {
+      default: "",
+      success: "border-success focus:ring-success focus:border-success",
+      warning: "border-warning focus:ring-warning focus:border-warning",
+      danger: "border-danger focus:ring-danger focus:border-danger",
+    };
 
-  const classes = classNames(
-    baseClasses,
-    variantClasses[variant],
-    rounded ? "rounded-full" : "rounded-md",
-    formInputSize === "sm" && "text-xs py-1.5 px-2",
-    formInputSize === "lg" && "text-lg py-1.5 px-4",
-    className,
-  );
+    const classes = classNames(
+      baseClasses,
+      variantClasses[variant],
+      rounded ? "rounded-full" : "rounded-md",
+      formInputSize === "sm" && "text-xs py-1.5 px-2",
+      formInputSize === "lg" && "text-lg py-1.5 px-4",
+      className,
+    );
 
-  return <input className={classes} {...props} />;
-};
+    return <input ref={ref} className={classes} {...props} />;
+  },
+);
 
 // Form Check with subcomponents
 interface FormCheckProps extends React.InputHTMLAttributes<HTMLInputElement> {
