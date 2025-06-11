@@ -1,13 +1,9 @@
 import React from "react";
-import DashboardLayout from "../../../layouts/DashboardLayout";
-import ProcessosView from "../../../views/Juridico/ProcessosView";
+import JuridicioDashboardModerno from "../../../views/Juridico/JuridicioDashboardModerno";
 
 const ProcessosPage: React.FC = () => {
-  return (
-    <DashboardLayout>
-      <ProcessosView />
-    </DashboardLayout>
-  );
+  // Não usar DashboardLayout aqui pois o dashboard moderno já tem seu próprio layout
+  return <JuridicioDashboardModerno />;
 };
 
 export default ProcessosPage;
