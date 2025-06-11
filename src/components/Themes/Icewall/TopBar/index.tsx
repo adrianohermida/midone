@@ -20,9 +20,8 @@ function Main() {
           <Link to="/" className="hidden -intro-x md:flex items-center">
             <img
               alt="Lawdesk Legal Management System"
-              className="w-6 h-6"
+              className="w-6 h-6 justice-scale-icon justice-scale-white"
               src={justiceScaleUrl}
-              style={{ filter: "brightness(0) invert(1)" }}
             />
             <span className="ml-3 text-lg font-semibold text-white">
               Lawdesk
