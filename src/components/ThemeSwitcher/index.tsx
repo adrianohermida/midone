@@ -162,7 +162,7 @@ function Main() {
                 </p>
               </div>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={handleClose}
                 className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-darkmode-400 transition-colors"
               >
                 <Lucide icon="X" className="w-4 h-4" />
