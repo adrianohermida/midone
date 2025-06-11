@@ -83,6 +83,12 @@ import LegalCaseDetails from "@/pages/LegalCases/CaseDetails";
 import LegalCasesIntimations from "@/pages/LegalCases/Intimations";
 import LegalCasesAnalytics from "@/pages/LegalCases/Analytics";
 
+// Financial Module Pages
+import FinanceiroDashboard from "@/pages/Financeiro/Dashboard";
+import FinanceiroFaturamento from "@/pages/Financeiro/Faturamento";
+import FinanceiroTransacoes from "@/pages/Financeiro/Transacoes";
+import FinanceiroProdutos from "@/pages/Financeiro/Produtos";
+
 const Router = () => {
   return (
     <Routes>
