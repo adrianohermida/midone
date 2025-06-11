@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AuthLayout from "../layouts/AuthLayout";
 import { FormGroup, FormLabel, FormControl } from "../base-components/Form";
 import Button from "../base-components/Button";
-import { FormCheck } from "@/components/Base/Form";
+import FormCheckComponent from "@/components/Base/Form/FormCheck";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -103,7 +103,7 @@ const Login: React.FC = () => {
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <FormCheck
+              <FormCheckComponent
                 id="remember-me"
                 name="remember-me"
                 type="checkbox"
