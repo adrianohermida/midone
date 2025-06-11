@@ -294,3 +294,32 @@ export const FormInline: React.FC<FormInlineProps> = ({
     </div>
   );
 };
+
+// Form Help
+interface FormHelpProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const FormHelp: React.FC<FormHelpProps> = ({ children, className }) => {
+  const classes = classNames(
+    "mt-1 text-sm text-slate-500 dark:text-slate-400",
+    className,
+  );
+
+  return <div className={classes}>{children}</div>;
+};
+
+// Form Group
+interface FormGroupProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const FormGroup: React.FC<FormGroupProps> = ({
+  children,
+  className,
+}) => {
+  const classes = classNames("mb-4", className);
+  return <div className={classes}>{children}</div>;
+};
