@@ -32,6 +32,14 @@ import {
   Upload,
   Trash2,
   Brush,
+  PieChart,
+  ArrowRight,
+  ChevronUp,
+  MapPin,
+  CheckSquare,
+  ChevronsLeft,
+  ChevronLeft,
+  ChevronsRight,
 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
