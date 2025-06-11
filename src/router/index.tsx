@@ -72,6 +72,7 @@ import Chart from "@/pages/Chart";
 import Slider from "@/pages/Slider";
 import ImageZoom from "@/pages/ImageZoom";
 import ComponentDiagnostics from "@/pages/ComponentDiagnostics";
+import ComponentDiagnosticsReport from "@/pages/ComponentDiagnosticsReport";
 
 const Router = () => {
   return (
@@ -184,6 +185,10 @@ const Router = () => {
         <Route
           path="component-diagnostics"
           element={<ComponentDiagnostics />}
+        />
+        <Route
+          path="component-report"
+          element={<ComponentDiagnosticsReport />}
         />
 
         {/* 404 Route - Needs to be inside the nested route */}
