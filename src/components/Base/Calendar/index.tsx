@@ -93,20 +93,48 @@ export const Draggable: React.FC<DraggableProps> = ({
 
   useEffect(() => {
     if (draggableRef.current) {
-      // Initialize draggable
-      const draggable = new (window as any).Draggable(draggableRef.current, {
-        itemSelector: ".fc-event",
-        eventData: eventData,
-      });
+      // Check if Draggable is available before trying to use it
+      if (typeof (window as any).Draggable === "function") {
+        try {
+          // Initialize draggable
+          const draggable = new (window as any).Draggable(
+            draggableRef.current,
+            {
+              itemSelector: ".fc-event",
+              eventData: eventData,
+              ...options,
+            },
+          );
 
-      return () => {
-        draggable.destroy();
-      };
+          return () => {
+            if (draggable && typeof draggable.destroy === "function") {
+              draggable.destroy();
+            }
+          };
+        } catch (error) {
+          console.warn("Failed to initialize Draggable:", error);
+        }
+      } else {
+        console.warn(
+          "Draggable library not available. Drag functionality disabled.",
+        );
+      }
     }
-  }, [eventData]);
+  }, [eventData, options]);
 
   return (
-    <div ref={draggableRef} className={className} id={id}>
+    <div
+      ref={draggableRef}
+      className={className}
+      id={id}
+      draggable={true}
+      onDragStart={(e) => {
+        // Basic HTML5 drag functionality as fallback
+        if (eventData) {
+          e.dataTransfer.setData("application/json", JSON.stringify(eventData));
+        }
+      }}
+    >
       {children}
     </div>
   );
