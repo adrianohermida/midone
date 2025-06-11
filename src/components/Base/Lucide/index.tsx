@@ -91,6 +91,11 @@ export const icons = {
   ChevronsLeft,
   ChevronLeft,
   ChevronsRight,
+  UserPlus,
+  Lock,
+  HelpCircle,
+  LogOut,
+  Building2,
 };
 
 interface LucideProps extends React.ComponentPropsWithoutRef<"svg"> {
