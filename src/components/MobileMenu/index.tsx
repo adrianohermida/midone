@@ -98,8 +98,10 @@ function Main() {
           </div>
           <ul className="py-2">
             {/* BEGIN: First Child */}
-            {formattedMenu.map((menu, menuKey) =>
-              menu == "divider" ? (
+            {formattedMenu.map((menu, menuKey) => {
+              const submenuRef = useRef<HTMLUListElement>(null);
+
+              return menu == "divider" ? (
                 <li className="my-6 menu__divider" key={menuKey}></li>
               ) : (
                 <li key={menuKey}>
@@ -134,6 +136,7 @@ function Main() {
                   {/* BEGIN: Second Child */}
                   {menu.subMenu && (
                     <Transition
+                      nodeRef={submenuRef}
                       in={menu.activeDropdown}
                       onEnter={enter}
                       onExit={leave}
@@ -207,7 +210,7 @@ function Main() {
                                             linkTo(
                                               lastSubMenu,
                                               navigate,
-                                              setActiveMobileMenu,
+                                              setActiveMobileMenu
                                             );
                                             setFormattedMenu([
                                               ...formattedMenu,
@@ -222,7 +225,7 @@ function Main() {
                                           </div>
                                         </a>
                                       </li>
-                                    ),
+                                    )
                                   )}
                                 </ul>
                               </Transition>
@@ -235,7 +238,7 @@ function Main() {
                   )}
                   {/* END: Second Child */}
                 </li>
-              ),
+              )
             )}
             {/* END: First Child */}
           </ul>
