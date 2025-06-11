@@ -31,12 +31,14 @@ function Main() {
   };
 
   const getResponsavelColor = (responsavel: string) => {
-    return responsavel === "Cliente" ? "bg-primary/10 text-primary" : "bg-warning/10 text-warning";
+    return responsavel === "Cliente"
+      ? "bg-primary/10 text-primary"
+      : "bg-warning/10 text-warning";
   };
 
   const totalCustas = custas.reduce((sum, c) => sum + c.valor, 0);
-  const custasVencidas = custas.filter(c => c.status === "Vencido").length;
-  const custas Pendentes = custas.filter(c => c.status === "Pendente").length;
+  const custasVencidas = custas.filter((c) => c.status === "Vencido").length;
+  const custasPendentes = custas.filter((c) => c.status === "Pendente").length;
 
   return (
     <>
@@ -85,7 +87,10 @@ function Main() {
           <div className="report-box zoom-in">
             <div className="box p-5">
               <div className="flex">
-                <Lucide icon="Receipt" className="report-box__icon text-primary" />
+                <Lucide
+                  icon="Receipt"
+                  className="report-box__icon text-primary"
+                />
                 <div className="ml-auto">
                   <div className="report-box__indicator bg-success cursor-pointer">
                     8%
@@ -94,7 +99,7 @@ function Main() {
                 </div>
               </div>
               <div className="text-3xl font-medium leading-8 mt-6">
-                R$ {new Intl.NumberFormat('pt-BR').format(totalCustas)}
+                R$ {new Intl.NumberFormat("pt-BR").format(totalCustas)}
               </div>
               <div className="text-base text-slate-500 mt-1">
                 Total em Custas
@@ -107,7 +112,10 @@ function Main() {
           <div className="report-box zoom-in">
             <div className="box p-5">
               <div className="flex">
-                <Lucide icon="Clock" className="report-box__icon text-warning" />
+                <Lucide
+                  icon="Clock"
+                  className="report-box__icon text-warning"
+                />
                 <div className="ml-auto">
                   <div className="report-box__indicator bg-warning cursor-pointer">
                     5%
@@ -129,7 +137,10 @@ function Main() {
           <div className="report-box zoom-in">
             <div className="box p-5">
               <div className="flex">
-                <Lucide icon="AlertTriangle" className="report-box__icon text-danger" />
+                <Lucide
+                  icon="AlertTriangle"
+                  className="report-box__icon text-danger"
+                />
                 <div className="ml-auto">
                   <div className="report-box__indicator bg-danger cursor-pointer">
                     12%
@@ -151,7 +162,10 @@ function Main() {
           <div className="report-box zoom-in">
             <div className="box p-5">
               <div className="flex">
-                <Lucide icon="TrendingUp" className="report-box__icon text-success" />
+                <Lucide
+                  icon="TrendingUp"
+                  className="report-box__icon text-success"
+                />
                 <div className="ml-auto">
                   <div className="report-box__indicator bg-success cursor-pointer">
                     3%
@@ -162,9 +176,7 @@ function Main() {
               <div className="text-3xl font-medium leading-8 mt-6">
                 R$ {Math.round(totalCustas / custas.length)}
               </div>
-              <div className="text-base text-slate-500 mt-1">
-                Valor Médio
-              </div>
+              <div className="text-base text-slate-500 mt-1">Valor Médio</div>
             </div>
           </div>
         </div>
@@ -220,7 +232,7 @@ function Main() {
                   <label className="w-12 flex-none xl:w-auto xl:flex-initial mr-2">
                     Status:
                   </label>
-                  <FormSelect 
+                  <FormSelect
                     className="mt-2 sm:mt-0"
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
@@ -291,39 +303,51 @@ function Main() {
 
                   <Table.Td className="first:rounded-l-md last:rounded-r-md text-center bg-white border-b-0 dark:bg-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
                     <div className="font-medium text-lg">
-                      R$ {new Intl.NumberFormat('pt-BR').format(custa.valor)}
+                      R$ {new Intl.NumberFormat("pt-BR").format(custa.valor)}
                     </div>
                   </Table.Td>
 
                   <Table.Td className="first:rounded-l-md last:rounded-r-md text-center bg-white border-b-0 dark:bg-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
-                    <div className={clsx([
-                      "px-2 py-1 rounded-full text-xs font-medium inline-block",
-                      getResponsavelColor(custa.responsavel)
-                    ])}>
+                    <div
+                      className={clsx([
+                        "px-2 py-1 rounded-full text-xs font-medium inline-block",
+                        getResponsavelColor(custa.responsavel),
+                      ])}
+                    >
                       {custa.responsavel}
                     </div>
                   </Table.Td>
 
                   <Table.Td className="first:rounded-l-md last:rounded-r-md text-center bg-white border-b-0 dark:bg-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
                     <div className="text-sm">
-                      {new Date(custa.dataVencimento).toLocaleDateString('pt-BR')}
+                      {new Date(custa.dataVencimento).toLocaleDateString(
+                        "pt-BR",
+                      )}
                     </div>
                     {custa.dataPagamento && (
                       <div className="text-slate-500 text-xs mt-1">
-                        Pago: {new Date(custa.dataPagamento).toLocaleDateString('pt-BR')}
+                        Pago:{" "}
+                        {new Date(custa.dataPagamento).toLocaleDateString(
+                          "pt-BR",
+                        )}
                       </div>
                     )}
                   </Table.Td>
 
                   <Table.Td className="first:rounded-l-md last:rounded-r-md text-center bg-white border-b-0 dark:bg-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
-                    <div className={clsx([
-                      "flex items-center justify-center font-medium",
-                      getStatusColor(custa.status)
-                    ])}>
+                    <div
+                      className={clsx([
+                        "flex items-center justify-center font-medium",
+                        getStatusColor(custa.status),
+                      ])}
+                    >
                       <Lucide
                         icon={
-                          custa.status === "Pago" ? "CheckSquare" :
-                          custa.status === "Pendente" ? "Clock" : "AlertTriangle"
+                          custa.status === "Pago"
+                            ? "CheckSquare"
+                            : custa.status === "Pendente"
+                              ? "Clock"
+                              : "AlertTriangle"
                         }
                         className="w-4 h-4 mr-2"
                       />
@@ -340,8 +364,8 @@ function Main() {
                   <Table.Td className="first:rounded-l-md last:rounded-r-md text-center bg-white border-b-0 dark:bg-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
                     <div className="flex items-center justify-center">
                       <Tippy content="Ver detalhes" className="tooltip">
-                        <a 
-                          className="flex items-center mr-3 text-primary" 
+                        <a
+                          className="flex items-center mr-3 text-primary"
                           href={`/financeiro/processo/${custa.id}`}
                         >
                           <Lucide icon="Eye" className="w-4 h-4" />
@@ -357,7 +381,10 @@ function Main() {
                             Editar Custa
                           </Menu.Item>
                           <Menu.Item>
-                            <Lucide icon="DollarSign" className="w-4 h-4 mr-2" />
+                            <Lucide
+                              icon="DollarSign"
+                              className="w-4 h-4 mr-2"
+                            />
                             Marcar como Pago
                           </Menu.Item>
                           <Menu.Item>
@@ -390,7 +417,8 @@ function Main() {
             <div className="alert alert-warning show flex items-center mb-2">
               <Lucide icon="AlertTriangle" className="w-6 h-6 mr-2" />
               <div>
-                <strong>Atenção!</strong> Você possui {custasVencidas} custas vencidas que precisam de atenção.
+                <strong>Atenção!</strong> Você possui {custasVencidas} custas
+                vencidas que precisam de atenção.
                 <Button variant="outline-warning" size="sm" className="ml-4">
                   Ver Custas Vencidas
                 </Button>
