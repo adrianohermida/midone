@@ -5,6 +5,8 @@ import { classNames } from "@/utils/helpers";
 interface FileIconProps {
   variant?: string;
   className?: string;
+  src?: string;
+  type?: string;
   file?: {
     name?: string;
     type?: string;
@@ -12,7 +14,13 @@ interface FileIconProps {
   };
 }
 
-const FileIcon: React.FC<FileIconProps> = ({ variant, className, file }) => {
+const FileIcon: React.FC<FileIconProps> = ({
+  variant,
+  className,
+  src,
+  type,
+  file,
+}) => {
   const getIconByType = (filename: string = "", type: string = "") => {
     const extension = filename.split(".").pop()?.toLowerCase();
 
