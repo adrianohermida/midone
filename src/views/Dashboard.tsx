@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import MainLayout from "../layouts/MainLayout";
+import DashboardLayout from "../layouts/DashboardLayout";
+import TransactionsWidget from "../components/TransactionsWidget";
+import RecentActivities from "../components/RecentActivities";
 import Button from "../base-components/Button";
 
 const Dashboard: React.FC = () => {
@@ -26,7 +28,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <MainLayout>
+    <DashboardLayout>
       <div className="px-4 py-6 sm:px-0">
         {/* Welcome Section */}
         <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
@@ -272,7 +274,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
-    </MainLayout>
+    </DashboardLayout>
   );
 };
 
