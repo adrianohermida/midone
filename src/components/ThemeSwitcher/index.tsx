@@ -111,15 +111,23 @@ function Main() {
                         ])}
                       >
                         <div className="w-full h-full overflow-hidden rounded-md">
-                          {themeImages[
+                          {(themeImages[
                             `/src/assets/images/themes/${theme}.png`
-                          ] !== undefined && (
+                          ] ||
+                            themeImages[
+                              `/src/assets/images/themes/${theme}.svg`
+                            ]) && (
                             <img
                               className="w-full h-full"
                               src={
-                                themeImages[
-                                  `/src/assets/images/themes/${theme}.png`
-                                ].default
+                                (
+                                  themeImages[
+                                    `/src/assets/images/themes/${theme}.png`
+                                  ] ||
+                                  themeImages[
+                                    `/src/assets/images/themes/${theme}.svg`
+                                  ]
+                                ).default
                               }
                             />
                           )}

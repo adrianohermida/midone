@@ -1,0 +1,6 @@
+<svg width="150" height="100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="150" height="100" fill="#f1f5f9"/>
+  <rect x="0" y="0" width="40" height="100" fill="#334155"/>
+  <rect x="0" y="0" width="150" height="20" fill="#475569"/>
+  <text x="75" y="60" text-anchor="middle" fill="#64748b" font-size="10px" font-family="Arial, sans-serif">Side Menu</text>
+</svg>
