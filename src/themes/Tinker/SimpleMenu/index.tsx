@@ -15,7 +15,7 @@ import {
 } from "./simple-menu";
 import Lucide from "@/components/Base/Lucide";
 import Tippy from "@/components/Base/Tippy";
-import logoUrl from "@/assets/images/logo.svg";
+import justiceScaleUrl from "@/assets/images/justice-scale.svg";
 import clsx from "clsx";
 import TopBar from "@/components/Themes/Tinker/TopBar";
 import MobileMenu from "@/components/MobileMenu";
@@ -182,7 +182,7 @@ function Main() {
                                                 : lastSubMenu.pathname
                                             }
                                             onClick={(
-                                              event: React.MouseEvent
+                                              event: React.MouseEvent,
                                             ) => {
                                               event.preventDefault();
                                               linkTo(lastSubMenu, navigate);
@@ -204,7 +204,7 @@ function Main() {
                                             </div>
                                           </Tippy>
                                         </li>
-                                      )
+                                      ),
                                     )}
                                   </ul>
                                 </Transition>
@@ -217,7 +217,7 @@ function Main() {
                     )}
                     {/* END: Second Child */}
                   </li>
-                )
+                ),
               )}
               {/* END: First Child */}
             </ul>
