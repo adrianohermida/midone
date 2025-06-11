@@ -278,7 +278,6 @@ function Main() {
             <option>50</option>
           </FormSelect>
         </div>
-        {/* END: Pagination */}
       </div>
 
       {/* BEGIN: Quick Stats */}
