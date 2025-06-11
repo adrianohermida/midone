@@ -246,13 +246,13 @@ function Main() {
                       key={colorScheme.name}
                       onClick={() => switchColorScheme(colorScheme.name)}
                       className={clsx([
-                        "relative aspect-square border rounded-lg hover:border-theme-1/40 transition-all duration-200 p-1",
+                        "relative aspect-square border rounded-lg hover:border-theme-1/40 transition-all duration-200 hover:scale-105 p-1",
                         activeColorScheme === colorScheme.name
-                          ? "border-theme-1 shadow-sm"
+                          ? "border-theme-1 shadow-md scale-105"
                           : "border-slate-200/80 dark:border-darkmode-400",
                       ])}
                     >
-                      <div className="w-full h-full rounded flex overflow-hidden">
+                      <div className="w-full h-full rounded-md flex overflow-hidden shadow-sm">
                         <div
                           className="w-1/2 h-full"
                           style={{ backgroundColor: colorScheme.colors[0] }}
@@ -264,11 +264,8 @@ function Main() {
                       </div>
                       {activeColorScheme === colorScheme.name && (
                         <div className="absolute -top-1 -right-1">
-                          <div className="w-4 h-4 bg-theme-1 rounded-full flex items-center justify-center shadow-md">
-                            <Lucide
-                              icon="Check"
-                              className="w-2.5 h-2.5 text-white"
-                            />
+                          <div className="w-4 h-4 bg-white dark:bg-darkmode-600 rounded-full flex items-center justify-center shadow-lg border border-theme-1">
+                            <div className="w-2 h-2 bg-theme-1 rounded-full"></div>
                           </div>
                         </div>
                       )}
