@@ -34,12 +34,12 @@ function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
           >
             <img
               alt="Lawdesk Legal Management System"
-              className="w-8 h-8 text-white header-text-optimal"
+              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white header-text-optimal lawdesk-logo"
               src={lawdeskLogoUrl}
             />
             <span
               className={clsx([
-                "ml-3 text-xl font-bold text-white header-text-optimal",
+                "ml-3 text-lg sm:text-xl font-bold text-white header-text-optimal lawdesk-title",
                 props.layout == "side-menu" && "hidden xl:block",
                 props.layout == "simple-menu" && "hidden",
               ])}
