@@ -180,6 +180,12 @@ const Router = () => {
         <Route path="slider" element={<Slider />} />
         <Route path="image-zoom" element={<ImageZoom />} />
 
+        {/* Diagnostics Route */}
+        <Route
+          path="component-diagnostics"
+          element={<ComponentDiagnostics />}
+        />
+
         {/* 404 Route - Needs to be inside the nested route */}
         <Route path="*" element={<ErrorPage />} />
       </Route>
