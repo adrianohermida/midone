@@ -26,26 +26,26 @@ function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
           <Link
             to="/"
             className={clsx([
-              "-intro-x hidden md:flex",
+              "-intro-x hidden md:flex items-center",
               props.layout == "side-menu" && "xl:w-[180px]",
               props.layout == "simple-menu" && "xl:w-auto",
               props.layout == "top-menu" && "w-auto",
             ])}
           >
             <img
-              alt="Enigma Tailwind HTML Admin Template"
-              className="w-6"
-              src={logoUrl}
+              alt="Lawdesk Legal Management System"
+              className="w-6 h-6 text-white"
+              src={justiceScaleUrl}
+              style={{ filter: "brightness(0) invert(1)" }}
             />
             <span
               className={clsx([
-                "ml-3 text-lg text-white",
+                "ml-3 text-lg font-semibold text-white",
                 props.layout == "side-menu" && "hidden xl:block",
                 props.layout == "simple-menu" && "hidden",
               ])}
             >
-              {" "}
-              Enigma{" "}
+              Lawdesk
             </span>
           </Link>
           {/* END: Logo */}
