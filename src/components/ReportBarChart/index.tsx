@@ -93,27 +93,56 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
   }, [colorScheme, darkMode]);
 
   useEffect(() => {
-    setInterval(() => {
-      if (reportBarChartRef.current) {
-        const chartInstance = reportBarChartRef.current.instance;
-        const chartConfig = chartInstance.config;
+    let intervalId: NodeJS.Timeout | null = null;
 
-        // Swap visitor data
-        const newData = chartConfig.data.datasets[0].data[0];
-        chartConfig.data.datasets[0].data.shift();
-        chartConfig.data.datasets[0].data.push(newData);
-        chartInstance.update();
+    if (reportBarChartRef.current?.instance) {
+      intervalId = setInterval(() => {
+        const chartInstance = reportBarChartRef.current?.instance;
+        if (
+          chartInstance &&
+          chartInstance.config &&
+          chartInstance.config.data
+        ) {
+          try {
+            const chartConfig = chartInstance.config;
+            const datasets = chartConfig.data.datasets;
 
-        // Swap visitor bar color
-        if (Array.isArray(chartConfig.data.datasets[0].backgroundColor)) {
-          const newColor = chartConfig.data.datasets[0].backgroundColor[0];
-          chartConfig.data.datasets[0].backgroundColor.shift();
-          chartConfig.data.datasets[0].backgroundColor.push(newColor);
+            if (
+              datasets &&
+              datasets[0] &&
+              datasets[0].data &&
+              datasets[0].data.length > 0
+            ) {
+              // Swap visitor data
+              const newData = datasets[0].data[0];
+              datasets[0].data.shift();
+              datasets[0].data.push(newData);
+
+              // Swap visitor bar color
+              if (
+                Array.isArray(datasets[0].backgroundColor) &&
+                datasets[0].backgroundColor.length > 0
+              ) {
+                const newColor = datasets[0].backgroundColor[0];
+                datasets[0].backgroundColor.shift();
+                datasets[0].backgroundColor.push(newColor);
+              }
+
+              chartInstance.update("none"); // Use 'none' animation mode for performance
+            }
+          } catch (error) {
+            console.warn("Chart update error:", error);
+          }
         }
-        chartInstance.update();
+      }, 2000); // Increased interval to 2 seconds for stability
+    }
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
       }
-    }, 1000);
-  }, [reportBarChartRef.current]);
+    };
+  }, [reportBarChartRef.current?.instance]);
 
   return (
     <Chart
