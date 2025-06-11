@@ -78,7 +78,7 @@ function Main() {
                       ])}
                     >
                       <div className="side-menu__icon">
-                        <Lucide icon={menu.icon} />
+                        <Lucide icon={menu.icon || "Home"} />
                       </div>
                       <div className="side-menu__title">
                         {menu.title}
@@ -174,7 +174,7 @@ function Main() {
                                                 : lastSubMenu.pathname
                                             }
                                             onClick={(
-                                              event: React.MouseEvent
+                                              event: React.MouseEvent,
                                             ) => {
                                               event.preventDefault();
                                               linkTo(lastSubMenu, navigate);
@@ -196,7 +196,7 @@ function Main() {
                                             </div>
                                           </Tippy>
                                         </li>
-                                      )
+                                      ),
                                     )}
                                   </ul>
                                 </Transition>
@@ -209,7 +209,7 @@ function Main() {
                     )}
                     {/* END: Second Child */}
                   </li>
-                )
+                ),
               )}
               {/* END: First Child */}
             </ul>
