@@ -97,6 +97,12 @@ import FinanceiroRelatorios from "@/pages/Financeiro/Relatorios";
 import FinanceiroProcessoDetalhes from "@/pages/Financeiro/ProcessoDetalhes";
 import FinanceiroAssinaturasCobrancas from "@/pages/Financeiro/AssinaturasCobrancas";
 
+// CRM Module Pages
+import CRMDashboard from "@/pages/CRM/Dashboard";
+import CRMContatos from "@/pages/CRM/Contatos";
+import CRMNegocios from "@/pages/CRM/Negocios";
+import CRMSuporte from "@/pages/CRM/Suporte";
+
 const Router = () => {
   return (
     <Routes>
@@ -178,6 +184,13 @@ const Router = () => {
         />
         <Route path="financeiro/fornecedores" element={<SellerList />} />
         <Route path="financeiro/fornecedores/:id" element={<SellerDetail />} />
+
+        {/* CRM Module Routes */}
+        <Route path="crm" element={<CRMDashboard />} />
+        <Route path="crm/dashboard" element={<CRMDashboard />} />
+        <Route path="crm/contatos" element={<CRMContatos />} />
+        <Route path="crm/negocios" element={<CRMNegocios />} />
+        <Route path="crm/suporte" element={<CRMSuporte />} />
 
         {/* Main Pages Routes */}
         <Route path="inbox" element={<Inbox />} />
