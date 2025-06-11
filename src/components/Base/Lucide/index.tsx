@@ -291,6 +291,14 @@ const icons = {
 
 function Lucide(props: LucideProps) {
   const { icon, className, ...computedProps } = props;
+
+  // Type guard to ensure icon is a valid string and exists in icons
+  if (!icon || typeof icon !== "string" || !(icon in icons)) {
+    console.warn(`Invalid icon prop passed to Lucide component: ${icon}`);
+    // Return a default icon or null to prevent the error
+    return null;
+  }
+
   const Component = createLucideIcon(icons[icon]);
 
   return (
