@@ -103,20 +103,13 @@ const Login: React.FC = () => {
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <FormCheck>
-                <FormCheck.Input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-                />
-                <FormCheck.Label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-900"
-                >
-                  Remember me
-                </FormCheck.Label>
-              </FormCheck>
+              <FormCheck
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                label="Remember me"
+                className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              />
             </div>
 
             <div className="text-sm">
