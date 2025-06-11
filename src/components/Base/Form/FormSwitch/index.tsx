@@ -52,7 +52,12 @@ FormSwitch.Label = ({ children, className, htmlFor }) => {
   );
 };
 
-FormSwitch.Input = ({ className, ...props }) => {
+FormSwitch.Input = ({
+  className,
+  children,
+  dangerouslySetInnerHTML,
+  ...props
+}) => {
   const switchClasses =
     "w-[38px] h-[24px] p-px rounded-full relative before:w-[20px] before:h-[20px] before:shadow-[1px_1px_3px_rgba(0,0,0,0.25)] before:transition-[margin-left] before:duration-200 before:ease-in-out before:absolute before:inset-y-0 before:my-auto before:rounded-full before:dark:bg-darkmode-600 checked:bg-primary checked:border-primary checked:bg-none before:checked:ml-[14px] before:checked:bg-white cursor-pointer focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 bg-slate-200 border-slate-200 before:bg-slate-500";
 
