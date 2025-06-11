@@ -22,9 +22,8 @@ import {
 } from "lucide-react";
 import DashboardLayout from "../../../../layouts/DashboardLayout";
 import Button from "../../../../base-components/Button";
-import { Tab } from "../../../../base-components/Headless";
+import { Tab, Menu } from "../../../../base-components/Headless";
 import Table from "../../../../base-components/Table";
-import { Menu } from "../../../../base-components/Headless";
 import Tippy from "../../../../base-components/Tippy";
 import juridicoData from "../../../../data/juridico.json";
 
