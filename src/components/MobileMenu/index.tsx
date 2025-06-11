@@ -254,7 +254,7 @@ function Main() {
                     }}
                   >
                     <div className="menu__icon">
-                      <Lucide icon={menu.icon} />
+                      <Lucide icon={menu.icon || "Home"} />
                     </div>
                     <div className="menu__title">
                       {menu.title}
