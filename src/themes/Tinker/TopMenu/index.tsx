@@ -334,7 +334,9 @@ function Main() {
                                         }}
                                       >
                                         <div className="top-menu__icon">
-                                          <Lucide icon={lastSubMenu.icon} />
+                                          <Lucide
+                                            icon={lastSubMenu.icon || "Zap"}
+                                          />
                                         </div>
                                         <div className="top-menu__title">
                                           {lastSubMenu.title}
