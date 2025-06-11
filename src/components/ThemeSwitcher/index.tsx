@@ -141,8 +141,8 @@ function Main() {
                           )}
                         </div>
                       </div>
-                      <div className="mt-2.5 capitalize text-center text-xs">
-                        {theme}
+                      <div className="mt-2.5 text-center text-xs">
+                        {themeConfigs[theme]?.displayName || theme}
                       </div>
                     </div>
                   ))}
