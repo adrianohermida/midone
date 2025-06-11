@@ -16,7 +16,7 @@ import {
   removeCustomTheme,
   CustomTheme,
 } from "@/stores/customThemeSlice";
-import { Dialog } from "@/components/Base/Headless";
+import { Slideover } from "@/components/Base/Headless";
 import { Tab } from "@/components/Base/Headless";
 import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
