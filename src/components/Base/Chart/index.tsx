@@ -33,6 +33,7 @@ interface ChartProps {
   width?: number | string;
   height?: number | string;
   className?: string;
+  getRef?: (ref: { instance: ChartJS | null }) => void;
 }
 
 const Chart: React.FC<ChartProps> = ({
@@ -42,6 +43,7 @@ const Chart: React.FC<ChartProps> = ({
   width,
   height,
   className,
+  getRef,
 }) => {
   const chartRef = useRef<HTMLCanvasElement>(null);
   const chartInstance = useRef<ChartJS | null>(null);
@@ -65,6 +67,11 @@ const Chart: React.FC<ChartProps> = ({
         ...options,
       },
     });
+
+    // Call getRef callback if provided
+    if (getRef) {
+      getRef({ instance: chartInstance.current });
+    }
 
     return () => {
       if (chartInstance.current) {
