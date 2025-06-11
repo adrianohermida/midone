@@ -34,9 +34,8 @@ function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
           >
             <img
               alt="Lawdesk Legal Management System"
-              className="w-6 h-6 text-white"
+              className="w-6 h-6 justice-scale-icon justice-scale-white"
               src={justiceScaleUrl}
-              style={{ filter: "brightness(0) invert(1)" }}
             />
             <span
               className={clsx([
