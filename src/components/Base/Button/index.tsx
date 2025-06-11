@@ -76,9 +76,9 @@ const Button: React.FC<ButtonProps> = ({
   );
 
   return (
-    <button className={classes} {...props}>
+    <Component className={classes} {...props}>
       {children}
-    </button>
+    </Component>
   );
 };
 
