@@ -29,6 +29,9 @@ import {
   Users,
   FileText,
   Activity,
+  Upload,
+  Trash2,
+  Brush,
 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
