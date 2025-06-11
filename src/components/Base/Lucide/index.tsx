@@ -127,7 +127,7 @@ const icons = {
   Github: dynamicIconImports.github,
   Gitlab: dynamicIconImports.gitlab,
   Globe: dynamicIconImports.globe,
-  Grid: dynamicIconImports.grid,
+  Grid: dynamicIconImports["grid-3x3"],
   HardDrive: dynamicIconImports["hard-drive"],
   Hash: dynamicIconImports.hash,
   Headphones: dynamicIconImports.headphones,
