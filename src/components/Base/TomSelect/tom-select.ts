@@ -131,7 +131,7 @@ const updateValue = <T extends string | string[]>(
   );
   clonedEl.setAttribute(
     "data-initial-class",
-    Array.from(originalEl.classList).join(" ") as string,
+    Array.from(originalEl.classList).join(" "),
   );
 
   // Add new options
