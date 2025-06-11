@@ -452,7 +452,7 @@ function Main() {
                       {/* Predefined Templates */}
                       <div>
                         <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200 flex items-center">
-                          <Lucide icon="Layers" className="w-5 h-5 mr-2" />
+                          <Lucide icon="Layout" className="w-5 h-5 mr-2" />
                           Templates Oficiais
                         </h3>
                         <div className="grid grid-cols-2 gap-4">
@@ -592,7 +592,7 @@ function Main() {
                                   className="text-sm font-medium flex items-center"
                                 >
                                   <Lucide
-                                    icon="Type"
+                                    icon="Edit"
                                     className="w-4 h-4 mr-2"
                                   />
                                   Nome do Tema
@@ -662,7 +662,7 @@ function Main() {
                       {customThemes.length > 0 && (
                         <div>
                           <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200 flex items-center">
-                            <Lucide icon="Heart" className="w-5 h-5 mr-2" />
+                            <Lucide icon="Star" className="w-5 h-5 mr-2" />
                             Temas Salvos ({customThemes.length})
                           </h3>
                           <div className="space-y-3">
@@ -729,7 +729,7 @@ function Main() {
                                       className="opacity-0 group-hover:opacity-100 transition-opacity p-2"
                                     >
                                       <Lucide
-                                        icon="Trash2"
+                                        icon="Trash"
                                         className="w-3 h-3"
                                       />
                                     </Button>
@@ -942,7 +942,7 @@ function Main() {
                       {/* Reset Options */}
                       <div className="pt-6 border-t border-slate-200 dark:border-slate-700">
                         <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200 flex items-center">
-                          <Lucide icon="RotateCcw" className="w-5 h-5 mr-2" />
+                          <Lucide icon="Undo" className="w-5 h-5 mr-2" />
                           Opções de Reset
                         </h3>
                         <div className="space-y-3">
@@ -958,10 +958,7 @@ function Main() {
                               }}
                               className="w-full justify-start shadow-sm"
                             >
-                              <Lucide
-                                icon="RotateCcw"
-                                className="w-4 h-4 mr-2"
-                              />
+                              <Lucide icon="Undo" className="w-4 h-4 mr-2" />
                               Voltar ao Template Oficial
                             </Button>
                           )}
