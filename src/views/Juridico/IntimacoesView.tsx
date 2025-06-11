@@ -16,11 +16,11 @@ import {
   XCircle,
   MoreHorizontal,
 } from "lucide-react";
-import Button from "../../base-components/Button";
-import { FormInput, FormSelect } from "../../base-components/Form";
-import Table from "../../base-components/Table";
-import { Disclosure, Menu } from "../../base-components/Headless";
-import Tippy from "../../base-components/Tippy";
+import Button from "../../components/Base/Button";
+import { FormInput, FormSelect } from "../../components/Base/Form";
+import Table from "../../components/Base/Table";
+import { Disclosure, Menu } from "../../components/Base/Headless";
+import Tippy from "../../components/Base/Tippy";
 import juridicoData from "../../data/juridico.json";
 
 interface Intimacao {
