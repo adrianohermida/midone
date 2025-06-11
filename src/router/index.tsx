@@ -218,7 +218,7 @@ const Router = () => {
         />
         <Route
           path="juridico/processos/:id"
-          element={<JuridicoProcessoDetalhes />}
+          element={<ProcessoDetalhesModerno />}
         />
 
         {/* Main Pages Routes */}
