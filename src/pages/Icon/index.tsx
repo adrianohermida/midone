@@ -493,8 +493,8 @@ function Main() {
           <div className="mt-2 text-xs text-center">GlobeIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Layout" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">LayoutIcon</div>
+          <Lucide icon="Grid" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">GridIcon</div>
         </div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
