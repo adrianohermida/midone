@@ -63,10 +63,12 @@ export const FormLabel: React.FC<FormLabelProps> = ({
 interface FormSelectProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {
   variant?: "default" | "success" | "warning" | "danger";
+  formSelectSize?: "sm" | "lg";
 }
 
 export const FormSelect: React.FC<FormSelectProps> = ({
   variant = "default",
+  formSelectSize,
   className,
   children,
   ...props
@@ -81,7 +83,13 @@ export const FormSelect: React.FC<FormSelectProps> = ({
     danger: "border-danger focus:ring-danger focus:border-danger",
   };
 
-  const classes = classNames(baseClasses, variantClasses[variant], className);
+  const classes = classNames(
+    baseClasses,
+    variantClasses[variant],
+    formSelectSize === "sm" && "text-xs py-1.5 px-2",
+    formSelectSize === "lg" && "text-lg py-1.5 px-4",
+    className,
+  );
 
   return (
     <select className={classes} {...props}>
