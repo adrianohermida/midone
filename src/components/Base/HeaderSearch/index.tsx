@@ -185,7 +185,7 @@ function HeaderSearch({ className }: HeaderSearchProps) {
                       hideSearchDropdown();
                       setSearchQuery("");
                     }}
-                    className="flex items-center mt-2 w-full text-left hover:bg-slate-100 dark:hover:bg-darkmode-400 p-2 rounded"
+                    className="flex items-center mt-2 w-full text-left hover:bg-slate-100 dark:hover:bg-slate-700 p-2 rounded"
                   >
                     <div className="w-8 h-8 image-fit">
                       <img
