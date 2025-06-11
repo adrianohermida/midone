@@ -95,36 +95,6 @@ export function normalizeHex(hex: string): string {
   return "#" + hex.toLowerCase();
 }
 
-// Generate complementary color
-export function getComplementaryColor(hex: string): string {
-  const rgb = hexToRgb(hex);
-  if (!rgb) return hex;
-
-  // Simple complementary color calculation
-  const compR = 255 - rgb.r;
-  const compG = 255 - rgb.g;
-  const compB = 255 - rgb.b;
-
-  return rgbToHex(compR, compG, compB);
-}
-
-// Generate analogous colors
-export function getAnalogousColors(hex: string): string[] {
-  const rgb = hexToRgb(hex);
-  if (!rgb) return [hex];
-
-  // Convert to HSL for easier manipulation
-  const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
-
-  // Generate analogous colors by shifting hue
-  const analogous = [
-    hslToRgb((hsl.h + 30) % 360, hsl.s, hsl.l),
-    hslToRgb((hsl.h - 30 + 360) % 360, hsl.s, hsl.l),
-  ];
-
-  return analogous.map((rgb) => rgbToHex(rgb.r, rgb.g, rgb.b));
-}
-
 // Convert RGB to HSL
 function rgbToHsl(
   r: number,
@@ -244,7 +214,151 @@ export function generateColorPalette(baseColor: string): {
   };
 }
 
-// Apply theme colors to CSS variables
+// Generate complementary color
+export function getComplementaryColor(hex: string): string {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return hex;
+
+  const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+  const compHue = (hsl.h + 180) % 360;
+  const compRgb = hslToRgb(compHue, hsl.s, hsl.l);
+
+  return rgbToHex(compRgb.r, compRgb.g, compRgb.b);
+}
+
+// Generate analogous colors
+export function getAnalogousColors(hex: string): string[] {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return [hex];
+
+  const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+
+  const analogous = [
+    hslToRgb((hsl.h + 30) % 360, hsl.s, hsl.l),
+    hslToRgb((hsl.h - 30 + 360) % 360, hsl.s, hsl.l),
+  ];
+
+  return analogous.map((rgb) => rgbToHex(rgb.r, rgb.g, rgb.b));
+}
+
+// Generate triadic colors
+export function getTriadicColors(hex: string): string[] {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return [hex];
+
+  const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+
+  const triadic = [
+    hslToRgb((hsl.h + 120) % 360, hsl.s, hsl.l),
+    hslToRgb((hsl.h + 240) % 360, hsl.s, hsl.l),
+  ];
+
+  return triadic.map((rgb) => rgbToHex(rgb.r, rgb.g, rgb.b));
+}
+
+// Generate monochromatic colors
+export function getMonochromaticColors(hex: string): string[] {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return [hex];
+
+  const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+
+  const monochromatic = [
+    hslToRgb(hsl.h, hsl.s, Math.max(10, hsl.l - 30)),
+    hslToRgb(hsl.h, hsl.s, Math.max(10, hsl.l - 15)),
+    hslToRgb(hsl.h, hsl.s, Math.min(90, hsl.l + 15)),
+    hslToRgb(hsl.h, hsl.s, Math.min(90, hsl.l + 30)),
+  ];
+
+  return monochromatic.map((rgb) => rgbToHex(rgb.r, rgb.g, rgb.b));
+}
+
+// Generate random color
+export function generateRandomColor(): string {
+  const hue = Math.floor(Math.random() * 360);
+  const saturation = Math.floor(Math.random() * 50) + 50; // 50-100%
+  const lightness = Math.floor(Math.random() * 40) + 30; // 30-70%
+
+  const rgb = hslToRgb(hue, saturation, lightness);
+  return rgbToHex(rgb.r, rgb.g, rgb.b);
+}
+
+// Generate color palette suggestions
+export interface ColorPalette {
+  name: string;
+  colors: string[];
+  category: string;
+}
+
+export function generateColorPalettes(): ColorPalette[] {
+  return [
+    {
+      name: "Azul Profissional",
+      colors: ["#1e40af", "#3b82f6", "#60a5fa", "#93c5fd"],
+      category: "Profissional",
+    },
+    {
+      name: "Verde Natureza",
+      colors: ["#166534", "#16a34a", "#4ade80", "#86efac"],
+      category: "Natureza",
+    },
+    {
+      name: "Roxo Criativo",
+      colors: ["#6b21a8", "#9333ea", "#a855f7", "#c084fc"],
+      category: "Criativo",
+    },
+    {
+      name: "Laranja Energia",
+      colors: ["#c2410c", "#ea580c", "#fb923c", "#fdba74"],
+      category: "Energia",
+    },
+    {
+      name: "Vermelho Clássico",
+      colors: ["#991b1b", "#dc2626", "#f87171", "#fca5a5"],
+      category: "Clássico",
+    },
+    {
+      name: "Cinza Moderno",
+      colors: ["#374151", "#6b7280", "#9ca3af", "#d1d5db"],
+      category: "Moderno",
+    },
+    {
+      name: "Turquesa Oceano",
+      colors: ["#0f766e", "#14b8a6", "#5eead4", "#99f6e4"],
+      category: "Oceano",
+    },
+    {
+      name: "Rosa Suave",
+      colors: ["#be185d", "#ec4899", "#f472b6", "#f9a8d4"],
+      category: "Suave",
+    },
+  ];
+}
+
+// Generate new random palettes
+export function generateRandomPalettes(count: number = 4): ColorPalette[] {
+  const categories = ["Personalizada", "Aleatória", "Dinâmica", "Única"];
+  const palettes: ColorPalette[] = [];
+
+  for (let i = 0; i < count; i++) {
+    const baseColor = generateRandomColor();
+    const colors = [
+      baseColor,
+      ...getAnalogousColors(baseColor).slice(0, 1),
+      ...getMonochromaticColors(baseColor).slice(0, 2),
+    ];
+
+    palettes.push({
+      name: `Paleta ${i + 1}`,
+      colors,
+      category: categories[i % categories.length],
+    });
+  }
+
+  return palettes;
+}
+
+// Apply theme colors to CSS variables and DOM elements
 export function applyCustomThemeColors(
   primary: string,
   secondary: string,
@@ -283,12 +397,34 @@ export function applyCustomThemeColors(
   root.style.setProperty("--tw-color-secondary", secondary);
 
   // Apply immediate theme colors to existing elements
+  applyColorsToElements(
+    primary,
+    secondary,
+    headerTextColor,
+    secondaryTextColor,
+  );
+
+  // Force refresh of theme-dependent elements with transition
+  document.body.classList.add("theme-transition");
+  setTimeout(() => {
+    document.body.classList.remove("theme-transition");
+  }, 300);
+}
+
+// Apply colors to specific DOM elements
+function applyColorsToElements(
+  primary: string,
+  secondary: string,
+  headerText: string,
+  secondaryText: string,
+): void {
+  // Theme elements
   const themeElements = document.querySelectorAll(
     '.bg-theme-1, [class*="bg-theme-1"]',
   );
   themeElements.forEach((element) => {
     (element as HTMLElement).style.backgroundColor = primary;
-    (element as HTMLElement).style.color = headerTextColor;
+    (element as HTMLElement).style.color = headerText;
   });
 
   const theme2Elements = document.querySelectorAll(
@@ -296,40 +432,52 @@ export function applyCustomThemeColors(
   );
   theme2Elements.forEach((element) => {
     (element as HTMLElement).style.backgroundColor = secondary;
-    (element as HTMLElement).style.color = secondaryTextColor;
+    (element as HTMLElement).style.color = secondaryText;
   });
 
-  // Apply to sidebar elements specifically
-  const sidebarElements = document.querySelectorAll(".side-menu, .side-nav");
-  sidebarElements.forEach((element) => {
-    if (
-      element.classList.contains("side-menu--active") ||
-      element.classList.contains("side-nav--active")
-    ) {
-      (element as HTMLElement).style.backgroundColor = primary;
-      (element as HTMLElement).style.color = headerTextColor;
-    }
-  });
-
-  // Apply to top bar and header elements
-  const headerElements = document.querySelectorAll(
-    '[class*="top-bar"], [class*="header"], .bg-primary',
+  // Sidebar elements
+  const sidebarActiveElements = document.querySelectorAll(
+    ".side-menu--active, .side-nav--active",
   );
-  headerElements.forEach((element) => {
-    if (
-      element.classList.contains("bg-primary") ||
-      element.classList.contains("bg-theme-1")
-    ) {
-      (element as HTMLElement).style.backgroundColor = primary;
-      (element as HTMLElement).style.color = headerTextColor;
-    }
+  sidebarActiveElements.forEach((element) => {
+    (element as HTMLElement).style.backgroundColor = primary;
+    (element as HTMLElement).style.color = headerText;
   });
 
-  // Force refresh of theme-dependent elements with transition
-  document.body.classList.add("theme-transition");
-  setTimeout(() => {
-    document.body.classList.remove("theme-transition");
-  }, 300);
+  // Apply to buttons and links with primary colors
+  const primaryButtons = document.querySelectorAll(".btn-primary, .bg-primary");
+  primaryButtons.forEach((element) => {
+    (element as HTMLElement).style.backgroundColor = primary;
+    (element as HTMLElement).style.color = headerText;
+    (element as HTMLElement).style.borderColor = primary;
+  });
+
+  // Update logos and icons in headers
+  const logoTexts = document.querySelectorAll(".header-text-optimal");
+  logoTexts.forEach((element) => {
+    (element as HTMLElement).style.color = headerText;
+  });
+
+  // Update sidebar menu items for better contrast
+  const sideMenuItems = document.querySelectorAll(".side-menu");
+  sideMenuItems.forEach((element) => {
+    if (!element.classList.contains("side-menu--active")) {
+      const textElements = element.querySelectorAll("div, span, a");
+      textElements.forEach((textEl) => {
+        (textEl as HTMLElement).style.color = isDarkMode
+          ? "#cbd5e1"
+          : "#64748b";
+      });
+    }
+  });
+}
+
+// Reset to default theme colors
+export function resetToDefaultColors(isDarkMode: boolean = false): void {
+  const defaultPrimary = "#3b82f6";
+  const defaultSecondary = "#1e40af";
+
+  applyCustomThemeColors(defaultPrimary, defaultSecondary, isDarkMode);
 }
 
 export default {
@@ -342,7 +490,13 @@ export default {
   normalizeHex,
   getComplementaryColor,
   getAnalogousColors,
+  getTriadicColors,
+  getMonochromaticColors,
+  generateRandomColor,
+  generateColorPalettes,
+  generateRandomPalettes,
   adjustBrightness,
   generateColorPalette,
   applyCustomThemeColors,
+  resetToDefaultColors,
 };

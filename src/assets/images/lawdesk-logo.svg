@@ -1,0 +1,35 @@
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Escudo/Base -->
+  <path d="M12 2L4 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-8-3z" 
+        fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  
+  <!-- Balança central -->
+  <g stroke="currentColor" stroke-width="1.5" fill="none">
+    <!-- Haste central -->
+    <line x1="12" y1="8" x2="12" y2="16"/>
+    
+    <!-- Braço da balança -->
+    <line x1="8" y1="10" x2="16" y2="10"/>
+    
+    <!-- Prato esquerdo -->
+    <path d="M8 10v1c0 1 0.5 2 2 2h0c1.5 0 2-1 2-2v-1"/>
+    
+    <!-- Prato direito -->
+    <path d="M14 10v1c0 1 0.5 2 2 2h0c1.5 0 2-1 2-2v-1"/>
+    
+    <!-- Base da balança -->
+    <path d="M10 16h4"/>
+    
+    <!-- Detalhes decorativos -->
+    <circle cx="12" cy="9" r="0.5" fill="currentColor"/>
+  </g>
+  
+  <!-- Elementos de justiça -->
+  <g stroke="currentColor" stroke-width="1" fill="none" opacity="0.6">
+    <!-- Pequenas estrelas/elementos decorativos -->
+    <circle cx="7" cy="7" r="0.5"/>
+    <circle cx="17" cy="7" r="0.5"/>
+    <circle cx="6" cy="14" r="0.5"/>
+    <circle cx="18" cy="14" r="0.5"/>
+  </g>
+</svg>
