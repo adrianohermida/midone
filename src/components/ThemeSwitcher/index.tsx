@@ -199,9 +199,9 @@ function Main() {
                       key={layout.name}
                       onClick={() => switchLayout(layout.name)}
                       className={clsx([
-                        "relative p-2 border rounded-lg hover:border-theme-1/40 transition-all duration-200",
+                        "relative p-2 border rounded-lg hover:border-theme-1/40 transition-all duration-200 hover:shadow-md",
                         activeTheme.layout === layout.name
-                          ? "border-theme-1 shadow-sm"
+                          ? "border-theme-1 shadow-md"
                           : "border-slate-200/80 dark:border-darkmode-400",
                       ])}
                     >
