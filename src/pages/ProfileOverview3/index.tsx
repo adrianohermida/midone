@@ -110,20 +110,23 @@ function Main() {
               </Menu>
             </div>
             <div className="p-5 border-t border-slate-200/60 dark:border-darkmode-400">
-              <a className="flex items-center font-medium text-primary" href="">
+              <div className="flex items-center font-medium text-primary cursor-pointer hover:text-primary/80">
                 <Lucide icon="Activity" className="w-4 h-4 mr-2" /> Personal
                 Information
-              </a>
-              <a className="flex items-center mt-5" href="">
-                <Lucide icon="Box" className="w-4 h-4 mr-2" /> Account Settings
-              </a>
-              <a className="flex items-center mt-5" href="">
-                <Lucide icon="Lock" className="w-4 h-4 mr-2" /> Change Password
-              </a>
-              <a className="flex items-center mt-5" href="">
-                <Lucide icon="Settings" className="w-4 h-4 mr-2" /> User
+              </div>
+              <div
+                className="flex items-center mt-5 cursor-pointer hover:text-primary transition-colors"
+                onClick={() => navigate("/update-profile")}
+              >
+                <Lucide icon="Settings" className="w-4 h-4 mr-2" /> Account
                 Settings
-              </a>
+              </div>
+              <div
+                className="flex items-center mt-5 cursor-pointer hover:text-primary transition-colors"
+                onClick={() => navigate("/change-password")}
+              >
+                <Lucide icon="Lock" className="w-4 h-4 mr-2" /> Change Password
+              </div>
             </div>
             <div className="p-5 border-t border-slate-200/60 dark:border-darkmode-400">
               <a className="flex items-center" href="">
