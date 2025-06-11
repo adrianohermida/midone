@@ -78,6 +78,14 @@ export const icons = {
   Upload,
   Trash2,
   Brush,
+  PieChart,
+  ArrowRight,
+  ChevronUp,
+  MapPin,
+  CheckSquare,
+  ChevronsLeft,
+  ChevronLeft,
+  ChevronsRight,
 };
 
 interface LucideProps extends React.ComponentPropsWithoutRef<"svg"> {
