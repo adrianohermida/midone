@@ -13,6 +13,7 @@ import {
   forceActiveMenuContext,
   forceActiveMenu,
 } from "./side-menu";
+import SecondLevelMenuItems from "./MenuItems";
 import Tippy from "@/components/Base/Tippy";
 import Lucide from "@/components/Base/Lucide";
 import clsx from "clsx";
