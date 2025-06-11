@@ -49,8 +49,8 @@ function Main() {
           <div className="mt-2 text-xs text-center">ArchiveIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Aperture" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">ApertureIcon</div>
+          <Lucide icon="Activity" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">ActivityIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Archive" className="block mx-auto" />
