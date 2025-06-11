@@ -20,6 +20,7 @@ import TopMenuImage from "@/assets/images/layouts/top-menu.svg";
 function Main() {
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const activeTheme = useAppSelector(selectTheme);
   const activeColorScheme = useAppSelector(selectColorScheme);
