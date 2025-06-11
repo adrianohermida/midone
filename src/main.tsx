@@ -1,20 +1,17 @@
+import ScrollToTop from "@/components/Base/ScrollToTop";
 import ReactDOM from "react-dom/client";
-import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./stores/store";
 import App from "./App";
+import "./libs";
+import "./assets/css/app.css";
 
-const root = document.getElementById("root");
-if (root) {
-  console.log("Root element found, rendering React with Router and Redux...");
-  ReactDOM.createRoot(root).render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>,
-  );
-} else {
-  console.error("Root element not found!");
-}
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+    <ScrollToTop />
+  </BrowserRouter>,
+);
