@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Lucide from "@/components/Base/Lucide";
-import justiceScaleUrl from "@/assets/images/justice-scale.svg";
+import lawdeskLogoUrl from "@/assets/images/lawdesk-logo.svg";
 import { Link } from "react-router-dom";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import { Popover } from "@/components/Base/Headless";
@@ -20,10 +20,10 @@ function Main() {
           <Link to="/" className="hidden -intro-x md:flex items-center">
             <img
               alt="Lawdesk Legal Management System"
-              className="w-6 h-6 justice-scale-icon justice-scale-white"
-              src={justiceScaleUrl}
+              className="w-8 h-8 text-white header-text-optimal"
+              src={lawdeskLogoUrl}
             />
-            <span className="ml-3 text-lg font-semibold text-white header-text-optimal">
+            <span className="ml-3 text-xl font-bold text-white header-text-optimal">
               Lawdesk
             </span>
           </Link>

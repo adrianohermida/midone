@@ -1,5 +1,7 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 import Lucide from "@/components/Base/Lucide";
+import lawdeskLogoUrl from "@/assets/images/lawdesk-logo.svg";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import { Popover } from "@/components/Base/Headless";
 import UserProfileMenu from "@/components/Base/UserProfileMenu";
@@ -12,7 +14,19 @@ function Main() {
   return (
     <>
       {/* BEGIN: Top Bar */}
-      <div className="h-[67px] z-[51] flex items-center relative border-b border-slate-200">
+      <div className="h-[67px] z-[51] flex items-center relative border-b border-slate-200 dark:border-slate-700">
+        {/* BEGIN: Logo */}
+        <Link to="/" className="hidden -intro-x md:flex items-center mr-6">
+          <img
+            alt="Lawdesk Legal Management System"
+            className="w-8 h-8 text-slate-700 dark:text-slate-300"
+            src={lawdeskLogoUrl}
+          />
+          <span className="ml-3 text-xl font-bold text-slate-800 dark:text-slate-200 content-text-optimal">
+            Lawdesk
+          </span>
+        </Link>
+        {/* END: Logo */}
         {/* BEGIN: Breadcrumb */}
         <Breadcrumb className="hidden mr-auto -intro-x sm:flex">
           <Breadcrumb.Link to="/">Application</Breadcrumb.Link>
