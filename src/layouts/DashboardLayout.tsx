@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { classNames } from "../utils/helpers";
 import AdminHeader from "../components/AdminHeader";
 
 interface DashboardLayoutProps {
@@ -10,7 +9,7 @@ interface DashboardLayoutProps {
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [theme, setTheme] = useState("enigma"); // enigma, icewall, rubick, tinker
+  const [theme, setTheme] = useState("enigma"); // Tema Enigma padrão
 
   const menuItems = [
     {
@@ -315,14 +314,21 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
     },
   ];
 
+  const themeColors = {
+    enigma: "from-blue-800 to-blue-900", // Tema Enigma azul
+    icewall: "from-blue-600 to-blue-700",
+    rubick: "from-green-600 to-green-700",
+    tinker: "from-purple-600 to-purple-700",
+  };
+
   return (
-    <div
-      className={`theme-${theme} ${theme === "enigma" ? "text-slate-600" : ""} min-h-screen bg-slate-100 before:content-[''] before:w-full before:h-screen before:fixed before:inset-0 before:bg-gradient-to-r before:from-theme-1 before:to-theme-2 before:z-[-1]`}
-    >
-      {/* Sidebar */}
-      <nav className="fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-theme-1 to-theme-2 overflow-y-auto transition-transform duration-300 ease-in-out">
+    <div className={`theme-${theme} min-h-screen bg-slate-100`}>
+      {/* Sidebar com tema Enigma */}
+      <nav
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b ${themeColors[theme as keyof typeof themeColors]} overflow-y-auto transition-transform duration-300 ease-in-out`}
+      >
         <div className="flex flex-col h-full">
-          {/* Logo */}
+          {/* Logo Enigma */}
           <div className="flex items-center justify-center py-6 px-6">
             <div className="flex items-center">
               <div className="w-6 h-6 bg-white/20 rounded-lg mr-3 flex items-center justify-center">
@@ -351,12 +357,11 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
                 <li key={index}>
                   <Link
                     to={item.path}
-                    className={classNames(
-                      "flex items-center px-3 py-2.5 text-sm font-medium rounded-full transition-all duration-200",
+                    className={`flex items-center px-3 py-2.5 text-sm font-medium rounded-full transition-all duration-200 relative ${
                       item.isActive
                         ? "bg-white/10 text-white before:content-[''] before:absolute before:inset-0 before:rounded-full before:border-2 before:border-white/20"
-                        : "text-white/70 hover:text-white hover:bg-white/5",
-                    )}
+                        : "text-white/70 hover:text-white hover:bg-white/5"
+                    }`}
                   >
                     <span className="mr-3 opacity-70">{item.icon}</span>
                     {item.title}
@@ -380,7 +385,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         <main className="p-6">{children}</main>
       </div>
 
-      {/* Template Configurator Panel */}
+      {/* Configurador de Template Enigma */}
       <div
         className="fixed top-0 right-0 w-80 h-full bg-white shadow-xl transform translate-x-full transition-transform duration-300 z-50"
         id="template-configurator"
@@ -416,16 +421,15 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         {/* Theme Options */}
         <div className="p-6">
           <div className="grid grid-cols-2 gap-4 mb-6">
-            {["rubick", "icewall", "tinker", "enigma"].map((themeName) => (
+            {Object.entries(themeColors).map(([themeName, colors]) => (
               <button
                 key={themeName}
                 onClick={() => setTheme(themeName)}
-                className={classNames(
-                  "relative overflow-hidden rounded-lg border-2 transition-all",
-                  theme === themeName ? "border-blue-500" : "border-gray-200",
-                )}
+                className={`relative overflow-hidden rounded-lg border-2 transition-all ${
+                  theme === themeName ? "border-blue-500" : "border-gray-200"
+                }`}
               >
-                <div className="aspect-video bg-gradient-to-br from-blue-500 to-purple-600 p-2">
+                <div className={`aspect-video bg-gradient-to-br ${colors} p-2`}>
                   <div className="h-full bg-white/20 rounded"></div>
                 </div>
                 <div className="p-2 text-center">
