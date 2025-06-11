@@ -9,7 +9,7 @@ import { selectTheme } from "@/stores/themeSlice";
 import { useAppSelector } from "@/stores/hooks";
 import { FormattedMenu, linkTo, nestedMenu, enter, leave } from "./mobile-menu";
 import Lucide from "@/components/Base/Lucide";
-import logoUrl from "@/assets/images/logo.svg";
+import justiceScaleUrl from "@/assets/images/justice-scale.svg";
 import clsx from "clsx";
 import SimpleBar from "simplebar";
 
@@ -198,7 +198,7 @@ function Main() {
                                             linkTo(
                                               lastSubMenu,
                                               navigate,
-                                              setActiveMobileMenu
+                                              setActiveMobileMenu,
                                             );
                                             setFormattedMenu([
                                               ...formattedMenu,
@@ -213,7 +213,7 @@ function Main() {
                                           </div>
                                         </a>
                                       </li>
-                                    )
+                                    ),
                                   )}
                                 </ul>
                               </Transition>
@@ -226,7 +226,7 @@ function Main() {
                   )}
                   {/* END: Second Child */}
                 </li>
-              )
+              ),
             )}
             {/* END: First Child */}
           </ul>
