@@ -20,12 +20,9 @@ import {
 } from "lucide-react";
 import Button from "../../base-components/Button";
 import { FormInput, FormSelect } from "../../base-components/Form";
-import { Tab } from "../../base-components/Headless";
-import Table from "../../base-components/Table";
+import { Tab, Menu } from "../../base-components/Headless";
 import Slideover from "../../base-components/Headless/Slideover";
-import Chat from "../../components/Base/Chat";
-import Notification from "../../base-components/Notification";
-import { Menu } from "../../base-components/Headless";
+import Table from "../../base-components/Table";
 import Tippy from "../../base-components/Tippy";
 import juridicoData from "../../data/juridico.json";
 
