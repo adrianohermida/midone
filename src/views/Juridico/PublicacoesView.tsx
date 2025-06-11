@@ -13,10 +13,10 @@ import {
   ExternalLink,
   RefreshCw,
 } from "lucide-react";
-import Button from "../../base-components/Button";
-import { FormInput, FormSelect } from "../../base-components/Form";
-import Table from "../../base-components/Table";
-import Tippy from "../../base-components/Tippy";
+import Button from "../../components/Base/Button";
+import { FormInput, FormSelect } from "../../components/Base/Form";
+import Table from "../../components/Base/Table";
+import Tippy from "../../components/Base/Tippy";
 import juridicoData from "../../data/juridico.json";
 
 interface Publicacao {
