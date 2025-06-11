@@ -17,7 +17,7 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
     height: height,
     className: className,
   };
-  const reportBarChartRef = useRef<ChartElement | null>();
+  const reportBarChartRef = useRef<{ instance: ChartElement | null }>();
   const colorScheme = useAppSelector(selectColorScheme);
   const darkMode = useAppSelector(selectDarkMode);
 
