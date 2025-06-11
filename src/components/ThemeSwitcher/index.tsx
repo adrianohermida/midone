@@ -408,6 +408,177 @@ function Main() {
 
                     {/* Settings Tab */}
                     <Tab.Panel className="p-6 space-y-6">
+                      {/* Layouts */}
+                      <div>
+                        <h3 className="text-base font-medium mb-4">Layout</h3>
+                        <div className="grid grid-cols-3 gap-3">
+                          {layouts.map((layout, layoutKey) => (
+                            <div key={layoutKey}>
+                              <div
+                                onClick={() => switchLayout(layout)}
+                                className={clsx([
+                                  "h-16 cursor-pointer bg-slate-50 dark:bg-slate-800 box p-1 rounded-lg transition-all hover:scale-105",
+                                  activeTheme.layout === layout &&
+                                    "ring-2 ring-blue-500 ring-offset-2",
+                                ])}
+                              >
+                                <div className="w-full h-full overflow-hidden rounded">
+                                  {(layoutImages[
+                                    `/src/assets/images/layouts/${layout}.png`
+                                  ] || layoutImages[
+                                    `/src/assets/images/layouts/${layout}.svg`
+                                  ]) && (
+                                    <img
+                                      className="w-full h-full object-cover"
+                                      src={
+                                        (layoutImages[
+                                          `/src/assets/images/layouts/${layout}.png`
+                                        ] || layoutImages[
+                                          `/src/assets/images/layouts/${layout}.svg`
+                                        ]).default
+                                      }
+                                      alt={`${layout} layout`}
+                                    />
+                                  )}
+                                </div>
+                              </div>
+                              <div className="mt-2 text-center text-xs font-medium">
+                                {layout.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Color Schemes */}
+                      <div>
+                        <h3 className="text-base font-medium mb-4">Esquemas de Cor</h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                          {colorSchemes.map((colorScheme, colorKey) => (
+                            <div key={colorKey}>
+                              <div
+                                onClick={() => switchColorScheme(colorScheme)}
+                                className={clsx([
+                                  "h-12 cursor-pointer bg-slate-50 dark:bg-slate-800 box rounded-lg p-1 border-2 transition-all hover:scale-105",
+                                  activeColorScheme === colorScheme
+                                    ? "border-blue-500"
+                                    : "border-slate-200 dark:border-slate-700",
+                                ])}
+                              >
+                                <div className="h-full overflow-hidden rounded">
+                                  <div className="flex items-center h-full gap-1 -mx-2">
+                                    <div
+                                      className={clsx([
+                                        "w-1/2 h-[140%] bg-theme-1 rotate-12",
+                                        colorScheme,
+                                      ])}
+                                    ></div>
+                                    <div
+                                      className={clsx([
+                                        "w-1/2 h-[140%] bg-theme-2 rotate-12",
+                                        colorScheme,
+                                      ])}
+                                    ></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="mt-2 text-center text-xs">
+                                {colorScheme === "default" ? "Padrão" : colorScheme}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Appearance */}
+                      <div>
+                        <h3 className="text-base font-medium mb-4">Aparência</h3>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <button
+                              onClick={() => switchDarkMode(false)}
+                              className={clsx([
+                                "h-12 w-full cursor-pointer bg-slate-50 dark:bg-slate-800 box p-1 border-2 rounded-lg transition-all hover:scale-105",
+                                !activeDarkMode
+                                  ? "border-blue-500"
+                                  : "border-slate-200 dark:border-slate-700",
+                              ])}
+                            >
+                              <div className="h-full overflow-hidden rounded bg-slate-200 dark:bg-slate-300"></div>
+                            </button>
+                            <div className="mt-2 text-center text-sm">Claro</div>
+                          </div>
+                          <div>
+                            <button
+                              onClick={() => switchDarkMode(true)}
+                              className={clsx([
+                                "h-12 w-full cursor-pointer bg-slate-50 dark:bg-slate-800 box p-1 border-2 rounded-lg transition-all hover:scale-105",
+                                activeDarkMode
+                                  ? "border-blue-500"
+                                  : "border-slate-200 dark:border-slate-700",
+                              ])}
+                            >
+                              <div className="h-full overflow-hidden rounded bg-slate-900"></div>
+                            </button>
+                            <div className="mt-2 text-center text-sm">Escuro</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Reset Options */}
+                      <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <h3 className="text-base font-medium mb-4">Opções de Reset</h3>
+                        <div className="space-y-3">
+                          {isUsingCustomTheme && (
+                            <Button
+                              variant="outline-secondary"
+                              onClick={() => {
+                                dispatch(clearCustomTheme());
+                                applyThemeStyles(activeTheme.name, activeDarkMode);
+                              }}
+                              className="w-full"
+                            >
+                              <Lucide icon="RotateCcw" className="w-4 h-4 mr-2" />
+                              Voltar ao Tema Padrão
+                            </Button>
+                          )}
+                          <Button
+                            variant="outline-secondary"
+                            onClick={() => {
+                              // Reset all settings to default
+                              dispatch(setTheme("rubick"));
+                              dispatch(setLayout("side-menu"));
+                              dispatch(setColorScheme("default"));
+                              dispatch(setDarkMode(false));
+                              dispatch(clearCustomTheme());
+                              applyThemeStyles("rubick", false);
+                            }}
+                            className="w-full"
+                          >
+                            <Lucide icon="RefreshCw" className="w-4 h-4 mr-2" />
+                            Reset Completo
+                          </Button>
+                        </div>
+                      </div>
+                    </Tab.Panel>
+                  </Tab.Panels>
+                </Tab.Group>
+              </div>
+            </div>
+          </Slideover.Description>
+        </Slideover.Panel>
+      </Slideover>
+      <div
+        onClick={(event: React.MouseEvent) => {
+          event.preventDefault();
+          setThemeSwitcherSlideover(true);
+        }}
+        className="fixed bottom-0 right-0 z-50 flex items-center justify-center mb-5 mr-5 text-white rounded-full shadow-lg cursor-pointer w-14 h-14 bg-theme-1 hover:scale-110 transition-transform"
+      >
+        <Lucide className="w-5 h-5 animate-spin" icon="Settings" />
+      </div>
+    </div>
+  );
               <div className="px-8 pt-6 pb-8">
                 <div className="text-base font-medium">Templates</div>
                 <div className="text-slate-500 mt-0.5">
