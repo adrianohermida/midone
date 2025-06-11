@@ -13,6 +13,8 @@ export const FormInput: React.FC<FormInputProps> = ({
   rounded = false,
   formInputSize,
   className,
+  children,
+  dangerouslySetInnerHTML,
   ...props
 }) => {
   const baseClasses =
@@ -48,7 +50,7 @@ export const FormLabel: React.FC<FormLabelProps> = ({
   ...props
 }) => {
   const classes = classNames(
-    "inline-block mb-2 group-[.form-inline]:mb-2 group-[.form-inline]:sm:mb-0 group-[.form-inline]:sm:mr-5 group-[.form-inline]:sm:text-right",
+    "text-slate-600 text-sm font-medium dark:text-slate-400",
     className,
   );
 
@@ -63,18 +65,20 @@ export const FormLabel: React.FC<FormLabelProps> = ({
 interface FormSelectProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {
   variant?: "default" | "success" | "warning" | "danger";
+  rounded?: boolean;
   formSelectSize?: "sm" | "lg";
 }
 
 export const FormSelect: React.FC<FormSelectProps> = ({
   variant = "default",
+  rounded = false,
   formSelectSize,
   className,
   children,
   ...props
 }) => {
   const baseClasses =
-    "disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50";
+    "w-full text-sm border-slate-200 shadow-sm focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50";
 
   const variantClasses = {
     default: "",
@@ -86,6 +90,7 @@ export const FormSelect: React.FC<FormSelectProps> = ({
   const classes = classNames(
     baseClasses,
     variantClasses[variant],
+    rounded ? "rounded-full" : "rounded-md",
     formSelectSize === "sm" && "text-xs py-1.5 px-2",
     formSelectSize === "lg" && "text-lg py-1.5 px-4",
     className,
@@ -102,15 +107,19 @@ export const FormSelect: React.FC<FormSelectProps> = ({
 interface FormTextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   variant?: "default" | "success" | "warning" | "danger";
+  rounded?: boolean;
+  formTextareaSize?: "sm" | "lg";
 }
 
 export const FormTextarea: React.FC<FormTextareaProps> = ({
   variant = "default",
+  rounded = false,
+  formTextareaSize,
   className,
   ...props
 }) => {
   const baseClasses =
-    "disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/70 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80";
+    "w-full text-sm border-slate-200 shadow-sm placeholder:text-slate-400/70 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80";
 
   const variantClasses = {
     default: "",
@@ -142,6 +151,8 @@ const FormCheckMain: FormCheckComponent = ({
   label,
   className,
   id,
+  children,
+  dangerouslySetInnerHTML,
   ...props
 }) => {
   const checkboxClasses =
@@ -173,7 +184,12 @@ FormCheckMain.Label = ({ children, className, htmlFor }) => {
   );
 };
 
-FormCheckMain.Input = ({ className, ...props }) => {
+FormCheckMain.Input = ({
+  className,
+  children,
+  dangerouslySetInnerHTML,
+  ...props
+}) => {
   const checkboxClasses =
     "transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50";
 
@@ -206,6 +222,8 @@ const FormSwitchMain: FormSwitchComponent = ({
   label,
   className,
   id,
+  children,
+  dangerouslySetInnerHTML,
   ...props
 }) => {
   const switchClasses =
@@ -240,7 +258,12 @@ FormSwitchMain.Label = ({ children, className, htmlFor }) => {
   );
 };
 
-FormSwitchMain.Input = ({ className, ...props }) => {
+FormSwitchMain.Input = ({
+  className,
+  children,
+  dangerouslySetInnerHTML,
+  ...props
+}) => {
   const switchClasses =
     "w-[38px] h-[24px] p-px rounded-full relative before:w-[20px] before:h-[20px] before:shadow-[1px_1px_3px_rgba(0,0,0,0.25)] before:transition-[margin-left] before:duration-200 before:ease-in-out before:absolute before:inset-y-0 before:my-auto before:rounded-full before:dark:bg-darkmode-600 checked:bg-primary checked:border-primary checked:bg-none before:checked:ml-[14px] before:checked:bg-white cursor-pointer focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 bg-slate-200 border-slate-200 before:bg-slate-500";
 
@@ -265,20 +288,9 @@ export const FormInline: React.FC<FormInlineProps> = ({
   children,
   className,
 }) => {
-  const classes = classNames("form-inline", className);
-  return <div className={classes}>{children}</div>;
+  return (
+    <div className={classNames("flex flex-col gap-4 sm:flex-row", className)}>
+      {children}
+    </div>
+  );
 };
-
-// Form Help
-interface FormHelpProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export const FormHelp: React.FC<FormHelpProps> = ({ children, className }) => {
-  const classes = classNames("text-xs text-slate-500 mt-1", className);
-  return <div className={classes}>{children}</div>;
-};
-
-// Export InputGroup from its separate file
-export { default as InputGroup } from "./InputGroup";
