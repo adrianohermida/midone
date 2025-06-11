@@ -1,82 +1,187 @@
 import { type Menu } from "@/stores/menuSlice";
 
 const menu: Array<Menu | "divider"> = [
+  // PAINEL
   {
-    icon: "Home",
+    icon: "LayoutDashboard",
+    pathname: "/dashboard-overview-1",
     title: "Dashboard",
+  },
+  // CRM
+  {
+    icon: "Users",
+    title: "CRM",
     subMenu: [
       {
-        icon: "Activity",
-        pathname: "/",
-        title: "Overview 1",
+        icon: "UserCheck",
+        pathname: "/users-layout-1",
+        title: "Contatos",
       },
       {
-        icon: "Activity",
-        pathname: "/dashboard-overview-2",
-        title: "Overview 2",
+        icon: "TrendingUp",
+        pathname: "/crud-data-list",
+        title: "Negócios (Pipelines)",
       },
       {
-        icon: "Activity",
-        pathname: "/dashboard-overview-3",
-        title: "Overview 3",
-      },
-      {
-        icon: "Activity",
-        pathname: "/dashboard-overview-4",
-        title: "Overview 4",
+        icon: "CheckSquare",
+        pathname: "/tabulator",
+        title: "Tarefas",
       },
     ],
   },
+  // JURÍDICO
   {
-    icon: "Activity",
-    title: "Apps",
+    icon: "Scale",
+    title: "Jurídico",
     subMenu: [
       {
+        icon: "FileText",
+        pathname: "/crud-form",
+        title: "Processos",
+      },
+      {
+        icon: "FileSignature",
+        pathname: "/wysiwyg-editor",
+        title: "Contratos",
+      },
+      {
+        icon: "Newspaper",
+        pathname: "/blog-layout-1",
+        title: "Publicações",
+      },
+      {
+        icon: "Calendar",
+        pathname: "/calendar",
+        title: "Agenda Jurídica",
+      },
+    ],
+  },
+  // FINANCEIRO
+  {
+    icon: "DollarSign",
+    title: "Financeiro",
+    subMenu: [
+      {
+        icon: "CreditCard",
+        pathname: "/point-of-sale",
+        title: "Financeiro",
+      },
+      {
+        icon: "Receipt",
+        pathname: "/invoice-layout-1",
+        title: "Faturamento",
+      },
+    ],
+  },
+  // APLICAÇÕES
+  {
+    icon: "Grid3X3",
+    title: "Aplicações",
+    subMenu: [
+      {
+        icon: "HardDrive",
+        pathname: "/file-manager",
+        title: "GED (Arquivos)",
+      },
+      {
+        icon: "MessageCircle",
+        pathname: "/chat",
+        title: "Assistente de IA",
+      },
+      {
+        icon: "FileEdit",
+        pathname: "/post",
+        title: "Documentos Inteligentes",
+      },
+      {
+        icon: "Inbox",
+        pathname: "/inbox",
+        title: "Tickets de Suporte",
+      },
+    ],
+  },
+  // ADMINISTRAÇÃO
+  {
+    icon: "Settings",
+    title: "Administração",
+    subMenu: [
+      {
+        icon: "Sliders",
+        pathname: "/regular-form",
+        title: "Configurações do Sistema",
+      },
+      {
         icon: "Users",
-        title: "Users",
+        pathname: "/users-layout-3",
+        title: "Usuários e Equipe",
+      },
+      {
+        icon: "Plug",
+        pathname: "/regular-table",
+        title: "Integrações",
+      },
+      {
+        icon: "Activity",
+        pathname: "/transaction-list",
+        title: "Logs e Auditoria",
+      },
+      {
+        icon: "BookOpen",
+        pathname: "/faq-layout-1",
+        title: "Central de Ajuda",
+      },
+    ],
+  },
+  // BETA/DESENVOLVIMENTO - Versão compacta para top menu
+  {
+    icon: "TestTube",
+    title: "Beta/Dev",
+    subMenu: [
+      {
+        icon: "Activity",
+        title: "Dashboard Variants",
         subMenu: [
           {
             icon: "Zap",
-            pathname: "/users-layout-1",
-            title: "Layout 1",
+            pathname: "/dashboard-overview-2",
+            title: "Dashboard 2",
           },
           {
             icon: "Zap",
-            pathname: "/users-layout-2",
-            title: "Layout 2",
+            pathname: "/dashboard-overview-3",
+            title: "Dashboard 3",
           },
           {
             icon: "Zap",
-            pathname: "/users-layout-3",
-            title: "Layout 3",
+            pathname: "/dashboard-overview-4",
+            title: "Dashboard 4",
           },
         ],
       },
       {
-        icon: "Trello",
-        title: "Profile",
+        icon: "Activity",
+        title: "Profile Layouts",
         subMenu: [
           {
             icon: "Zap",
             pathname: "/profile-overview-1",
-            title: "Overview 1",
+            title: "Perfil 1",
           },
           {
             icon: "Zap",
             pathname: "/profile-overview-2",
-            title: "Overview 2",
+            title: "Perfil 2",
           },
           {
             icon: "Zap",
             pathname: "/profile-overview-3",
-            title: "Overview 3",
+            title: "Perfil 3",
           },
         ],
       },
       {
-        icon: "ShoppingBag",
-        pathname: "/ecommerce",
-        title: "E-Commerce",
+        icon: "Activity",
+        title: "E-Commerce (Obsoleto)",
         subMenu: [
           {
             icon: "Zap",
@@ -97,11 +202,6 @@ const menu: Array<Menu | "divider"> = [
             icon: "Zap",
             pathname: "/product-grid",
             title: "Product Grid",
-          },
-          {
-            icon: "Zap",
-            pathname: "/transaction-list",
-            title: "Transaction List",
           },
           {
             icon: "Zap",
@@ -126,202 +226,8 @@ const menu: Array<Menu | "divider"> = [
         ],
       },
       {
-        icon: "Inbox",
-        pathname: "/inbox",
-        title: "Inbox",
-      },
-      {
-        icon: "Folder",
-        pathname: "/file-manager",
-        title: "File Manager",
-      },
-      {
-        icon: "CreditCard",
-        pathname: "/point-of-sale",
-        title: "Point of Sale",
-      },
-      {
-        icon: "MessageSquare",
-        pathname: "/chat",
-        title: "Chat",
-      },
-      {
-        icon: "FileText",
-        pathname: "/post",
-        title: "Post",
-      },
-      {
-        icon: "Calendar",
-        pathname: "/calendar",
-        title: "Calendar",
-      },
-      {
-        icon: "FilePenLine",
-        title: "Crud",
-        subMenu: [
-          {
-            icon: "Zap",
-            pathname: "/crud-data-list",
-            title: "Data List",
-          },
-          {
-            icon: "Zap",
-            pathname: "/crud-form",
-            title: "Form",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    icon: "PanelsTopLeft",
-    title: "Pages",
-    subMenu: [
-      {
         icon: "Activity",
-        title: "Wizards",
-        subMenu: [
-          {
-            icon: "Zap",
-            pathname: "/wizard-layout-1",
-            title: "Layout 1",
-          },
-          {
-            icon: "Zap",
-            pathname: "/wizard-layout-2",
-            title: "Layout 2",
-          },
-          {
-            icon: "Zap",
-            pathname: "/wizard-layout-3",
-            title: "Layout 3",
-          },
-        ],
-      },
-      {
-        icon: "Activity",
-        title: "Blog",
-        subMenu: [
-          {
-            icon: "Zap",
-            pathname: "/blog-layout-1",
-            title: "Layout 1",
-          },
-          {
-            icon: "Zap",
-            pathname: "/blog-layout-2",
-            title: "Layout 2",
-          },
-          {
-            icon: "Zap",
-            pathname: "/blog-layout-3",
-            title: "Layout 3",
-          },
-        ],
-      },
-      {
-        icon: "Activity",
-        title: "Pricing",
-        subMenu: [
-          {
-            icon: "Zap",
-            pathname: "/pricing-layout-1",
-            title: "Layout 1",
-          },
-          {
-            icon: "Zap",
-            pathname: "/pricing-layout-2",
-            title: "Layout 2",
-          },
-        ],
-      },
-      {
-        icon: "Activity",
-        title: "Invoice",
-        subMenu: [
-          {
-            icon: "Zap",
-            pathname: "/invoice-layout-1",
-            title: "Layout 1",
-          },
-          {
-            icon: "Zap",
-            pathname: "/invoice-layout-2",
-            title: "Layout 2",
-          },
-        ],
-      },
-      {
-        icon: "Activity",
-        title: "FAQ",
-        subMenu: [
-          {
-            icon: "Zap",
-            pathname: "/faq-layout-1",
-            title: "Layout 1",
-          },
-          {
-            icon: "Zap",
-            pathname: "/faq-layout-2",
-            title: "Layout 2",
-          },
-          {
-            icon: "Zap",
-            pathname: "/faq-layout-3",
-            title: "Layout 3",
-          },
-        ],
-      },
-      {
-        icon: "Activity",
-        pathname: "login",
-        title: "Login",
-      },
-      {
-        icon: "Activity",
-        pathname: "register",
-        title: "Register",
-      },
-      {
-        icon: "Activity",
-        pathname: "error-page",
-        title: "Error Page",
-      },
-      {
-        icon: "Activity",
-        pathname: "/update-profile",
-        title: "Update profile",
-      },
-      {
-        icon: "Activity",
-        pathname: "/change-password",
-        title: "Change Password",
-      },
-    ],
-  },
-  {
-    icon: "Inbox",
-    title: "Components",
-    subMenu: [
-      {
-        icon: "Activity",
-        title: "Table",
-        subMenu: [
-          {
-            icon: "Zap",
-            pathname: "/regular-table",
-            title: "Regular Table",
-          },
-          {
-            icon: "Zap",
-            pathname: "/tabulator",
-            title: "Tabulator",
-          },
-        ],
-      },
-      {
-        icon: "Activity",
-        title: "Overlay",
+        title: "Components",
         subMenu: [
           {
             icon: "Zap",
@@ -338,114 +244,63 @@ const menu: Array<Menu | "divider"> = [
             pathname: "/notification",
             title: "Notification",
           },
+          {
+            icon: "Zap",
+            pathname: "/tab",
+            title: "Tab",
+          },
+          {
+            icon: "Zap",
+            pathname: "/accordion",
+            title: "Accordion",
+          },
+          {
+            icon: "Zap",
+            pathname: "/button",
+            title: "Button",
+          },
+          {
+            icon: "Zap",
+            pathname: "/alert",
+            title: "Alert",
+          },
+          {
+            icon: "Zap",
+            pathname: "/chart",
+            title: "Chart",
+          },
         ],
       },
       {
         icon: "Activity",
-        pathname: "/tab",
-        title: "Tab",
-      },
-      {
-        icon: "Activity",
-        pathname: "/accordion",
-        title: "Accordion",
-      },
-      {
-        icon: "Activity",
-        pathname: "/button",
-        title: "Button",
-      },
-      {
-        icon: "Activity",
-        pathname: "/alert",
-        title: "Alert",
-      },
-      {
-        icon: "Activity",
-        pathname: "/progress-bar",
-        title: "Progress Bar",
-      },
-      {
-        icon: "Activity",
-        pathname: "/tooltip",
-        title: "Tooltip",
-      },
-      {
-        icon: "Activity",
-        pathname: "/dropdown",
-        title: "Dropdown",
-      },
-      {
-        icon: "Activity",
-        pathname: "/typography",
-        title: "Typography",
-      },
-      {
-        icon: "Activity",
-        pathname: "/icon",
-        title: "Icon",
-      },
-      {
-        icon: "Activity",
-        pathname: "/loading-icon",
-        title: "Loading Icon",
-      },
-    ],
-  },
-  {
-    icon: "PanelLeft",
-    title: "Forms",
-    subMenu: [
-      {
-        icon: "Activity",
-        pathname: "/regular-form",
-        title: "Regular Form",
-      },
-      {
-        icon: "Activity",
-        pathname: "/datepicker",
-        title: "Datepicker",
-      },
-      {
-        icon: "Activity",
-        pathname: "/tom-select",
-        title: "Tom Select",
-      },
-      {
-        icon: "Activity",
-        pathname: "/file-upload",
-        title: "File Upload",
-      },
-      {
-        icon: "Activity",
-        pathname: "/wysiwyg-editor",
-        title: "Wysiwyg Editor",
-      },
-      {
-        icon: "Activity",
-        pathname: "/validation",
-        title: "Validation",
-      },
-    ],
-  },
-  {
-    icon: "HardDrive",
-    title: "Widgets",
-    subMenu: [
-      {
-        icon: "Activity",
-        pathname: "/chart",
-        title: "Chart",
-      },
-      {
-        icon: "Activity",
-        pathname: "/slider",
-        title: "Slider",
-      },
-      {
-        icon: "Activity",
-        pathname: "/image-zoom",
-        title: "Image Zoom",
+        title: "Forms & Tools",
+        subMenu: [
+          {
+            icon: "Zap",
+            pathname: "/regular-form",
+            title: "Regular Form",
+          },
+          {
+            icon: "Zap",
+            pathname: "/datepicker",
+            title: "Datepicker",
+          },
+          {
+            icon: "Zap",
+            pathname: "/tom-select",
+            title: "Tom Select",
+          },
+          {
+            icon: "Zap",
+            pathname: "/file-upload",
+            title: "File Upload",
+          },
+          {
+            icon: "Zap",
+            pathname: "/validation",
+            title: "Validation",
+          },
+        ],
       },
     ],
   },
