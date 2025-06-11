@@ -76,23 +76,13 @@ import ImageZoom from "@/pages/ImageZoom";
 
 const Router = () => {
   return (
-    <Provider store={store}>
-      <Themes>
-        <Routes>
+    <Themes>
+      <Routes>
           {/* Dashboard Routes */}
           <Route path="/" element={<DashboardOverview1 />} />
-          <Route
-            path="/dashboard-overview-2"
-            element={<DashboardOverview2 />}
-          />
-          <Route
-            path="/dashboard-overview-3"
-            element={<DashboardOverview3 />}
-          />
-          <Route
-            path="/dashboard-overview-4"
-            element={<DashboardOverview4 />}
-          />
+          <Route path="/dashboard-overview-2" element={<DashboardOverview2 />} />
+          <Route path="/dashboard-overview-3" element={<DashboardOverview3 />} />
+          <Route path="/dashboard-overview-4" element={<DashboardOverview4 />} />
 
           {/* E-Commerce Routes */}
           <Route path="/categories" element={<Categories />} />
