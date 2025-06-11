@@ -1,9 +1,9 @@
 import React from "react";
-import JuridicioDashboardCompleto from "../../../views/Juridico/JuridicioDashboardCompleto";
+import JuridicioDashboardProfissional from "../../../views/Juridico/JuridicioDashboardProfissional";
 
 const ProcessosPage: React.FC = () => {
-  // Dashboard completo standalone - sem layout wrapper para evitar duplicação
-  return <JuridicioDashboardCompleto />;
+  // Dashboard profissional seguindo padrão Midone
+  return <JuridicioDashboardProfissional />;
 };
 
 export default ProcessosPage;
