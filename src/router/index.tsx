@@ -103,6 +103,14 @@ import CRMContatos from "@/pages/CRM/Contatos";
 import CRMNegocios from "@/pages/CRM/Negocios";
 import CRMSuporte from "@/pages/CRM/Suporte";
 
+// Juridico Module Pages (New Implementation)
+import JuridicoProcessos from "@/pages/Juridico/Processos";
+import JuridicoPublicacoes from "@/pages/Juridico/Processos/Publicacoes";
+import JuridicoIntimacoes from "@/pages/Juridico/Processos/Intimacoes";
+import JuridicoAgenda from "@/pages/Juridico/Processos/Agenda";
+import JuridicoRelatorios from "@/pages/Juridico/Processos/Relatorios";
+import JuridicoProcessoDetalhes from "@/pages/Juridico/Processos/ProcessoDetalhes";
+
 const Router = () => {
   return (
     <Routes>
