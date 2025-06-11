@@ -2,6 +2,7 @@ import { Menu } from "@/components/Base/Headless";
 import { useNavigate } from "react-router-dom";
 import Lucide from "@/components/Base/Lucide";
 import fakerData from "@/utils/faker";
+import authService from "@/services/auth";
 
 interface UserProfileMenuProps {
   className?: string;
