@@ -87,7 +87,7 @@ function Main() {
                       ])}
                     >
                       <div className="simple-menu__icon">
-                        <Lucide icon={menu.icon} />
+                        <Lucide icon={menu.icon || "Home"} />
                       </div>
                       <div className="simple-menu__title">
                         {menu.title}
