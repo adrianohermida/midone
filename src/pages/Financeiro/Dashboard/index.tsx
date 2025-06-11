@@ -507,39 +507,41 @@ function Main() {
                     variant="primary"
                     className="w-full mb-3"
                     onClick={() =>
-                      (window.location.href = "/financeiro/faturamento")
+                      (window.location.href = "/financeiro/honorarios")
                     }
                   >
-                    <Lucide icon="Receipt" className="w-4 h-4 mr-2" />
-                    Nova Fatura
+                    <Lucide icon="Scale" className="w-4 h-4 mr-2" />
+                    Honorários
                   </Button>
                   <Button
                     variant="outline-secondary"
                     className="w-full mb-3"
                     onClick={() =>
-                      (window.location.href = "/financeiro/transacoes")
+                      (window.location.href = "/financeiro/custas")
                     }
                   >
-                    <Lucide icon="DollarSign" className="w-4 h-4 mr-2" />
-                    Registrar Recebimento
+                    <Lucide icon="Receipt" className="w-4 h-4 mr-2" />
+                    Custas Processuais
                   </Button>
                   <Button
                     variant="outline-secondary"
                     className="w-full mb-3"
-                    onClick={() => (window.location.href = "/financeiro/notas")}
+                    onClick={() =>
+                      (window.location.href = "/financeiro/fluxo-caixa")
+                    }
                   >
-                    <Lucide icon="FileText" className="w-4 h-4 mr-2" />
-                    Emitir Nota Fiscal
+                    <Lucide icon="TrendingUp" className="w-4 h-4 mr-2" />
+                    Fluxo de Caixa
                   </Button>
                   <Button
                     variant="outline-secondary"
                     className="w-full"
                     onClick={() =>
-                      (window.location.href = "/financeiro/planos")
+                      (window.location.href = "/financeiro/relatorios")
                     }
                   >
-                    <Lucide icon="CreditCard" className="w-4 h-4 mr-2" />
-                    Planos e Cobranças
+                    <Lucide icon="BarChart3" className="w-4 h-4 mr-2" />
+                    Relatórios
                   </Button>
                 </div>
               </div>
