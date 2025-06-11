@@ -1,8 +1,7 @@
 import React from "react";
 import { classNames } from "@/utils/helpers";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  as?: "button" | "a" | "div";
+interface BaseButtonProps {
   variant?:
     | "primary"
     | "secondary"
@@ -23,8 +22,28 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
+interface ButtonAsButton
+  extends BaseButtonProps,
+    React.ButtonHTMLAttributes<HTMLButtonElement> {
+  as?: "button";
+}
+
+interface ButtonAsAnchor
+  extends BaseButtonProps,
+    React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  as: "a";
+}
+
+interface ButtonAsDiv
+  extends BaseButtonProps,
+    React.HTMLAttributes<HTMLDivElement> {
+  as: "div";
+}
+
+type ButtonProps = ButtonAsButton | ButtonAsAnchor | ButtonAsDiv;
+
 const Button: React.FC<ButtonProps> = ({
-  as: Component = "button",
+  as = "button",
   variant = "primary",
   size = "md",
   elevated = false,
@@ -75,8 +94,10 @@ const Button: React.FC<ButtonProps> = ({
     className,
   );
 
+  const Component = as;
+
   return (
-    <Component className={classes} {...props}>
+    <Component className={classes} {...(props as any)}>
       {children}
     </Component>
   );
