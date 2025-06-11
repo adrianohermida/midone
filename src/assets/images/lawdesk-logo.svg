@@ -1,47 +1,46 @@
 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <!-- Estrutura superior (base do topo) -->
-  <rect x="9" y="2" width="6" height="1" rx="0.5"/>
-  <rect x="8.5" y="3.5" width="7" height="0.8" rx="0.4"/>
-  <rect x="8" y="5" width="8" height="0.8" rx="0.4"/>
+  <!-- Estrutura superior (capitel) -->
+  <rect x="8" y="2" width="8" height="0.8" rx="0.2"/>
+  <rect x="8.5" y="3.2" width="7" height="0.6" rx="0.2"/>
+  <rect x="9" y="4.2" width="6" height="0.6" rx="0.2"/>
+  <rect x="9.5" y="5.2" width="5" height="0.6" rx="0.2"/>
   
-  <!-- Pilares centrais -->
-  <rect x="10.2" y="6" width="1.2" height="14" rx="0.6"/>
-  <rect x="12.6" y="6" width="1.2" height="14" rx="0.6"/>
+  <!-- Colunas verticais -->
+  <rect x="10.5" y="6" width="1" height="12"/>
+  <rect x="12.5" y="6" width="1" height="12"/>
   
   <!-- Braço horizontal da balança -->
-  <rect x="4" y="8.6" width="16" height="0.8" rx="0.4"/>
+  <rect x="3" y="8.8" width="18" height="0.4"/>
   
-  <!-- Prato esquerdo da balança -->
+  <!-- Prato esquerdo -->
   <g>
-    <!-- Cordas -->
-    <line x1="6" y1="9" x2="5" y2="12" stroke="currentColor" stroke-width="0.3"/>
-    <line x1="9" y1="9" x2="10" y2="12" stroke="currentColor" stroke-width="0.3"/>
-    <line x1="7.5" y1="9" x2="7.5" y2="12" stroke="currentColor" stroke-width="0.3"/>
+    <!-- Cordas de suspensão -->
+    <line x1="5.5" y1="9" x2="4.5" y2="11.5" stroke="currentColor" stroke-width="0.2"/>
+    <line x1="7.5" y1="9" x2="8.5" y2="11.5" stroke="currentColor" stroke-width="0.2"/>
+    <line x1="6.5" y1="9" x2="6.5" y2="11.5" stroke="currentColor" stroke-width="0.2"/>
     
     <!-- Prato -->
-    <ellipse cx="7.5" cy="12" rx="2.8" ry="0.6"/>
-    <path d="M 4.7 12 Q 4.7 13.5 7.5 13.5 Q 10.3 13.5 10.3 12"/>
+    <path d="M 4.5 11.5 Q 4.5 12.5 6.5 12.5 Q 8.5 12.5 8.5 11.5 Q 8.5 11.2 6.5 11.2 Q 4.5 11.2 4.5 11.5 Z"/>
   </g>
   
-  <!-- Prato direito da balança -->
+  <!-- Prato direito -->
   <g>
-    <!-- Cordas -->
-    <line x1="18" y1="9" x2="19" y2="12" stroke="currentColor" stroke-width="0.3"/>
-    <line x1="15" y1="9" x2="14" y2="12" stroke="currentColor" stroke-width="0.3"/>
-    <line x1="16.5" y1="9" x2="16.5" y2="12" stroke="currentColor" stroke-width="0.3"/>
+    <!-- Cordas de suspensão -->
+    <line x1="16.5" y1="9" x2="15.5" y2="11.5" stroke="currentColor" stroke-width="0.2"/>
+    <line x1="18.5" y1="9" x2="19.5" y2="11.5" stroke="currentColor" stroke-width="0.2"/>
+    <line x1="17.5" y1="9" x2="17.5" y2="11.5" stroke="currentColor" stroke-width="0.2"/>
     
     <!-- Prato -->
-    <ellipse cx="16.5" cy="12" rx="2.8" ry="0.6"/>
-    <path d="M 13.7 12 Q 13.7 13.5 16.5 13.5 Q 19.3 13.5 19.3 12"/>
+    <path d="M 15.5 11.5 Q 15.5 12.5 17.5 12.5 Q 19.5 12.5 19.5 11.5 Q 19.5 11.2 17.5 11.2 Q 15.5 11.2 15.5 11.5 Z"/>
   </g>
   
   <!-- Ponto central de apoio -->
-  <circle cx="12" cy="9" r="0.4"/>
+  <circle cx="12" cy="8.8" r="0.3"/>
   
-  <!-- Extensão inferior decorativa (espada) -->
-  <path d="M 11.4 20 L 11.4 21.5 Q 11.4 22.2 12 22.2 Q 12.6 22.2 12.6 21.5 L 12.6 20"/>
-  <circle cx="12" cy="20.8" r="0.2"/>
+  <!-- Extensão inferior (espada/lança) -->
+  <rect x="11.6" y="18" width="0.8" height="2.5"/>
+  <path d="M 11.8 20.5 L 12 22 L 12.2 20.5 Z"/>
   
-  <!-- Base inferior -->
-  <rect x="10" y="20" width="4" height="0.8" rx="0.4"/>
+  <!-- Detalhe no meio da extensão -->
+  <circle cx="12" cy="19.2" r="0.15"/>
 </svg>
