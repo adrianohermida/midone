@@ -1,17 +1,12 @@
 import ScrollToTop from "@/components/Base/ScrollToTop";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import { store } from "./stores/store";
 import App from "./App";
 import "./libs";
 import "./assets/css/app.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
+  <>
+    <App />
     <ScrollToTop />
-  </BrowserRouter>,
+  </>,
 );
