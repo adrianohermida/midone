@@ -21,10 +21,10 @@ import {
   Bell,
 } from "lucide-react";
 import DashboardLayout from "../../../../layouts/DashboardLayout";
-import Button from "../../../../base-components/Button";
-import { Tab, Menu } from "../../../../base-components/Headless";
-import Table from "../../../../base-components/Table";
-import Tippy from "../../../../base-components/Tippy";
+import Button from "../../../../components/Base/Button";
+import { Tab, Menu } from "../../../../components/Base/Headless";
+import Table from "../../../../components/Base/Table";
+import Tippy from "../../../../components/Base/Tippy";
 import juridicoData from "../../../../data/juridico.json";
 
 interface Processo {
