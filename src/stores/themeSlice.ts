@@ -107,9 +107,11 @@ export const getTheme = (search?: {
 
 const initialState: ThemeState = {
   value: {
-    name: localStorage.getItem("theme") === null ? "rubick" : getTheme().name,
+    name: localStorage.getItem("theme") === null ? "tinker" : getTheme().name,
     layout:
-      localStorage.getItem("layout") === null ? "side-menu" : getTheme().layout,
+      localStorage.getItem("layout") === null
+        ? "simple-menu"
+        : getTheme().layout,
   },
 };
 
