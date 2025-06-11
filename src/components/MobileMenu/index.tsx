@@ -61,7 +61,7 @@ function ThirdLevelMenu({
               }}
             >
               <div className="menu__icon">
-                <Lucide icon={lastSubMenu.icon} />
+                <Lucide icon={lastSubMenu.icon || "Zap"} />
               </div>
               <div className="menu__title">{lastSubMenu.title}</div>
             </a>
