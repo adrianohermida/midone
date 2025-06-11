@@ -61,13 +61,15 @@ function Main() {
         <div className="border-b border-white/[0.08] mt-[2.2rem] md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-10">
           <div className="flex items-center h-[70px] z-[51] relative">
             {/* BEGIN: Logo */}
-            <Link to="/" className="hidden -intro-x md:flex">
+            <Link to="/" className="hidden -intro-x md:flex items-center">
               <img
-                alt="Midone Tailwind HTML Admin Template"
-                className="w-6"
-                src={logoUrl}
+                alt="Lawdesk Legal Management System"
+                className="w-6 h-6 justice-scale-icon justice-scale-white"
+                src={justiceScaleUrl}
               />
-              <span className="ml-3 text-lg text-white"> Rubick </span>
+              <span className="ml-3 text-lg font-semibold text-white">
+                Lawdesk
+              </span>
             </Link>
             {/* END: Logo */}
             {/* BEGIN: Breadcrumb */}
