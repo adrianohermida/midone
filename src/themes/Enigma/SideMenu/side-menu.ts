@@ -60,45 +60,40 @@ const menu: Array<Menu | "divider"> = [
         subMenu: [
           {
             icon: "LayoutDashboard",
-            pathname: "/legal-cases",
+            pathname: "/juridico/processos",
             title: "Dashboard",
           },
           {
             icon: "List",
-            pathname: "/legal-cases/list",
+            pathname: "/juridico/processos",
             title: "Listar Processos",
           },
           {
             icon: "Plus",
-            pathname: "/legal-cases/create",
+            pathname: "/juridico/processos",
             title: "Novo Processo",
           },
           {
+            icon: "Newspaper",
+            pathname: "/juridico/processos/publicacoes",
+            title: "Publicações",
+          },
+          {
             icon: "Bell",
-            pathname: "/legal-cases/intimations",
+            pathname: "/juridico/processos/intimacoes",
             title: "Intimações",
           },
           {
+            icon: "Calendar",
+            pathname: "/juridico/processos/agenda",
+            title: "Agenda",
+          },
+          {
             icon: "BarChart3",
-            pathname: "/legal-cases/analytics",
+            pathname: "/juridico/processos/relatorios",
             title: "Relatórios",
           },
         ],
-      },
-      {
-        icon: "FileSignature",
-        pathname: "/wysiwyg-editor",
-        title: "Contratos",
-      },
-      {
-        icon: "Newspaper",
-        pathname: "/blog-layout-1",
-        title: "Publicações",
-      },
-      {
-        icon: "Calendar",
-        pathname: "/calendar",
-        title: "Agenda Jurídica",
       },
     ],
   },
