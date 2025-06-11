@@ -88,6 +88,7 @@ import FinanceiroDashboard from "@/pages/Financeiro/Dashboard";
 import FinanceiroFaturamento from "@/pages/Financeiro/Faturamento";
 import FinanceiroTransacoes from "@/pages/Financeiro/Transacoes";
 import FinanceiroProdutos from "@/pages/Financeiro/Produtos";
+import FinanceiroProdutoNovo from "@/pages/Financeiro/ProdutoNovo";
 
 const Router = () => {
   return (
@@ -140,7 +141,10 @@ const Router = () => {
           element={<TransactionDetail />}
         />
         <Route path="financeiro/produtos" element={<FinanceiroProdutos />} />
-        <Route path="financeiro/produtos/novo" element={<AddProduct />} />
+        <Route
+          path="financeiro/produtos/novo"
+          element={<FinanceiroProdutoNovo />}
+        />
         <Route path="financeiro/produtos/grade" element={<ProductGrid />} />
         <Route path="financeiro/pdv" element={<PointOfSale />} />
         <Route path="financeiro/planos" element={<PricingLayout1 />} />
