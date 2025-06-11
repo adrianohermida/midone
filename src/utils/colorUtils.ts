@@ -271,16 +271,61 @@ export function applyCustomThemeColors(
 
   // Calculate optimal text colors for headers and content
   const headerTextColor = getOptimalTextColor(primary);
+  const secondaryTextColor = getOptimalTextColor(secondary);
   const contentTextColor = isDarkMode ? "#f8fafc" : "#1e293b";
 
   root.style.setProperty("--color-header-text", headerTextColor);
+  root.style.setProperty("--color-secondary-text", secondaryTextColor);
   root.style.setProperty("--color-content-text", contentTextColor);
 
   // Apply to Tailwind CSS custom properties
   root.style.setProperty("--tw-color-primary", primary);
   root.style.setProperty("--tw-color-secondary", secondary);
 
-  // Force refresh of theme-dependent elements
+  // Apply immediate theme colors to existing elements
+  const themeElements = document.querySelectorAll(
+    '.bg-theme-1, [class*="bg-theme-1"]',
+  );
+  themeElements.forEach((element) => {
+    (element as HTMLElement).style.backgroundColor = primary;
+    (element as HTMLElement).style.color = headerTextColor;
+  });
+
+  const theme2Elements = document.querySelectorAll(
+    '.bg-theme-2, [class*="bg-theme-2"]',
+  );
+  theme2Elements.forEach((element) => {
+    (element as HTMLElement).style.backgroundColor = secondary;
+    (element as HTMLElement).style.color = secondaryTextColor;
+  });
+
+  // Apply to sidebar elements specifically
+  const sidebarElements = document.querySelectorAll(".side-menu, .side-nav");
+  sidebarElements.forEach((element) => {
+    if (
+      element.classList.contains("side-menu--active") ||
+      element.classList.contains("side-nav--active")
+    ) {
+      (element as HTMLElement).style.backgroundColor = primary;
+      (element as HTMLElement).style.color = headerTextColor;
+    }
+  });
+
+  // Apply to top bar and header elements
+  const headerElements = document.querySelectorAll(
+    '[class*="top-bar"], [class*="header"], .bg-primary',
+  );
+  headerElements.forEach((element) => {
+    if (
+      element.classList.contains("bg-primary") ||
+      element.classList.contains("bg-theme-1")
+    ) {
+      (element as HTMLElement).style.backgroundColor = primary;
+      (element as HTMLElement).style.color = headerTextColor;
+    }
+  });
+
+  // Force refresh of theme-dependent elements with transition
   document.body.classList.add("theme-transition");
   setTimeout(() => {
     document.body.classList.remove("theme-transition");

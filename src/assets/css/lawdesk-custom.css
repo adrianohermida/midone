@@ -158,6 +158,7 @@
   --color-theme-1: #3b82f6;
   --color-theme-2: #1e40af;
   --color-header-text: #ffffff;
+  --color-secondary-text: #ffffff;
   --color-content-text: #1e293b;
 }
 
@@ -188,7 +189,11 @@
 
 /* Header text with optimal contrast */
 .header-text-optimal {
-  color: var(--color-header-text);
+  color: var(--color-header-text) !important;
+}
+
+.secondary-text-optimal {
+  color: var(--color-secondary-text) !important;
 }
 
 .content-text-optimal {
@@ -199,6 +204,43 @@
 .high-contrast-text {
   color: var(--color-header-text);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Auto-contrast for theme elements */
+.bg-theme-1,
+[class*="bg-theme-1"] {
+  background-color: var(--color-theme-1) !important;
+  color: var(--color-header-text) !important;
+}
+
+.bg-theme-2,
+[class*="bg-theme-2"] {
+  background-color: var(--color-theme-2) !important;
+  color: var(--color-secondary-text) !important;
+}
+
+/* Side menu active states with auto-contrast */
+.side-menu--active,
+.side-nav--active {
+  background-color: var(--color-theme-1) !important;
+  color: var(--color-header-text) !important;
+}
+
+/* Better responsiveness for theme switcher */
+@media (max-width: 640px) {
+  .slideover-panel {
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+
+  .theme-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .layout-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 /* Justice scale icon hover effect */
