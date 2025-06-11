@@ -1,3 +1,4 @@
+import React from "react";
 import { createLucideIcon } from "lucide-react";
 import dynamicIconImports from "lucide-react/dynamicIconImports";
 import { twMerge } from "tailwind-merge";
