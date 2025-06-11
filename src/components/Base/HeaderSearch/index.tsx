@@ -98,12 +98,12 @@ function HeaderSearch({ className }: HeaderSearchProps) {
     <div className={`relative ${className}`}>
       <div className="relative hidden sm:block">
         <form onSubmit={handleSearch}>
-          <FormInput
+          <input
             ref={searchInputRef}
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="border-transparent w-56 shadow-none rounded-full bg-slate-200 pr-8 transition-[width] duration-300 ease-in-out focus:border-transparent focus:w-72 dark:bg-darkmode-400"
+            className="border-transparent w-56 shadow-none rounded-full bg-slate-200 pr-8 transition-[width] duration-300 ease-in-out focus:border-transparent focus:w-72 dark:bg-darkmode-400 px-4 py-2 text-sm"
             placeholder="Search... (Ctrl+K)"
             onFocus={showSearchDropdown}
             onBlur={(e) => {
