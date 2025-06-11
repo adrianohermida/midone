@@ -312,3 +312,4 @@ export const FormGroup: React.FC<FormGroupProps> = ({
 // Re-export individual components
 export { default as InputGroup } from "./InputGroup";
 export { default as FormTextarea } from "./FormTextarea";
+export { default as FormInline } from "./FormInline";
