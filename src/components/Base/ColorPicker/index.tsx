@@ -41,7 +41,7 @@ function ColorPicker({
   const colorInputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const predefinedPalettes = generateColorPalettes();
+  const predefinedPalettes = generateColorPalettes(value || "#3b82f6");
 
   // Close dropdown when clicking outside
   useEffect(() => {
