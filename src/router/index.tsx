@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import { Themes } from "@/themes";
 
 // Import all pages from the original Midone template
 import DashboardOverview1 from "@/pages/DashboardOverview1";
@@ -73,119 +72,600 @@ import Slider from "@/pages/Slider";
 import ImageZoom from "@/pages/ImageZoom";
 import Debug from "@/pages/Debug";
 
+// Layout wrapper that uses the theme system
+import LayoutWrapper from "@/layouts/MainLayout";
+
 const Router = () => {
   return (
     <Routes>
-      <Route path="/*" element={<Themes />}>
-        {/* Dashboard Routes */}
-        <Route index element={<DashboardOverview1 />} />
-        <Route path="dashboard-overview-2" element={<DashboardOverview2 />} />
-        <Route path="dashboard-overview-3" element={<DashboardOverview3 />} />
-        <Route path="dashboard-overview-4" element={<DashboardOverview4 />} />
+      {/* All routes wrapped with the layout */}
+      <Route
+        path="/"
+        element={
+          <LayoutWrapper>
+            <DashboardOverview1 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/dashboard-overview-2"
+        element={
+          <LayoutWrapper>
+            <DashboardOverview2 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/dashboard-overview-3"
+        element={
+          <LayoutWrapper>
+            <DashboardOverview3 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/dashboard-overview-4"
+        element={
+          <LayoutWrapper>
+            <DashboardOverview4 />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* E-Commerce Routes */}
-        <Route path="categories" element={<Categories />} />
-        <Route path="add-product" element={<AddProduct />} />
-        <Route path="product-list" element={<ProductList />} />
-        <Route path="product-grid" element={<ProductGrid />} />
-        <Route path="transaction-list" element={<TransactionList />} />
-        <Route path="transaction-detail" element={<TransactionDetail />} />
-        <Route path="seller-list" element={<SellerList />} />
-        <Route path="seller-detail" element={<SellerDetail />} />
-        <Route path="reviews" element={<Reviews />} />
+      <Route
+        path="/categories"
+        element={
+          <LayoutWrapper>
+            <Categories />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/add-product"
+        element={
+          <LayoutWrapper>
+            <AddProduct />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/product-list"
+        element={
+          <LayoutWrapper>
+            <ProductList />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/product-grid"
+        element={
+          <LayoutWrapper>
+            <ProductGrid />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/transaction-list"
+        element={
+          <LayoutWrapper>
+            <TransactionList />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/transaction-detail"
+        element={
+          <LayoutWrapper>
+            <TransactionDetail />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/seller-list"
+        element={
+          <LayoutWrapper>
+            <SellerList />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/seller-detail"
+        element={
+          <LayoutWrapper>
+            <SellerDetail />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/reviews"
+        element={
+          <LayoutWrapper>
+            <Reviews />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Main Pages Routes */}
-        <Route path="inbox" element={<Inbox />} />
-        <Route path="file-manager" element={<FileManager />} />
-        <Route path="point-of-sale" element={<PointOfSale />} />
-        <Route path="chat" element={<Chat />} />
-        <Route path="post" element={<Post />} />
-        <Route path="calendar" element={<Calendar />} />
+      <Route
+        path="/inbox"
+        element={
+          <LayoutWrapper>
+            <Inbox />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/file-manager"
+        element={
+          <LayoutWrapper>
+            <FileManager />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/point-of-sale"
+        element={
+          <LayoutWrapper>
+            <PointOfSale />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/chat"
+        element={
+          <LayoutWrapper>
+            <Chat />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/post"
+        element={
+          <LayoutWrapper>
+            <Post />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/calendar"
+        element={
+          <LayoutWrapper>
+            <Calendar />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* CRUD Routes */}
-        <Route path="crud-data-list" element={<CrudDataList />} />
-        <Route path="crud-form" element={<CrudForm />} />
+      <Route
+        path="/crud-data-list"
+        element={
+          <LayoutWrapper>
+            <CrudDataList />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/crud-form"
+        element={
+          <LayoutWrapper>
+            <CrudForm />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Users Routes */}
-        <Route path="users-layout-1" element={<UsersLayout1 />} />
-        <Route path="users-layout-2" element={<UsersLayout2 />} />
-        <Route path="users-layout-3" element={<UsersLayout3 />} />
+      <Route
+        path="/users-layout-1"
+        element={
+          <LayoutWrapper>
+            <UsersLayout1 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/users-layout-2"
+        element={
+          <LayoutWrapper>
+            <UsersLayout2 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/users-layout-3"
+        element={
+          <LayoutWrapper>
+            <UsersLayout3 />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Profile Routes */}
-        <Route path="profile-overview-1" element={<ProfileOverview1 />} />
-        <Route path="profile-overview-2" element={<ProfileOverview2 />} />
-        <Route path="profile-overview-3" element={<ProfileOverview3 />} />
+      <Route
+        path="/profile-overview-1"
+        element={
+          <LayoutWrapper>
+            <ProfileOverview1 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/profile-overview-2"
+        element={
+          <LayoutWrapper>
+            <ProfileOverview2 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/profile-overview-3"
+        element={
+          <LayoutWrapper>
+            <ProfileOverview3 />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Wizard Routes */}
-        <Route path="wizard-layout-1" element={<WizardLayout1 />} />
-        <Route path="wizard-layout-2" element={<WizardLayout2 />} />
-        <Route path="wizard-layout-3" element={<WizardLayout3 />} />
+      <Route
+        path="/wizard-layout-1"
+        element={
+          <LayoutWrapper>
+            <WizardLayout1 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/wizard-layout-2"
+        element={
+          <LayoutWrapper>
+            <WizardLayout2 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/wizard-layout-3"
+        element={
+          <LayoutWrapper>
+            <WizardLayout3 />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Blog Routes */}
-        <Route path="blog-layout-1" element={<BlogLayout1 />} />
-        <Route path="blog-layout-2" element={<BlogLayout2 />} />
-        <Route path="blog-layout-3" element={<BlogLayout3 />} />
+      <Route
+        path="/blog-layout-1"
+        element={
+          <LayoutWrapper>
+            <BlogLayout1 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/blog-layout-2"
+        element={
+          <LayoutWrapper>
+            <BlogLayout2 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/blog-layout-3"
+        element={
+          <LayoutWrapper>
+            <BlogLayout3 />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Pricing Routes */}
-        <Route path="pricing-layout-1" element={<PricingLayout1 />} />
-        <Route path="pricing-layout-2" element={<PricingLayout2 />} />
+      <Route
+        path="/pricing-layout-1"
+        element={
+          <LayoutWrapper>
+            <PricingLayout1 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/pricing-layout-2"
+        element={
+          <LayoutWrapper>
+            <PricingLayout2 />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Invoice Routes */}
-        <Route path="invoice-layout-1" element={<InvoiceLayout1 />} />
-        <Route path="invoice-layout-2" element={<InvoiceLayout2 />} />
+      <Route
+        path="/invoice-layout-1"
+        element={
+          <LayoutWrapper>
+            <InvoiceLayout1 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/invoice-layout-2"
+        element={
+          <LayoutWrapper>
+            <InvoiceLayout2 />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* FAQ Routes */}
-        <Route path="faq-layout-1" element={<FaqLayout1 />} />
-        <Route path="faq-layout-2" element={<FaqLayout2 />} />
-        <Route path="faq-layout-3" element={<FaqLayout3 />} />
+      <Route
+        path="/faq-layout-1"
+        element={
+          <LayoutWrapper>
+            <FaqLayout1 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/faq-layout-2"
+        element={
+          <LayoutWrapper>
+            <FaqLayout2 />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/faq-layout-3"
+        element={
+          <LayoutWrapper>
+            <FaqLayout3 />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Auth & Profile Management Routes */}
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="error-page" element={<ErrorPage />} />
-        <Route path="update-profile" element={<UpdateProfile />} />
-        <Route path="change-password" element={<ChangePassword />} />
+      <Route
+        path="/login"
+        element={
+          <LayoutWrapper>
+            <Login />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <LayoutWrapper>
+            <Register />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/error-page"
+        element={
+          <LayoutWrapper>
+            <ErrorPage />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/update-profile"
+        element={
+          <LayoutWrapper>
+            <UpdateProfile />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/change-password"
+        element={
+          <LayoutWrapper>
+            <ChangePassword />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Table Components Routes */}
-        <Route path="regular-table" element={<RegularTable />} />
-        <Route path="tabulator" element={<Tabulator />} />
+      <Route
+        path="/regular-table"
+        element={
+          <LayoutWrapper>
+            <RegularTable />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/tabulator"
+        element={
+          <LayoutWrapper>
+            <Tabulator />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Overlay Components Routes */}
-        <Route path="modal" element={<Modal />} />
-        <Route path="slideover" element={<Slideover />} />
-        <Route path="notification" element={<Notification />} />
+      <Route
+        path="/modal"
+        element={
+          <LayoutWrapper>
+            <Modal />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/slideover"
+        element={
+          <LayoutWrapper>
+            <Slideover />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/notification"
+        element={
+          <LayoutWrapper>
+            <Notification />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* UI Components Routes */}
-        <Route path="tab" element={<Tab />} />
-        <Route path="accordion" element={<Accordion />} />
-        <Route path="button" element={<Button />} />
-        <Route path="alert" element={<Alert />} />
-        <Route path="progress-bar" element={<ProgressBar />} />
-        <Route path="tooltip" element={<Tooltip />} />
-        <Route path="dropdown" element={<Dropdown />} />
-        <Route path="typography" element={<Typography />} />
-        <Route path="icon" element={<Icon />} />
-        <Route path="loading-icon" element={<LoadingIcon />} />
+      <Route
+        path="/tab"
+        element={
+          <LayoutWrapper>
+            <Tab />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/accordion"
+        element={
+          <LayoutWrapper>
+            <Accordion />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/button"
+        element={
+          <LayoutWrapper>
+            <Button />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/alert"
+        element={
+          <LayoutWrapper>
+            <Alert />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/progress-bar"
+        element={
+          <LayoutWrapper>
+            <ProgressBar />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/tooltip"
+        element={
+          <LayoutWrapper>
+            <Tooltip />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/dropdown"
+        element={
+          <LayoutWrapper>
+            <Dropdown />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/typography"
+        element={
+          <LayoutWrapper>
+            <Typography />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/icon"
+        element={
+          <LayoutWrapper>
+            <Icon />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/loading-icon"
+        element={
+          <LayoutWrapper>
+            <LoadingIcon />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Form Components Routes */}
-        <Route path="regular-form" element={<RegularForm />} />
-        <Route path="datepicker" element={<Datepicker />} />
-        <Route path="tom-select" element={<TomSelect />} />
-        <Route path="file-upload" element={<FileUpload />} />
-        <Route path="wysiwyg-editor" element={<WysiwygEditor />} />
-        <Route path="validation" element={<Validation />} />
+      <Route
+        path="/regular-form"
+        element={
+          <LayoutWrapper>
+            <RegularForm />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/datepicker"
+        element={
+          <LayoutWrapper>
+            <Datepicker />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/tom-select"
+        element={
+          <LayoutWrapper>
+            <TomSelect />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/file-upload"
+        element={
+          <LayoutWrapper>
+            <FileUpload />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/wysiwyg-editor"
+        element={
+          <LayoutWrapper>
+            <WysiwygEditor />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/validation"
+        element={
+          <LayoutWrapper>
+            <Validation />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Widget Components Routes */}
-        <Route path="chart" element={<Chart />} />
-        <Route path="slider" element={<Slider />} />
-        <Route path="image-zoom" element={<ImageZoom />} />
+      <Route
+        path="/chart"
+        element={
+          <LayoutWrapper>
+            <Chart />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/slider"
+        element={
+          <LayoutWrapper>
+            <Slider />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/image-zoom"
+        element={
+          <LayoutWrapper>
+            <ImageZoom />
+          </LayoutWrapper>
+        }
+      />
 
-        {/* Debug Route */}
-        <Route path="debug" element={<Debug />} />
-      </Route>
+      <Route
+        path="/debug"
+        element={
+          <LayoutWrapper>
+            <Debug />
+          </LayoutWrapper>
+        }
+      />
 
       {/* 404 Route */}
-      <Route path="*" element={<ErrorPage />} />
+      <Route
+        path="*"
+        element={
+          <LayoutWrapper>
+            <ErrorPage />
+          </LayoutWrapper>
+        }
+      />
     </Routes>
   );
 };
