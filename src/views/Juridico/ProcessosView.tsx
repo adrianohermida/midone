@@ -18,11 +18,11 @@ import {
   XCircle,
   PlayCircle,
 } from "lucide-react";
-import Button from "../../base-components/Button";
-import { FormInput, FormSelect } from "../../base-components/Form";
-import { Tab, Menu } from "../../base-components/Headless";
-import Slideover from "../../base-components/Headless/Slideover";
-import Table from "../../base-components/Table";
+import Button from "../../components/Base/Button";
+import { FormInput, FormSelect } from "../../components/Base/Form";
+import { Tab, Menu } from "../../components/Base/Headless";
+import Slideover from "../../components/Base/Headless/Slideover";
+import Table from "../../components/Base/Table";
 import Tippy from "../../base-components/Tippy";
 import juridicoData from "../../data/juridico.json";
 
