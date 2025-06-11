@@ -2,6 +2,7 @@ import React from "react";
 import { classNames } from "@/utils/helpers";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  as?: "button" | "a" | "div";
   variant?:
     | "primary"
     | "secondary"
