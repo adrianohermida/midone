@@ -71,6 +71,7 @@ import Validation from "@/pages/Validation";
 import Chart from "@/pages/Chart";
 import Slider from "@/pages/Slider";
 import ImageZoom from "@/pages/ImageZoom";
+import Debug from "@/pages/Debug";
 
 const Router = () => {
   return (
@@ -178,6 +179,9 @@ const Router = () => {
         <Route path="chart" element={<Chart />} />
         <Route path="slider" element={<Slider />} />
         <Route path="image-zoom" element={<ImageZoom />} />
+
+        {/* Debug Route */}
+        <Route path="debug" element={<Debug />} />
       </Route>
 
       {/* 404 Route */}
