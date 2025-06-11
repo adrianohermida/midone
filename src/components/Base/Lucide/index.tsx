@@ -223,7 +223,7 @@ const icons = {
   ShoppingBag: dynamicIconImports["shopping-bag"],
   ShoppingCart: dynamicIconImports["shopping-cart"],
   Shuffle: dynamicIconImports.shuffle,
-  Sidebar: dynamicIconImports.sidebar,
+  Sidebar: dynamicIconImports["sidebar-open"],
   SkipBack: dynamicIconImports["skip-back"],
   SkipForward: dynamicIconImports["skip-forward"],
   Slack: dynamicIconImports.slack,
