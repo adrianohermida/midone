@@ -41,9 +41,7 @@ function Main({ children }: MainProps) {
   return (
     <>
       <ThemeSwitcher />
-      <Component>
-        <Outlet />
-      </Component>
+      <Component />
     </>
   );
 }
