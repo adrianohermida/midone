@@ -1,35 +1,36 @@
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Escudo/Base -->
-  <path d="M12 2L4 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-8-3z" 
-        fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-  
-  <!-- Balança central -->
-  <g stroke="currentColor" stroke-width="1.5" fill="none">
-    <!-- Haste central -->
-    <line x1="12" y1="8" x2="12" y2="16"/>
+  <!-- Base/Pilar central -->
+  <g stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round">
+    <!-- Topo decorativo -->
+    <rect x="10" y="2" width="4" height="1" fill="currentColor"/>
+    <rect x="9" y="3.5" width="6" height="0.8" fill="currentColor"/>
+    <rect x="8.5" y="5" width="7" height="0.8" fill="currentColor"/>
     
-    <!-- Braço da balança -->
-    <line x1="8" y1="10" x2="16" y2="10"/>
+    <!-- Haste central -->
+    <line x1="12" y1="6" x2="12" y2="20"/>
+    
+    <!-- Braço horizontal da balança -->
+    <line x1="5" y1="9" x2="19" y2="9"/>
     
     <!-- Prato esquerdo -->
-    <path d="M8 10v1c0 1 0.5 2 2 2h0c1.5 0 2-1 2-2v-1"/>
+    <path d="M5 9 L3 9 C3 9 2 10 2 11 C2 12 3 13 5 13 L8 13 C10 13 11 12 11 11 C11 10 10 9 8 9 L5 9 Z"/>
+    <!-- Cordas do prato esquerdo -->
+    <line x1="5" y1="9" x2="3.5" y2="11"/>
+    <line x1="8" y1="9" x2="9.5" y2="11"/>
     
     <!-- Prato direito -->
-    <path d="M14 10v1c0 1 0.5 2 2 2h0c1.5 0 2-1 2-2v-1"/>
+    <path d="M19 9 L21 9 C21 9 22 10 22 11 C22 12 21 13 19 13 L16 13 C14 13 13 12 13 11 C13 10 14 9 16 9 L19 9 Z"/>
+    <!-- Cordas do prato direito -->
+    <line x1="19" y1="9" x2="20.5" y2="11"/>
+    <line x1="16" y1="9" x2="14.5" y2="11"/>
+    
+    <!-- Suporte do braço -->
+    <circle cx="12" cy="8.5" r="0.8" fill="currentColor"/>
     
     <!-- Base da balança -->
-    <path d="M10 16h4"/>
+    <path d="M10 20 L14 20 L13.5 22 L10.5 22 Z" fill="currentColor"/>
     
-    <!-- Detalhes decorativos -->
-    <circle cx="12" cy="9" r="0.5" fill="currentColor"/>
-  </g>
-  
-  <!-- Elementos de justiça -->
-  <g stroke="currentColor" stroke-width="1" fill="none" opacity="0.6">
-    <!-- Pequenas estrelas/elementos decorativos -->
-    <circle cx="7" cy="7" r="0.5"/>
-    <circle cx="17" cy="7" r="0.5"/>
-    <circle cx="6" cy="14" r="0.5"/>
-    <circle cx="18" cy="14" r="0.5"/>
+    <!-- Ponto central -->
+    <circle cx="12" cy="9" r="0.3" fill="currentColor"/>
   </g>
 </svg>
