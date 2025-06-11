@@ -28,11 +28,14 @@ function Main() {
         <Popover className="mr-auto intro-x sm:mr-6">
           <Popover.Button
             className="
-              relative text-slate-600 outline-none block
+              relative text-slate-600 dark:text-slate-400 outline-none block
               before:content-[''] before:w-[8px] before:h-[8px] before:rounded-full before:absolute before:top-[-2px] before:right-0 before:bg-danger
             "
           >
-            <Lucide icon="Bell" className="w-5 h-5 dark:text-slate-500" />
+            <Lucide
+              icon="Bell"
+              className="w-5 h-5 text-slate-600 dark:text-slate-400"
+            />
           </Popover.Button>
           <Popover.Panel className="w-[280px] sm:w-[350px] p-5 mt-2">
             <div className="mb-5 font-medium">Notifications</div>
