@@ -123,6 +123,31 @@ const Router = () => {
         />
         <Route path="legal-cases/analytics" element={<LegalCasesAnalytics />} />
 
+        {/* Financial Module Routes */}
+        <Route path="financeiro" element={<FinanceiroDashboard />} />
+        <Route path="financeiro/dashboard" element={<FinanceiroDashboard />} />
+        <Route
+          path="financeiro/faturamento"
+          element={<FinanceiroFaturamento />}
+        />
+        <Route path="financeiro/notas" element={<InvoiceLayout2 />} />
+        <Route
+          path="financeiro/transacoes"
+          element={<FinanceiroTransacoes />}
+        />
+        <Route
+          path="financeiro/transacoes/:id"
+          element={<TransactionDetail />}
+        />
+        <Route path="financeiro/produtos" element={<FinanceiroProdutos />} />
+        <Route path="financeiro/produtos/novo" element={<AddProduct />} />
+        <Route path="financeiro/produtos/grade" element={<ProductGrid />} />
+        <Route path="financeiro/pdv" element={<PointOfSale />} />
+        <Route path="financeiro/planos" element={<PricingLayout1 />} />
+        <Route path="financeiro/assinaturas" element={<PricingLayout2 />} />
+        <Route path="financeiro/fornecedores" element={<SellerList />} />
+        <Route path="financeiro/fornecedores/:id" element={<SellerDetail />} />
+
         {/* Main Pages Routes */}
         <Route path="inbox" element={<Inbox />} />
         <Route path="file-manager" element={<FileManager />} />
