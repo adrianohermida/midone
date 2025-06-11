@@ -1,15 +1,13 @@
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import { store } from "./stores/store";
-import App from "./App";
-import "./libs";
-// import "./assets/css/app.css";
+import React from "react";
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </BrowserRouter>,
-);
+const root = document.getElementById("root");
+if (root) {
+  ReactDOM.createRoot(root).render(
+    React.createElement(
+      "div",
+      { style: { color: "red", fontSize: "30px", padding: "50px" } },
+      "MINIMAL REACT TEST - If you see this, React works!",
+    ),
+  );
+}
