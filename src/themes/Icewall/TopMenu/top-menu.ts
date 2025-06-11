@@ -90,7 +90,6 @@ const menu: Array<Menu | "divider"> = [
         ],
       },
     ],
-    ],
   },
   // FINANCEIRO
   {
