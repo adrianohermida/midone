@@ -30,8 +30,8 @@ interface ChartProps {
   type: "line" | "bar" | "doughnut" | "pie" | "polarArea" | "radar";
   data: any;
   options?: any;
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
   className?: string;
 }
 
