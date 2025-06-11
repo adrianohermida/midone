@@ -30,12 +30,6 @@ function Main() {
 
   return (
     <div className="grid grid-cols-12 gap-6">
-      {/* DEBUG: Dashboard is loading */}
-      <div className="col-span-12">
-        <h1 className="text-2xl font-bold text-primary">
-          🎯 Dashboard Overview 1 - Carregado com Sucesso!
-        </h1>
-      </div>
       <div className="col-span-12 2xl:col-span-9">
         <div className="grid grid-cols-12 gap-6">
           {/* BEGIN: General Report */}
