@@ -97,7 +97,7 @@ const icons = {
   DownloadCloud: dynamicIconImports["download-cloud"],
   Dribbble: dynamicIconImports.dribbble,
   Droplet: dynamicIconImports.droplet,
-  Edit: dynamicIconImports.edit,
+  Edit: dynamicIconImports["pen-tool"],
   Edit2: dynamicIconImports["edit-2"],
   Edit3: dynamicIconImports["edit-3"],
   ExternalLink: dynamicIconImports["external-link"],
