@@ -12,9 +12,8 @@ function UserProfileMenu({ className }: UserProfileMenuProps) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Clear any stored authentication tokens
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("userData");
+    // Use auth service to handle logout
+    authService.logout();
 
     // Navigate to login page
     navigate("/login");
