@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { 
+import React, { useState, useEffect } from "react";
+import {
   Calendar,
   Clock,
   MapPin,
@@ -16,16 +16,16 @@ import {
   Navigation,
   Phone,
   Mail,
-  MoreHorizontal
-} from 'lucide-react';
-import Button from '../../base-components/Button';
-import { FormInput, FormSelect } from '../../base-components/Form';
-import Calendar as CalendarComponent from '../../base-components/Calendar';
-import { Menu } from '../../base-components/Headless';
-import Slideover from '../../base-components/Headless/Slideover';
-import { Tab } from '../../base-components/Headless';
-import Tippy from '../../base-components/Tippy';
-import juridicoData from '../../data/juridico.json';
+  MoreHorizontal,
+} from "lucide-react";
+import Button from "../../base-components/Button";
+import { FormInput, FormSelect } from "../../base-components/Form";
+import CalendarComponent from "../../components/Base/Calendar";
+import { Menu } from "../../base-components/Headless";
+import Slideover from "../../base-components/Headless/Slideover";
+import { Tab } from "../../base-components/Headless";
+import Tippy from "../../base-components/Tippy";
+import juridicoData from "../../data/juridico.json";
 
 interface EventoAgenda {
   id: string;
@@ -53,16 +53,19 @@ interface EventoAgenda {
 const AgendaView: React.FC = () => {
   const [eventos, setEventos] = useState<EventoAgenda[]>([]);
   const [filtros, setFiltros] = useState({
-    tipo: '',
-    status: '',
-    responsavel: '',
-    busca: '',
-    dataInicio: '',
-    dataFim: ''
+    tipo: "",
+    status: "",
+    responsavel: "",
+    busca: "",
+    dataInicio: "",
+    dataFim: "",
   });
-  const [eventoSelecionado, setEventoSelecionado] = useState<EventoAgenda | null>(null);
+  const [eventoSelecionado, setEventoSelecionado] =
+    useState<EventoAgenda | null>(null);
   const [showFormulario, setShowFormulario] = useState(false);
-  const [visualizacao, setVisualizacao] = useState<'calendario' | 'lista'>('calendario');
+  const [visualizacao, setVisualizacao] = useState<"calendario" | "lista">(
+    "calendario",
+  );
   const [dataAtual, setDataAtual] = useState(new Date());
 
   useEffect(() => {
@@ -70,78 +73,86 @@ const AgendaView: React.FC = () => {
   }, []);
 
   const formatarDataHora = (data: string) => {
-    return new Date(data).toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return new Date(data).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
   const formatarData = (data: string) => {
-    return new Date(data).toLocaleDateString('pt-BR');
+    return new Date(data).toLocaleDateString("pt-BR");
   };
 
   const formatarHora = (data: string) => {
-    return new Date(data).toLocaleTimeString('pt-BR', {
-      hour: '2-digit',
-      minute: '2-digit'
+    return new Date(data).toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
   const getTipoColor = (tipo: string) => {
     const colors = {
-      'audiencia': 'bg-blue-100 text-blue-800 border-blue-200',
-      'prazo': 'bg-red-100 text-red-800 border-red-200',
-      'reuniao': 'bg-green-100 text-green-800 border-green-200',
-      'compromisso': 'bg-purple-100 text-purple-800 border-purple-200'
+      audiencia: "bg-blue-100 text-blue-800 border-blue-200",
+      prazo: "bg-red-100 text-red-800 border-red-200",
+      reuniao: "bg-green-100 text-green-800 border-green-200",
+      compromisso: "bg-purple-100 text-purple-800 border-purple-200",
     };
-    return colors[tipo as keyof typeof colors] || 'bg-gray-100 text-gray-800 border-gray-200';
+    return (
+      colors[tipo as keyof typeof colors] ||
+      "bg-gray-100 text-gray-800 border-gray-200"
+    );
   };
 
   const getTipoIcon = (tipo: string) => {
     const icons = {
-      'audiencia': <Calendar className="w-4 h-4" />,
-      'prazo': <Clock className="w-4 h-4" />,
-      'reuniao': <Users className="w-4 h-4" />,
-      'compromisso': <Bell className="w-4 h-4" />
+      audiencia: <Calendar className="w-4 h-4" />,
+      prazo: <Clock className="w-4 h-4" />,
+      reuniao: <Users className="w-4 h-4" />,
+      compromisso: <Bell className="w-4 h-4" />,
     };
-    return icons[tipo as keyof typeof icons] || <FileText className="w-4 h-4" />;
+    return (
+      icons[tipo as keyof typeof icons] || <FileText className="w-4 h-4" />
+    );
   };
 
   const getStatusColor = (status: string) => {
     const colors = {
-      'agendado': 'bg-blue-100 text-blue-800',
-      'confirmado': 'bg-green-100 text-green-800',
-      'cancelado': 'bg-red-100 text-red-800',
-      'reagendado': 'bg-yellow-100 text-yellow-800',
-      'realizado': 'bg-green-100 text-green-800'
+      agendado: "bg-blue-100 text-blue-800",
+      confirmado: "bg-green-100 text-green-800",
+      cancelado: "bg-red-100 text-red-800",
+      reagendado: "bg-yellow-100 text-yellow-800",
+      realizado: "bg-green-100 text-green-800",
     };
-    return colors[status as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+    return colors[status as keyof typeof colors] || "bg-gray-100 text-gray-800";
   };
 
-  const eventosFiltrados = eventos.filter(evento => {
-    const matchBusca = !filtros.busca || 
+  const eventosFiltrados = eventos.filter((evento) => {
+    const matchBusca =
+      !filtros.busca ||
       evento.titulo.toLowerCase().includes(filtros.busca.toLowerCase()) ||
       evento.cliente.toLowerCase().includes(filtros.busca.toLowerCase()) ||
-      (evento.processo && evento.processo.toLowerCase().includes(filtros.busca.toLowerCase()));
-    
+      (evento.processo &&
+        evento.processo.toLowerCase().includes(filtros.busca.toLowerCase()));
+
     const matchTipo = !filtros.tipo || evento.tipo === filtros.tipo;
     const matchStatus = !filtros.status || evento.status === filtros.status;
-    const matchResponsavel = !filtros.responsavel || evento.responsavel === filtros.responsavel;
+    const matchResponsavel =
+      !filtros.responsavel || evento.responsavel === filtros.responsavel;
 
     return matchBusca && matchTipo && matchStatus && matchResponsavel;
   });
 
-  const eventosHoje = eventos.filter(evento => {
+  const eventosHoje = eventos.filter((evento) => {
     const hoje = new Date().toDateString();
     const dataEvento = new Date(evento.data).toDateString();
     return dataEvento === hoje;
   });
 
   const proximosEventos = eventos
-    .filter(evento => new Date(evento.data) > new Date())
+    .filter((evento) => new Date(evento.data) > new Date())
     .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime())
     .slice(0, 5);
 
@@ -160,18 +171,18 @@ const AgendaView: React.FC = () => {
         <div className="flex gap-3">
           <div className="flex bg-slate-100 dark:bg-slate-700 rounded-lg p-1">
             <Button
-              variant={visualizacao === 'calendario' ? 'primary' : 'ghost'}
+              variant={visualizacao === "calendario" ? "primary" : "ghost"}
               size="sm"
-              onClick={() => setVisualizacao('calendario')}
+              onClick={() => setVisualizacao("calendario")}
               className="flex items-center gap-2"
             >
               <Calendar className="w-4 h-4" />
               Calendário
             </Button>
             <Button
-              variant={visualizacao === 'lista' ? 'primary' : 'ghost'}
+              variant={visualizacao === "lista" ? "primary" : "ghost"}
               size="sm"
-              onClick={() => setVisualizacao('lista')}
+              onClick={() => setVisualizacao("lista")}
               className="flex items-center gap-2"
             >
               <FileText className="w-4 h-4" />
@@ -194,7 +205,9 @@ const AgendaView: React.FC = () => {
         <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-slate-600 dark:text-slate-400 text-sm">Eventos Hoje</p>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">
+                Eventos Hoje
+              </p>
               <p className="text-2xl font-bold text-blue-600 mt-1">
                 {eventosHoje.length}
               </p>
@@ -206,9 +219,15 @@ const AgendaView: React.FC = () => {
         <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-slate-600 dark:text-slate-400 text-sm">Audiências</p>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">
+                Audiências
+              </p>
               <p className="text-2xl font-bold text-green-600 mt-1">
-                {eventos.filter(e => e.tipo === 'audiencia' && e.status === 'agendado').length}
+                {
+                  eventos.filter(
+                    (e) => e.tipo === "audiencia" && e.status === "agendado",
+                  ).length
+                }
               </p>
             </div>
             <Users className="w-8 h-8 text-green-500" />
@@ -218,9 +237,15 @@ const AgendaView: React.FC = () => {
         <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-slate-600 dark:text-slate-400 text-sm">Prazos Ativos</p>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">
+                Prazos Ativos
+              </p>
               <p className="text-2xl font-bold text-red-600 mt-1">
-                {eventos.filter(e => e.tipo === 'prazo' && e.status === 'agendado').length}
+                {
+                  eventos.filter(
+                    (e) => e.tipo === "prazo" && e.status === "agendado",
+                  ).length
+                }
               </p>
             </div>
             <Clock className="w-8 h-8 text-red-500" />
@@ -232,7 +257,7 @@ const AgendaView: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Área Principal */}
         <div className="lg:col-span-3">
-          {visualizacao === 'calendario' ? (
+          {visualizacao === "calendario" ? (
             <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
               <div className="p-6 border-b border-slate-200 dark:border-slate-700">
                 <div className="flex items-center justify-between">
@@ -243,7 +268,9 @@ const AgendaView: React.FC = () => {
                   <div className="flex gap-3">
                     <FormSelect
                       value={filtros.tipo}
-                      onChange={(e) => setFiltros({...filtros, tipo: e.target.value})}
+                      onChange={(e) =>
+                        setFiltros({ ...filtros, tipo: e.target.value })
+                      }
                       className="w-40"
                     >
                       <option value="">Todos os Tipos</option>
@@ -254,18 +281,22 @@ const AgendaView: React.FC = () => {
                     </FormSelect>
                     <FormSelect
                       value={filtros.responsavel}
-                      onChange={(e) => setFiltros({...filtros, responsavel: e.target.value})}
+                      onChange={(e) =>
+                        setFiltros({ ...filtros, responsavel: e.target.value })
+                      }
                       className="w-40"
                     >
                       <option value="">Todos os Responsáveis</option>
                       <option value="Dr. João Silva">Dr. João Silva</option>
                       <option value="Dra. Ana Costa">Dra. Ana Costa</option>
-                      <option value="Dr. Rafael Santos">Dr. Rafael Santos</option>
+                      <option value="Dr. Rafael Santos">
+                        Dr. Rafael Santos
+                      </option>
                     </FormSelect>
                   </div>
                 </div>
               </div>
-              
+
               <div className="p-6">
                 <CalendarComponent />
               </div>
@@ -279,11 +310,15 @@ const AgendaView: React.FC = () => {
                     type="text"
                     placeholder="Buscar eventos..."
                     value={filtros.busca}
-                    onChange={(e) => setFiltros({...filtros, busca: e.target.value})}
+                    onChange={(e) =>
+                      setFiltros({ ...filtros, busca: e.target.value })
+                    }
                   />
                   <FormSelect
                     value={filtros.tipo}
-                    onChange={(e) => setFiltros({...filtros, tipo: e.target.value})}
+                    onChange={(e) =>
+                      setFiltros({ ...filtros, tipo: e.target.value })
+                    }
                   >
                     <option value="">Todos os Tipos</option>
                     <option value="audiencia">Audiências</option>
@@ -293,7 +328,9 @@ const AgendaView: React.FC = () => {
                   </FormSelect>
                   <FormSelect
                     value={filtros.status}
-                    onChange={(e) => setFiltros({...filtros, status: e.target.value})}
+                    onChange={(e) =>
+                      setFiltros({ ...filtros, status: e.target.value })
+                    }
                   >
                     <option value="">Todos os Status</option>
                     <option value="agendado">Agendado</option>
@@ -301,7 +338,10 @@ const AgendaView: React.FC = () => {
                     <option value="realizado">Realizado</option>
                     <option value="cancelado">Cancelado</option>
                   </FormSelect>
-                  <Button variant="outline-secondary" className="flex items-center gap-2">
+                  <Button
+                    variant="outline-secondary"
+                    className="flex items-center gap-2"
+                  >
                     <Filter className="w-4 h-4" />
                     Limpar
                   </Button>
@@ -311,10 +351,15 @@ const AgendaView: React.FC = () => {
               {/* Lista de Eventos */}
               <div className="divide-y divide-slate-200 dark:divide-slate-700">
                 {eventosFiltrados.map((evento) => (
-                  <div key={evento.id} className="p-6 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                  <div
+                    key={evento.id}
+                    className="p-6 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                  >
                     <div className="flex items-start gap-4">
                       {/* Ícone e Tipo */}
-                      <div className={`p-3 rounded-lg border ${getTipoColor(evento.tipo)}`}>
+                      <div
+                        className={`p-3 rounded-lg border ${getTipoColor(evento.tipo)}`}
+                      >
                         {getTipoIcon(evento.tipo)}
                       </div>
 
@@ -330,7 +375,10 @@ const AgendaView: React.FC = () => {
                                 <Clock className="w-4 h-4" />
                                 {formatarDataHora(evento.data)}
                                 {evento.data_fim && (
-                                  <span> - {formatarHora(evento.data_fim)}</span>
+                                  <span>
+                                    {" "}
+                                    - {formatarHora(evento.data_fim)}
+                                  </span>
                                 )}
                               </div>
                               {evento.local && (
@@ -342,11 +390,17 @@ const AgendaView: React.FC = () => {
                             </div>
                             <div className="flex items-center gap-3 text-sm">
                               <span className="text-slate-600 dark:text-slate-400">
-                                Cliente: <span className="font-medium">{evento.cliente}</span>
+                                Cliente:{" "}
+                                <span className="font-medium">
+                                  {evento.cliente}
+                                </span>
                               </span>
                               {evento.processo && (
                                 <span className="text-slate-600 dark:text-slate-400">
-                                  Processo: <span className="font-medium">{evento.processo}</span>
+                                  Processo:{" "}
+                                  <span className="font-medium">
+                                    {evento.processo}
+                                  </span>
                                 </span>
                               )}
                             </div>
@@ -354,11 +408,18 @@ const AgendaView: React.FC = () => {
 
                           {/* Status e Ações */}
                           <div className="flex items-center gap-3">
-                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(evento.status)}`}>
-                              {evento.status.charAt(0).toUpperCase() + evento.status.slice(1)}
+                            <span
+                              className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(evento.status)}`}
+                            >
+                              {evento.status.charAt(0).toUpperCase() +
+                                evento.status.slice(1)}
                             </span>
                             <Menu>
-                              <Menu.Button as={Button} variant="outline-secondary" size="sm">
+                              <Menu.Button
+                                as={Button}
+                                variant="outline-secondary"
+                                size="sm"
+                              >
                                 <MoreHorizontal className="w-4 h-4" />
                               </Menu.Button>
                               <Menu.Items className="w-48">
@@ -403,7 +464,10 @@ const AgendaView: React.FC = () => {
                             {evento.participantes && (
                               <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 mb-2">
                                 <Users className="w-4 h-4" />
-                                <span>Participantes: {evento.participantes.join(', ')}</span>
+                                <span>
+                                  Participantes:{" "}
+                                  {evento.participantes.join(", ")}
+                                </span>
                               </div>
                             )}
                             {evento.observacoes && (
@@ -443,8 +507,13 @@ const AgendaView: React.FC = () => {
             </h3>
             <div className="space-y-3">
               {proximosEventos.map((evento) => (
-                <div key={evento.id} className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-slate-700/50">
-                  <div className={`p-2 rounded ${getTipoColor(evento.tipo).replace('border-', 'border ')}`}>
+                <div
+                  key={evento.id}
+                  className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-slate-700/50"
+                >
+                  <div
+                    className={`p-2 rounded ${getTipoColor(evento.tipo).replace("border-", "border ")}`}
+                  >
                     {getTipoIcon(evento.tipo)}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -466,19 +535,35 @@ const AgendaView: React.FC = () => {
               Ações Rápidas
             </h3>
             <div className="space-y-2">
-              <Button variant="outline-primary" size="sm" className="w-full justify-start">
+              <Button
+                variant="outline-primary"
+                size="sm"
+                className="w-full justify-start"
+              >
                 <Calendar className="w-4 h-4 mr-2" />
                 Agendar Audiência
               </Button>
-              <Button variant="outline-primary" size="sm" className="w-full justify-start">
+              <Button
+                variant="outline-primary"
+                size="sm"
+                className="w-full justify-start"
+              >
                 <Clock className="w-4 h-4 mr-2" />
                 Definir Prazo
               </Button>
-              <Button variant="outline-primary" size="sm" className="w-full justify-start">
+              <Button
+                variant="outline-primary"
+                size="sm"
+                className="w-full justify-start"
+              >
                 <Users className="w-4 h-4 mr-2" />
                 Marcar Reunião
               </Button>
-              <Button variant="outline-primary" size="sm" className="w-full justify-start">
+              <Button
+                variant="outline-primary"
+                size="sm"
+                className="w-full justify-start"
+              >
                 <Bell className="w-4 h-4 mr-2" />
                 Criar Lembrete
               </Button>
