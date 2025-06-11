@@ -9,6 +9,7 @@ import _ from "lodash";
 import clsx from "clsx";
 
 function Main() {
+
   return (
     <>
       {/* BEGIN: Top Bar */}
@@ -22,23 +23,7 @@ function Main() {
         </Breadcrumb>
         {/* END: Breadcrumb */}
         {/* BEGIN: Search */}
-        <div className="relative mr-3 intro-x sm:mr-6">
-          <div className="relative hidden sm:block">
-            <FormInput
-              type="text"
-              className="border-transparent w-56 shadow-none rounded-full bg-slate-300/50 pr-8 transition-[width] duration-300 ease-in-out focus:border-transparent focus:w-72 dark:bg-darkmode-400/70"
-              placeholder="Search..."
-              onFocus={showSearchDropdown}
-              onBlur={hideSearchDropdown}
-            />
-            <Lucide
-              icon="Search"
-              className="absolute inset-y-0 right-0 w-5 h-5 my-auto mr-3 text-slate-600 dark:text-slate-500"
-            />
-          </div>
-          <a className="relative text-slate-600 sm:hidden" href="">
-            <Lucide icon="Search" className="w-5 h-5 dark:text-slate-500" />
-          </a>
+        <HeaderSearch className="mr-3 intro-x sm:mr-6" />
           <Transition
             as={Fragment}
             show={searchDropdown}
