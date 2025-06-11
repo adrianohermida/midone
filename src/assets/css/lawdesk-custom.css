@@ -69,10 +69,51 @@
   color: rgb(255 255 255) !important;
 }
 
-/* Ensure proper contrast in theme switcher */
+/* Theme switcher original design styling */
 .dark .box {
   background-color: rgb(30 41 59);
   border-color: rgb(51 65 85);
+}
+
+/* Ensure theme switcher follows original modal design */
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  transition:
+    visibility 0.2s,
+    opacity 0.4s;
+}
+
+.modal-backdrop:not(.show) {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.modal-backdrop.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Theme switcher panel transition */
+.theme-switcher-panel {
+  transition: margin-right 0.6s ease-in-out;
+  margin-right: -100%;
+}
+
+.theme-switcher-panel.show {
+  margin-right: 0;
+}
+
+/* Image fit utility for theme previews */
+.image-fit {
+  object-fit: cover;
+  object-position: center;
+}
+
+.image-fit img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* Better visibility for menu items in dark mode */
