@@ -17,7 +17,7 @@ import Breadcrumb from "@/components/Base/Breadcrumb";
 import { FormInput } from "@/components/Base/Form";
 import { Menu, Popover } from "@/components/Base/Headless";
 import { Transition } from "@headlessui/react";
-import justiceScaleUrl from "@/assets/images/justice-scale.svg";
+import lawdeskLogoUrl from "@/assets/images/lawdesk-logo.svg";
 import clsx from "clsx";
 import MobileMenu from "@/components/MobileMenu";
 
@@ -57,22 +57,18 @@ function Main() {
         ])}
       >
         <MobileMenu />
-        {/* BEGIN: Top Bar */}
         <div className="h-[70px] z-[51] relative border-b border-white/[0.08] mt-12 md:mt-0 -mx-3 sm:-mx-8 md:mx-0 px-4 sm:px-8 md:px-6 mb-10 md:mb-8">
           <div className="flex items-center h-full">
-            {/* BEGIN: Logo */}
             <Link to="/" className="hidden -intro-x md:flex items-center">
               <img
                 alt="Lawdesk Legal Management System"
-                className="w-6 h-6 justice-scale-icon justice-scale-white"
-                src={justiceScaleUrl}
+                className="w-6 h-6 lawdesk-logo"
+                src={lawdeskLogoUrl}
               />
-              <span className="ml-3 text-lg font-semibold text-white">
+              <span className="ml-3 text-lg font-semibold text-white lawdesk-title">
                 Lawdesk
               </span>
             </Link>
-            {/* END: Logo */}
-            {/* BEGIN: Breadcrumb */}
             <Breadcrumb
               light
               className="h-full md:ml-10 md:pl-10 md:border-l border-white/[0.08] mr-auto -intro-x"
@@ -82,8 +78,6 @@ function Main() {
                 Dashboard
               </Breadcrumb.Link>
             </Breadcrumb>
-            {/* END: Breadcrumb */}
-            {/* BEGIN: Search */}
             <div className="relative mr-3 intro-x sm:mr-6">
               <div className="hidden sm:block">
                 <FormInput
@@ -180,8 +174,6 @@ function Main() {
                 </div>
               </Transition>
             </div>
-            {/* END: Search */}
-            {/* BEGIN: Notifications */}
             <Popover className="mr-4 intro-x sm:mr-6">
               <Popover.Button
                 className="
@@ -226,8 +218,6 @@ function Main() {
                 ))}
               </Popover.Panel>
             </Popover>
-            {/* END: Notifications */}
-            {/* BEGIN: Account Menu */}
             <Menu>
               <Menu.Button className="block w-8 h-8 overflow-hidden scale-110 rounded-full shadow-lg image-fit zoom-in intro-x">
                 <img
@@ -264,11 +254,8 @@ function Main() {
                 </Menu.Item>
               </Menu.Items>
             </Menu>
-            {/* END: Account Menu */}
           </div>
         </div>
-        {/* END: Top Bar */}
-        {/* BEGIN: Top Menu */}
         <nav className="top-nav relative z-50 -mt-[3px] hidden translate-y-[50px] opacity-0 md:block">
           <ul className="flex flex-wrap h-[58px] px-6 xl:px-[50px]">
             {formattedMenu.map(
@@ -367,8 +354,6 @@ function Main() {
             )}
           </ul>
         </nav>
-        {/* END: Top Menu */}
-        {/* BEGIN: Content */}
         <div
           className={clsx([
             "rounded-[30px] md:rounded-[35px_35px_0px_0px] min-w-0 min-h-screen max-w-full md:max-w-none bg-slate-100 flex-1 pb-10 px-4 md:px-6 relative mt-8 dark:bg-darkmode-700",
@@ -378,7 +363,6 @@ function Main() {
         >
           <Outlet />
         </div>
-        {/* END: Content */}
       </div>
     </forceActiveMenuContext.Provider>
   );
