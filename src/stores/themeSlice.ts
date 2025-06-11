@@ -107,12 +107,9 @@ export const getTheme = (search?: {
 
 const initialState: ThemeState = {
   value: {
-    name:
-      localStorage.getItem("theme") === null ? themes[0].name : getTheme().name,
+    name: localStorage.getItem("theme") === null ? "enigma" : getTheme().name,
     layout:
-      localStorage.getItem("layout") === null
-        ? themes[0].layout
-        : getTheme().layout,
+      localStorage.getItem("layout") === null ? "side-menu" : getTheme().layout,
   },
 };
 
@@ -143,7 +140,7 @@ export const { setTheme, setLayout } = themeSlice.actions;
 
 export const selectTheme = (state: RootState) => {
   if (localStorage.getItem("theme") === null) {
-    localStorage.setItem("theme", "rubick");
+    localStorage.setItem("theme", "enigma");
   }
 
   if (localStorage.getItem("layout") === null) {
