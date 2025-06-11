@@ -11,14 +11,6 @@ import _ from "lodash";
 import clsx from "clsx";
 
 function Main(props: { layout?: "side-menu" | "simple-menu" | "top-menu" }) {
-  const [searchDropdown, setSearchDropdown] = useState(false);
-  const showSearchDropdown = () => {
-    setSearchDropdown(true);
-  };
-  const hideSearchDropdown = () => {
-    setSearchDropdown(false);
-  };
-
   return (
     <>
       <div
