@@ -119,8 +119,8 @@ function SecondLevelMenuItems(props: MenuItemsProps) {
     <Transition
       nodeRef={secondLevelRef}
       in={menu.activeDropdown}
-      onEnter={enter}
-      onExit={leave}
+      onEnter={() => enter(secondLevelRef.current!)}
+      onExit={() => leave(secondLevelRef.current!)}
       timeout={300}
     >
       <ul
