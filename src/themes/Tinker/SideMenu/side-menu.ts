@@ -28,19 +28,24 @@ const menu: Array<Menu | "divider"> = [
     title: "CRM",
     subMenu: [
       {
+        icon: "LayoutDashboard",
+        pathname: "/crm",
+        title: "Dashboard CRM",
+      },
+      {
         icon: "UserCheck",
-        pathname: "/users-layout-1",
+        pathname: "/crm/contatos",
         title: "Contatos",
       },
       {
         icon: "TrendingUp",
-        pathname: "/crud-data-list",
+        pathname: "/crm/negocios",
         title: "Negócios (Pipelines)",
       },
       {
-        icon: "CheckSquare",
-        pathname: "/tabulator",
-        title: "Tarefas",
+        icon: "MessageSquare",
+        pathname: "/crm/suporte",
+        title: "Suporte ao Cliente",
       },
     ],
   },
