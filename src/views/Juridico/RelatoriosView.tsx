@@ -17,9 +17,9 @@ import {
   AlertTriangle,
   Users,
 } from "lucide-react";
-import Button from "../../base-components/Button";
-import { FormInput, FormSelect } from "../../base-components/Form";
-import { Tab } from "../../base-components/Headless";
+import Button from "../../components/Base/Button";
+import { FormInput, FormSelect } from "../../components/Base/Form";
+import { Tab } from "../../components/Base/Headless";
 import ReportBarChart from "../../components/ReportBarChart";
 import ReportDonutChart from "../../components/ReportDonutChart";
 import ReportPieChart from "../../components/ReportPieChart";
