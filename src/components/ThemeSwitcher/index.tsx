@@ -905,9 +905,9 @@ function Main() {
                 </Tab.Group>
               </div>
             </div>
-          </Dialog.Description>
-        </Dialog.Panel>
-      </Dialog>
+          </Slideover.Description>
+        </Slideover.Panel>
+      </Slideover>
 
       {/* Floating Action Button */}
       <div
