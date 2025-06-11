@@ -54,6 +54,31 @@ function Main() {
     darkMode ? el.classList.add("dark") : el.classList.remove("dark");
   };
 
+  const handleOpen = () => {
+    setIsOpen(true);
+    setIsAnimating(true);
+  };
+
+  const handleClose = () => {
+    setIsAnimating(false);
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 300);
+  };
+
+  // Prevent body scroll when panel is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
   const themes: Array<{
     name: Themes["name"];
     displayName: string;
