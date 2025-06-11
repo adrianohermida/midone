@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Transition } from "@headlessui/react";
-import { nestedMenu, FormattedMenu, linkTo, enter, leave } from "./side-menu";
+import { nestedMenu, FormattedMenu } from "./side-menu";
 import Lucide from "@/components/Base/Lucide";
 import logoUrl from "@/assets/images/logo.svg";
 import clsx from "clsx";
@@ -19,7 +19,7 @@ function Menu({ className }: MenuProps) {
   const toggleSubMenu = (menu: FormattedMenu) => {
     const newFormattedMenu = [...formattedMenu];
     const menuIndex = newFormattedMenu.findIndex(
-      (item) => typeof item !== "string" && item.pageName === menu.pageName,
+      (item) => typeof item !== "string" && item.title === menu.title,
     );
 
     if (menuIndex !== -1 && typeof newFormattedMenu[menuIndex] !== "string") {
@@ -31,12 +31,17 @@ function Menu({ className }: MenuProps) {
   };
 
   useEffect(() => {
-    setFormattedMenu(nestedMenu($("div"), location));
+    setFormattedMenu(nestedMenu(null, location));
   }, [location.pathname]);
 
   return (
-    <nav className={clsx(["py-2 side-nav", className])}>
-      {/* BEGIN: Brand */}
+    <nav
+      className={clsx([
+        "py-2 side-nav fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-blue-800 to-blue-900 overflow-y-auto",
+        className,
+      ])}
+    >
+      {/* Brand */}
       <Link to="/" className="intro-x flex items-center pl-5 pt-4">
         <img
           alt="Midone - ReactJS Admin Dashboard Starter Kit"
@@ -48,11 +53,10 @@ function Menu({ className }: MenuProps) {
           Enigma{" "}
         </span>
       </Link>
-      {/* END: Brand */}
 
       <div className="divider my-6"></div>
 
-      {/* BEGIN: Navigation */}
+      {/* Navigation */}
       <ul>
         {formattedMenu.map((menu, menuKey) =>
           typeof menu == "string" ? (
@@ -73,7 +77,7 @@ function Menu({ className }: MenuProps) {
                   toggleSubMenu(menu);
                 }}
               />
-              {/* BEGIN: Second Child */}
+              {/* Second Child */}
               {menu.subMenu && (
                 <Transition
                   show={menu.activeDropdown}
@@ -99,7 +103,7 @@ function Menu({ className }: MenuProps) {
                             toggleSubMenu(subMenu);
                           }}
                         />
-                        {/* BEGIN: Third Child */}
+                        {/* Third Child */}
                         {subMenu.subMenu && (
                           <Transition
                             show={subMenu.activeDropdown}
@@ -135,18 +139,15 @@ function Menu({ className }: MenuProps) {
                             </ul>
                           </Transition>
                         )}
-                        {/* END: Third Child */}
                       </li>
                     ))}
                   </ul>
                 </Transition>
               )}
-              {/* END: Second Child */}
             </li>
           ),
         )}
       </ul>
-      {/* END: Navigation */}
     </nav>
   );
 }
@@ -175,7 +176,7 @@ function MenuLink({ className, menu, level, toggleSubMenu }: MenuLinkProps) {
             to: menu.pathname,
           })}
       className={clsx([
-        "h-[50px] flex items-center text-white/70 pl-5 text-left",
+        "h-[50px] flex items-center text-white/70 pl-5 text-left transition-all duration-200",
         {
           "text-white/70": !menu.active,
           "text-white font-medium": menu.active,
