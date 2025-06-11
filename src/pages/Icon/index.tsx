@@ -45,8 +45,8 @@ function Main() {
           <div className="mt-2 text-xs text-center">AlignRightIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Anchor" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">AnchorIcon</div>
+          <Lucide icon="Archive" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">ArchiveIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Aperture" className="block mx-auto" />
