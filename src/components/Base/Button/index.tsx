@@ -10,6 +10,7 @@ interface BaseButtonProps {
     | "danger"
     | "dark"
     | "light"
+    | "pending"
     | "outline-primary"
     | "outline-secondary"
     | "outline-success"
