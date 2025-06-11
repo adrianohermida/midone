@@ -37,8 +37,8 @@ function ThirdLevelMenu({
     <Transition
       nodeRef={thirdLevelRef}
       in={subMenu.activeDropdown}
-      onEnter={enter}
-      onExit={leave}
+      onEnter={() => enter(thirdLevelRef.current!)}
+      onExit={() => leave(thirdLevelRef.current!)}
       timeout={300}
     >
       <ul
