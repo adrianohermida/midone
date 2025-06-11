@@ -94,6 +94,7 @@ import FinanceiroHonorarios from "@/pages/Financeiro/Honorarios";
 import FinanceiroCustas from "@/pages/Financeiro/Custas";
 import FinanceiroFluxoCaixa from "@/pages/Financeiro/FluxoCaixa";
 import FinanceiroRelatorios from "@/pages/Financeiro/Relatorios";
+import FinanceiroProcessoDetalhes from "@/pages/Financeiro/ProcessoDetalhes";
 
 const Router = () => {
   return (
@@ -139,7 +140,7 @@ const Router = () => {
         <Route path="financeiro/custas" element={<FinanceiroCustas />} />
         <Route
           path="financeiro/processo/:id"
-          element={<FinanceiroTransacaoDetalhes />}
+          element={<FinanceiroProcessoDetalhes />}
         />
         <Route
           path="financeiro/fluxo-caixa"
