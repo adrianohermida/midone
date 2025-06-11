@@ -1,4 +1,4 @@
-import "@/assets/css/themes/rubick/side-nav.css";
+import "@/assets/css/themes/rubick/top-nav.css";
 import { useState, useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { selectMenu } from "@/stores/menuSlice";
