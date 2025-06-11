@@ -155,7 +155,7 @@ function HeaderSearch({ className }: HeaderSearchProps) {
                       hideSearchDropdown();
                       setSearchQuery("");
                     }}
-                    className="flex items-center w-full text-left hover:bg-slate-100 dark:hover:bg-darkmode-400 p-2 rounded"
+                    className="flex items-center w-full text-left hover:bg-slate-100 dark:hover:bg-slate-700 p-2 rounded"
                   >
                     <div
                       className={`flex items-center justify-center w-8 h-8 rounded-full ${page.color}`}
