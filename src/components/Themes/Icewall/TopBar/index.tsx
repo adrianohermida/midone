@@ -8,6 +8,7 @@ import UserProfileMenu from "@/components/Base/UserProfileMenu";
 import HeaderSearch from "@/components/Base/HeaderSearch";
 import fakerData from "@/utils/faker";
 import _ from "lodash";
+import clsx from "clsx";
 
 function Main() {
   return (
