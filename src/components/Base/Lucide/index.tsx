@@ -47,6 +47,7 @@ const icons = {
   Calendar: dynamicIconImports.calendar,
   Camera: dynamicIconImports.camera,
   CameraOff: dynamicIconImports["camera-off"],
+  Car: dynamicIconImports.car,
   Cast: dynamicIconImports.cast,
   Check: dynamicIconImports.check,
   CheckCircle: dynamicIconImports["check-circle"],
@@ -67,14 +68,14 @@ const icons = {
   Cloud: dynamicIconImports.cloud,
   CloudDrizzle: dynamicIconImports["cloud-drizzle"],
   CloudLightning: dynamicIconImports["cloud-lightning"],
+  CloudOff: dynamicIconImports["cloud-off"],
   CloudRain: dynamicIconImports["cloud-rain"],
   CloudSnow: dynamicIconImports["cloud-snow"],
   Code: dynamicIconImports.code,
   Code2: dynamicIconImports["code-2"],
-  Codepen: dynamicIconImports.codepen,
   Coffee: dynamicIconImports.coffee,
   Cog: dynamicIconImports.cog,
-  Columns: dynamicIconImports["columns-2"],
+  Columns: dynamicIconImports.columns,
   Command: dynamicIconImports.command,
   Compass: dynamicIconImports.compass,
   Copy: dynamicIconImports.copy,
@@ -91,7 +92,7 @@ const icons = {
   Crop: dynamicIconImports.crop,
   Crosshair: dynamicIconImports.crosshair,
   Database: dynamicIconImports.database,
-  Delete: dynamicIconImports.delete,
+  Delete: dynamicIconImports.trash,
   Disc: dynamicIconImports.disc,
   DollarSign: dynamicIconImports["dollar-sign"],
   Download: dynamicIconImports.download,
@@ -99,8 +100,8 @@ const icons = {
   Dribbble: dynamicIconImports.dribbble,
   Droplet: dynamicIconImports.droplet,
   Edit: dynamicIconImports["pen-tool"],
-  Edit2: dynamicIconImports["edit-2"],
-  Edit3: dynamicIconImports["edit-3"],
+  Edit2: dynamicIconImports["edit-2"] || dynamicIconImports["edit"],
+  Edit3: dynamicIconImports["edit-3"] || dynamicIconImports["edit"],
   ExternalLink: dynamicIconImports["external-link"],
   Eye: dynamicIconImports.eye,
   EyeOff: dynamicIconImports["eye-off"],
@@ -122,19 +123,19 @@ const icons = {
   Frown: dynamicIconImports.frown,
   Gift: dynamicIconImports.gift,
   GitBranch: dynamicIconImports["git-branch"],
-  GitCommit: dynamicIconImports["git-commit"],
+  GitCommit:
+    dynamicIconImports["git-commit"] || dynamicIconImports["git-branch"],
   GitMerge: dynamicIconImports["git-merge"],
   GitPullRequest: dynamicIconImports["git-pull-request"],
   Github: dynamicIconImports.github,
   Gitlab: dynamicIconImports.gitlab,
   Globe: dynamicIconImports.globe,
-  Grid: dynamicIconImports["grid-3x3"],
+  Grid: dynamicIconImports.grid,
   HardDrive: dynamicIconImports["hard-drive"],
   Hash: dynamicIconImports.hash,
   Headphones: dynamicIconImports.headphones,
   Heart: dynamicIconImports.heart,
   HelpCircle: dynamicIconImports["help-circle"],
-  Hexagon: dynamicIconImports.hexagon,
   Home: dynamicIconImports.home,
   Image: dynamicIconImports.image,
   Inbox: dynamicIconImports.inbox,
@@ -143,7 +144,7 @@ const icons = {
   Italic: dynamicIconImports.italic,
   Key: dynamicIconImports.key,
   Layers: dynamicIconImports.layers,
-  Layout: dynamicIconImports["layout-grid"],
+  Layout: dynamicIconImports.layout,
   LifeBuoy: dynamicIconImports["life-buoy"],
   Link: dynamicIconImports.link,
   Link2: dynamicIconImports["link-2"],
@@ -173,7 +174,6 @@ const icons = {
   Moon: dynamicIconImports.moon,
   MoreHorizontal: dynamicIconImports["more-horizontal"],
   MoreVertical: dynamicIconImports["more-vertical"],
-  MousePointer: dynamicIconImports["mouse-pointer"],
   Move: dynamicIconImports.move,
   Music: dynamicIconImports.music,
   Navigation: dynamicIconImports.navigation,
@@ -181,8 +181,6 @@ const icons = {
   Octagon: dynamicIconImports.octagon,
   Package: dynamicIconImports.package,
   Paperclip: dynamicIconImports.paperclip,
-  PanelsTopLeft: dynamicIconImports["panels-top-left"],
-  PanelLeft: dynamicIconImports["panel-left"],
   Pause: dynamicIconImports.pause,
   PauseCircle: dynamicIconImports["pause-circle"],
   PenTool: dynamicIconImports["pen-tool"],
@@ -224,7 +222,10 @@ const icons = {
   ShoppingBag: dynamicIconImports["shopping-bag"],
   ShoppingCart: dynamicIconImports["shopping-cart"],
   Shuffle: dynamicIconImports.shuffle,
-  Sidebar: dynamicIconImports["sidebar-open"],
+  Sidebar:
+    dynamicIconImports["sidebar-open"] ||
+    dynamicIconImports["sidebar"] ||
+    dynamicIconImports["panel-left"],
   SkipBack: dynamicIconImports["skip-back"],
   SkipForward: dynamicIconImports["skip-forward"],
   Slack: dynamicIconImports.slack,
@@ -248,12 +249,9 @@ const icons = {
   ThumbsUp: dynamicIconImports["thumbs-up"],
   ToggleLeft: dynamicIconImports["toggle-left"],
   ToggleRight: dynamicIconImports["toggle-right"],
-  Tool: dynamicIconImports.wrench,
+  Tool: dynamicIconImports.tool,
   Trash: dynamicIconImports.trash,
   Trash2: dynamicIconImports["trash-2"],
-  Trello: dynamicIconImports.trello,
-  TrendingDown: dynamicIconImports["trending-down"],
-  TrendingUp: dynamicIconImports["trending-up"],
   Triangle: dynamicIconImports.triangle,
   Truck: dynamicIconImports.truck,
   Tv: dynamicIconImports.tv,
@@ -269,9 +267,11 @@ const icons = {
   UserCheck: dynamicIconImports["user-check"],
   UserMinus: dynamicIconImports["user-minus"],
   UserPlus: dynamicIconImports["user-plus"],
+  UserX: dynamicIconImports["user-x"],
   Users: dynamicIconImports.users,
   Video: dynamicIconImports.video,
   VideoOff: dynamicIconImports["video-off"],
+  Voicemail: dynamicIconImports.voicemail,
   Volume: dynamicIconImports.volume,
   Volume1: dynamicIconImports["volume-1"],
   Volume2: dynamicIconImports["volume-2"],
@@ -290,71 +290,55 @@ const icons = {
   ZoomOut: dynamicIconImports["zoom-out"],
 };
 
-function Lucide(props: LucideProps) {
-  const { icon, className, ...computedProps } = props;
+const FallbackIcon: React.FC<LucideProps> = ({ className, ...props }) => (
+  <svg
+    {...props}
+    className={twMerge(["stroke-1.5 w-5 h-5", className])}
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+  </svg>
+);
 
-  // Enhanced type guard to ensure icon is a valid string and exists in icons
-  const iconValue = icon as any;
+const Lucide: React.FC<LucideProps> = ({ icon, className, ...props }) => {
+  // Get icon value, supporting both string and direct icon references
+  const iconValue = typeof icon === "string" ? icon : icon?.toString?.() || "";
 
-  if (
-    !iconValue ||
-    typeof iconValue !== "string" ||
-    iconValue.trim() === "" ||
-    !(iconValue in icons)
-  ) {
+  // Remove ref and other non-SVG props
+  const { ref, ...computedProps } = props as any;
+
+  // Check if icon is valid
+  if (!iconValue || typeof iconValue !== "string" || iconValue.trim() === "") {
     console.warn(`Invalid icon prop passed to Lucide component:`, {
       icon: iconValue,
       type: typeof iconValue,
-      value: iconValue,
-      availableIcons: Object.keys(icons).slice(0, 5),
     });
+    return <FallbackIcon className={className} {...computedProps} />;
+  }
 
-    // Use a simple fallback approach - render activity icon directly
-    return (
-      <svg
-        {...computedProps}
-        className={twMerge(["stroke-1.5 w-5 h-5", className])}
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-      </svg>
+  // Check if icon exists in our icons object
+  const safeIconKey = iconValue as keyof typeof icons;
+  if (!icons[safeIconKey]) {
+    console.warn(
+      `Icon "${iconValue}" not found in icons object. Using fallback.`,
     );
+    return <FallbackIcon className={className} {...computedProps} />;
   }
 
   try {
-    const safeIconKey = iconValue as keyof typeof icons;
-
-    if (!icons[safeIconKey]) {
-      throw new Error(`Icon "${safeIconKey}" not found in icons object`);
-    }
-
     // Create component using the dynamic import directly
     const IconComponent = React.lazy(icons[safeIconKey]);
 
     return (
       <React.Suspense
-        fallback={
-          <svg
-            className={twMerge(["stroke-1.5 w-5 h-5", className])}
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-          </svg>
-        }
+        fallback={<FallbackIcon className={className} {...computedProps} />}
       >
         <IconComponent
           {...computedProps}
@@ -363,26 +347,9 @@ function Lucide(props: LucideProps) {
       </React.Suspense>
     );
   } catch (error) {
-    console.error("Error in Lucide component:", error, "Props:", props);
-
-    return (
-      <svg
-        {...computedProps}
-        className={twMerge(["stroke-1.5 w-5 h-5", className])}
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-      </svg>
-    );
+    console.warn("Error loading Lucide icon:", error);
+    return <FallbackIcon className={className} {...computedProps} />;
   }
-}
+};
 
-export { icons };
 export default Lucide;
