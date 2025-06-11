@@ -143,7 +143,7 @@ function Main() {
               </button>
             </div>
 
-            <div className="p-5 space-y-6">
+            <div className="p-5 space-y-8">
               {/* Templates */}
               <div>
                 <div className="grid grid-cols-2 gap-2">
