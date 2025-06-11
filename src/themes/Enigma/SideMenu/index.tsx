@@ -1,244 +1,212 @@
-import "@/assets/css/themes/enigma/side-nav.css";
-import { Transition } from "react-transition-group";
-import { useState, useEffect } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { selectMenu } from "@/stores/menuSlice";
-import { useAppSelector } from "@/stores/hooks";
-import {
-  FormattedMenu,
-  linkTo,
-  nestedMenu,
-  enter,
-  leave,
-  forceActiveMenuContext,
-  forceActiveMenu,
-} from "./side-menu";
-import Tippy from "@/components/Base/Tippy";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Transition } from "@headlessui/react";
+import { nestedMenu, FormattedMenu, linkTo, enter, leave } from "./side-menu";
 import Lucide from "@/components/Base/Lucide";
+import logoUrl from "@/assets/images/logo.svg";
 import clsx from "clsx";
-import TopBar from "@/components/Themes/Enigma/TopBar";
-import MobileMenu from "@/components/MobileMenu";
 
-function Main() {
-  const navigate = useNavigate();
+interface MenuProps {
+  className?: string;
+}
+
+function Menu({ className }: MenuProps) {
   const location = useLocation();
   const [formattedMenu, setFormattedMenu] = useState<
     Array<FormattedMenu | "divider">
   >([]);
-  const menuStore = useAppSelector(selectMenu("side-menu"));
-  const menu = () => nestedMenu(menuStore, location);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const toggleSubMenu = (menu: FormattedMenu) => {
+    const newFormattedMenu = [...formattedMenu];
+    const menuIndex = newFormattedMenu.findIndex(
+      (item) => typeof item !== "string" && item.pageName === menu.pageName,
+    );
+
+    if (menuIndex !== -1 && typeof newFormattedMenu[menuIndex] !== "string") {
+      (newFormattedMenu[menuIndex] as FormattedMenu).activeDropdown = !(
+        newFormattedMenu[menuIndex] as FormattedMenu
+      ).activeDropdown;
+      setFormattedMenu(newFormattedMenu);
+    }
+  };
 
   useEffect(() => {
-    setFormattedMenu(menu());
-
-    window.addEventListener("resize", () => {
-      setWindowWidth(window.innerWidth);
-    });
-  }, [menuStore, location.pathname]);
+    setFormattedMenu(nestedMenu($("div"), location));
+  }, [location.pathname]);
 
   return (
-    <forceActiveMenuContext.Provider
-      value={{
-        forceActiveMenu: (pathname) => {
-          forceActiveMenu(location, pathname);
-          setFormattedMenu(menu());
-        },
-      }}
-    >
-      <div
-        className={clsx([
-          "enigma py-5 px-5 md:py-0 sm:px-8 md:px-0",
-          "before:content-[''] before:bg-gradient-to-b before:from-theme-1 before:to-theme-2 dark:before:from-darkmode-800 dark:before:to-darkmode-800 md:before:bg-none md:bg-slate-200 md:dark:bg-darkmode-800 before:fixed before:inset-0 before:z-[-1]",
-        ])}
-      >
-        <MobileMenu />
-        <TopBar layout="side-menu" />
-        <div className="flex overflow-hidden">
-          {/* BEGIN: Side Menu */}
-          <nav className="side-nav w-[100px] xl:w-[260px] px-5 pb-16 overflow-x-hidden z-50 pt-32 -mt-4 hidden md:block">
-            <ul>
-              {/* BEGIN: First Child */}
-              {formattedMenu.map((menu, menuKey) =>
-                menu == "divider" ? (
-                  <li className="my-6 side-nav__divider" key={menuKey}></li>
-                ) : (
-                  <li key={menuKey}>
-                    <Tippy
-                      as="a"
-                      content={menu.title}
-                      options={{
-                        placement: "right",
-                      }}
-                      disable={windowWidth > 1260}
-                      href={menu.subMenu ? "#" : menu.pathname}
-                      onClick={(event: React.MouseEvent) => {
-                        event.preventDefault();
-                        linkTo(menu, navigate);
-                        setFormattedMenu([...formattedMenu]);
-                      }}
-                      className={clsx([
-                        menu.active
-                          ? "side-menu side-menu--active"
-                          : "side-menu",
-                      ])}
-                    >
-                      <div className="side-menu__icon">
-                        <Lucide icon={menu.icon} />
-                      </div>
-                      <div className="side-menu__title">
-                        {menu.title}
-                        {menu.subMenu && (
-                          <div
-                            className={clsx([
-                              "side-menu__sub-icon",
-                              { "transform rotate-180": menu.activeDropdown },
-                            ])}
-                          >
-                            <Lucide icon="ChevronDown" />
-                          </div>
-                        )}
-                      </div>
-                    </Tippy>
-                    {/* BEGIN: Second Child */}
-                    {menu.subMenu && (
-                      <Transition
-                        in={menu.activeDropdown}
-                        onEnter={enter}
-                        onExit={leave}
-                        timeout={300}
-                      >
-                        <ul
+    <nav className={clsx(["py-2 side-nav", className])}>
+      {/* BEGIN: Brand */}
+      <Link to="/" className="intro-x flex items-center pl-5 pt-4">
+        <img
+          alt="Midone - ReactJS Admin Dashboard Starter Kit"
+          className="w-6"
+          src={logoUrl}
+        />
+        <span className="hidden xl:block text-white text-lg ml-3">
+          {" "}
+          Enigma{" "}
+        </span>
+      </Link>
+      {/* END: Brand */}
+
+      <div className="divider my-6"></div>
+
+      {/* BEGIN: Navigation */}
+      <ul>
+        {formattedMenu.map((menu, menuKey) =>
+          typeof menu == "string" ? (
+            <li className="nav-divider my-6" key={menuKey}>
+              <div className="divider"></div>
+            </li>
+          ) : (
+            <li key={menuKey}>
+              <MenuLink
+                className={clsx({
+                  "nav-link": true,
+                  "nav-link--active": menu.active,
+                  "nav-link--open": menu.activeDropdown,
+                })}
+                menu={menu}
+                level="first"
+                toggleSubMenu={(menu: FormattedMenu) => {
+                  toggleSubMenu(menu);
+                }}
+              />
+              {/* BEGIN: Second Child */}
+              {menu.subMenu && (
+                <Transition
+                  show={menu.activeDropdown}
+                  enter="transition-all ease-linear duration-150"
+                  enterFrom="mt-0 max-h-0 overflow-hidden"
+                  enterTo="mt-1 max-h-screen overflow-hidden"
+                  leave="transition-all ease-linear duration-150"
+                  leaveFrom="mt-1 max-h-screen overflow-hidden"
+                  leaveTo="mt-0 max-h-0 overflow-hidden"
+                >
+                  <ul className="nav-submenu">
+                    {menu.subMenu.map((subMenu, subMenuKey) => (
+                      <li key={subMenuKey}>
+                        <MenuLink
                           className={clsx({
-                            "side-menu__sub-open": menu.activeDropdown,
+                            "nav-link": true,
+                            "nav-link--active": subMenu.active,
+                            "nav-link--open": subMenu.activeDropdown,
                           })}
-                        >
-                          {menu.subMenu.map((subMenu, subMenuKey) => (
-                            <li key={subMenuKey}>
-                              <Tippy
-                                as="a"
-                                content={subMenu.title}
-                                options={{
-                                  placement: "right",
-                                }}
-                                disable={windowWidth > 1260}
-                                href={subMenu.subMenu ? "#" : subMenu.pathname}
-                                onClick={(event: React.MouseEvent) => {
-                                  event.preventDefault();
-                                  linkTo(subMenu, navigate);
-                                  setFormattedMenu([...formattedMenu]);
-                                }}
-                                className={clsx([
-                                  subMenu.active
-                                    ? "side-menu side-menu--active"
-                                    : "side-menu",
-                                ])}
-                              >
-                                <div className="side-menu__icon">
-                                  <Lucide icon={subMenu.icon} />
-                                </div>
-                                <div className="side-menu__title">
-                                  {subMenu.title}
-                                  {subMenu.subMenu && (
-                                    <div
-                                      className={clsx([
-                                        "side-menu__sub-icon",
-                                        {
-                                          "transform rotate-180":
-                                            subMenu.activeDropdown,
-                                        },
-                                      ])}
-                                    >
-                                      <Lucide icon="ChevronDown" />
-                                    </div>
-                                  )}
-                                </div>
-                              </Tippy>
-                              {/* BEGIN: Third Child */}
-                              {subMenu.subMenu && (
-                                <Transition
-                                  in={subMenu.activeDropdown}
-                                  onEnter={enter}
-                                  onExit={leave}
-                                  timeout={300}
-                                >
-                                  <ul
-                                    className={clsx({
-                                      "side-menu__sub-open":
-                                        subMenu.activeDropdown,
-                                    })}
-                                  >
-                                    {subMenu.subMenu.map(
-                                      (lastSubMenu, lastSubMenuKey) => (
-                                        <li key={lastSubMenuKey}>
-                                          <Tippy
-                                            as="a"
-                                            content={lastSubMenu.title}
-                                            options={{
-                                              placement: "right",
-                                            }}
-                                            disable={windowWidth > 1260}
-                                            href={
-                                              lastSubMenu.subMenu
-                                                ? "#"
-                                                : lastSubMenu.pathname
-                                            }
-                                            onClick={(
-                                              event: React.MouseEvent
-                                            ) => {
-                                              event.preventDefault();
-                                              linkTo(lastSubMenu, navigate);
-                                              setFormattedMenu([
-                                                ...formattedMenu,
-                                              ]);
-                                            }}
-                                            className={clsx([
-                                              lastSubMenu.active
-                                                ? "side-menu side-menu--active"
-                                                : "side-menu",
-                                            ])}
-                                          >
-                                            <div className="side-menu__icon">
-                                              <Lucide icon={lastSubMenu.icon} />
-                                            </div>
-                                            <div className="side-menu__title">
-                                              {lastSubMenu.title}
-                                            </div>
-                                          </Tippy>
-                                        </li>
-                                      )
-                                    )}
-                                  </ul>
-                                </Transition>
+                          menu={subMenu}
+                          level="second"
+                          toggleSubMenu={(subMenu: FormattedMenu) => {
+                            toggleSubMenu(subMenu);
+                          }}
+                        />
+                        {/* BEGIN: Third Child */}
+                        {subMenu.subMenu && (
+                          <Transition
+                            show={subMenu.activeDropdown}
+                            enter="transition-all ease-linear duration-150"
+                            enterFrom="mt-0 max-h-0 overflow-hidden"
+                            enterTo="mt-1 max-h-screen overflow-hidden"
+                            leave="transition-all ease-linear duration-150"
+                            leaveFrom="mt-1 max-h-screen overflow-hidden"
+                            leaveTo="mt-0 max-h-0 overflow-hidden"
+                          >
+                            <ul className="nav-submenu">
+                              {subMenu.subMenu.map(
+                                (lastSubMenu, lastSubMenuKey) => (
+                                  <li key={lastSubMenuKey}>
+                                    <MenuLink
+                                      className={clsx({
+                                        "nav-link": true,
+                                        "nav-link--active": lastSubMenu.active,
+                                        "nav-link--open":
+                                          lastSubMenu.activeDropdown,
+                                      })}
+                                      menu={lastSubMenu}
+                                      level="third"
+                                      toggleSubMenu={(
+                                        lastSubMenu: FormattedMenu,
+                                      ) => {
+                                        toggleSubMenu(lastSubMenu);
+                                      }}
+                                    />
+                                  </li>
+                                ),
                               )}
-                              {/* END: Third Child */}
-                            </li>
-                          ))}
-                        </ul>
-                      </Transition>
-                    )}
-                    {/* END: Second Child */}
-                  </li>
-                )
+                            </ul>
+                          </Transition>
+                        )}
+                        {/* END: Third Child */}
+                      </li>
+                    ))}
+                  </ul>
+                </Transition>
               )}
-              {/* END: First Child */}
-            </ul>
-          </nav>
-          {/* END: Side Menu */}
-          {/* BEGIN: Content */}
-          <div
-            className={clsx([
-              "max-w-full md:max-w-none rounded-[30px] md:rounded-none px-4 md:px-[22px] min-w-0 min-h-screen bg-slate-100 flex-1 md:pt-20 pb-10 mt-5 md:mt-1 relative dark:bg-darkmode-700",
-              "before:content-[''] before:w-full before:h-px before:block",
-            ])}
-          >
-            <Outlet />
-          </div>
-          {/* END: Content */}
-        </div>
-      </div>
-    </forceActiveMenuContext.Provider>
+              {/* END: Second Child */}
+            </li>
+          ),
+        )}
+      </ul>
+      {/* END: Navigation */}
+    </nav>
   );
 }
 
-export default Main;
+interface MenuLinkProps {
+  className?: string;
+  menu: FormattedMenu;
+  level: "first" | "second" | "third";
+  toggleSubMenu: (menu: FormattedMenu) => void;
+}
+
+function MenuLink({ className, menu, level, toggleSubMenu }: MenuLinkProps) {
+  const Component = menu.subMenu ? "a" : Link;
+
+  return (
+    <Component
+      {...(menu.subMenu
+        ? {
+            href: "#",
+            onClick: (event: React.MouseEvent) => {
+              event.preventDefault();
+              toggleSubMenu(menu);
+            },
+          }
+        : {
+            to: menu.pathname,
+          })}
+      className={clsx([
+        "h-[50px] flex items-center text-white/70 pl-5 text-left",
+        {
+          "text-white/70": !menu.active,
+          "text-white font-medium": menu.active,
+          "bg-white/10": menu.active,
+          "hover:bg-white/5": !menu.active,
+          "rounded-full mx-3": level === "first",
+          "rounded-full ml-8 mr-3": level === "second",
+          "rounded-full ml-11 mr-3": level === "third",
+        },
+        className,
+      ])}
+    >
+      <div className="w-4 h-4 mr-3">
+        <Lucide icon={menu.icon} />
+      </div>
+      <div className="flex-1 mr-3">{menu.title}</div>
+      {menu.subMenu && (
+        <div
+          className={clsx([
+            "transition ease-in duration-100 ml-auto mr-5 text-white/70",
+            { "rotate-180": menu.activeDropdown },
+          ])}
+        >
+          <Lucide icon="ChevronDown" className="w-4 h-4" />
+        </div>
+      )}
+      {menu.active && level === "first" && (
+        <div className="absolute right-5 w-2 h-2 bg-white rounded-full"></div>
+      )}
+    </Component>
+  );
+}
+
+export default Menu;
