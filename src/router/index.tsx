@@ -73,6 +73,7 @@ import Slider from "@/pages/Slider";
 import ImageZoom from "@/pages/ImageZoom";
 import ComponentDiagnostics from "@/pages/ComponentDiagnostics";
 import ComponentDiagnosticsReport from "@/pages/ComponentDiagnosticsReport";
+import PageDiagnostics from "@/pages/PageDiagnostics";
 
 const Router = () => {
   return (
@@ -190,6 +191,7 @@ const Router = () => {
           path="component-report"
           element={<ComponentDiagnosticsReport />}
         />
+        <Route path="page-diagnostics" element={<PageDiagnostics />} />
 
         {/* 404 Route - Needs to be inside the nested route */}
         <Route path="*" element={<ErrorPage />} />

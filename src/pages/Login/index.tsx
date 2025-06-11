@@ -1,11 +1,94 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import logoUrl from "@/assets/images/logo.svg";
 import illustrationUrl from "@/assets/images/illustration.svg";
+import justiceScaleUrl from "@/assets/images/justice-scale.svg";
 import { FormInput, FormCheck } from "@/components/Base/Form";
 import Button from "@/components/Base/Button";
+import Lucide from "@/components/Base/Lucide";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import clsx from "clsx";
 
+// Validation schema
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email("E-mail inválido")
+      .required("E-mail é obrigatório"),
+    password: yup
+      .string()
+      .min(6, "Senha deve ter pelo menos 6 caracteres")
+      .required("Senha é obrigatória"),
+  })
+  .required();
+
+interface LoginForm {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+}
+
 function Main() {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<LoginForm>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      email: "",
+      password: "",
+      rememberMe: false,
+    },
+  });
+
+  const onSubmit = async (data: LoginForm) => {
+    setIsLoading(true);
+
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Mock authentication - in real app, this would call your auth API
+      console.log("Login attempt:", data);
+
+      // Store auth state (mock)
+      if (data.rememberMe) {
+        localStorage.setItem("rememberMe", "true");
+      }
+
+      // Redirect to dashboard
+      navigate("/");
+    } catch (error) {
+      console.error("Login failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDemoLogin = () => {
+    // Quick demo login
+    navigate("/");
+  };
+
+  const handleForgotPassword = () => {
+    // In real app, this would open forgot password modal or navigate to forgot password page
+    alert("Funcionalidade de recuperação de senha seria implementada aqui");
+  };
+
+  const handleRegister = () => {
+    navigate("/register");
+  };
+
   return (
     <>
       <div
@@ -20,91 +103,205 @@ function Main() {
           <div className="block grid-cols-2 gap-4 xl:grid">
             {/* BEGIN: Login Info */}
             <div className="flex-col hidden min-h-screen xl:flex">
-              <a href="" className="flex items-center pt-5 -intro-x">
+              <a href="/" className="flex items-center pt-5 -intro-x">
                 <img
-                  alt="Midone Tailwind HTML Admin Template"
+                  alt="LawDesk Legal Management System"
                   className="w-6"
-                  src={logoUrl}
+                  src={justiceScaleUrl}
                 />
-                <span className="ml-3 text-lg text-white"> Rubick </span>
+                <span className="ml-3 text-lg text-white font-semibold">
+                  {" "}
+                  LawDesk{" "}
+                </span>
               </a>
               <div className="my-auto">
                 <img
-                  alt="Midone Tailwind HTML Admin Template"
+                  alt="LawDesk Legal Management System"
                   className="w-1/2 -mt-16 -intro-x"
                   src={illustrationUrl}
                 />
                 <div className="mt-10 text-4xl font-medium leading-tight text-white -intro-x">
-                  A few more clicks to <br />
-                  sign in to your account.
+                  Sistema de Gestão <br />
+                  Jurídica Completo
                 </div>
                 <div className="mt-5 text-lg text-white -intro-x text-opacity-70 dark:text-slate-400">
-                  Manage all your e-commerce accounts in one place
+                  Gerencie casos, clientes, processos e documentos em uma única
+                  plataforma
+                </div>
+                <div className="mt-8 -intro-x">
+                  <div className="flex items-center text-white text-opacity-70 mb-4">
+                    <Lucide icon="CheckCircle" className="w-5 h-5 mr-3" />
+                    <span>Gestão completa de casos jurídicos</span>
+                  </div>
+                  <div className="flex items-center text-white text-opacity-70 mb-4">
+                    <Lucide icon="CheckCircle" className="w-5 h-5 mr-3" />
+                    <span>Controle de prazos e audiências</span>
+                  </div>
+                  <div className="flex items-center text-white text-opacity-70 mb-4">
+                    <Lucide icon="CheckCircle" className="w-5 h-5 mr-3" />
+                    <span>Relatórios e analytics avançados</span>
+                  </div>
                 </div>
               </div>
             </div>
             {/* END: Login Info */}
+
             {/* BEGIN: Login Form */}
             <div className="flex h-screen py-5 my-10 xl:h-auto xl:py-0 xl:my-0">
               <div className="w-full px-5 py-8 mx-auto my-auto bg-white rounded-md shadow-md xl:ml-20 dark:bg-darkmode-600 xl:bg-transparent sm:px-8 xl:p-0 xl:shadow-none sm:w-3/4 lg:w-2/4 xl:w-auto">
+                {/* Mobile Logo */}
+                <div className="flex items-center justify-center mb-6 xl:hidden">
+                  <img
+                    alt="LawDesk Legal Management System"
+                    className="w-8 h-8"
+                    src={justiceScaleUrl}
+                  />
+                  <span className="ml-3 text-xl font-semibold">LawDesk</span>
+                </div>
+
                 <h2 className="text-2xl font-bold text-center intro-x xl:text-3xl xl:text-left">
-                  Sign In
+                  Entrar no Sistema
                 </h2>
                 <div className="mt-2 text-center intro-x text-slate-400 xl:hidden">
-                  A few more clicks to sign in to your account. Manage all your
-                  e-commerce accounts in one place
+                  Acesse sua conta para gerenciar seus casos e processos
+                  jurídicos
                 </div>
-                <div className="mt-8 intro-x">
-                  <FormInput
-                    type="text"
-                    className="block px-4 py-3 intro-x min-w-full xl:min-w-[350px]"
-                    placeholder="Email"
-                  />
-                  <FormInput
-                    type="password"
-                    className="block px-4 py-3 mt-4 intro-x min-w-full xl:min-w-[350px]"
-                    placeholder="Password"
-                  />
-                </div>
-                <div className="flex mt-4 text-xs intro-x text-slate-600 dark:text-slate-500 sm:text-sm">
-                  <div className="flex items-center mr-auto">
-                    <FormCheck.Input
-                      id="remember-me"
-                      type="checkbox"
-                      className="mr-2 border"
+
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="mt-8 intro-x"
+                >
+                  {/* Email Field */}
+                  <div className="mb-4">
+                    <FormInput
+                      {...register("email")}
+                      type="email"
+                      className={clsx([
+                        "block px-4 py-3 intro-x min-w-full xl:min-w-[350px]",
+                        errors.email && "border-danger",
+                      ])}
+                      placeholder="seu@email.com"
                     />
-                    <FormCheck.Label
-                      className="cursor-pointer select-none"
-                      htmlFor="remember-me"
-                    >
-                      Remember me
-                    </FormCheck.Label>
+                    {errors.email && (
+                      <div className="mt-2 text-danger text-sm">
+                        {errors.email.message}
+                      </div>
+                    )}
                   </div>
-                  <a href="">Forgot Password?</a>
-                </div>
-                <div className="mt-5 text-center intro-x xl:mt-8 xl:text-left">
-                  <Button
-                    variant="primary"
-                    className="w-full px-4 py-3 align-top xl:w-32 xl:mr-3"
-                  >
-                    Login
-                  </Button>
-                  <Button
-                    variant="outline-secondary"
-                    className="w-full px-4 py-3 mt-3 align-top xl:w-32 xl:mt-0"
-                  >
-                    Register
-                  </Button>
-                </div>
+
+                  {/* Password Field */}
+                  <div className="mb-4 relative">
+                    <FormInput
+                      {...register("password")}
+                      type={showPassword ? "text" : "password"}
+                      className={clsx([
+                        "block px-4 py-3 pr-12 intro-x min-w-full xl:min-w-[350px]",
+                        errors.password && "border-danger",
+                      ])}
+                      placeholder="Sua senha"
+                    />
+                    <button
+                      type="button"
+                      className="absolute inset-y-0 right-0 flex items-center pr-3"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      <Lucide
+                        icon={showPassword ? "EyeOff" : "Eye"}
+                        className="w-5 h-5 text-slate-400 hover:text-slate-600"
+                      />
+                    </button>
+                    {errors.password && (
+                      <div className="mt-2 text-danger text-sm">
+                        {errors.password.message}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Remember Me & Forgot Password */}
+                  <div className="flex mt-4 text-xs intro-x text-slate-600 dark:text-slate-500 sm:text-sm">
+                    <div className="flex items-center mr-auto">
+                      <FormCheck.Input
+                        {...register("rememberMe")}
+                        id="remember-me"
+                        type="checkbox"
+                        className="mr-2 border"
+                      />
+                      <FormCheck.Label
+                        className="cursor-pointer select-none"
+                        htmlFor="remember-me"
+                      >
+                        Lembrar de mim
+                      </FormCheck.Label>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleForgotPassword}
+                      className="text-primary hover:underline"
+                    >
+                      Esqueceu a senha?
+                    </button>
+                  </div>
+
+                  {/* Submit Buttons */}
+                  <div className="mt-5 text-center intro-x xl:mt-8 xl:text-left">
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      disabled={isLoading}
+                      className="w-full px-4 py-3 align-top xl:w-32 xl:mr-3"
+                    >
+                      {isLoading ? (
+                        <>
+                          <Lucide
+                            icon="Loader"
+                            className="w-4 h-4 mr-2 animate-spin"
+                          />
+                          Entrando...
+                        </>
+                      ) : (
+                        "Entrar"
+                      )}
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline-secondary"
+                      onClick={handleRegister}
+                      className="w-full px-4 py-3 mt-3 align-top xl:w-32 xl:mt-0"
+                    >
+                      Registrar
+                    </Button>
+                  </div>
+
+                  {/* Demo Access */}
+                  <div className="mt-6 text-center intro-x">
+                    <div className="text-slate-500 text-sm mb-3">
+                      Ou acesse a demonstração
+                    </div>
+                    <Button
+                      type="button"
+                      variant="outline-primary"
+                      onClick={handleDemoLogin}
+                      className="w-full xl:w-auto"
+                    >
+                      <Lucide icon="Play" className="w-4 h-4 mr-2" />
+                      Acesso Demo
+                    </Button>
+                  </div>
+                </form>
+
+                {/* Additional Info */}
                 <div className="mt-10 text-center intro-x xl:mt-24 text-slate-600 dark:text-slate-500 xl:text-left">
-                  By signin up, you agree to our{" "}
-                  <a className="text-primary dark:text-slate-200" href="">
-                    Terms and Conditions
-                  </a>{" "}
-                  &{" "}
-                  <a className="text-primary dark:text-slate-200" href="">
-                    Privacy Policy
-                  </a>
+                  <div className="border-t pt-6 border-slate-200 dark:border-darkmode-400">
+                    <div className="text-sm">
+                      <p className="mb-2">
+                        <strong>LawDesk</strong> - Sistema completo para gestão
+                        jurídica
+                      </p>
+                      <p className="text-xs text-slate-500">
+                        Versão 2.0 | © 2024 Todos os direitos reservados
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
