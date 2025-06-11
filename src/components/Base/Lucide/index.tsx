@@ -142,7 +142,7 @@ const icons = {
   Italic: dynamicIconImports.italic,
   Key: dynamicIconImports.key,
   Layers: dynamicIconImports.layers,
-  Layout: dynamicIconImports.layout,
+  Layout: dynamicIconImports["layout-grid"],
   LifeBuoy: dynamicIconImports["life-buoy"],
   Link: dynamicIconImports.link,
   Link2: dynamicIconImports["link-2"],
