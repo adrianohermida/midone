@@ -63,7 +63,7 @@ function ColorPicker({
   };
 
   const generateNewPalettes = () => {
-    const newPalettes = generateRandomPalettes(6);
+    const newPalettes = generateRandomPalettes();
     setCustomPalettes(newPalettes);
   };
 
@@ -71,9 +71,9 @@ function ColorPicker({
     if (!isValidHex(value)) return;
 
     const harmonies = [
-      { name: "Análoga", colors: [value, ...getAnalogousColors(value)] },
+      { name: "Análoga", colors: getAnalogousColors(value) },
       { name: "Complementar", colors: [value, getComplementaryColor(value)] },
-      { name: "Tríade", colors: [value, ...getTriadicColors(value)] },
+      { name: "Tríade", colors: getTriadicColors(value) },
       { name: "Monocromática", colors: getMonochromaticColors(value) },
     ];
 
