@@ -139,7 +139,7 @@ function ColorPicker({
             onClick={() => handleColorChange(generateRandomColor())}
             className="px-3"
           >
-            <Lucide icon="Shuffle" className="w-4 h-4" />
+            <Lucide icon="RotateCw" className="w-4 h-4" />
           </Button>
         </div>
 
@@ -183,7 +183,7 @@ function ColorPicker({
                     : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white",
                 ])}
               >
-                <Lucide icon="Droplet" className="w-3 h-3 mr-1 inline" />
+                <Lucide icon="Circle" className="w-3 h-3 mr-1 inline" />
                 Picker
               </button>
               <button
@@ -207,7 +207,7 @@ function ColorPicker({
                     : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white",
                 ])}
               >
-                <Lucide icon="Sparkles" className="w-3 h-3 mr-1 inline" />
+                <Lucide icon="Star" className="w-3 h-3 mr-1 inline" />
                 Gerador
               </button>
             </div>
