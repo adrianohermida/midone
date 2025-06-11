@@ -11,11 +11,19 @@ import {
   Legend,
   ArcElement,
   Filler,
+  LineController,
+  BarController,
+  DoughnutController,
+  PieController,
+  PolarAreaController,
+  RadarController,
+  RadialLinearScale,
 } from "chart.js";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
+  RadialLinearScale,
   PointElement,
   LineElement,
   BarElement,
@@ -24,6 +32,12 @@ ChartJS.register(
   Legend,
   ArcElement,
   Filler,
+  LineController,
+  BarController,
+  DoughnutController,
+  PieController,
+  PolarAreaController,
+  RadarController,
 );
 
 interface ChartProps {
