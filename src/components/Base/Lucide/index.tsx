@@ -293,8 +293,7 @@ function Lucide(props: LucideProps) {
   const { icon, className, ...computedProps } = props;
 
   // Enhanced type guard to ensure icon is a valid string and exists in icons
-  // This validation happens BEFORE calling createLucideIcon to prevent toKebabCase errors
-  const iconValue = icon as any; // Handle any type coercion from calling code
+  const iconValue = icon as any;
 
   if (
     !iconValue ||
@@ -307,44 +306,79 @@ function Lucide(props: LucideProps) {
       type: typeof iconValue,
       value: iconValue,
       availableIcons: Object.keys(icons).slice(0, 5),
-      stackTrace: new Error().stack,
     });
-    // Return a fallback icon instead of null to ensure something renders
-    const Component = createLucideIcon("Activity", icons["Activity"]);
+
+    // Use a simple fallback approach - render activity icon directly
     return (
-      <Component
+      <svg
         {...computedProps}
         className={twMerge(["stroke-1.5 w-5 h-5", className])}
-      />
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+      </svg>
     );
   }
 
   try {
-    // Ensure the icon value is definitely a string and exists in icons
     const safeIconKey = iconValue as keyof typeof icons;
 
-    // Double-check that the icon exists before creating
     if (!icons[safeIconKey]) {
       throw new Error(`Icon "${safeIconKey}" not found in icons object`);
     }
 
-    const Component = createLucideIcon(safeIconKey, icons[safeIconKey]);
+    // Create component using the dynamic import directly
+    const IconComponent = React.lazy(icons[safeIconKey]);
 
     return (
-      <Component
-        {...computedProps}
-        className={twMerge(["stroke-1.5 w-5 h-5", className])}
-      />
+      <React.Suspense
+        fallback={
+          <svg
+            className={twMerge(["stroke-1.5 w-5 h-5", className])}
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+          </svg>
+        }
+      >
+        <IconComponent
+          {...computedProps}
+          className={twMerge(["stroke-1.5 w-5 h-5", className])}
+        />
+      </React.Suspense>
     );
   } catch (error) {
     console.error("Error in Lucide component:", error, "Props:", props);
-    // Return a safe fallback in case of any error
-    const Component = createLucideIcon("Activity", icons["Activity"]);
+
     return (
-      <Component
+      <svg
         {...computedProps}
         className={twMerge(["stroke-1.5 w-5 h-5", className])}
-      />
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+      </svg>
     );
   }
 }
