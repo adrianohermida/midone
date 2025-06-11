@@ -13,6 +13,145 @@ import justiceScaleUrl from "@/assets/images/justice-scale.svg";
 import clsx from "clsx";
 import SimpleBar from "simplebar";
 
+// Component for third-level menu items with ref handling
+function ThirdLevelMenu({
+  subMenu,
+  formattedMenu,
+  setFormattedMenu,
+  navigate,
+  setActiveMobileMenu,
+}: {
+  subMenu: FormattedMenu;
+  formattedMenu: Array<FormattedMenu | "divider">;
+  setFormattedMenu: React.Dispatch<
+    React.SetStateAction<Array<FormattedMenu | "divider">>
+  >;
+  navigate: any;
+  setActiveMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const thirdLevelRef = useRef<HTMLUListElement>(null);
+
+  if (!subMenu.subMenu) return null;
+
+  return (
+    <Transition
+      nodeRef={thirdLevelRef}
+      in={subMenu.activeDropdown}
+      onEnter={enter}
+      onExit={leave}
+      timeout={300}
+    >
+      <ul
+        ref={thirdLevelRef}
+        className={clsx({
+          "menu__sub-open": subMenu.activeDropdown,
+        })}
+      >
+        {subMenu.subMenu.map((lastSubMenu, lastSubMenuKey) => (
+          <li key={lastSubMenuKey}>
+            <a
+              href={lastSubMenu.subMenu ? "#" : lastSubMenu.pathname}
+              className={clsx([
+                lastSubMenu.active ? "menu menu--active" : "menu",
+              ])}
+              onClick={(event) => {
+                event.preventDefault();
+                linkTo(lastSubMenu, navigate, setActiveMobileMenu);
+                setFormattedMenu([...formattedMenu]);
+              }}
+            >
+              <div className="menu__icon">
+                <Lucide icon={lastSubMenu.icon} />
+              </div>
+              <div className="menu__title">{lastSubMenu.title}</div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </Transition>
+  );
+}
+
+// Component for second-level menu items with ref handling
+function SecondLevelMenu({
+  menu,
+  formattedMenu,
+  setFormattedMenu,
+  navigate,
+  setActiveMobileMenu,
+}: {
+  menu: FormattedMenu;
+  formattedMenu: Array<FormattedMenu | "divider">;
+  setFormattedMenu: React.Dispatch<
+    React.SetStateAction<Array<FormattedMenu | "divider">>
+  >;
+  navigate: any;
+  setActiveMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const secondLevelRef = useRef<HTMLUListElement>(null);
+
+  if (!menu.subMenu) return null;
+
+  return (
+    <Transition
+      nodeRef={secondLevelRef}
+      in={menu.activeDropdown}
+      onEnter={enter}
+      onExit={leave}
+      timeout={300}
+    >
+      <ul
+        ref={secondLevelRef}
+        className={clsx({
+          "menu__sub-open": menu.activeDropdown,
+        })}
+      >
+        {menu.subMenu.map((subMenu, subMenuKey) => (
+          <li key={subMenuKey}>
+            <a
+              href={subMenu.subMenu ? "#" : subMenu.pathname}
+              className={clsx([subMenu.active ? "menu menu--active" : "menu"])}
+              onClick={(event) => {
+                event.preventDefault();
+                linkTo(subMenu, navigate, setActiveMobileMenu);
+                setFormattedMenu([...formattedMenu]);
+              }}
+            >
+              <div className="menu__icon">
+                <Lucide icon={subMenu.icon} />
+              </div>
+              <div className="menu__title">
+                {subMenu.title}
+                {subMenu.subMenu && (
+                  <div
+                    className={clsx([
+                      "menu__sub-icon",
+                      subMenu.activeDropdown && "transform rotate-180",
+                    ])}
+                  >
+                    <Lucide icon="ChevronDown" />
+                  </div>
+                )}
+              </div>
+            </a>
+            {/* BEGIN: Third Child */}
+            {subMenu.subMenu && (
+              <ThirdLevelMenu
+                subMenu={subMenu}
+                formattedMenu={formattedMenu}
+                setFormattedMenu={setFormattedMenu}
+                navigate={navigate}
+                setActiveMobileMenu={setActiveMobileMenu}
+              />
+            )}
+            {/* END: Third Child */}
+          </li>
+        ))}
+      </ul>
+    </Transition>
+  );
+}
+
 function Main() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -98,10 +237,8 @@ function Main() {
           </div>
           <ul className="py-2">
             {/* BEGIN: First Child */}
-            {formattedMenu.map((menu, menuKey) => {
-              const submenuRef = useRef<HTMLUListElement>(null);
-
-              return menu == "divider" ? (
+            {formattedMenu.map((menu, menuKey) =>
+              menu == "divider" ? (
                 <li className="my-6 menu__divider" key={menuKey}></li>
               ) : (
                 <li key={menuKey}>
@@ -135,110 +272,17 @@ function Main() {
                   </a>
                   {/* BEGIN: Second Child */}
                   {menu.subMenu && (
-                    <Transition
-                      nodeRef={submenuRef}
-                      in={menu.activeDropdown}
-                      onEnter={enter}
-                      onExit={leave}
-                      timeout={300}
-                    >
-                      <ul
-                        className={clsx({
-                          "menu__sub-open": menu.activeDropdown,
-                        })}
-                      >
-                        {menu.subMenu.map((subMenu, subMenuKey) => (
-                          <li key={subMenuKey}>
-                            <a
-                              href={subMenu.subMenu ? "#" : subMenu.pathname}
-                              className={clsx([
-                                subMenu.active ? "menu menu--active" : "menu",
-                              ])}
-                              onClick={(event) => {
-                                event.preventDefault();
-                                linkTo(subMenu, navigate, setActiveMobileMenu);
-                                setFormattedMenu([...formattedMenu]);
-                              }}
-                            >
-                              <div className="menu__icon">
-                                <Lucide icon={subMenu.icon} />
-                              </div>
-                              <div className="menu__title">
-                                {subMenu.title}
-                                {subMenu.subMenu && (
-                                  <div
-                                    className={clsx([
-                                      "menu__sub-icon",
-                                      subMenu.activeDropdown &&
-                                        "transform rotate-180",
-                                    ])}
-                                  >
-                                    <Lucide icon="ChevronDown" />
-                                  </div>
-                                )}
-                              </div>
-                            </a>
-                            {/* BEGIN: Third Child */}
-                            {subMenu.subMenu && (
-                              <Transition
-                                in={subMenu.activeDropdown}
-                                onEnter={enter}
-                                onExit={leave}
-                                timeout={300}
-                              >
-                                <ul
-                                  className={clsx({
-                                    "menu__sub-open": subMenu.activeDropdown,
-                                  })}
-                                >
-                                  {subMenu.subMenu.map(
-                                    (lastSubMenu, lastSubMenuKey) => (
-                                      <li key={lastSubMenuKey}>
-                                        <a
-                                          href={
-                                            lastSubMenu.subMenu
-                                              ? "#"
-                                              : lastSubMenu.pathname
-                                          }
-                                          className={clsx([
-                                            lastSubMenu.active
-                                              ? "menu menu--active"
-                                              : "menu",
-                                          ])}
-                                          onClick={(event) => {
-                                            event.preventDefault();
-                                            linkTo(
-                                              lastSubMenu,
-                                              navigate,
-                                              setActiveMobileMenu
-                                            );
-                                            setFormattedMenu([
-                                              ...formattedMenu,
-                                            ]);
-                                          }}
-                                        >
-                                          <div className="menu__icon">
-                                            <Lucide icon={lastSubMenu.icon} />
-                                          </div>
-                                          <div className="menu__title">
-                                            {lastSubMenu.title}
-                                          </div>
-                                        </a>
-                                      </li>
-                                    )
-                                  )}
-                                </ul>
-                              </Transition>
-                            )}
-                            {/* END: Third Child */}
-                          </li>
-                        ))}
-                      </ul>
-                    </Transition>
+                    <SecondLevelMenu
+                      menu={menu}
+                      formattedMenu={formattedMenu}
+                      setFormattedMenu={setFormattedMenu}
+                      navigate={navigate}
+                      setActiveMobileMenu={setActiveMobileMenu}
+                    />
                   )}
                   {/* END: Second Child */}
                 </li>
-              )
+              ),
             )}
             {/* END: First Child */}
           </ul>
