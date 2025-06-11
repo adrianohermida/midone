@@ -34,7 +34,7 @@ const FileIcon: React.FC<FileIconProps> = ({ variant, className, file }) => {
     }
 
     if (["xls", "xlsx"].includes(extension || "")) {
-      return "FileSpreadsheet";
+      return "FileText";
     }
 
     if (["ppt", "pptx"].includes(extension || "")) {
