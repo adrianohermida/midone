@@ -45,12 +45,13 @@ function Main() {
         ])}
       >
         <div className="h-[70px] px-3 sm:px-8 flex items-center">
-          <a href="" className="flex mr-auto">
+          <a href="" className="flex mr-auto items-center">
             <img
-              alt="Midone Tailwind HTML Admin Template"
-              className="w-6"
-              src={logoUrl}
+              alt="Lawdesk Legal Management System"
+              className="w-6 h-6 justice-scale-icon justice-scale-white mr-3"
+              src={justiceScaleUrl}
             />
+            <span className="text-lg font-semibold text-white">Lawdesk</span>
           </a>
           <a href="#" onClick={(e) => e.preventDefault()}>
             <Lucide
