@@ -48,10 +48,61 @@ function Main() {
 
   const switchTheme = (theme: Themes["name"]) => {
     dispatch(setTheme(theme));
+    dispatch(clearCustomTheme()); // Clear custom theme when switching to predefined theme
     applyThemeStyles(theme, activeDarkMode);
   };
+
   const switchLayout = (layout: Themes["layout"]) => {
     dispatch(setLayout(layout));
+  };
+
+  const applyCustomTheme = (customTheme: CustomTheme) => {
+    dispatch(setActiveCustomTheme(customTheme));
+    applyCustomThemeColors(
+      customTheme.colors.primary,
+      customTheme.colors.secondary,
+      activeDarkMode,
+    );
+  };
+
+  const createCustomTheme = () => {
+    if (
+      !customThemeName.trim() ||
+      !isValidHex(primaryColor) ||
+      !isValidHex(secondaryColor)
+    ) {
+      return;
+    }
+
+    const newCustomTheme = {
+      name: customThemeName.trim(),
+      colors: {
+        primary: primaryColor,
+        secondary: secondaryColor,
+      },
+    };
+
+    dispatch(addCustomTheme(newCustomTheme));
+
+    // Apply the new theme immediately
+    const createdTheme: CustomTheme = {
+      ...newCustomTheme,
+      id: Date.now().toString(),
+      isCustom: true,
+      createdAt: Date.now(),
+    };
+
+    applyCustomTheme(createdTheme);
+
+    // Reset form
+    setCustomThemeName("");
+    setPrimaryColor("#3b82f6");
+    setSecondaryColor("#1e40af");
+    setShowCustomForm(false);
+  };
+
+  const deleteCustomTheme = (themeId: string) => {
+    dispatch(removeCustomTheme(themeId));
   };
 
   const setColorSchemeClass = () => {
