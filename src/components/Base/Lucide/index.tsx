@@ -339,7 +339,7 @@ function Lucide(props: LucideProps) {
   } catch (error) {
     console.error("Error in Lucide component:", error, "Props:", props);
     // Return a safe fallback in case of any error
-    const Component = createLucideIcon(icons["Activity"]);
+    const Component = createLucideIcon("Activity", icons["Activity"]);
     return (
       <Component
         {...computedProps}
