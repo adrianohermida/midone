@@ -75,6 +75,13 @@ import ComponentDiagnostics from "@/pages/ComponentDiagnostics";
 import ComponentDiagnosticsReport from "@/pages/ComponentDiagnosticsReport";
 import PageDiagnostics from "@/pages/PageDiagnostics";
 
+// Legal Cases Pages
+import LegalCasesDashboard from "@/pages/LegalCases/Dashboard";
+import LegalCasesList from "@/pages/LegalCases/CaseList";
+import LegalCaseForm from "@/pages/LegalCases/CaseForm";
+import LegalCaseDetails from "@/pages/LegalCases/CaseDetails";
+import LegalCasesIntimations from "@/pages/LegalCases/Intimations";
+
 const Router = () => {
   return (
     <Routes>
@@ -95,6 +102,18 @@ const Router = () => {
         <Route path="seller-list" element={<SellerList />} />
         <Route path="seller-detail" element={<SellerDetail />} />
         <Route path="reviews" element={<Reviews />} />
+
+        {/* Legal Cases Routes */}
+        <Route path="legal-cases" element={<LegalCasesDashboard />} />
+        <Route path="legal-cases/dashboard" element={<LegalCasesDashboard />} />
+        <Route path="legal-cases/list" element={<LegalCasesList />} />
+        <Route path="legal-cases/create" element={<LegalCaseForm />} />
+        <Route path="legal-cases/:id" element={<LegalCaseDetails />} />
+        <Route path="legal-cases/:id/edit" element={<LegalCaseForm />} />
+        <Route
+          path="legal-cases/intimations"
+          element={<LegalCasesIntimations />}
+        />
 
         {/* Main Pages Routes */}
         <Route path="inbox" element={<Inbox />} />
