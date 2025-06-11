@@ -35,7 +35,9 @@ function ColorPicker({
   const [activeTab, setActiveTab] = useState<
     "picker" | "palettes" | "generator"
   >("picker");
-  const [customPalettes, setCustomPalettes] = useState<ColorPalette[]>([]);
+  const [customPalettes, setCustomPalettes] = useState<ColorPalette[]>(() =>
+    generateRandomPalettes(),
+  );
   const colorInputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
