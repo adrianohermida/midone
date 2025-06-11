@@ -78,12 +78,16 @@ interface DraggableProps {
   children: React.ReactNode;
   eventData?: any;
   className?: string;
+  id?: string;
+  options?: any;
 }
 
 export const Draggable: React.FC<DraggableProps> = ({
   children,
   eventData,
   className,
+  id,
+  options,
 }) => {
   const draggableRef = useRef<HTMLDivElement>(null);
 
@@ -102,7 +106,7 @@ export const Draggable: React.FC<DraggableProps> = ({
   }, [eventData]);
 
   return (
-    <div ref={draggableRef} className={className}>
+    <div ref={draggableRef} className={className} id={id}>
       {children}
     </div>
   );
