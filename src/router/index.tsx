@@ -95,6 +95,7 @@ import FinanceiroCustas from "@/pages/Financeiro/Custas";
 import FinanceiroFluxoCaixa from "@/pages/Financeiro/FluxoCaixa";
 import FinanceiroRelatorios from "@/pages/Financeiro/Relatorios";
 import FinanceiroProcessoDetalhes from "@/pages/Financeiro/ProcessoDetalhes";
+import FinanceiroAssinaturasCobrancas from "@/pages/Financeiro/AssinaturasCobrancas";
 
 const Router = () => {
   return (
@@ -171,7 +172,10 @@ const Router = () => {
         <Route path="financeiro/produtos/grade" element={<ProductGrid />} />
         <Route path="financeiro/pdv" element={<PointOfSale />} />
         <Route path="financeiro/planos" element={<PricingLayout1 />} />
-        <Route path="financeiro/assinaturas" element={<PricingLayout2 />} />
+        <Route
+          path="financeiro/assinaturas"
+          element={<FinanceiroAssinaturasCobrancas />}
+        />
         <Route path="financeiro/fornecedores" element={<SellerList />} />
         <Route path="financeiro/fornecedores/:id" element={<SellerDetail />} />
 
