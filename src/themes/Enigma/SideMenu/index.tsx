@@ -1,6 +1,6 @@
 import "@/assets/css/themes/enigma/side-nav.css";
 import { Transition } from "react-transition-group";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { selectMenu } from "@/stores/menuSlice";
 import { useAppSelector } from "@/stores/hooks";
@@ -184,7 +184,7 @@ function Main() {
                                                 : lastSubMenu.pathname
                                             }
                                             onClick={(
-                                              event: React.MouseEvent
+                                              event: React.MouseEvent,
                                             ) => {
                                               event.preventDefault();
                                               linkTo(lastSubMenu, navigate);
@@ -206,7 +206,7 @@ function Main() {
                                             </div>
                                           </Tippy>
                                         </li>
-                                      )
+                                      ),
                                     )}
                                   </ul>
                                 </Transition>
@@ -219,7 +219,7 @@ function Main() {
                     )}
                     {/* END: Second Child */}
                   </li>
-                )
+                ),
               )}
               {/* END: First Child */}
             </ul>
