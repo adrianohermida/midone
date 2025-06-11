@@ -17,7 +17,7 @@ import Breadcrumb from "@/components/Base/Breadcrumb";
 import { FormInput } from "@/components/Base/Form";
 import { Menu, Popover } from "@/components/Base/Headless";
 import { Transition } from "@headlessui/react";
-import logoUrl from "@/assets/images/logo.svg";
+import justiceScaleUrl from "@/assets/images/justice-scale.svg";
 import clsx from "clsx";
 import MobileMenu from "@/components/MobileMenu";
 
@@ -352,7 +352,7 @@ function Main() {
                                         </div>
                                       </a>
                                     </li>
-                                  )
+                                  ),
                                 )}
                               </ul>
                             )}
@@ -361,7 +361,7 @@ function Main() {
                       </ul>
                     )}
                   </li>
-                )
+                ),
             )}
           </ul>
         </nav>
