@@ -5,11 +5,13 @@ import { classNames } from "@/utils/helpers";
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   variant?: "default" | "success" | "warning" | "danger";
   rounded?: boolean;
+  formInputSize?: "sm" | "lg";
 }
 
 export const FormInput: React.FC<FormInputProps> = ({
   variant = "default",
   rounded = false,
+  formInputSize,
   className,
   ...props
 }) => {
@@ -27,6 +29,8 @@ export const FormInput: React.FC<FormInputProps> = ({
     baseClasses,
     variantClasses[variant],
     rounded ? "rounded-full" : "rounded-md",
+    formInputSize === "sm" && "text-xs py-1.5 px-2",
+    formInputSize === "lg" && "text-lg py-1.5 px-4",
     className,
   );
 

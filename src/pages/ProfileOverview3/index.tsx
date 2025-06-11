@@ -45,19 +45,19 @@ function Main() {
               variant="boxed-tabs"
               className="border-transparent bg-transparent"
             >
-              <Tab className="w-full py-2" tag="button">
+              <Tab className="w-full py-2" as="button">
                 <Lucide icon="User" className="w-4 h-4 mr-2" />
                 Personal Information
               </Tab>
-              <Tab className="w-full py-2" tag="button">
+              <Tab className="w-full py-2" as="button">
                 <Lucide icon="Shield" className="w-4 h-4 mr-2" />
                 Account Settings
               </Tab>
-              <Tab className="w-full py-2" tag="button">
+              <Tab className="w-full py-2" as="button">
                 <Lucide icon="Lock" className="w-4 h-4 mr-2" />
                 Change Password
               </Tab>
-              <Tab className="w-full py-2" tag="button">
+              <Tab className="w-full py-2" as="button">
                 <Lucide icon="Settings" className="w-4 h-4 mr-2" />
                 User Settings
               </Tab>
