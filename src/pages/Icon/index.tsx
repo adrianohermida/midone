@@ -493,8 +493,9 @@ function Main() {
           <div className="mt-2 text-xs text-center">GlobeIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="LayoutGrid" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">GridIcon</div>
+          <Lucide icon="Layout" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">LayoutIcon</div>
+        </div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="HardDrive" className="block mx-auto" />
