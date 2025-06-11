@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/stores/hooks";
 import { logout } from "@/stores/authSlice";
 import { Menu } from "@/components/Base/Headless";
-import { Lucide } from "@/components/Base/Lucide";
+import Lucide from "@/components/Base/Lucide";
 import logoUrl from "@/assets/images/logo.svg";
 
 const AdminHeader: React.FC = () => {
