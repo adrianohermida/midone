@@ -12,10 +12,8 @@ import clsx from "clsx";
 
 function Main() {
   return (
-    <>
-      {/* BEGIN: Top Bar */}
+    <Fragment>
       <div className="relative z-[51] flex h-[67px] items-center border-b border-slate-200 dark:border-slate-700">
-        {/* BEGIN: Logo */}
         <Link to="/" className="hidden -intro-x md:flex items-center mr-6">
           <img
             alt="Midone Tailwind HTML Admin Template"
@@ -26,19 +24,13 @@ function Main() {
             Midone
           </span>
         </Link>
-        {/* END: Logo */}
-        {/* BEGIN: Breadcrumb */}
         <Breadcrumb className="hidden mr-auto -intro-x sm:flex">
           <Breadcrumb.Link to="/">Application</Breadcrumb.Link>
           <Breadcrumb.Link to="/" active={true}>
             Dashboard
           </Breadcrumb.Link>
         </Breadcrumb>
-        {/* END: Breadcrumb */}
-        {/* BEGIN: Search */}
         <HeaderSearch className="mr-3 intro-x sm:mr-6" />
-        {/* END: Search */}
-        {/* BEGIN: Notifications */}
         <Popover className="mr-auto intro-x sm:mr-6">
           <Popover.Button
             className="
@@ -86,13 +78,9 @@ function Main() {
             ))}
           </Popover.Panel>
         </Popover>
-        {/* END: Notifications */}
-        {/* BEGIN: Account Menu */}
         <UserProfileMenu />
-        {/* END: Account Menu */}
       </div>
-      {/* END: Top Bar */}
-    </>
+    </Fragment>
   );
 }
 

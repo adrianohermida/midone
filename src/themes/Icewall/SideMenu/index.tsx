@@ -1,6 +1,6 @@
 import "@/assets/css/themes/icewall/side-nav.css";
 import { useState, useEffect } from "react";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { selectMenu } from "@/stores/menuSlice";
 import { useAppSelector } from "@/stores/hooks";
 import {
@@ -15,7 +15,6 @@ import {
 import SecondLevelMenuItems from "@/components/Base/SideMenuItems";
 import Tippy from "@/components/Base/Tippy";
 import Lucide from "@/components/Base/Lucide";
-import lawdeskLogoUrl from "@/assets/images/lawdesk-logo.svg";
 import clsx from "clsx";
 import TopBar from "@/components/Themes/Icewall/TopBar";
 import MobileMenu from "@/components/MobileMenu";
@@ -68,17 +67,6 @@ function Main() {
             ])}
           >
             <nav className="side-nav hidden md:block w-[100px] xl:w-[250px] px-5 pt-8 pb-16 overflow-x-hidden">
-              <Link to="/" className="flex items-center intro-x">
-                <img
-                  alt="Lawdesk Legal Management System"
-                  className="w-6 h-6 lawdesk-logo"
-                  src={lawdeskLogoUrl}
-                />
-                <span className="hidden ml-3 text-lg font-semibold text-white xl:block lawdesk-title">
-                  Lawdesk
-                </span>
-              </Link>
-              <div className="my-6 side-nav__divider"></div>
               <ul>
                 {formattedMenu.map((menu, menuKey) =>
                   menu == "divider" ? (

@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Lucide from "@/components/Base/Lucide";
-import lawdeskLogoUrl from "@/assets/images/lawdesk-logo.svg";
+import logoUrl from "@/assets/images/logo.svg";
 import { Link } from "react-router-dom";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import { Popover } from "@/components/Base/Headless";
@@ -13,16 +13,16 @@ import clsx from "clsx";
 function Main() {
   return (
     <Fragment>
-      <div className="relative z-[51] -mx-5 mb-12 mt-12 h-[70px] border-b border-white/[0.08] px-3 sm:-mx-8 sm:px-8 md:-mt-5 md:pt-0">
+      <div className="top-bar-boxed relative z-[51] -mx-5 mb-12 mt-12 h-[70px] border-b border-white/[0.08] px-3 sm:-mx-8 sm:px-8 md:-mt-5 md:pt-0">
         <div className="flex items-center h-full">
           <Link to="/" className="hidden -intro-x md:flex items-center">
             <img
-              alt="Lawdesk Legal Management System"
-              className="w-6 h-6 lawdesk-logo"
-              src={lawdeskLogoUrl}
+              alt="Midone Tailwind HTML Admin Template"
+              className="w-6 h-6"
+              src={logoUrl}
             />
-            <span className="ml-3 text-lg font-semibold text-white lawdesk-title">
-              Lawdesk
+            <span className="ml-3 text-lg font-semibold text-white">
+              Midone
             </span>
           </Link>
           <Breadcrumb
