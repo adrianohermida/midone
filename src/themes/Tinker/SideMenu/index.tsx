@@ -12,6 +12,7 @@ import {
   forceActiveMenuContext,
   forceActiveMenu,
 } from "./side-menu";
+import SecondLevelMenuItems from "@/components/Base/SideMenuItems";
 import Tippy from "@/components/Base/Tippy";
 import Lucide from "@/components/Base/Lucide";
 import justiceScaleUrl from "@/assets/images/justice-scale.svg";
