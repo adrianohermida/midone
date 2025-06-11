@@ -189,6 +189,34 @@ FormSwitchMain.Input = ({
 
 export const FormSwitch = FormSwitchMain;
 
+// Form Select
+interface FormSelectProps
+  extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  formSelectSize?: "sm" | "lg";
+}
+
+export const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
+  ({ formSelectSize, className, children, ...props }, ref) => {
+    const baseClasses =
+      "disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50";
+
+    const classes = classNames(
+      baseClasses,
+      formSelectSize === "sm" && "text-xs py-1.5 pl-2 pr-8",
+      formSelectSize === "lg" && "text-lg py-1.5 pl-4 pr-8",
+      className,
+    );
+
+    return (
+      <select ref={ref} className={classes} {...props}>
+        {children}
+      </select>
+    );
+  },
+);
+
+FormSelect.displayName = "FormSelect";
+
 // Form Help
 interface FormHelpProps {
   children: React.ReactNode;
