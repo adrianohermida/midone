@@ -1146,6 +1146,7 @@ function Main() {
 
       {/* Floating Action Button */}
       <div
+        data-theme-button
         onClick={(event: React.MouseEvent) => {
           event.preventDefault();
           setThemeSwitcherOpen(true);
