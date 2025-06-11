@@ -59,7 +59,6 @@ function Main() {
       </div>
       <div className="grid grid-cols-12 gap-6 mt-5">
         <div className="col-span-12 intro-y lg:col-span-6">
-          {/* BEGIN: Single File Upload */}
           <PreviewComponent className="intro-y box">
             {({ toggle }) => (
               <>
@@ -110,8 +109,7 @@ function Main() {
               </>
             )}
           </PreviewComponent>
-          {/* END: Single File Upload */}
-          {/* BEGIN: Multiple File Upload */}
+
           <PreviewComponent className="mt-5 intro-y box">
             {({ toggle }) => (
               <>
@@ -162,10 +160,8 @@ function Main() {
               </>
             )}
           </PreviewComponent>
-          {/* END: Multiple File Upload */}
         </div>
         <div className="col-span-12 intro-y lg:col-span-6">
-          {/* BEGIN: File Type Validation */}
           <PreviewComponent className="intro-y box">
             {({ toggle }) => (
               <>
@@ -220,8 +216,7 @@ function Main() {
               </>
             )}
           </PreviewComponent>
-          {/* END: File Type Validation */}
-          {/* BEGIN: Upload Status */}
+
           <div className="mt-5 intro-y box">
             <div className="p-5 border-b border-slate-200/60 dark:border-darkmode-400">
               <h2 className="text-base font-medium">Upload Status</h2>
@@ -291,7 +286,6 @@ function Main() {
               </div>
             </div>
           </div>
-          {/* END: Upload Status */}
         </div>
       </div>
     </>
