@@ -105,8 +105,7 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
         if (
           chartInstance &&
           chartInstance.config &&
-          chartInstance.config.data &&
-          chartInstance.isResponsive !== false
+          chartInstance.config.data
         ) {
           try {
             const chartConfig = chartInstance.config;
@@ -142,7 +141,7 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
 
                 // Use requestAnimationFrame to ensure proper timing
                 requestAnimationFrame(() => {
-                  if (chartInstance && !chartInstance.destroyed) {
+                  if (chartInstance && chartInstance.ctx) {
                     chartInstance.update("none");
                   }
                 });

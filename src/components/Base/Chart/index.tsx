@@ -96,7 +96,7 @@ const Chart: React.FC<ChartProps> = ({
     }
 
     return () => {
-      if (chartInstance.current && !chartInstance.current.destroyed) {
+      if (chartInstance.current) {
         try {
           chartInstance.current.destroy();
         } catch (error) {
