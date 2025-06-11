@@ -11,6 +11,8 @@ interface DropzoneProps {
   accept?: string;
   maxSize?: number; // in MB
   disabled?: boolean;
+  children?: React.ReactNode;
+  getRef?: (ref: any) => void;
 }
 
 const Dropzone: React.FC<DropzoneProps> = ({
@@ -22,11 +24,19 @@ const Dropzone: React.FC<DropzoneProps> = ({
   accept = "*",
   maxSize = 10,
   disabled = false,
+  children,
+  getRef,
 }) => {
   const dropzoneRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
+
+  useEffect(() => {
+    if (getRef && dropzoneRef.current) {
+      getRef(dropzoneRef.current);
+    }
+  }, [getRef]);
 
   const handleFiles = (fileList: FileList | null) => {
     if (!fileList) return;
@@ -160,23 +170,25 @@ const Dropzone: React.FC<DropzoneProps> = ({
           disabled={disabled}
         />
 
-        <div className="flex flex-col items-center justify-center space-y-3">
-          <div className="w-16 h-16 bg-slate-100 dark:bg-darkmode-400 rounded-full flex items-center justify-center">
-            <Lucide icon="Upload" className="w-8 h-8 text-slate-500" />
-          </div>
+        {children || (
+          <div className="flex flex-col items-center justify-center space-y-3">
+            <div className="w-16 h-16 bg-slate-100 dark:bg-darkmode-400 rounded-full flex items-center justify-center">
+              <Lucide icon="Upload" className="w-8 h-8 text-slate-500" />
+            </div>
 
-          <div>
-            <p className="text-lg font-medium text-slate-700 dark:text-slate-300">
-              Drop files here or click to upload
-            </p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              {accept !== "*"
-                ? `Accepted formats: ${accept}`
-                : "Any file format"}
-              {maxSize && ` • Max size: ${maxSize}MB`}
-            </p>
+            <div>
+              <p className="text-lg font-medium text-slate-700 dark:text-slate-300">
+                Drop files here or click to upload
+              </p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">
+                {accept !== "*"
+                  ? `Accepted formats: ${accept}`
+                  : "Any file format"}
+                {maxSize && ` • Max size: ${maxSize}MB`}
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* File List */}
