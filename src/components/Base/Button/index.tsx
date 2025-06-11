@@ -68,6 +68,7 @@ const Button: React.FC<ButtonProps> = ({
     dark: "bg-dark text-white hover:bg-dark/90 focus:ring-dark",
     light:
       "bg-slate-200 text-slate-500 hover:bg-slate-300 focus:ring-slate-200",
+    pending: "bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-500",
     "outline-primary":
       "border border-primary text-primary hover:bg-primary hover:text-white focus:ring-primary",
     "outline-secondary":
