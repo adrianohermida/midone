@@ -100,6 +100,10 @@ export const icons = {
   HelpCircle,
   LogOut,
   Building2,
+  Box,
+  MoreHorizontal,
+  PanelsTopLeft,
+  PanelLeft,
 };
 
 interface LucideProps extends React.ComponentPropsWithoutRef<"svg"> {
