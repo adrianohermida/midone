@@ -3,21 +3,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./stores/store";
-
-function App() {
-  return (
-    <div
-      style={{
-        color: "green",
-        fontSize: "30px",
-        padding: "50px",
-        backgroundColor: "lightblue",
-      }}
-    >
-      REACT + ROUTER + REDUX WORKING!
-    </div>
-  );
-}
+import App from "./App";
 
 const root = document.getElementById("root");
 if (root) {
