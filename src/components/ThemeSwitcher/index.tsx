@@ -34,10 +34,17 @@ import {
 function Main() {
   const dispatch = useAppDispatch();
   const [themeSwitcherSlideover, setThemeSwitcherSlideover] = useState(false);
+  const [customThemeName, setCustomThemeName] = useState("");
+  const [primaryColor, setPrimaryColor] = useState("#3b82f6");
+  const [secondaryColor, setSecondaryColor] = useState("#1e40af");
+  const [showCustomForm, setShowCustomForm] = useState(false);
 
   const activeTheme = useAppSelector(selectTheme);
   const activeColorScheme = useAppSelector(selectColorScheme);
   const activeDarkMode = useAppSelector(selectDarkMode);
+  const customThemes = useAppSelector(selectCustomThemes);
+  const activeCustomTheme = useAppSelector(selectActiveCustomTheme);
+  const isUsingCustomTheme = useAppSelector(selectIsUsingCustomTheme);
 
   const switchTheme = (theme: Themes["name"]) => {
     dispatch(setTheme(theme));
