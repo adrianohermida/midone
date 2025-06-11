@@ -1,7 +1,46 @@
-import * as lucideIcons from "lucide-react";
+import {
+  X,
+  Info,
+  Palette,
+  Layout,
+  Check,
+  Plus,
+  Save,
+  Star,
+  Edit,
+  Trash,
+  Undo,
+  RefreshCw,
+  Circle,
+  Settings,
+  Monitor,
+  Sun,
+  Moon,
+  RotateCcw,
+} from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
-export const { icons } = lucideIcons;
+// Map safe icons
+export const icons = {
+  X,
+  Info,
+  Palette,
+  Layout,
+  Check,
+  Plus,
+  Save,
+  Star,
+  Edit,
+  Trash,
+  Undo,
+  RefreshCw,
+  Circle,
+  Settings,
+  Monitor,
+  Sun,
+  Moon,
+  RotateCcw,
+};
 
 interface LucideProps extends React.ComponentPropsWithoutRef<"svg"> {
   icon: keyof typeof icons;
@@ -14,14 +53,10 @@ function Lucide(props: LucideProps) {
 
   // Handle missing icons gracefully
   if (!Component) {
-    console.warn(
-      `Lucide icon "${props.icon}" not found. Available icons:`,
-      Object.keys(icons).slice(0, 10),
-    );
+    console.warn(`Lucide icon "${props.icon}" not found in safe icons list`);
     // Return a fallback icon (Circle)
-    const FallbackIcon = icons.Circle || (() => <div>?</div>);
     return (
-      <FallbackIcon
+      <Circle
         {...computedProps}
         className={twMerge(["stroke-1.5 w-5 h-5", props.className])}
       />
