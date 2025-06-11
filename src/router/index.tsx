@@ -200,6 +200,26 @@ const Router = () => {
         <Route path="crm/negocios" element={<CRMNegocios />} />
         <Route path="crm/suporte" element={<CRMSuporte />} />
 
+        {/* Juridico Module Routes (New Implementation) */}
+        <Route path="juridico/processos" element={<JuridicoProcessos />} />
+        <Route
+          path="juridico/processos/publicacoes"
+          element={<JuridicoPublicacoes />}
+        />
+        <Route
+          path="juridico/processos/intimacoes"
+          element={<JuridicoIntimacoes />}
+        />
+        <Route path="juridico/processos/agenda" element={<JuridicoAgenda />} />
+        <Route
+          path="juridico/processos/relatorios"
+          element={<JuridicoRelatorios />}
+        />
+        <Route
+          path="juridico/processos/:id"
+          element={<JuridicoProcessoDetalhes />}
+        />
+
         {/* Main Pages Routes */}
         <Route path="inbox" element={<Inbox />} />
         <Route path="file-manager" element={<FileManager />} />
