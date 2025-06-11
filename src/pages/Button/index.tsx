@@ -12,6 +12,12 @@ import { FormSwitch } from "@/components/Base/Form";
 function Main() {
   return (
     <>
+      {/* DEBUG: Button page is loading */}
+      <div className="mb-4">
+        <h1 className="text-2xl font-bold text-success">
+          🔘 Button Page - Carregada com Sucesso!
+        </h1>
+      </div>
       <div className="flex items-center mt-8 intro-y">
         <h2 className="mr-auto text-lg font-medium">Buttons</h2>
       </div>
