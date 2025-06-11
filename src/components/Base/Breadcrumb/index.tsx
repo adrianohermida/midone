@@ -10,9 +10,11 @@ interface BreadcrumbItem {
 }
 
 interface BreadcrumbProps {
-  items: BreadcrumbItem[];
+  items?: BreadcrumbItem[];
   separator?: "slash" | "chevron" | "arrow";
   className?: string;
+  children?: React.ReactNode;
+  light?: boolean;
 }
 
 interface BreadcrumbComponent extends React.FC<BreadcrumbProps> {
@@ -30,6 +32,8 @@ const Breadcrumb: BreadcrumbComponent = ({
   items,
   separator = "chevron",
   className,
+  children,
+  light = false,
 }) => {
   const getSeparatorIcon = () => {
     switch (separator) {
@@ -46,11 +50,23 @@ const Breadcrumb: BreadcrumbComponent = ({
   const baseClasses = "flex items-center space-x-2 text-sm";
   const classes = classNames(baseClasses, className);
 
+  // If children are provided, use them instead of items
+  if (children) {
+    return (
+      <nav className={classes} aria-label="Breadcrumb">
+        <ol className="flex items-center space-x-2">{children}</ol>
+      </nav>
+    );
+  }
+
+  // Fallback to items prop (with default empty array)
+  const itemList = items || [];
+
   return (
     <nav className={classes} aria-label="Breadcrumb">
       <ol className="flex items-center space-x-2">
-        {items.map((item, index) => {
-          const isLast = index === items.length - 1;
+        {itemList.map((item, index) => {
+          const isLast = index === itemList.length - 1;
 
           return (
             <li key={index} className="flex items-center space-x-2">
