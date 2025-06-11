@@ -11,6 +11,23 @@ interface LucideProps extends React.ComponentPropsWithoutRef<"svg"> {
 function Lucide(props: LucideProps) {
   const { icon, className, ...computedProps } = props;
   const Component = icons[props.icon];
+
+  // Handle missing icons gracefully
+  if (!Component) {
+    console.warn(
+      `Lucide icon "${props.icon}" not found. Available icons:`,
+      Object.keys(icons).slice(0, 10),
+    );
+    // Return a fallback icon (Circle)
+    const FallbackIcon = icons.Circle || (() => <div>?</div>);
+    return (
+      <FallbackIcon
+        {...computedProps}
+        className={twMerge(["stroke-1.5 w-5 h-5", props.className])}
+      />
+    );
+  }
+
   return (
     <Component
       {...computedProps}
