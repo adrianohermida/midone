@@ -10,6 +10,7 @@ interface AlertProps {
     | "warning"
     | "danger"
     | "dark"
+    | "pending"
     | "outline-primary"
     | "outline-secondary"
     | "outline-success"
@@ -48,6 +49,7 @@ const AlertMain: AlertComponent = ({
     warning: "bg-warning/10 border-warning/20 text-warning",
     danger: "bg-danger/10 border-danger/20 text-danger",
     dark: "bg-dark/10 border-dark/20 text-dark",
+    pending: "bg-blue-50 border-blue-200 text-blue-600",
     "outline-primary": "bg-transparent border-primary text-primary",
     "outline-secondary": "bg-transparent border-slate-300 text-slate-600",
     "outline-success": "bg-transparent border-success text-success",
