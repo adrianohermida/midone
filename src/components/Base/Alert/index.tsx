@@ -16,7 +16,15 @@ interface AlertProps {
     | "outline-success"
     | "outline-warning"
     | "outline-danger"
-    | "outline-dark";
+    | "outline-dark"
+    | "outline-pending"
+    | "soft-primary"
+    | "soft-secondary"
+    | "soft-success"
+    | "soft-warning"
+    | "soft-danger"
+    | "soft-dark"
+    | "soft-pending";
   dismissible?: boolean;
   onDismiss?: () => void;
   children:
@@ -56,6 +64,14 @@ const AlertMain: AlertComponent = ({
     "outline-warning": "bg-transparent border-warning text-warning",
     "outline-danger": "bg-transparent border-danger text-danger",
     "outline-dark": "bg-transparent border-dark text-dark",
+    "outline-pending": "bg-transparent border-blue-500 text-blue-600",
+    "soft-primary": "bg-primary/5 border-primary/10 text-primary",
+    "soft-secondary": "bg-slate-50 border-slate-100 text-slate-600",
+    "soft-success": "bg-success/5 border-success/10 text-success",
+    "soft-warning": "bg-warning/5 border-warning/10 text-warning",
+    "soft-danger": "bg-danger/5 border-danger/10 text-danger",
+    "soft-dark": "bg-dark/5 border-dark/10 text-dark",
+    "soft-pending": "bg-blue-25 border-blue-100 text-blue-600",
   };
 
   const classes = classNames(
