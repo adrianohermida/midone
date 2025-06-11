@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { classNames } from "../utils/helpers";
+import AdminHeader from "../components/AdminHeader";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
