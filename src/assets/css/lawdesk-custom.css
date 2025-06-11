@@ -1,0 +1,148 @@
+/* Lawdesk Custom Styles */
+
+/* Dark mode text color adaptations */
+.dark .text-slate-500 {
+  color: rgb(148 163 184) !important;
+}
+
+.dark .text-slate-600 {
+  color: rgb(203 213 225) !important;
+}
+
+.dark .text-slate-700 {
+  color: rgb(226 232 240) !important;
+}
+
+.dark .text-slate-800 {
+  color: rgb(241 245 249) !important;
+}
+
+.dark .text-slate-900 {
+  color: rgb(248 250 252) !important;
+}
+
+/* Dark mode background adaptations */
+.dark .bg-slate-100 {
+  background-color: rgb(30 41 59) !important;
+}
+
+.dark .bg-slate-200 {
+  background-color: rgb(51 65 85) !important;
+}
+
+/* Justice scale icon white filter for dark backgrounds */
+.justice-scale-white {
+  filter: brightness(0) invert(1);
+}
+
+/* Justice scale icon dark filter for light backgrounds */
+.justice-scale-dark {
+  filter: brightness(0);
+}
+
+/* Theme-specific text color adaptations */
+.enigma .dark .text-white,
+.icewall .dark .text-white,
+.rubick .dark .text-white,
+.tinker .dark .text-white {
+  color: rgb(255 255 255) !important;
+}
+
+/* Ensure proper contrast in theme switcher */
+.dark .box {
+  background-color: rgb(30 41 59);
+  border-color: rgb(51 65 85);
+}
+
+/* Better visibility for menu items in dark mode */
+.dark .side-menu {
+  color: rgb(203 213 225);
+}
+
+.dark .side-menu:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .side-menu--active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(255 255 255);
+}
+
+/* Search dropdown dark mode styling */
+.dark .HeaderSearch .box {
+  background-color: rgb(30 41 59);
+  border: 1px solid rgb(51 65 85);
+}
+
+.dark .HeaderSearch .hover\:bg-slate-100:hover {
+  background-color: rgb(51 65 85) !important;
+}
+
+/* User profile menu dark mode */
+.dark .Menu .Menu-items {
+  background-color: rgba(30, 41, 59, 0.95);
+}
+
+/* Notification panel dark mode */
+.dark .Popover .Popover-panel {
+  background-color: rgb(30 41 59);
+  border: 1px solid rgb(51 65 85);
+}
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  .lawdesk-title {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 641px) {
+  .lawdesk-title {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .lawdesk-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Custom animations */
+.lawdesk-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Justice scale icon hover effect */
+.justice-scale-icon:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Theme-specific customizations */
+.theme-rubick .justice-scale-icon {
+  filter: brightness(0) invert(1);
+}
+
+.theme-icewall .justice-scale-icon {
+  filter: brightness(0) invert(1);
+}
+
+.theme-tinker .justice-scale-icon {
+  filter: brightness(0) invert(1);
+}
+
+.theme-enigma .justice-scale-icon {
+  filter: brightness(0) invert(1);
+}

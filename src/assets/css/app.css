@@ -110,3 +110,13 @@
 @import "./components/base/_typing-dots.css";
 @import "./components/base/_zoom-in.css";
 @import "./components/mobile-menu.css";
+
+/*
+|--------------------------------------------------------------------------
+| Lawdesk Custom Styles
+|--------------------------------------------------------------------------
+|
+| Custom styles for Lawdesk legal management system.
+|
+*/
+@import "./lawdesk-custom.css";
