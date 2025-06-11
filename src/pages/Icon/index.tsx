@@ -1093,8 +1093,8 @@ function Main() {
           <div className="mt-2 text-xs text-center">XCircleIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="XOctagon" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">XOctagonIcon</div>
+          <Lucide icon="XCircle" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">XCircleIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="XSquare" className="block mx-auto" />
