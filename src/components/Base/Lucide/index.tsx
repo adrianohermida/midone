@@ -17,6 +17,18 @@ import {
   Sun,
   Moon,
   RotateCcw,
+  Bell,
+  User,
+  Search,
+  Menu,
+  Home,
+  ChevronDown,
+  ChevronRight,
+  AlertCircle,
+  Calendar,
+  Users,
+  FileText,
+  Activity,
 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
@@ -40,6 +52,18 @@ export const icons = {
   Sun,
   Moon,
   RotateCcw,
+  Bell,
+  User,
+  Search,
+  Menu,
+  Home,
+  ChevronDown,
+  ChevronRight,
+  AlertCircle,
+  Calendar,
+  Users,
+  FileText,
+  Activity,
 };
 
 interface LucideProps extends React.ComponentPropsWithoutRef<"svg"> {
