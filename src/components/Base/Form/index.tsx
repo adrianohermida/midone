@@ -39,69 +39,7 @@ export const FormInput: React.FC<FormInputProps> = ({
   return <input className={classes} {...props} />;
 };
 
-// Form Label
-interface FormLabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
-  children: React.ReactNode;
-}
-
-export const FormLabel: React.FC<FormLabelProps> = ({
-  className,
-  children,
-  ...props
-}) => {
-  const classes = classNames(
-    "text-slate-600 text-sm font-medium dark:text-slate-400",
-    className,
-  );
-
-  return (
-    <label className={classes} {...props}>
-      {children}
-    </label>
-  );
-};
-
-// Form Select
-interface FormSelectProps
-  extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  variant?: "default" | "success" | "warning" | "danger";
-  rounded?: boolean;
-  formSelectSize?: "sm" | "lg";
-}
-
-export const FormSelect: React.FC<FormSelectProps> = ({
-  variant = "default",
-  rounded = false,
-  formSelectSize,
-  className,
-  children,
-  ...props
-}) => {
-  const baseClasses =
-    "w-full text-sm border-slate-200 shadow-sm focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50";
-
-  const variantClasses = {
-    default: "",
-    success: "border-success focus:ring-success focus:border-success",
-    warning: "border-warning focus:ring-warning focus:border-warning",
-    danger: "border-danger focus:ring-danger focus:border-danger",
-  };
-
-  const classes = classNames(
-    baseClasses,
-    variantClasses[variant],
-    rounded ? "rounded-full" : "rounded-md",
-    formSelectSize === "sm" && "text-xs py-1.5 px-2",
-    formSelectSize === "lg" && "text-lg py-1.5 px-4",
-    className,
-  );
-
-  return (
-    <select className={classes} {...props}>
-      {children}
-    </select>
-  );
-};
+// Form Label and Form Select - exported separately
 
 // Form Textarea
 interface FormTextareaProps
