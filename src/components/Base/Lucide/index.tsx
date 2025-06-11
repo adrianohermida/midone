@@ -294,16 +294,18 @@ function Lucide(props: LucideProps) {
 
   // Enhanced type guard to ensure icon is a valid string and exists in icons
   // This validation happens BEFORE calling createLucideIcon to prevent toKebabCase errors
+  const iconValue = icon as any; // Handle any type coercion from calling code
+
   if (
-    !icon ||
-    typeof icon !== "string" ||
-    icon.trim() === "" ||
-    !(icon in icons)
+    !iconValue ||
+    typeof iconValue !== "string" ||
+    iconValue.trim() === "" ||
+    !(iconValue in icons)
   ) {
     console.warn(`Invalid icon prop passed to Lucide component:`, {
-      icon,
-      type: typeof icon,
-      value: icon,
+      icon: iconValue,
+      type: typeof iconValue,
+      value: iconValue,
       availableIcons: Object.keys(icons).slice(0, 5),
     });
     // Return a fallback icon instead of null to ensure something renders
@@ -317,7 +319,9 @@ function Lucide(props: LucideProps) {
   }
 
   try {
-    const Component = createLucideIcon(icons[icon]);
+    // Ensure the icon value is definitely a string and exists in icons
+    const safeIconKey = iconValue as keyof typeof icons;
+    const Component = createLucideIcon(icons[safeIconKey]);
 
     return (
       <Component
