@@ -251,3 +251,5 @@ export const FormGroup: React.FC<FormGroupProps> = ({
 export { default as InputGroup } from "./InputGroup";
 export { default as FormTextarea } from "./FormTextarea";
 export { default as FormInline } from "./FormInline";
+export { default as FormLabel } from "./FormLabel";
+export { default as FormSelect } from "./FormSelect";
