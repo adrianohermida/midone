@@ -1,6 +1,7 @@
 import _ from "lodash";
 import clsx from "clsx";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import fakerData from "@/utils/faker";
 import Button from "@/components/Base/Button";
 import { FormSwitch } from "@/components/Base/Form";
