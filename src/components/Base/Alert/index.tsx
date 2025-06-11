@@ -10,7 +10,15 @@ interface AlertProps {
   className?: string;
 }
 
-const Alert: React.FC<AlertProps> = ({
+interface AlertComponent extends React.FC<AlertProps> {
+  DismissButton: React.FC<{
+    onClick?: () => void;
+    className?: string;
+    children?: React.ReactNode;
+  }>;
+}
+
+const AlertMain: AlertComponent = ({
   variant = "primary",
   dismissible = false,
   onDismiss,
@@ -52,4 +60,21 @@ const Alert: React.FC<AlertProps> = ({
   );
 };
 
+AlertMain.DismissButton = ({ onClick, className, children }) => {
+  return (
+    <button
+      type="button"
+      className={classNames(
+        "absolute top-3 right-3 opacity-70 hover:opacity-100",
+        className,
+      )}
+      onClick={onClick}
+      aria-label="Close alert"
+    >
+      {children || <Lucide icon="X" className="w-4 h-4" />}
+    </button>
+  );
+};
+
+const Alert = AlertMain;
 export default Alert;
