@@ -1,10 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
+import themeSlice from "./themeSlice";
+import darkModeSlice from "./darkModeSlice";
+import colorSchemeSlice from "./colorSchemeSlice";
+import menuSlice from "./menuSlice";
 
-// Create a basic store configuration
+// Create a store configuration with all slices
 export const store = configureStore({
   reducer: {
-    // Add your reducers here as you develop features
-    // Example: auth: authSlice.reducer,
+    theme: themeSlice,
+    darkMode: darkModeSlice,
+    colorScheme: colorSchemeSlice,
+    menu: menuSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
