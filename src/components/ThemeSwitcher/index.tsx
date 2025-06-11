@@ -46,8 +46,14 @@ function Main() {
   const switchDarkMode = (darkMode: boolean) => {
     dispatch(setDarkMode(darkMode));
     setDarkModeClass();
+    applyThemeStyles(activeTheme.name, darkMode);
   };
   setDarkModeClass();
+
+  // Initialize theme styles on component mount
+  useEffect(() => {
+    applyThemeStyles(activeTheme.name, activeDarkMode);
+  }, []);
 
   const themes: Array<Themes["name"]> = [
     "rubick",
