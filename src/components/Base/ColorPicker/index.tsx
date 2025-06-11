@@ -36,7 +36,7 @@ function ColorPicker({
     "picker" | "palettes" | "generator"
   >("picker");
   const [customPalettes, setCustomPalettes] = useState<ColorPalette[]>(() =>
-    generateRandomPalettes(),
+    generateRandomPalettes(6),
   );
   const colorInputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
