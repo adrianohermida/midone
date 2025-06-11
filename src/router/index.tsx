@@ -81,6 +81,7 @@ import LegalCasesList from "@/pages/LegalCases/CaseList";
 import LegalCaseForm from "@/pages/LegalCases/CaseForm";
 import LegalCaseDetails from "@/pages/LegalCases/CaseDetails";
 import LegalCasesIntimations from "@/pages/LegalCases/Intimations";
+import LegalCasesAnalytics from "@/pages/LegalCases/Analytics";
 
 const Router = () => {
   return (
@@ -114,6 +115,7 @@ const Router = () => {
           path="legal-cases/intimations"
           element={<LegalCasesIntimations />}
         />
+        <Route path="legal-cases/analytics" element={<LegalCasesAnalytics />} />
 
         {/* Main Pages Routes */}
         <Route path="inbox" element={<Inbox />} />
