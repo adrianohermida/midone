@@ -1,9 +1,9 @@
 import React from "react";
-import JuridicioDashboardModerno from "../../../views/Juridico/JuridicioDashboardModerno";
+import JuridicioDashboardCompleto from "../../../views/Juridico/JuridicioDashboardCompleto";
 
 const ProcessosPage: React.FC = () => {
-  // Não usar DashboardLayout aqui pois o dashboard moderno já tem seu próprio layout
-  return <JuridicioDashboardModerno />;
+  // Dashboard completo standalone - sem layout wrapper para evitar duplicação
+  return <JuridicioDashboardCompleto />;
 };
 
 export default ProcessosPage;
