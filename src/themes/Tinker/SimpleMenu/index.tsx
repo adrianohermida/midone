@@ -135,7 +135,7 @@ function Main() {
                               ])}
                             >
                               <div className="simple-menu__icon">
-                                <Lucide icon={subMenu.icon} />
+                                <Lucide icon={subMenu.icon || "Activity"} />
                               </div>
                               <div className="simple-menu__title">
                                 {subMenu.title}
@@ -187,7 +187,9 @@ function Main() {
                                         ])}
                                       >
                                         <div className="simple-menu__icon">
-                                          <Lucide icon={lastSubMenu.icon} />
+                                          <Lucide
+                                            icon={lastSubMenu.icon || "Zap"}
+                                          />
                                         </div>
                                         <div className="simple-menu__title">
                                           {lastSubMenu.title}
