@@ -1,30 +1,7 @@
 import { type Menu } from "@/stores/menuSlice";
+import { topMenuConfig } from "./unified-menu";
 
-const menu: Array<Menu | "divider"> = [
-  // PAINEL
-  {
-    icon: "LayoutDashboard",
-    pathname: "/dashboard-overview-1",
-    title: "Dashboard",
-  },
-  // CRM
-  {
-    icon: "Users",
-    pathname: "/crm",
-    title: "CRM",
-  },
-  // JURÍDICO
-  {
-    icon: "Scale",
-    pathname: "/juridico",
-    title: "Jurídico",
-  },
-  // FINANCEIRO
-  {
-    icon: "DollarSign",
-    pathname: "/financeiro",
-    title: "Financeiro",
-  },
+const menu: Array<Menu | "divider"> = topMenuConfig;
   // APLICAÇÕES
   {
     icon: "Grid3X3",
