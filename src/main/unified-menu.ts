@@ -137,96 +137,96 @@ export const topMenuConfig: Array<Menu | "divider"> = [
       },
     ],
   },
-  // BETA/DEV (Mais compacto)
+  // DESENVOLVIMENTO E TESTES
   {
     icon: "TestTube",
-    title: "Dev",
+    title: "Desenvolvimento",
     subMenu: [
       {
         icon: "Activity",
-        title: "Dashboards",
+        title: "Painéis Alternativos",
         subMenu: [
           {
             icon: "Zap",
-            pathname: "/dashboard-overview-2",
-            title: "Dashboard 2",
+            pathname: "/dashboard-overview-1",
+            title: "Painel Clássico",
           },
           {
             icon: "Zap",
-            pathname: "/dashboard-overview-3",
-            title: "Dashboard 3",
+            pathname: "/dashboard-overview-2",
+            title: "Painel Moderno",
           },
           {
             icon: "Zap",
             pathname: "/dashboard-overview-4",
-            title: "Dashboard 4",
+            title: "Painel Avançado",
           },
         ],
       },
       {
         icon: "Activity",
-        title: "Profiles",
+        title: "Perfis de Usuário",
         subMenu: [
           {
             icon: "Zap",
             pathname: "/profile-overview-1",
-            title: "Perfil 1",
+            title: "Perfil Básico",
           },
           {
             icon: "Zap",
             pathname: "/profile-overview-2",
-            title: "Perfil 2",
+            title: "Perfil Detalhado",
           },
           {
             icon: "Zap",
             pathname: "/profile-overview-3",
-            title: "Perfil 3",
+            title: "Perfil Avançado",
           },
         ],
       },
       {
         icon: "Activity",
-        title: "Components",
+        title: "Componentes UI",
         subMenu: [
           {
             icon: "Zap",
             pathname: "/modal",
-            title: "Modal",
+            title: "Modais",
           },
           {
             icon: "Zap",
             pathname: "/slideover",
-            title: "Slide Over",
+            title: "Painéis Deslizantes",
           },
           {
             icon: "Zap",
             pathname: "/notification",
-            title: "Notification",
+            title: "Notificações",
           },
           {
             icon: "Zap",
             pathname: "/tab",
-            title: "Tab",
+            title: "Abas",
           },
           {
             icon: "Zap",
             pathname: "/accordion",
-            title: "Accordion",
+            title: "Acordeões",
           },
           {
             icon: "Zap",
             pathname: "/button",
-            title: "Button",
+            title: "Botões",
           },
           {
             icon: "Zap",
             pathname: "/alert",
-            title: "Alert",
+            title: "Alertas",
           },
           {
             icon: "Zap",
             pathname: "/chart",
-            title: "Chart",
+            title: "Gráficos",
           },
         ],
       },
