@@ -7,7 +7,6 @@ import {
   Calendar,
   BarChart3,
   Search,
-  Filter,
   Plus,
   MessageSquare,
   Eye,
