@@ -49,7 +49,6 @@ import {
 } from "lucide-react";
 import Button from "../../components/Base/Button";
 import { FormInput, FormSelect } from "../../components/Base/Form";
-import { Tab } from "../../components/Base/Headless";
 import Table from "../../components/Base/Table";
 import Slideover from "../../components/Base/Headless/Slideover";
 import { Menu, Popover } from "../../components/Base/Headless";
