@@ -1,9 +1,9 @@
 import React from "react";
-import JuridicioDashboardResponsivo from "../../../views/Juridico/JuridicioDashboardResponsivo";
+import JuridicioDashboardMobileFriendly from "../../../views/Juridico/JuridicioDashboardMobileFriendly";
 
 const ProcessosPage: React.FC = () => {
-  // Dashboard jurídico responsivo e otimizado para todos os dispositivos
-  return <JuridicioDashboardResponsivo />;
+  // Dashboard jurídico 100% responsivo - Mobile First
+  return <JuridicioDashboardMobileFriendly />;
 };
 
 export default ProcessosPage;
