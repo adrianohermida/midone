@@ -131,8 +131,6 @@ const UnifiedTopMenu: React.FC<UnifiedTopMenuProps> = ({ theme }) => {
                   type="text"
                   className="w-full border-transparent shadow-none rounded-full bg-slate-200 pr-8 dark:bg-darkmode-400/70"
                   placeholder="Buscar..."
-                  value={searchValue}
-                  onChange={(e) => setSearchValue(e.target.value)}
                   onFocus={showSearchDropdown}
                   onBlur={hideSearchDropdown}
                   autoFocus
