@@ -969,9 +969,7 @@ const JuridicioDashboardProfissional: React.FC = () => {
           options={{ placement: "top-right" }}
           className="hidden"
         >
-          <Notification.Content>
-            Sistema atualizado com sucesso!
-          </Notification.Content>
+          Sistema atualizado com sucesso!
         </Notification>
       </div>
     </div>
