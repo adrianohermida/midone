@@ -194,12 +194,8 @@ const Router = () => {
         <Route path="financeiro/fornecedores" element={<SellerList />} />
         <Route path="financeiro/fornecedores/:id" element={<SellerDetail />} />
 
-        {/* CRM Module Routes */}
+        {/* CRM Module Routes - Direct Access */}
         <Route path="crm" element={<CRMDashboard />} />
-        <Route path="crm/dashboard" element={<CRMDashboard />} />
-        <Route path="crm/contatos" element={<CRMContatos />} />
-        <Route path="crm/negocios" element={<CRMNegocios />} />
-        <Route path="crm/suporte" element={<CRMSuporte />} />
 
         {/* Juridico Module Routes - Direct Access */}
         <Route path="juridico" element={<JuridicoProcessos />} />
