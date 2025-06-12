@@ -112,6 +112,9 @@ import JuridicoRelatorios from "@/pages/Juridico/Processos/Relatorios";
 import JuridicoProcessoDetalhes from "@/pages/Juridico/Processos/ProcessoDetalhes";
 import ProcessoDetalhesModerno from "@/pages/Juridico/ProcessoDetalhesModerno";
 
+// Administracao Module Pages
+import AdministracaoDashboard from "@/pages/Administracao/Dashboard";
+
 const Router = () => {
   return (
     <Routes>
