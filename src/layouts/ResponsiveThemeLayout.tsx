@@ -283,6 +283,92 @@ const ResponsiveThemeLayout: React.FC<ResponsiveThemeLayoutProps> = ({
     );
   }
 
+  // Renderizar navegação lateral (apenas para side-menu layout)
+  const renderSideNavigation = () => {
+    if (layout !== "side-menu") return null;
+
+    return (
+      <nav className="side-nav hidden w-[80px] overflow-x-hidden pb-16 pr-5 md:block xl:w-[230px]">
+        <Link to="/" className="flex items-center pt-4 pl-5 intro-x">
+          <img
+            alt="Lawdesk Sistema Jurídico"
+            className="w-6 h-6"
+            src={justiceScaleUrl}
+          />
+          <span className="hidden ml-3 text-lg font-semibold text-white xl:block">
+            Lawdesk
+          </span>
+        </Link>
+        <div className="my-6 side-nav__divider"></div>
+        <ul>
+          {formattedMenu.map((menu, menuKey) =>
+            menu == "divider" ? (
+              <li className="my-6 side-nav__divider" key={menuKey}></li>
+            ) : (
+              <li key={menuKey}>
+                <a
+                  href={menu.subMenu ? "#" : menu.pathname}
+                  onClick={(event: React.MouseEvent) => {
+                    event.preventDefault();
+                    linkTo(menu, navigate);
+                    setFormattedMenu([...formattedMenu]);
+                  }}
+                  className={clsx([
+                    menu.active ? "side-menu side-menu--active" : "side-menu",
+                  ])}
+                >
+                  <div className="side-menu__icon">
+                    <Lucide icon={menu.icon || "Home"} />
+                  </div>
+                  <div className="side-menu__title">
+                    {menu.title}
+                    {menu.subMenu && (
+                      <div
+                        className={clsx([
+                          "side-menu__sub-icon",
+                          { "transform rotate-180": menu.activeDropdown },
+                        ])}
+                      >
+                        <Lucide icon="ChevronDown" />
+                      </div>
+                    )}
+                  </div>
+                </a>
+                {menu.subMenu && (
+                  <ul
+                    className={clsx({
+                      "side-menu__sub-open": menu.activeDropdown,
+                    })}
+                  >
+                    {menu.subMenu.map((subMenu, subMenuKey) => (
+                      <li key={subMenuKey}>
+                        <a
+                          href={subMenu.subMenu ? "#" : subMenu.pathname}
+                          className="side-menu"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            linkTo(subMenu, navigate);
+                          }}
+                        >
+                          <div className="side-menu__icon">
+                            <Lucide icon={subMenu.icon || "Activity"} />
+                          </div>
+                          <div className="side-menu__title">
+                            {subMenu.title}
+                          </div>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ),
+          )}
+        </ul>
+      </nav>
+    );
+  };
+
   // Renderizar navegação superior (apenas para top-menu layout)
   const renderTopNavigation = () => {
     if (layout !== "top-menu") return null;
