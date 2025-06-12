@@ -191,31 +191,37 @@ const UnifiedTopMenu: React.FC<UnifiedTopMenuProps> = ({ theme }) => {
     >
       <div className="absolute right-0 z-10 mt-[3px]">
         <div className={`${isMobile ? "w-[90vw]" : "w-[450px]"} p-5 box`}>
-          <div className="mb-2 font-medium">Páginas</div>
+          <div className="mb-2 font-medium">Acesso Rápido</div>
           <div className="mb-5">
-            <a href="#" className="flex items-center">
+            <a href="/juridico" className="flex items-center">
               <div className="flex items-center justify-center w-8 h-8 rounded-full bg-success/20 dark:bg-success/10 text-success">
                 <Lucide icon="Scale" className="w-4 h-4" />
               </div>
-              <div className="ml-3">Processos Jurídicos</div>
+              <div className="ml-3">Módulo Jurídico</div>
             </a>
-            <a href="#" className="flex items-center mt-2">
+            <a href="/crm" className="flex items-center mt-2">
               <div className="flex items-center justify-center w-8 h-8 rounded-full bg-pending/10 text-pending">
                 <Lucide icon="Users" className="w-4 h-4" />
               </div>
-              <div className="ml-3">Gestão de Clientes</div>
+              <div className="ml-3">CRM - Clientes</div>
             </a>
-            <a href="#" className="flex items-center mt-2">
+            <a href="/financeiro" className="flex items-center mt-2">
               <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 dark:bg-primary/20 text-primary/80">
                 <Lucide icon="DollarSign" className="w-4 h-4" />
               </div>
-              <div className="ml-3">Relatórios Financeiros</div>
+              <div className="ml-3">Módulo Financeiro</div>
+            </a>
+            <a href="/administracao" className="flex items-center mt-2">
+              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-purple/10 dark:bg-purple/20 text-purple">
+                <Lucide icon="Settings" className="w-4 h-4" />
+              </div>
+              <div className="ml-3">Administração</div>
             </a>
           </div>
 
           {!isMobile && (
             <>
-              <div className="mb-2 font-medium">Usuários</div>
+              <div className="mb-2 font-medium">Usuários Recentes</div>
               <div className="mb-5">
                 {_.take(fakerData, 3).map((faker, fakerKey) => (
                   <a key={fakerKey} href="#" className="flex items-center mt-2">
