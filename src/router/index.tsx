@@ -203,6 +203,9 @@ const Router = () => {
         {/* Juridico Module Routes - Direct Access */}
         <Route path="juridico" element={<JuridicoProcessos />} />
         <Route path="juridico/:id" element={<ProcessoDetalhesModerno />} />
+
+        {/* Administracao Module Routes - Direct Access */}
+        <Route path="administracao" element={<AdministracaoDashboard />} />
         {/* Main Pages Routes */}
         <Route path="inbox" element={<Inbox />} />
         <Route path="file-manager" element={<FileManager />} />
