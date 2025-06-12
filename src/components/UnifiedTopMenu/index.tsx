@@ -365,9 +365,9 @@ const UnifiedTopMenu: React.FC<UnifiedTopMenuProps> = ({ theme }) => {
               light
               className="h-full md:ml-10 md:pl-10 md:border-l border-white/[0.08] mr-auto -intro-x"
             >
-              <Breadcrumb.Link to="/">Sistema</Breadcrumb.Link>
+              <Breadcrumb.Link to="/">Lawdesk</Breadcrumb.Link>
               <Breadcrumb.Link to="/" active={true}>
-                Dashboard
+                Painel Principal
               </Breadcrumb.Link>
             </Breadcrumb>
           )}
