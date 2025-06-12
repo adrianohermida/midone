@@ -1,20 +1,5 @@
 import "@/assets/css/themes/icewall/top-nav.css";
-import { useState, useEffect } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { selectMenu } from "@/stores/menuSlice";
-import { useAppSelector } from "@/stores/hooks";
-import _ from "lodash";
-import {
-  FormattedMenu,
-  linkTo,
-  nestedMenu,
-  forceActiveMenuContext,
-  forceActiveMenu,
-} from "./top-menu";
-import Lucide from "@/components/Base/Lucide";
-import clsx from "clsx";
-import TopBar from "@/components/Themes/Icewall/TopBar";
-import MobileMenu from "@/components/MobileMenu";
+import ResponsiveThemeLayout from "@/layouts/ResponsiveThemeLayout";
 
 function Main() {
   const navigate = useNavigate();
