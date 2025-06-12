@@ -10,7 +10,9 @@ import {
   forceActiveMenuContext,
   forceActiveMenu,
 } from "@/themes/Rubick/TopMenu/top-menu"; // Import das funções base
-import UnifiedTopMenu from "@/components/UnifiedTopMenu";
+import TopBar from "@/components/Themes/Rubick/TopBar";
+import TopBarEnigma from "@/components/Themes/Enigma/TopBar";
+import TopBarIcewall from "@/components/Themes/Icewall/TopBar";
 import MobileMenu from "@/components/MobileMenu";
 import useThemeResponsive, {
   ThemeType,
