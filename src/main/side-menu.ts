@@ -38,15 +38,8 @@ const menu: Array<Menu | "divider"> = [
   // JURÍDICO
   {
     icon: "Scale",
+    pathname: "/juridico",
     title: "Jurídico",
-    subMenu: [
-      {
-        icon: "Scale",
-        pathname: "/juridico",
-        title: "Jurídico",
-      },
-      },
-    ],
   },
   // FINANCEIRO
   {
