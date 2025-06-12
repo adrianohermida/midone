@@ -489,8 +489,80 @@ const ResponsiveThemeLayout: React.FC<ResponsiveThemeLayoutProps> = ({
     );
   };
 
-  // Renderizar conteúdo com wrapper adequado para cada tema
+  // Renderizar conteúdo com wrapper adequado para cada tema e layout
   const renderContent = () => {
+    // Layout SideMenu
+    if (layout === "side-menu") {
+      return (
+        <div className="flex mt-[4.7rem] md:mt-0">
+          {renderSideNavigation()}
+          <div className="md:max-w-auto min-h-screen min-w-0 max-w-full flex-1 rounded-[30px] bg-slate-100 px-4 pb-10 before:block before:h-px before:w-full before:content-[''] dark:bg-darkmode-700 md:px-[22px]">
+            {(theme === "rubick" ||
+              theme === "enigma" ||
+              theme === "tinker") && <TopBarEnigma layout="side-menu" />}
+            <Outlet />
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    // Layout SimpleMenu
+    if (layout === "simple-menu") {
+      return (
+        <div className="flex">
+          <nav className="simple-menu w-[230px] pb-16 pr-5 hidden md:block">
+            <Link to="/" className="flex items-center pt-4 pl-5 intro-x">
+              <img
+                alt="Lawdesk Sistema Jurídico"
+                className="w-6 h-6"
+                src={justiceScaleUrl}
+              />
+              <span className="ml-3 text-lg font-semibold text-white">
+                Lawdesk
+              </span>
+            </Link>
+            <div className="my-6 simple-menu__divider"></div>
+            <ul>
+              {formattedMenu.map((menu, menuKey) =>
+                menu == "divider" ? (
+                  <li className="my-6 simple-menu__divider" key={menuKey}></li>
+                ) : (
+                  <li key={menuKey}>
+                    <a
+                      href={menu.subMenu ? "#" : menu.pathname}
+                      onClick={(event: React.MouseEvent) => {
+                        event.preventDefault();
+                        linkTo(menu, navigate);
+                      }}
+                      className={clsx([
+                        menu.active
+                          ? "simple-menu simple-menu--active"
+                          : "simple-menu",
+                      ])}
+                    >
+                      <div className="simple-menu__icon">
+                        <Lucide icon={menu.icon || "Home"} />
+                      </div>
+                      <div className="simple-menu__title">{menu.title}</div>
+                    </a>
+                  </li>
+                ),
+              )}
+            </ul>
+          </nav>
+          <div className="min-h-screen min-w-0 max-w-full flex-1 rounded-[30px] bg-slate-100 px-4 pb-10 dark:bg-darkmode-700 md:px-[22px]">
+            {(theme === "rubick" ||
+              theme === "enigma" ||
+              theme === "tinker") && <TopBarEnigma layout="simple-menu" />}
+            <Outlet />
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    // Layout TopMenu (padrão)
     switch (theme) {
       case "rubick":
         return (
