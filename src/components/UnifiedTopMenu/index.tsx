@@ -392,10 +392,28 @@ const UnifiedTopMenu: React.FC<UnifiedTopMenuProps> = ({ theme }) => {
           {renderUserMenu()}
         </div>
 
-        {/* Mobile expanded search */}
-        {isMobile && isSearchExpanded && (
-          <div className="pb-4">
-            {/* Search results or additional mobile search UI can go here */}
+        {/* Mobile expanded search results */}
+        {isMobile && isSearchExpanded && searchValue && (
+          <div className="pb-4 border-t border-white/[0.08] pt-4">
+            <div className="space-y-2">
+              <div className="text-sm font-medium text-white/80">
+                Resultados da busca
+              </div>
+              <div className="space-y-1">
+                <a
+                  href="#"
+                  className="block p-2 rounded bg-white/5 text-white/90 text-sm"
+                >
+                  Processo #{searchValue}
+                </a>
+                <a
+                  href="#"
+                  className="block p-2 rounded bg-white/5 text-white/90 text-sm"
+                >
+                  Cliente: {searchValue}
+                </a>
+              </div>
+            </div>
           </div>
         )}
       </div>
