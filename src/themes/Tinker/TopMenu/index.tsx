@@ -1,25 +1,5 @@
 import "@/assets/css/themes/tinker/top-nav.css";
-import { useState, useEffect, Fragment } from "react";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { selectMenu } from "@/stores/menuSlice";
-import { useAppSelector } from "@/stores/hooks";
-import fakerData from "@/utils/faker";
-import _ from "lodash";
-import {
-  FormattedMenu,
-  linkTo,
-  nestedMenu,
-  forceActiveMenuContext,
-  forceActiveMenu,
-} from "./top-menu";
-import Lucide from "@/components/Base/Lucide";
-import Breadcrumb from "@/components/Base/Breadcrumb";
-import { FormInput } from "@/components/Base/Form";
-import { Menu, Popover } from "@/components/Base/Headless";
-import { Transition } from "@headlessui/react";
-import justiceScaleUrl from "@/assets/images/justice-scale.svg";
-import clsx from "clsx";
-import MobileMenu from "@/components/MobileMenu";
+import ResponsiveThemeLayout from "@/layouts/ResponsiveThemeLayout";
 
 function Main() {
   const navigate = useNavigate();
