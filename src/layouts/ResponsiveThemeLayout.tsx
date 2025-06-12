@@ -280,6 +280,24 @@ const ResponsiveThemeLayout: React.FC<ResponsiveThemeLayoutProps> = ({
     }
   };
 
+  // Renderizar TopBar baseado no tema
+  const renderTopBar = () => {
+    if (layout !== "top-menu") return null;
+
+    switch (theme) {
+      case "rubick":
+        return null; // Rubick usa header inline próprio
+      case "enigma":
+        return <TopBarEnigma layout="top-menu" />;
+      case "icewall":
+        return <TopBarIcewall />;
+      case "tinker":
+        return null; // Tinker usa header inline próprio
+      default:
+        return null;
+    }
+  };
+
   return (
     <forceActiveMenuContext.Provider
       value={{
@@ -292,8 +310,11 @@ const ResponsiveThemeLayout: React.FC<ResponsiveThemeLayoutProps> = ({
       <div className={getContainerClass()}>
         <MobileMenu />
 
-        {/* Header Unificado */}
-        <UnifiedTopMenu theme={theme} />
+        {/* TopBar específico do tema */}
+        {renderTopBar()}
+
+        {/* Header inline para Rubick e Tinker */}
+        {(theme === "rubick" || theme === "tinker") && renderInlineHeader()}
 
         {/* Navegação Superior (apenas para top-menu) */}
         {renderTopNavigation()}
