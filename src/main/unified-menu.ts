@@ -6,8 +6,8 @@ const unifiedMenu: Array<Menu | "divider"> = [
   // PAINEL PRINCIPAL
   {
     icon: "LayoutDashboard",
-    pathname: "/dashboard-overview-1",
-    title: "Dashboard",
+    pathname: "/dashboard-overview-3",
+    title: "Painel Principal",
   },
   "divider",
 
@@ -28,59 +28,36 @@ const unifiedMenu: Array<Menu | "divider"> = [
     title: "Financeiro",
   },
   {
+    icon: "Settings",
+    pathname: "/administracao",
+    title: "Administração",
+  },
+  {
     icon: "HardDrive",
     pathname: "/file-manager",
-    title: "GED (Arquivos)",
+    title: "Gestão de Documentos",
   },
   "divider",
 
   // IA E AUTOMAÇÃO
   {
     icon: "Bot",
-    title: "IA Jurídica",
+    title: "Inteligência Artificial",
     subMenu: [
       {
         icon: "MessageCircle",
         pathname: "/chat",
-        title: "Assistente de IA",
+        title: "Assistente Jurídico IA",
       },
       {
         icon: "FileEdit",
         pathname: "/post",
-        title: "Documentos Inteligentes",
+        title: "Geração de Documentos",
       },
     ],
   },
 
-  // ADMINISTRAÇÃO
-  {
-    icon: "Settings",
-    title: "Administração",
-    subMenu: [
-      {
-        icon: "Sliders",
-        pathname: "/regular-form",
-        title: "Configurações",
-      },
-      {
-        icon: "Users",
-        pathname: "/users-layout-3",
-        title: "Usuários",
-      },
-      {
-        icon: "Plug",
-        pathname: "/regular-table",
-        title: "Integrações",
-      },
-      {
-        icon: "Activity",
-        pathname: "/transaction-list",
-        title: "Logs",
-      },
-    ],
-  },
-
-  // SUPORTE
+  // SUPORTE E AJUDA
   {
     icon: "HelpCircle",
     title: "Suporte",
@@ -88,12 +65,12 @@ const unifiedMenu: Array<Menu | "divider"> = [
       {
         icon: "BookOpen",
         pathname: "/faq-layout-1",
-        title: "Central de Ajuda",
+        title: "Base de Conhecimento",
       },
       {
         icon: "Inbox",
         pathname: "/inbox",
-        title: "Tickets",
+        title: "Tickets de Suporte",
       },
     ],
   },
