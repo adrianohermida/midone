@@ -1,9 +1,9 @@
 import React from "react";
-import JuridicioDashboardIntegrado from "../../../views/Juridico/JuridicioDashboardIntegrado";
+import JuridicioDashboardResponsivo from "../../../views/Juridico/JuridicioDashboardResponsivo";
 
 const ProcessosPage: React.FC = () => {
-  // Dashboard jurídico integrado e avançado
-  return <JuridicioDashboardIntegrado />;
+  // Dashboard jurídico responsivo e otimizado para todos os dispositivos
+  return <JuridicioDashboardResponsivo />;
 };
 
 export default ProcessosPage;
