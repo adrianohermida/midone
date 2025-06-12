@@ -10,29 +10,8 @@ const menu: Array<Menu | "divider"> = [
   // CRM
   {
     icon: "Users",
+    pathname: "/crm",
     title: "CRM",
-    subMenu: [
-      {
-        icon: "LayoutDashboard",
-        pathname: "/crm",
-        title: "Dashboard CRM",
-      },
-      {
-        icon: "UserCheck",
-        pathname: "/crm/contatos",
-        title: "Contatos",
-      },
-      {
-        icon: "TrendingUp",
-        pathname: "/crm/negocios",
-        title: "Negócios (Pipelines)",
-      },
-      {
-        icon: "MessageSquare",
-        pathname: "/crm/suporte",
-        title: "Suporte ao Cliente",
-      },
-    ],
   },
   // JURÍDICO
   {
