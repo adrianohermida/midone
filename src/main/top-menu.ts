@@ -16,50 +16,8 @@ const menu: Array<Menu | "divider"> = [
   // JURÍDICO
   {
     icon: "Scale",
+    pathname: "/juridico",
     title: "Jurídico",
-    subMenu: [
-      {
-        icon: "FileText",
-        title: "Processos",
-        subMenu: [
-          {
-            icon: "LayoutDashboard",
-            pathname: "/juridico/processos",
-            title: "Dashboard",
-          },
-          {
-            icon: "List",
-            pathname: "/juridico/processos",
-            title: "Listar Processos",
-          },
-          {
-            icon: "Plus",
-            pathname: "/juridico/processos",
-            title: "Novo Processo",
-          },
-          {
-            icon: "Newspaper",
-            pathname: "/juridico/processos/publicacoes",
-            title: "Publicações",
-          },
-          {
-            icon: "Bell",
-            pathname: "/juridico/processos/intimacoes",
-            title: "Intimações",
-          },
-          {
-            icon: "Calendar",
-            pathname: "/juridico/processos/agenda",
-            title: "Agenda",
-          },
-          {
-            icon: "BarChart3",
-            pathname: "/juridico/processos/relatorios",
-            title: "Relatórios",
-          },
-        ],
-      },
-    ],
   },
   // FINANCEIRO
   {
