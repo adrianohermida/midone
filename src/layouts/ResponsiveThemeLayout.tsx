@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, Fragment } from "react";
+import { Outlet, useLocation, useNavigate, Link } from "react-router-dom";
 import { useAppSelector } from "@/stores/hooks";
 import { selectMenu } from "@/stores/menuSlice";
 import { selectTheme } from "@/stores/themeSlice";
@@ -19,6 +19,13 @@ import useThemeResponsive, {
   LayoutType,
 } from "@/hooks/useThemeResponsive";
 import Lucide from "@/components/Base/Lucide";
+import Breadcrumb from "@/components/Base/Breadcrumb";
+import { FormInput } from "@/components/Base/Form";
+import { Menu, Popover } from "@/components/Base/Headless";
+import { Transition } from "@headlessui/react";
+import fakerData from "@/utils/faker";
+import justiceScaleUrl from "@/assets/images/justice-scale.svg";
+import _ from "lodash";
 import clsx from "clsx";
 
 interface ResponsiveThemeLayoutProps {
