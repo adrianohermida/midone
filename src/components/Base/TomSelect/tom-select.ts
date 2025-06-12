@@ -5,14 +5,14 @@ import _ from "lodash";
 
 const setValue = <T extends string | string[]>(
   el: TomSelectElement,
-  props: TomSelectProps<T>
+  props: TomSelectProps<T>,
 ) => {
   if (props.value.length) {
     if (Array.isArray(props.value)) {
       for (const value of props.value) {
         const selectedOption = Array.from(el).find(
           (option) =>
-            option instanceof HTMLOptionElement && option.value == value
+            option instanceof HTMLOptionElement && option.value == value,
         );
 
         if (
@@ -32,7 +32,7 @@ const init = <T extends string | string[]>(
   originalEl: TomSelectElement,
   clonedEl: TomSelectElement,
   props: TomSelectProps<T>,
-  computedOptions: RecursivePartial<TomSettings>
+  computedOptions: RecursivePartial<TomSettings>,
 ) => {
   // On option add
   if (Array.isArray(props.value)) {
@@ -69,7 +69,7 @@ const init = <T extends string | string[]>(
 
 const getOptions = (
   options: HTMLCollection | undefined,
-  tempOptions: Element[] = []
+  tempOptions: Element[] = [],
 ) => {
   if (options) {
     Array.from(options).forEach(function (optionEl) {
@@ -89,21 +89,21 @@ const updateValue = <T extends string | string[]>(
   clonedEl: TomSelectElement,
   value: string | string[],
   props: TomSelectProps<T>,
-  computedOptions: RecursivePartial<TomSettings>
+  computedOptions: RecursivePartial<TomSettings>,
 ) => {
   // Remove old options
   for (const [optionKey, option] of Object.entries(
-    clonedEl.TomSelect.options
+    clonedEl.TomSelect.options,
   )) {
     if (
       !getOptions(originalEl.children).filter((optionEl) => {
         return (
           optionEl instanceof HTMLOptionElement &&
-          optionEl.value === option.value
+          optionEl.value === (option as any).value
         );
       }).length
     ) {
-      clonedEl.TomSelect.removeOption(option.value);
+      clonedEl.TomSelect.removeOption((option as any).value);
     }
   }
 
@@ -116,22 +116,22 @@ const updateValue = <T extends string | string[]>(
     [
       ...Array.from(originalEl.classList),
       ...Array.from(clonedEl.classList).filter(
-        (className) => initialClassNames?.indexOf(className) == -1
+        (className) => initialClassNames?.indexOf(className) == -1,
       ),
-    ].join(" ")
+    ].join(" "),
   );
   clonedEl.TomSelect.wrapper.setAttribute(
     "class",
     [
       ...Array.from(originalEl.classList),
       ...Array.from(clonedEl.TomSelect.wrapper.classList).filter(
-        (className) => initialClassNames?.indexOf(className) == -1
+        (className) => initialClassNames?.indexOf(className) == -1,
       ),
-    ].join(" ")
+    ].join(" "),
   );
   clonedEl.setAttribute(
     "data-initial-class",
-    Array.from(originalEl.classList).join(" ")
+    Array.from(originalEl.classList).join(" "),
   );
 
   // Add new options

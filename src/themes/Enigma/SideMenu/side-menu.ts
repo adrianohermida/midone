@@ -1,7 +1,7 @@
 import { NavigateFunction } from "react-router-dom";
-import { Menu } from "@/stores/menuSlice";
-import { slideUp, slideDown } from "@/utils/helper";
 import { createContext } from "react";
+import { slideUp, slideDown } from "@/utils/helper";
+import { type Menu } from "@/stores/menuSlice";
 
 interface Location {
   pathname: string;
@@ -14,15 +14,246 @@ export interface FormattedMenu extends Menu {
   subMenu?: FormattedMenu[];
 }
 
-const forceActiveMenu = (location: Location, pathname: string) => {
-  location.forceActiveMenu = pathname;
-};
-
-const forceActiveMenuContext = createContext<{
-  forceActiveMenu: (pathname: string) => void;
-}>({
-  forceActiveMenu: () => {},
-});
+const menu: Array<Menu | "divider"> = [
+  // PAINEL
+  {
+    icon: "LayoutDashboard",
+    pathname: "/dashboard-overview-1",
+    title: "Dashboard",
+  },
+  "divider",
+  // CRM
+  {
+    icon: "Users",
+    title: "CRM",
+    subMenu: [
+      {
+        icon: "LayoutDashboard",
+        pathname: "/crm",
+        title: "Dashboard CRM",
+      },
+      {
+        icon: "UserCheck",
+        pathname: "/crm/contatos",
+        title: "Contatos",
+      },
+      {
+        icon: "TrendingUp",
+        pathname: "/crm/negocios",
+        title: "Negócios (Pipelines)",
+      },
+      {
+        icon: "MessageSquare",
+        pathname: "/crm/suporte",
+        title: "Suporte ao Cliente",
+      },
+    ],
+  },
+  // JURÍDICO
+  {
+    icon: "Scale",
+    title: "Jurídico",
+    subMenu: [
+      {
+        icon: "FileText",
+        title: "Processos",
+        subMenu: [
+          {
+            icon: "LayoutDashboard",
+            pathname: "/juridico/processos",
+            title: "Dashboard",
+          },
+          {
+            icon: "List",
+            pathname: "/juridico/processos",
+            title: "Listar Processos",
+          },
+          {
+            icon: "Plus",
+            pathname: "/juridico/processos",
+            title: "Novo Processo",
+          },
+          {
+            icon: "Newspaper",
+            pathname: "/juridico/processos/publicacoes",
+            title: "Publicações",
+          },
+          {
+            icon: "Bell",
+            pathname: "/juridico/processos/intimacoes",
+            title: "Intimações",
+          },
+          {
+            icon: "Calendar",
+            pathname: "/juridico/processos/agenda",
+            title: "Agenda",
+          },
+          {
+            icon: "BarChart3",
+            pathname: "/juridico/processos/relatorios",
+            title: "Relatórios",
+          },
+        ],
+      },
+    ],
+  },
+  // FINANCEIRO
+  {
+    icon: "DollarSign",
+    pathname: "/financeiro",
+    title: "Financeiro",
+  },
+  // DOCUMENTOS
+  {
+    icon: "HardDrive",
+    pathname: "/file-manager",
+    title: "GED (Arquivos)",
+  },
+  "divider",
+  // IA JURÍDICA
+  {
+    icon: "Bot",
+    title: "IA Jurídica",
+    subMenu: [
+      {
+        icon: "MessageCircle",
+        pathname: "/chat",
+        title: "Assistente de IA",
+      },
+      {
+        icon: "FileEdit",
+        pathname: "/post",
+        title: "Documentos Inteligentes",
+      },
+    ],
+  },
+  "divider",
+  // ADMINISTRAÇÃO
+  {
+    icon: "Settings",
+    title: "Administração",
+    subMenu: [
+      {
+        icon: "Sliders",
+        pathname: "/regular-form",
+        title: "Configurações do Sistema",
+      },
+      {
+        icon: "Users",
+        pathname: "/users-layout-3",
+        title: "Usuários e Equipe",
+      },
+      {
+        icon: "Plug",
+        pathname: "/regular-table",
+        title: "Integrações",
+      },
+      {
+        icon: "Activity",
+        pathname: "/transaction-list",
+        title: "Logs e Auditoria",
+      },
+    ],
+  },
+  // SUPORTE
+  {
+    icon: "HelpCircle",
+    title: "Suporte",
+    subMenu: [
+      {
+        icon: "BookOpen",
+        pathname: "/faq-layout-1",
+        title: "Central de Ajuda",
+      },
+      {
+        icon: "Inbox",
+        pathname: "/inbox",
+        title: "Tickets de Suporte",
+      },
+    ],
+  },
+  "divider",
+  // BETA/TESTES
+  {
+    icon: "TestTube",
+    title: "Painel Beta (Obsoletos/Testes)",
+    subMenu: [
+      {
+        icon: "Activity",
+        title: "Dashboard Variants",
+        subMenu: [
+          {
+            icon: "Zap",
+            pathname: "/dashboard-overview-2",
+            title: "Overview 2",
+          },
+          {
+            icon: "Zap",
+            pathname: "/dashboard-overview-3",
+            title: "Overview 3",
+          },
+          {
+            icon: "Zap",
+            pathname: "/dashboard-overview-4",
+            title: "Overview 4",
+          },
+        ],
+      },
+      {
+        icon: "Activity",
+        title: "Profile Layouts",
+        subMenu: [
+          {
+            icon: "Zap",
+            pathname: "/profile-overview-1",
+            title: "Perfil Layout 1",
+          },
+          {
+            icon: "Zap",
+            pathname: "/profile-overview-2",
+            title: "Perfil Layout 2",
+          },
+          {
+            icon: "Zap",
+            pathname: "/profile-overview-3",
+            title: "Perfil Layout 3",
+          },
+        ],
+      },
+      {
+        icon: "Activity",
+        title: "Componentes",
+        subMenu: [
+          {
+            icon: "Zap",
+            pathname: "/modal",
+            title: "Modal",
+          },
+          {
+            icon: "Zap",
+            pathname: "/notification",
+            title: "Notification",
+          },
+          {
+            icon: "Zap",
+            pathname: "/chart",
+            title: "Chart",
+          },
+          {
+            icon: "Zap",
+            pathname: "/button",
+            title: "Button",
+          },
+          {
+            icon: "Zap",
+            pathname: "/alert",
+            title: "Alert",
+          },
+        ],
+      },
+    ],
+  },
+];
 
 // Setup side menu
 const findActiveMenu = (subMenu: Menu[], location: Location): boolean => {
@@ -68,7 +299,7 @@ const nestedMenu = (menu: Array<Menu | "divider">, location: Location) => {
         // Nested menu
         const subMenu: Array<FormattedMenu> = [];
         nestedMenu(menuItem.subMenu, location).map(
-          (menu) => typeof menu !== "string" && subMenu.push(menu)
+          (menu) => typeof menu !== "string" && subMenu.push(menu),
         );
         menuItem.subMenu = subMenu;
       }
@@ -93,14 +324,30 @@ const linkTo = (menu: FormattedMenu, navigate: NavigateFunction) => {
 };
 
 const enter = (el: HTMLElement) => {
-  slideDown(el, 300);
+  if (el && el.style) {
+    slideDown(el, 300);
+  }
 };
 
 const leave = (el: HTMLElement) => {
-  slideUp(el, 300);
+  if (el && el.style) {
+    slideUp(el, 300);
+  }
+};
+
+// Force active menu context
+const forceActiveMenuContext = createContext<{
+  forceActiveMenu: (pathname: string) => void;
+}>({
+  forceActiveMenu: () => {},
+});
+
+const forceActiveMenu = (location: Location, pathname: string) => {
+  location.forceActiveMenu = pathname;
 };
 
 export {
+  menu as default,
   nestedMenu,
   linkTo,
   enter,

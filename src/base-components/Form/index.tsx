@@ -9,6 +9,8 @@ interface FormControlProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const FormControl: React.FC<FormControlProps> = ({
   variant = "default",
   className,
+  children,
+  dangerouslySetInnerHTML,
   ...props
 }) => {
   const baseClasses =

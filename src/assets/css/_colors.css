@@ -24,6 +24,27 @@
   --color-dark: 30 41 59;
 }
 
+/* Color Schemes */
+.theme-1 {
+  --color-theme-1: 30 58 138;
+  --color-theme-2: 59 130 246;
+}
+
+.theme-2 {
+  --color-theme-1: 5 150 105;
+  --color-theme-2: 34 197 94;
+}
+
+.theme-3 {
+  --color-theme-1: 202 138 4;
+  --color-theme-2: 245 158 11;
+}
+
+.theme-4 {
+  --color-theme-1: 124 58 237;
+  --color-theme-2: 139 92 246;
+}
+
 .dark {
   --color-primary: 29 78 216;
   --color-darkmode-50: 87 103 132;

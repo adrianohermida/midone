@@ -43,8 +43,8 @@ function Main() {
                   <Preview>
                     <div className="text-center">
                       <Tippy
-                        as={Button}
-                        variant="primary"
+                        as="button"
+                        
                         content="This is awesome tooltip example!"
                       >
                         Show Tooltip
@@ -56,8 +56,8 @@ function Main() {
                       {`
               <div className="text-center">
                 <Tippy
-                  as={Button}
-                  variant="primary"
+                  as="button"
+                  
                   content="This is awesome tooltip example!"
                 >
                   Show Tooltip
@@ -95,8 +95,8 @@ function Main() {
                   <Preview>
                     <div className="text-center">
                       <Tippy
-                        as={Button}
-                        variant="primary"
+                        as="button"
+                        
                         content="This is awesome tooltip example!"
                         options={{
                           trigger: "click",
@@ -111,8 +111,8 @@ function Main() {
                       {`
               <div className="text-center">
                 <Tippy
-                  as={Button}
-                  variant="primary"
+                  as="button"
+                  
                   content="This is awesome tooltip example!"
                   options={{
                     trigger: "click",
@@ -153,8 +153,8 @@ function Main() {
                   <Preview>
                     <div className="text-center">
                       <Tippy
-                        as={Button}
-                        variant="primary"
+                        as="button"
+                        
                         content="This is awesome tooltip example!"
                         options={{
                           theme: "light",
@@ -169,8 +169,8 @@ function Main() {
                       {`
               <div className="text-center">
                 <Tippy
-                  as={Button}
-                  variant="primary"
+                  as="button"
+                  
                   content="This is awesome tooltip example!"
                   options={{
                     theme: "light",
@@ -214,7 +214,7 @@ function Main() {
                     {/* BEGIN: Custom Tooltip Toggle */}
                     <div className="text-center">
                       <Button
-                        variant="primary"
+                        
                         data-tooltip="custom-tooltip-content"
                       >
                         Show Tooltip
@@ -251,7 +251,7 @@ function Main() {
               {/* BEGIN: Custom Tooltip Toggle */}
               <div className="text-center">
                 <Button
-                  variant="primary"
+                  
                   data-tooltip="custom-tooltip-content"
                 >
                   Show Tooltip
@@ -315,7 +315,7 @@ function Main() {
                   <Preview>
                     {/* BEGIN: Custom Tooltip Toggle */}
                     <div className="text-center">
-                      <Button variant="primary" data-tooltip="chart-tooltip">
+                      <Button  data-tooltip="chart-tooltip">
                         Show Tooltip
                       </Button>
                     </div>
@@ -347,7 +347,7 @@ function Main() {
               {/* BEGIN: Custom Tooltip Toggle */}
               <div className="text-center">
                 <Button
-                  variant="primary"
+                  
                   data-tooltip="chart-tooltip"
                 >
                   Show Tooltip

@@ -1,0 +1,383 @@
+{
+  "contatos": [
+    {
+      "id": 1,
+      "nome": "Silva & Associados Ltda.",
+      "tipo": "Pessoa Jurídica",
+      "categoria": "Cliente",
+      "email": "contato@silvaassociados.com.br",
+      "telefone": "(11) 3456-7890",
+      "celular": "(11) 99876-5432",
+      "documento": "12.345.678/0001-90",
+      "endereco": {
+        "logradouro": "Rua das Flores, 123",
+        "bairro": "Centro",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01234-567"
+      },
+      "responsavel": "Dr. João Silva",
+      "cargo": "Sócio Diretor",
+      "origem": "Indicação",
+      "tags": ["VIP", "Empresarial", "Trabalhista"],
+      "observacoes": "Cliente desde 2020, alta prioridade",
+      "dataCadastro": "2023-01-15",
+      "ultimoContato": "2024-01-20",
+      "valorMedio": 15000.0,
+      "processosAtivos": 8,
+      "status": "Ativo"
+    },
+    {
+      "id": 2,
+      "nome": "Maria José da Silva",
+      "tipo": "Pessoa Física",
+      "categoria": "Cliente",
+      "email": "maria.silva@email.com",
+      "telefone": "(11) 2345-6789",
+      "celular": "(11) 98765-4321",
+      "documento": "123.456.789-01",
+      "endereco": {
+        "logradouro": "Av. Paulista, 1000",
+        "bairro": "Bela Vista",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01310-100"
+      },
+      "profissao": "Enfermeira",
+      "estadoCivil": "Casada",
+      "origem": "Google Ads",
+      "tags": ["Trabalhista", "Urgente"],
+      "observacoes": "Caso de demissão irregular, acompanhar prazos",
+      "dataCadastro": "2023-11-10",
+      "ultimoContato": "2024-01-18",
+      "valorMedio": 3500.0,
+      "processosAtivos": 1,
+      "status": "Ativo"
+    },
+    {
+      "id": 3,
+      "nome": "Construtora ABC Ltda.",
+      "tipo": "Pessoa Jurídica",
+      "categoria": "Lead",
+      "email": "juridico@construtorabc.com.br",
+      "telefone": "(11) 4567-8901",
+      "celular": "(11) 97654-3210",
+      "documento": "98.765.432/0001-10",
+      "endereco": {
+        "logradouro": "Rua dos Engenheiros, 500",
+        "bairro": "Vila Madalena",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "05433-020"
+      },
+      "responsavel": "Carlos Roberto",
+      "cargo": "Gerente Jurídico",
+      "origem": "LinkedIn",
+      "tags": ["Empresarial", "Potencial"],
+      "observacoes": "Interessado em assessoria contratual, agendar reunião",
+      "dataCadastro": "2024-01-12",
+      "ultimoContato": "2024-01-15",
+      "valorEstimado": 8000.0,
+      "status": "Prospecção"
+    },
+    {
+      "id": 4,
+      "nome": "Pedro Oliveira Santos",
+      "tipo": "Pessoa Física",
+      "categoria": "Parte Adversa",
+      "email": "pedro.santos@email.com",
+      "telefone": "(11) 3210-9876",
+      "documento": "987.654.321-00",
+      "endereco": {
+        "logradouro": "Rua das Palmeiras, 200",
+        "bairro": "Moema",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04567-890"
+      },
+      "processoRelacionado": "5002345-67.2023.5.02.0001",
+      "advogadoAdverso": "Dr. Ricardo Alves",
+      "tags": ["Civil", "Requerido"],
+      "observacoes": "Parte requerida em ação de cobrança",
+      "dataCadastro": "2023-08-20",
+      "status": "Em Processo"
+    }
+  ],
+  "negocios": [
+    {
+      "id": 1,
+      "titulo": "Assessoria Jurídica - Construtora ABC",
+      "descricao": "Contrato de assessoria jurídica empresarial mensal",
+      "valor": 8000.0,
+      "moeda": "BRL",
+      "probabilidade": 75,
+      "etapa": "Proposta Enviada",
+      "pipeline": "Vendas Corporativas",
+      "contatoId": 3,
+      "responsavel": "Dr. João Silva",
+      "dataAbertura": "2024-01-12",
+      "dataEstimadaFechamento": "2024-02-15",
+      "origem": "LinkedIn",
+      "tags": ["Empresarial", "Recorrente"],
+      "atividades": [
+        {
+          "data": "2024-01-12",
+          "tipo": "Contato Inicial",
+          "descricao": "Primeira conversa via LinkedIn",
+          "responsavel": "Dr. João Silva"
+        },
+        {
+          "data": "2024-01-15",
+          "tipo": "Reunião",
+          "descricao": "Reunião de apresentação dos serviços",
+          "responsavel": "Dr. João Silva"
+        }
+      ],
+      "produtos": ["Assessoria Empresarial", "Análise de Contratos"],
+      "status": "Ativo"
+    },
+    {
+      "id": 2,
+      "titulo": "Ação Trabalhista - Maria Silva",
+      "descricao": "Defesa em reclamação trabalhista",
+      "valor": 3500.0,
+      "moeda": "BRL",
+      "probabilidade": 90,
+      "etapa": "Contrato Assinado",
+      "pipeline": "Casos Individuais",
+      "contatoId": 2,
+      "responsavel": "Dra. Ana Costa",
+      "dataAbertura": "2023-11-10",
+      "dataFechamento": "2023-11-15",
+      "origem": "Google Ads",
+      "tags": ["Trabalhista", "Urgente"],
+      "atividades": [
+        {
+          "data": "2023-11-10",
+          "tipo": "Consulta",
+          "descricao": "Consulta inicial sobre demissão",
+          "responsavel": "Dra. Ana Costa"
+        },
+        {
+          "data": "2023-11-15",
+          "tipo": "Assinatura",
+          "descricao": "Contrato de honorários assinado",
+          "responsavel": "Dra. Ana Costa"
+        }
+      ],
+      "produtos": ["Defesa Trabalhista"],
+      "status": "Ganho"
+    },
+    {
+      "id": 3,
+      "titulo": "Consultoria Imobiliária - Imóveis XYZ",
+      "descricao": "Análise de contratos de compra e venda",
+      "valor": 2500.0,
+      "moeda": "BRL",
+      "probabilidade": 50,
+      "etapa": "Qualificação",
+      "pipeline": "Vendas Imobiliárias",
+      "contatoId": null,
+      "responsavel": "Dr. Pedro Martins",
+      "dataAbertura": "2024-01-18",
+      "dataEstimadaFechamento": "2024-02-28",
+      "origem": "Indicação",
+      "tags": ["Civil", "Imobiliário"],
+      "atividades": [
+        {
+          "data": "2024-01-18",
+          "tipo": "Contato Inicial",
+          "descricao": "Ligação de prospecção",
+          "responsavel": "Dr. Pedro Martins"
+        }
+      ],
+      "produtos": ["Consultoria Civil"],
+      "status": "Ativo"
+    }
+  ],
+  "pipelines": [
+    {
+      "id": 1,
+      "nome": "Vendas Corporativas",
+      "descricao": "Pipeline para clientes empresariais",
+      "etapas": [
+        {
+          "nome": "Lead",
+          "ordem": 1,
+          "cor": "#6B7280",
+          "probabilidade": 10
+        },
+        {
+          "nome": "Qualificação",
+          "ordem": 2,
+          "cor": "#F59E0B",
+          "probabilidade": 25
+        },
+        {
+          "nome": "Proposta Enviada",
+          "ordem": 3,
+          "cor": "#3B82F6",
+          "probabilidade": 50
+        },
+        {
+          "nome": "Negociação",
+          "ordem": 4,
+          "cor": "#8B5CF6",
+          "probabilidade": 75
+        },
+        {
+          "nome": "Contrato Assinado",
+          "ordem": 5,
+          "cor": "#10B981",
+          "probabilidade": 100
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "Casos Individuais",
+      "descricao": "Pipeline para pessoas físicas",
+      "etapas": [
+        {
+          "nome": "Consulta Inicial",
+          "ordem": 1,
+          "cor": "#6B7280",
+          "probabilidade": 20
+        },
+        {
+          "nome": "Análise do Caso",
+          "ordem": 2,
+          "cor": "#F59E0B",
+          "probabilidade": 40
+        },
+        {
+          "nome": "Proposta",
+          "ordem": 3,
+          "cor": "#3B82F6",
+          "probabilidade": 70
+        },
+        {
+          "nome": "Contrato Assinado",
+          "ordem": 4,
+          "cor": "#10B981",
+          "probabilidade": 100
+        }
+      ]
+    }
+  ],
+  "tickets": [
+    {
+      "id": 1,
+      "titulo": "Dúvida sobre prazo recursal",
+      "descricao": "Cliente precisa saber o prazo para interpor recurso",
+      "prioridade": "Alta",
+      "categoria": "Dúvida Processual",
+      "status": "Aberto",
+      "contatoId": 2,
+      "responsavel": "Dra. Ana Costa",
+      "abertura": "2024-01-20 09:30:00",
+      "ultimaResposta": "2024-01-20 10:15:00",
+      "prazoSLA": "2024-01-20 17:30:00",
+      "canal": "Email",
+      "tags": ["Trabalhista", "Urgente"],
+      "historico": [
+        {
+          "data": "2024-01-20 09:30:00",
+          "autor": "Maria José da Silva",
+          "tipo": "Cliente",
+          "mensagem": "Olá, gostaria de saber qual o prazo que tenho para entrar com recurso no meu processo trabalhista. A audiência foi ontem."
+        },
+        {
+          "data": "2024-01-20 10:15:00",
+          "autor": "Dra. Ana Costa",
+          "tipo": "Advogado",
+          "mensagem": "Olá Maria! O prazo para recurso ordinário na Justiça do Trabalho é de 8 dias úteis contados da publicação da decisão. Vou verificar no sistema do TRT e te retorno hoje ainda."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Solicitação de documentos",
+      "descricao": "Cliente solicita cópia da contestação protocolada",
+      "prioridade": "Média",
+      "categoria": "Solicitação de Documentos",
+      "status": "Aguardando Cliente",
+      "contatoId": 1,
+      "responsavel": "Dr. João Silva",
+      "abertura": "2024-01-19 14:20:00",
+      "ultimaResposta": "2024-01-19 16:45:00",
+      "prazoSLA": "2024-01-22 14:20:00",
+      "canal": "Portal do Cliente",
+      "tags": ["Documentos"],
+      "historico": [
+        {
+          "data": "2024-01-19 14:20:00",
+          "autor": "Silva & Associados",
+          "tipo": "Cliente",
+          "mensagem": "Precisamos de uma cópia da contestação que foi protocolada no processo 1001234-56.2023.8.26.0001 para nossos arquivos internos."
+        },
+        {
+          "data": "2024-01-19 16:45:00",
+          "autor": "Dr. João Silva",
+          "tipo": "Advogado",
+          "mensagem": "Documento anexado. Por favor, confirme o recebimento e se está tudo correto."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Agendamento de reunião",
+      "descricao": "Cliente quer agendar reunião para novo caso",
+      "prioridade": "Baixa",
+      "categoria": "Agendamento",
+      "status": "Resolvido",
+      "contatoId": 3,
+      "responsavel": "Recepção",
+      "abertura": "2024-01-18 11:00:00",
+      "ultimaResposta": "2024-01-18 11:30:00",
+      "resolucao": "2024-01-18 11:30:00",
+      "prazoSLA": "2024-01-21 11:00:00",
+      "canal": "WhatsApp",
+      "tags": ["Agendamento"],
+      "historico": [
+        {
+          "data": "2024-01-18 11:00:00",
+          "autor": "Construtora ABC",
+          "tipo": "Cliente",
+          "mensagem": "Gostaríamos de agendar uma reunião para discutir um novo caso. Preferimos na próxima semana."
+        },
+        {
+          "data": "2024-01-18 11:30:00",
+          "autor": "Recepção",
+          "tipo": "Suporte",
+          "mensagem": "Reunião agendada para 25/01/2024 às 14h00 com Dr. João Silva. Confirmação enviada por email."
+        }
+      ]
+    }
+  ],
+  "metricas": {
+    "contatos": {
+      "total": 150,
+      "novosUltimoMes": 12,
+      "clientes": 89,
+      "leads": 35,
+      "partesAdversas": 26,
+      "conversaoLeadCliente": 65.5
+    },
+    "negocios": {
+      "totalPipeline": 45000.0,
+      "negociosAtivos": 15,
+      "negociosFechados": 8,
+      "taxaConversao": 68.2,
+      "ticketMedio": 4200.0,
+      "cicloVendas": 18
+    },
+    "suporte": {
+      "ticketsAbertos": 8,
+      "ticketsResolvidos": 156,
+      "tempoMedioResposta": "2h 15min",
+      "satisfacaoCliente": 94.5,
+      "slaAtendido": 92.3
+    }
+  }
+}

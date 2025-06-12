@@ -1,10 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
+import themeSlice from "./themeSlice";
+import darkModeSlice from "./darkModeSlice";
+import colorSchemeSlice from "./colorSchemeSlice";
+import menuSlice from "./menuSlice";
+import legalCasesSlice from "./legalCasesSlice";
+import intimationsSlice from "./intimationsSlice";
 
-// Create a basic store configuration
+// Store configuration with original Midone template slices + Legal Cases modules
 export const store = configureStore({
   reducer: {
-    // Add your reducers here as you develop features
-    // Example: auth: authSlice.reducer,
+    theme: themeSlice,
+    darkMode: darkModeSlice,
+    colorScheme: colorSchemeSlice,
+    menu: menuSlice,
+    legalCases: legalCasesSlice,
+    intimations: intimationsSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

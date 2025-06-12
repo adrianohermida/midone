@@ -6,14 +6,21 @@ import {
 } from "@/stores/colorSchemeSlice";
 import { selectTheme, setTheme, setLayout, Themes } from "@/stores/themeSlice";
 import { selectDarkMode, setDarkMode } from "@/stores/darkModeSlice";
-import { Slideover } from "@/components/Base/Headless";
-import Lucide from "@/components/Base/Lucide";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
+import Lucide from "@/components/Base/Lucide";
+import RubickImage from "@/assets/images/themes/rubick.svg";
+import IcewallImage from "@/assets/images/themes/icewall.svg";
+import TinkerImage from "@/assets/images/themes/tinker.svg";
+import EnigmaImage from "@/assets/images/themes/enigma.svg";
+import SideMenuImage from "@/assets/images/layouts/side-menu.svg";
+import SimpleMenuImage from "@/assets/images/layouts/simple-menu.svg";
+import TopMenuImage from "@/assets/images/layouts/top-menu.svg";
 
 function Main() {
   const dispatch = useAppDispatch();
-  const [themeSwitcherSlideover, setThemeSwitcherSlideover] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const activeTheme = useAppSelector(selectTheme);
   const activeColorScheme = useAppSelector(selectColorScheme);
@@ -21,247 +28,353 @@ function Main() {
 
   const switchTheme = (theme: Themes["name"]) => {
     dispatch(setTheme(theme));
+    // Reload to apply theme changes
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   };
+
   const switchLayout = (layout: Themes["layout"]) => {
     dispatch(setLayout(layout));
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   };
 
-  const setColorSchemeClass = () => {
-    const el = document.querySelectorAll("html")[0];
-    el.setAttribute("class", activeColorScheme);
-    activeDarkMode && el.classList.add("dark");
-  };
   const switchColorScheme = (colorScheme: ColorSchemes) => {
     dispatch(setColorScheme(colorScheme));
-    setColorSchemeClass();
+    const el = document.documentElement;
+    el.setAttribute("class", colorScheme);
+    activeDarkMode && el.classList.add("dark");
   };
-  setColorSchemeClass();
 
-  const setDarkModeClass = () => {
-    const el = document.querySelectorAll("html")[0];
-    activeDarkMode ? el.classList.add("dark") : el.classList.remove("dark");
-  };
   const switchDarkMode = (darkMode: boolean) => {
     dispatch(setDarkMode(darkMode));
-    setDarkModeClass();
+    const el = document.documentElement;
+    darkMode ? el.classList.add("dark") : el.classList.remove("dark");
   };
-  setDarkModeClass();
 
-  const themes: Array<Themes["name"]> = [
-    "rubick",
-    "icewall",
-    "tinker",
-    "enigma",
-  ];
-  const layouts: Array<Themes["layout"]> = [
-    "side-menu",
-    "simple-menu",
-    "top-menu",
-  ];
-  const colorSchemes: Array<ColorSchemes> = [
-    "default",
-    "theme-1",
-    "theme-2",
-    "theme-3",
-    "theme-4",
+  const handleOpen = () => {
+    setIsOpen(true);
+    setIsAnimating(true);
+  };
+
+  const handleClose = () => {
+    setIsAnimating(false);
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 300);
+  };
+
+  // Prevent body scroll when panel is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
+  const themes: Array<{
+    name: Themes["name"];
+    displayName: string;
+    image: string;
+  }> = [
+    { name: "rubick", displayName: "Rubick", image: RubickImage },
+    { name: "icewall", displayName: "Icewall", image: IcewallImage },
+    { name: "tinker", displayName: "Tinker", image: TinkerImage },
+    { name: "enigma", displayName: "Enigma", image: EnigmaImage },
   ];
 
-  const themeImages = import.meta.glob<{
-    default: string;
-  }>("/src/assets/images/themes/*.{jpg,jpeg,png,svg}", { eager: true });
-  const layoutImages = import.meta.glob<{
-    default: string;
-  }>("/src/assets/images/layouts/*.{jpg,jpeg,png,svg}", { eager: true });
+  const layouts: Array<{
+    name: Themes["layout"];
+    displayName: string;
+    image: string;
+  }> = [
+    { name: "side-menu", displayName: "Side Menu", image: SideMenuImage },
+    { name: "simple-menu", displayName: "Simple Menu", image: SimpleMenuImage },
+    { name: "top-menu", displayName: "Top Menu", image: TopMenuImage },
+  ];
+
+  const colorSchemes: Array<{
+    name: ColorSchemes;
+    displayName: string;
+    colors: string[];
+  }> = [
+    {
+      name: "default",
+      displayName: "Default",
+      colors: ["#059669", "#10b981"],
+    },
+    {
+      name: "theme-1",
+      displayName: "Blue",
+      colors: ["#3b82f6", "#60a5fa"],
+    },
+    {
+      name: "theme-2",
+      displayName: "Green",
+      colors: ["#059669", "#34d399"],
+    },
+    {
+      name: "theme-3",
+      displayName: "Orange",
+      colors: ["#ea580c", "#fb923c"],
+    },
+    {
+      name: "theme-4",
+      displayName: "Purple",
+      colors: ["#7c3aed", "#a78bfa"],
+    },
+  ];
 
   return (
-    <div>
-      <Slideover
-        open={themeSwitcherSlideover}
-        onClose={() => {
-          setThemeSwitcherSlideover(false);
-        }}
+    <>
+      {/* Floating Action Button */}
+      <div
+        className="fixed bottom-0 right-0 z-50 mb-5 mr-5 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-theme-1 text-white shadow-lg hover:bg-theme-1/90 transition-all duration-200"
+        onClick={handleOpen}
       >
-        <Slideover.Panel className="w-72 rounded-[0.75rem_0_0_0.75rem/1.1rem_0_0_1.1rem]">
-          <a
-            href=""
-            className="focus:outline-none hover:bg-white/10 bg-white/5 transition-all hover:rotate-180 absolute inset-y-0 left-0 right-auto flex items-center justify-center my-auto -ml-[60px] sm:-ml-[105px] border rounded-full text-white/90 w-8 h-8 sm:w-14 sm:h-14 border-white/90 hover:scale-105"
-            onClick={(e) => {
-              e.preventDefault();
-              setThemeSwitcherSlideover(false);
-            }}
+        <Lucide icon="Settings" className="w-5 h-5 animate-spin" />
+      </div>
+
+      {/* Theme Switcher Panel */}
+      {isOpen && (
+        <div className="fixed inset-0 z-50 overflow-hidden">
+          <div
+            className="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+            onClick={handleClose}
+          ></div>
+
+          <div
+            className={clsx([
+              "absolute right-0 top-0 h-full w-80 bg-white shadow-xl dark:bg-darkmode-600 overflow-y-auto transform transition-transform duration-300 ease-out",
+              isAnimating ? "translate-x-0" : "translate-x-full",
+            ])}
           >
-            <Lucide className="w-3 h-3 sm:w-8 sm:h-8 stroke-[1]" icon="X" />
-          </a>
-          <Slideover.Description className="p-0">
-            <div className="flex flex-col">
-              <div className="px-8 pt-6 pb-8">
-                <div className="text-base font-medium">Templates</div>
-                <div className="text-slate-500 mt-0.5">
+            {/* Header */}
+            <div className="flex items-center justify-between p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+              <div>
+                <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-100">
+                  Templates
+                </h2>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                   Choose your templates
-                </div>
-                <div className="grid grid-cols-2 mt-5 gap-y-3.5 gap-x-5">
-                  {themes.map((theme, themeKey) => (
-                    <div key={themeKey}>
-                      <div
-                        onClick={() => switchTheme(theme)}
-                        className={clsx([
-                          "h-28 cursor-pointer bg-slate-50 box p-1",
-                          activeTheme.name == theme &&
-                            "border-2 border-theme-1/60",
-                        ])}
-                      >
-                        <div className="w-full h-full overflow-hidden rounded-md">
-                          {themeImages[
-                            `/src/assets/images/themes/${theme}.png`
-                          ] !== undefined && (
-                            <img
-                              className="w-full h-full"
-                              src={
-                                themeImages[
-                                  `/src/assets/images/themes/${theme}.png`
-                                ].default
-                              }
-                            />
-                          )}
-                        </div>
-                      </div>
-                      <div className="mt-2.5 capitalize text-center text-xs">
-                        {theme}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                </p>
               </div>
-              <div className="border-b border-dashed"></div>
-              <div className="px-8 pt-6 pb-8">
-                <div className="text-base font-medium">Layouts</div>
-                <div className="text-slate-500 mt-0.5">Choose your layout</div>
-                <div className="mt-5 grid grid-cols-3 gap-x-5 gap-y-3.5">
-                  {layouts.map((layout, layoutKey) => (
-                    <div key={layoutKey}>
-                      <div
-                        onClick={() => switchLayout(layout)}
-                        className={clsx([
-                          "h-24 cursor-pointer bg-slate-50 box p-1",
-                          activeTheme.layout == layout &&
-                            "border-2 border-theme-1/60",
-                        ])}
-                      >
-                        <div className="w-full h-full overflow-hidden rounded-md">
-                          {layoutImages[
-                            `/src/assets/images/layouts/${layout}.png`
-                          ] !== undefined && (
-                            <img
-                              className="w-full h-full"
-                              src={
-                                layoutImages[
-                                  "/src/assets/images/layouts/" +
-                                    layout +
-                                    ".png"
-                                ].default
-                              }
+              <button
+                onClick={handleClose}
+                className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-darkmode-400 transition-colors"
+              >
+                <Lucide icon="X" className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="p-5 space-y-8">
+              {/* Templates */}
+              <div>
+                <div className="grid grid-cols-2 gap-2">
+                  {themes.map((theme) => (
+                    <button
+                      key={theme.name}
+                      onClick={() => switchTheme(theme.name)}
+                      className={clsx([
+                        "relative p-2 border rounded-lg hover:border-theme-1/40 transition-all duration-200 group hover:shadow-md",
+                        activeTheme.name === theme.name
+                          ? "border-theme-1 shadow-md"
+                          : "border-slate-200/80 dark:border-darkmode-400",
+                      ])}
+                    >
+                      <div className="aspect-video bg-slate-100 dark:bg-darkmode-400 rounded overflow-hidden mb-2">
+                        <img
+                          src={theme.image}
+                          alt={theme.displayName}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="text-xs font-medium text-slate-700 dark:text-slate-300 text-center">
+                        {theme.displayName}
+                      </div>
+                      {activeTheme.name === theme.name && (
+                        <div className="absolute top-1 right-1">
+                          <div className="w-4 h-4 bg-theme-1 rounded-full flex items-center justify-center">
+                            <Lucide
+                              icon="Check"
+                              className="w-2.5 h-2.5 text-white"
                             />
-                          )}
-                        </div>
-                      </div>
-                      <div className="mt-2.5 capitalize text-center text-xs">
-                        {layout.replace("-", " ")}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="border-b border-dashed"></div>
-              <div className="px-8 pt-6 pb-8">
-                <div className="text-base font-medium">Color Schemes</div>
-                <div className="text-slate-500 mt-0.5">
-                  Choose your color schemes
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-3.5 mt-5">
-                  {colorSchemes.map((colorScheme, colorKey) => (
-                    <div key={colorKey}>
-                      <div
-                        onClick={() => switchColorScheme(colorScheme)}
-                        className={clsx([
-                          "h-12 cursor-pointer bg-slate-50 box rounded-full p-1 border-slate-300/80",
-                          activeColorScheme == colorScheme &&
-                            "border-2 border-theme-1/60",
-                        ])}
-                      >
-                        <div className="h-full overflow-hidden rounded-full">
-                          <div className="flex items-center h-full gap-1 -mx-2">
-                            <div
-                              className={clsx([
-                                "w-1/2 h-[140%] bg-theme-1 rotate-12",
-                                colorScheme,
-                              ])}
-                            ></div>
-                            <div
-                              className={clsx([
-                                "w-1/2 h-[140%] bg-theme-2 rotate-12",
-                                colorScheme,
-                              ])}
-                            ></div>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                      )}
+                    </button>
                   ))}
                 </div>
               </div>
-              <div className="border-b border-dashed"></div>
-              <div className="px-8 pt-6 pb-8">
-                <div className="text-base font-medium">Appearance</div>
-                <div className="mt-0.5 text-slate-500">
-                  Choose your appearance
+
+              {/* Layouts */}
+              <div>
+                <div className="mb-3">
+                  <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
+                    Layouts
+                  </h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                    Choose your layout
+                  </p>
                 </div>
-                <div className="mt-5 grid grid-cols-2 gap-3.5">
-                  <div>
-                    <a
-                      onClick={() => switchDarkMode(false)}
+                <div className="grid grid-cols-3 gap-2">
+                  {layouts.map((layout) => (
+                    <button
+                      key={layout.name}
+                      onClick={() => switchLayout(layout.name)}
                       className={clsx([
-                        "h-12 cursor-pointer bg-slate-50 box p-1 border-slate-300/80 block",
-                        "[&.active]:border-2 [&.active]:border-theme-1/60",
-                        !activeDarkMode ? "active" : "",
+                        "relative p-2 border rounded-lg hover:border-theme-1/40 transition-all duration-200 hover:shadow-md",
+                        activeTheme.layout === layout.name
+                          ? "border-theme-1 shadow-md"
+                          : "border-slate-200/80 dark:border-darkmode-400",
                       ])}
                     >
-                      <div className="h-full overflow-hidden rounded-md bg-slate-200"></div>
-                    </a>
-                    <div className="mt-2.5 text-center text-xs capitalize">
+                      <div className="aspect-square bg-slate-100 dark:bg-darkmode-400 rounded overflow-hidden mb-2">
+                        <img
+                          src={layout.image}
+                          alt={layout.displayName}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="text-[10px] font-medium text-slate-700 dark:text-slate-300 text-center leading-tight">
+                        {layout.displayName}
+                      </div>
+                      {activeTheme.layout === layout.name && (
+                        <div className="absolute top-1 right-1">
+                          <div className="w-3 h-3 bg-theme-1 rounded-full flex items-center justify-center">
+                            <Lucide
+                              icon="Check"
+                              className="w-2 h-2 text-white"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Color Schemes */}
+              <div>
+                <div className="mb-3">
+                  <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
+                    Color Schemes
+                  </h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                    Choose your color schemes
+                  </p>
+                </div>
+                <div className="grid grid-cols-5 gap-2">
+                  {colorSchemes.map((colorScheme) => (
+                    <button
+                      key={colorScheme.name}
+                      onClick={() => switchColorScheme(colorScheme.name)}
+                      className={clsx([
+                        "relative aspect-square border rounded-lg hover:border-theme-1/40 transition-all duration-200 hover:scale-105 p-1",
+                        activeColorScheme === colorScheme.name
+                          ? "border-theme-1 shadow-md scale-105"
+                          : "border-slate-200/80 dark:border-darkmode-400",
+                      ])}
+                    >
+                      <div className="w-full h-full rounded-md flex overflow-hidden shadow-sm">
+                        <div
+                          className="w-1/2 h-full"
+                          style={{ backgroundColor: colorScheme.colors[0] }}
+                        />
+                        <div
+                          className="w-1/2 h-full"
+                          style={{ backgroundColor: colorScheme.colors[1] }}
+                        />
+                      </div>
+                      {activeColorScheme === colorScheme.name && (
+                        <div className="absolute -top-1 -right-1">
+                          <div className="w-4 h-4 bg-white dark:bg-darkmode-600 rounded-full flex items-center justify-center shadow-lg border border-theme-1">
+                            <div className="w-2 h-2 bg-theme-1 rounded-full"></div>
+                          </div>
+                        </div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Appearance */}
+              <div>
+                <div className="mb-3">
+                  <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
+                    Appearance
+                  </h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                    Choose your appearance
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    onClick={() => switchDarkMode(false)}
+                    className={clsx([
+                      "relative p-3 border rounded-lg hover:border-theme-1/40 transition-all duration-200 group hover:shadow-md",
+                      !activeDarkMode
+                        ? "border-theme-1 shadow-md"
+                        : "border-slate-200/80 dark:border-darkmode-400",
+                    ])}
+                  >
+                    <div className="aspect-video bg-slate-100 rounded mb-2 flex items-center justify-center">
+                      <Lucide icon="Sun" className="w-6 h-6 text-amber-500" />
+                    </div>
+                    <div className="text-xs font-medium text-slate-700 dark:text-slate-300 text-center">
                       Light
                     </div>
-                  </div>
-                  <div>
-                    <a
-                      onClick={() => switchDarkMode(true)}
-                      className={clsx([
-                        "h-12 cursor-pointer bg-slate-50 box p-1 border-slate-300/80 block",
-                        "[&.active]:border-2 [&.active]:border-theme-1/60",
-                        activeDarkMode ? "active" : "",
-                      ])}
-                    >
-                      <div className="h-full overflow-hidden rounded-md bg-slate-900"></div>
-                    </a>
-                    <div className="mt-2.5 text-center text-xs capitalize">
+                    {!activeDarkMode && (
+                      <div className="absolute top-2 right-2">
+                        <div className="w-4 h-4 bg-theme-1 rounded-full flex items-center justify-center">
+                          <Lucide
+                            icon="Check"
+                            className="w-2.5 h-2.5 text-white"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => switchDarkMode(true)}
+                    className={clsx([
+                      "relative p-3 border rounded-lg hover:border-theme-1/40 transition-all duration-200 group hover:shadow-md",
+                      activeDarkMode
+                        ? "border-theme-1 shadow-md"
+                        : "border-slate-200/80 dark:border-darkmode-400",
+                    ])}
+                  >
+                    <div className="aspect-video bg-slate-800 rounded mb-2 flex items-center justify-center">
+                      <Lucide icon="Moon" className="w-6 h-6 text-slate-400" />
+                    </div>
+                    <div className="text-xs font-medium text-slate-700 dark:text-slate-300 text-center">
                       Dark
                     </div>
-                  </div>
+                    {activeDarkMode && (
+                      <div className="absolute top-2 right-2">
+                        <div className="w-4 h-4 bg-theme-1 rounded-full flex items-center justify-center">
+                          <Lucide
+                            icon="Check"
+                            className="w-2.5 h-2.5 text-white"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </button>
                 </div>
               </div>
             </div>
-          </Slideover.Description>
-        </Slideover.Panel>
-      </Slideover>
-      <div
-        onClick={(event: React.MouseEvent) => {
-          event.preventDefault();
-          setThemeSwitcherSlideover(true);
-        }}
-        className="fixed bottom-0 right-0 z-50 flex items-center justify-center mb-5 mr-5 text-white rounded-full shadow-lg cursor-pointer w-14 h-14 bg-theme-1"
-      >
-        <Lucide className="w-5 h-5 animate-spin" icon="Settings" />
-      </div>
-    </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

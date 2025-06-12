@@ -17,7 +17,7 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
     height: height,
     className: className,
   };
-  const reportBarChartRef = useRef<ChartElement | null>();
+  const reportBarChartRef = useRef<{ instance: ChartElement | null }>();
   const colorScheme = useAppSelector(selectColorScheme);
   const darkMode = useAppSelector(selectDarkMode);
 
@@ -63,6 +63,7 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
   const options: ChartOptions = useMemo(() => {
     return {
       maintainAspectRatio: false,
+      responsive: true,
       plugins: {
         legend: {
           display: false,
@@ -89,31 +90,76 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
           },
         },
       },
+      layout: {
+        padding: 0,
+      },
     };
   }, [colorScheme, darkMode]);
 
   useEffect(() => {
-    setInterval(() => {
-      if (reportBarChartRef.current) {
-        const chartInstance = reportBarChartRef.current.instance;
-        const chartConfig = chartInstance.config;
+    let intervalId: NodeJS.Timeout | null = null;
 
-        // Swap visitor data
-        const newData = chartConfig.data.datasets[0].data[0];
-        chartConfig.data.datasets[0].data.shift();
-        chartConfig.data.datasets[0].data.push(newData);
-        chartInstance.update();
+    if (reportBarChartRef.current?.instance) {
+      intervalId = setInterval(() => {
+        const chartInstance = reportBarChartRef.current?.instance;
+        if (
+          chartInstance &&
+          chartInstance.config &&
+          chartInstance.config.data
+        ) {
+          try {
+            const chartConfig = chartInstance.config;
+            const datasets = chartConfig.data.datasets;
 
-        // Swap visitor bar color
-        if (Array.isArray(chartConfig.data.datasets[0].backgroundColor)) {
-          const newColor = chartConfig.data.datasets[0].backgroundColor[0];
-          chartConfig.data.datasets[0].backgroundColor.shift();
-          chartConfig.data.datasets[0].backgroundColor.push(newColor);
+            if (
+              datasets &&
+              datasets[0] &&
+              datasets[0].data &&
+              Array.isArray(datasets[0].data) &&
+              datasets[0].data.length > 0
+            ) {
+              // Ensure chart is fully initialized before updating
+              if (
+                chartInstance.ctx &&
+                chartInstance.platform &&
+                chartInstance.width > 0
+              ) {
+                // Swap visitor data
+                const newData = datasets[0].data[0];
+                datasets[0].data.shift();
+                datasets[0].data.push(newData);
+
+                // Swap visitor bar color
+                if (
+                  Array.isArray(datasets[0].backgroundColor) &&
+                  datasets[0].backgroundColor.length > 0
+                ) {
+                  const newColor = datasets[0].backgroundColor[0];
+                  datasets[0].backgroundColor.shift();
+                  datasets[0].backgroundColor.push(newColor);
+                }
+
+                // Use requestAnimationFrame to ensure proper timing
+                requestAnimationFrame(() => {
+                  if (chartInstance && chartInstance.ctx) {
+                    chartInstance.update("none");
+                  }
+                });
+              }
+            }
+          } catch (error) {
+            console.warn("Chart update error:", error);
+          }
         }
-        chartInstance.update();
+      }, 2000);
+    }
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
       }
-    }, 1000);
-  }, [reportBarChartRef.current]);
+    };
+  }, [reportBarChartRef.current?.instance]);
 
   return (
     <Chart

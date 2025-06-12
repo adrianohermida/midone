@@ -5,7 +5,7 @@ import {
   Highlight,
 } from "@/components/Base/PreviewComponent";
 import Dropzone, { DropzoneElement } from "@/components/Base/Dropzone";
-import { useEffect, useRef } from "react";
+import { useRef, useState } from "react";
 import { FormSwitch } from "@/components/Base/Form";
 
 function Main() {
@@ -13,37 +13,44 @@ function Main() {
   const dropzoneMultipleRef = useRef<DropzoneElement>();
   const dropzoneValidationRef = useRef<DropzoneElement>();
 
-  useEffect(() => {
-    const elDropzoneSingleRef = dropzoneSingleRef.current;
-    if (elDropzoneSingleRef) {
-      elDropzoneSingleRef.dropzone.on("success", () => {
-        alert("Added file.");
-      });
-      elDropzoneSingleRef.dropzone.on("error", () => {
-        alert("No more files please!");
-      });
-    }
+  // State to track uploaded files for each dropzone
+  const [singleFiles, setSingleFiles] = useState<File[]>([]);
+  const [multipleFiles, setMultipleFiles] = useState<File[]>([]);
+  const [validationFiles, setValidationFiles] = useState<File[]>([]);
 
-    const elDropzoneMultipleRef = dropzoneMultipleRef.current;
-    if (elDropzoneMultipleRef) {
-      elDropzoneMultipleRef.dropzone.on("success", () => {
-        alert("Added file.");
-      });
-      elDropzoneMultipleRef.dropzone.on("error", () => {
-        alert("No more files please!");
-      });
+  // Handlers for file uploads and errors
+  const handleSingleUpload = (files: File[]) => {
+    setSingleFiles(files);
+    if (files.length > 0) {
+      alert("Added file.");
     }
+  };
 
-    const elDropzoneValidationRef = dropzoneValidationRef.current;
-    if (elDropzoneValidationRef) {
-      elDropzoneValidationRef.dropzone.on("success", () => {
-        alert("Added file.");
-      });
-      elDropzoneValidationRef.dropzone.on("error", () => {
-        alert("No more files please!");
-      });
+  const handleSingleError = (error: string) => {
+    alert(`Error: ${error}`);
+  };
+
+  const handleMultipleUpload = (files: File[]) => {
+    setMultipleFiles(files);
+    if (files.length > 0) {
+      alert("Added file.");
     }
-  }, []);
+  };
+
+  const handleMultipleError = (error: string) => {
+    alert("No more files please!");
+  };
+
+  const handleValidationUpload = (files: File[]) => {
+    setValidationFiles(files);
+    if (files.length > 0) {
+      alert("Added file.");
+    }
+  };
+
+  const handleValidationError = (error: string) => {
+    alert("No more files please!");
+  };
 
   return (
     <>
@@ -52,7 +59,6 @@ function Main() {
       </div>
       <div className="grid grid-cols-12 gap-6 mt-5">
         <div className="col-span-12 intro-y lg:col-span-6">
-          {/* BEGIN: Single File Upload */}
           <PreviewComponent className="intro-y box">
             {({ toggle }) => (
               <>
@@ -78,59 +84,32 @@ function Main() {
                       getRef={(el) => {
                         dropzoneSingleRef.current = el;
                       }}
-                      options={{
-                        url: "https://httpbin.org/post",
-                        thumbnailWidth: 150,
-                        maxFilesize: 0.5,
-                        maxFiles: 1,
-                        headers: { "My-Awesome-Header": "header value" },
-                      }}
-                      className="dropzone"
-                    >
-                      <div className="text-lg font-medium">
-                        Drop files here or click to upload.
-                      </div>
-                      <div className="text-gray-600">
-                        This is just a demo dropzone. Selected files are
-                        <span className="font-medium">not</span> actually
-                        uploaded.
-                      </div>
-                    </Dropzone>
+                      multiple={false}
+                      accept="image/*"
+                      maxSize={5}
+                      onUpload={handleSingleUpload}
+                      onError={handleSingleError}
+                      className="mb-4"
+                    />
                   </Preview>
                   <Source>
                     <Highlight>
                       {`
-            <Dropzone
-              getRef={(el) => {
-                dropzoneSingleRef.current = el;
-              }}
-              options={{
-                url: "https://httpbin.org/post",
-                thumbnailWidth: 150,
-                maxFilesize: 0.5,
-                maxFiles: 1,
-                headers: { "My-Awesome-Header": "header value" },
-              }}
-              className="dropzone"
-            >
-              <div className="text-lg font-medium">
-                Drop files here or click to upload.
-              </div>
-              <div className="text-gray-600">
-                This is just a demo dropzone. Selected files are
-                <span className="font-medium">not</span> actually
-                uploaded.
-              </div>
-            </Dropzone>
-              `}
+                <Dropzone
+                  multiple={false}
+                  accept="image/*"
+                  maxSize={5}
+                  onUpload={(files) => console.log('Uploaded:', files)}
+                  onError={(error) => console.log('Error:', error)}
+                />
+                `}
                     </Highlight>
                   </Source>
                 </div>
               </>
             )}
           </PreviewComponent>
-          {/* END: Single File Upload */}
-          {/* BEGIN: Multiple File Upload */}
+
           <PreviewComponent className="mt-5 intro-y box">
             {({ toggle }) => (
               <>
@@ -156,58 +135,34 @@ function Main() {
                       getRef={(el) => {
                         dropzoneMultipleRef.current = el;
                       }}
-                      options={{
-                        url: "https://httpbin.org/post",
-                        thumbnailWidth: 150,
-                        maxFilesize: 0.5,
-                        headers: { "My-Awesome-Header": "header value" },
-                      }}
-                      className="dropzone"
-                    >
-                      <div className="text-lg font-medium">
-                        Drop files here or click to upload.
-                      </div>
-                      <div className="text-gray-600">
-                        This is just a demo dropzone. Selected files are
-                        <span className="font-medium">not</span> actually
-                        uploaded.
-                      </div>
-                    </Dropzone>
+                      multiple={true}
+                      accept="*"
+                      maxSize={10}
+                      onUpload={handleMultipleUpload}
+                      onError={handleMultipleError}
+                      className="mb-4"
+                    />
                   </Preview>
                   <Source>
                     <Highlight>
                       {`
-            <Dropzone
-              getRef={(el) => {
-                dropzoneMultipleRef.current = el;
-              }}
-              options={{
-                url: "https://httpbin.org/post",
-                thumbnailWidth: 150,
-                maxFilesize: 0.5,
-                headers: { "My-Awesome-Header": "header value" },
-              }}
-              className="dropzone"
-            >
-              <div className="text-lg font-medium">
-                Drop files here or click to upload.
-              </div>
-              <div className="text-gray-600">
-                This is just a demo dropzone. Selected files are
-                <span className="font-medium">not</span> actually
-                uploaded.
-              </div>
-            </Dropzone>
-              `}
+                <Dropzone
+                  multiple={true}
+                  accept="*"
+                  maxSize={10}
+                  onUpload={(files) => console.log('Uploaded:', files)}
+                  onError={(error) => console.log('Error:', error)}
+                />
+                `}
                     </Highlight>
                   </Source>
                 </div>
               </>
             )}
           </PreviewComponent>
-          {/* END: Multiple File Upload */}
-          {/* BEGIN: File Type Validation */}
-          <PreviewComponent className="mt-5 intro-y box">
+        </div>
+        <div className="col-span-12 intro-y lg:col-span-6">
+          <PreviewComponent className="intro-y box">
             {({ toggle }) => (
               <>
                 <div className="flex flex-col items-center p-5 border-b sm:flex-row border-slate-200/60 dark:border-darkmode-400">
@@ -232,58 +187,105 @@ function Main() {
                       getRef={(el) => {
                         dropzoneValidationRef.current = el;
                       }}
-                      options={{
-                        url: "https://httpbin.org/post",
-                        thumbnailWidth: 150,
-                        maxFilesize: 0.5,
-                        acceptedFiles: "image/jpeg|image/png|image/jpg",
-                        headers: { "My-Awesome-Header": "header value" },
-                      }}
-                      className="dropzone"
-                    >
-                      <div className="text-lg font-medium">
-                        Drop files here or click to upload.
-                      </div>
-                      <div className="text-gray-600">
-                        This is just a demo dropzone. Selected files are
-                        <span className="font-medium">not</span> actually
-                        uploaded.
-                      </div>
-                    </Dropzone>
+                      multiple={true}
+                      accept=".pdf,.doc,.docx,.txt"
+                      maxSize={2}
+                      onUpload={handleValidationUpload}
+                      onError={handleValidationError}
+                      className="mb-4"
+                    />
+                    <div className="mt-3 text-sm text-slate-500 dark:text-slate-400">
+                      * Only PDF, DOC, DOCX, and TXT files are allowed (max 2MB
+                      each)
+                    </div>
                   </Preview>
                   <Source>
                     <Highlight>
                       {`
-            <Dropzone
-              getRef={(el) => {
-                dropzoneValidationRef.current = el;
-              }}
-              options={{
-                url: "https://httpbin.org/post",
-                thumbnailWidth: 150,
-                maxFilesize: 0.5,
-                acceptedFiles: "image/jpeg|image/png|image/jpg",
-                headers: { "My-Awesome-Header": "header value" },
-              }}
-              className="dropzone"
-            >
-              <div className="text-lg font-medium">
-                Drop files here or click to upload.
-              </div>
-              <div className="text-gray-600">
-                This is just a demo dropzone. Selected files are
-                <span className="font-medium">not</span> actually
-                uploaded.
-              </div>
-            </Dropzone>
-              `}
+                <Dropzone
+                  multiple={true}
+                  accept=".pdf,.doc,.docx,.txt"
+                  maxSize={2}
+                  onUpload={(files) => console.log('Uploaded:', files)}
+                  onError={(error) => console.log('Error:', error)}
+                />
+                `}
                     </Highlight>
                   </Source>
                 </div>
               </>
             )}
           </PreviewComponent>
-          {/* END: File Type Validation */}
+
+          <div className="mt-5 intro-y box">
+            <div className="p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+              <h2 className="text-base font-medium">Upload Status</h2>
+            </div>
+            <div className="p-5 space-y-4">
+              <div>
+                <h3 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  Single File Upload ({singleFiles.length} file
+                  {singleFiles.length !== 1 ? "s" : ""})
+                </h3>
+                {singleFiles.length > 0 ? (
+                  <ul className="text-sm text-slate-600 dark:text-slate-400">
+                    {singleFiles.map((file, index) => (
+                      <li key={index}>
+                        • {file.name} ({(file.size / 1024 / 1024).toFixed(2)}{" "}
+                        MB)
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
+                    No files uploaded
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <h3 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  Multiple File Upload ({multipleFiles.length} file
+                  {multipleFiles.length !== 1 ? "s" : ""})
+                </h3>
+                {multipleFiles.length > 0 ? (
+                  <ul className="text-sm text-slate-600 dark:text-slate-400">
+                    {multipleFiles.map((file, index) => (
+                      <li key={index}>
+                        • {file.name} ({(file.size / 1024 / 1024).toFixed(2)}{" "}
+                        MB)
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
+                    No files uploaded
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <h3 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  Validation Upload ({validationFiles.length} file
+                  {validationFiles.length !== 1 ? "s" : ""})
+                </h3>
+                {validationFiles.length > 0 ? (
+                  <ul className="text-sm text-slate-600 dark:text-slate-400">
+                    {validationFiles.map((file, index) => (
+                      <li key={index}>
+                        • {file.name} ({(file.size / 1024 / 1024).toFixed(2)}{" "}
+                        MB)
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
+                    No files uploaded
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

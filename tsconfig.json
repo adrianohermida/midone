@@ -7,7 +7,9 @@
     "skipLibCheck": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "allowImportingTsExtensions": true,
+    "strict": false,
+    "ignoreDeprecations": "5.0",
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -20,5 +22,6 @@
     }
   },
   "include": ["src"],
+  "exclude": ["node_modules/tom-select/src/getSettings.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

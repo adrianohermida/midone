@@ -45,14 +45,6 @@ function Main() {
           <div className="mt-2 text-xs text-center">AlignRightIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Anchor" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">AnchorIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Aperture" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">ApertureIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Archive" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">ArchiveIcon</div>
         </div>
@@ -113,8 +105,8 @@ function Main() {
           <div className="mt-2 text-xs text-center">AwardIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="BarChart2" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">BarChart2Icon</div>
+          <Lucide icon="BarChart3" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">BarChart3Icon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="BarChart" className="block mx-auto" />
@@ -169,24 +161,12 @@ function Main() {
           <div className="mt-2 text-xs text-center">CalendarIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="CameraOff" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">CameraOffIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Camera" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">CameraIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Cast" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">CastIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="CheckCircle" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">CheckCircleIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="CheckSquare" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">CheckSquareIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Check" className="block mx-auto" />
@@ -209,22 +189,6 @@ function Main() {
           <div className="mt-2 text-xs text-center">ChevronUpIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="ChevronsDown" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">ChevronsDownIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="ChevronsLeft" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">ChevronsLeftIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="ChevronsRight" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">ChevronsRightIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="ChevronsUp" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">ChevronsUpIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Chrome" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">ChromeIcon</div>
         </div>
@@ -241,48 +205,12 @@ function Main() {
           <div className="mt-2 text-xs text-center">ClockIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="CloudDrizzle" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">CloudDrizzleIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="CloudLightning" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">CloudLightningIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="CloudOff" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">CloudOffIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="CloudRain" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">CloudRainIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="CloudSnow" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">CloudSnowIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Cloud" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">CloudIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Code" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">CodeIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Codepen" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">CodepenIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Codesandbox" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">CodesandboxIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Coffee" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">CoffeeIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Columns2" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">Columns2Icon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Command" className="block mx-auto" />
@@ -357,36 +285,28 @@ function Main() {
           <div className="mt-2 text-xs text-center">DiscIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="DivideCircle" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">DivideCircleIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="DivideSquare" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">DivideSquareIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Divide" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">DivideIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="DollarSign" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">DollarSignIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="DownloadCloud" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">DownloadCloudIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Download" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">DownloadIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Dribbble" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">DribbbleIcon</div>
+          <Lucide icon="Droplets" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">DropletsIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Droplet" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">DropletIcon</div>
+          <Lucide icon="Edit2" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">Edit2Icon</div>
+        </div>
+        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
+          <Lucide icon="Edit3" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">Edit3Icon</div>
+        </div>
+        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
+          <Lucide icon="Edit" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">EditIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="ExternalLink" className="block mx-auto" />
@@ -409,16 +329,8 @@ function Main() {
           <div className="mt-2 text-xs text-center">FastForwardIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Figma" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">FigmaIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="FileMinus" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">FileMinusIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="FilePlus" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">FilePlusIcon</div>
+          <Lucide icon="Feather" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">FeatherIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="FileText" className="block mx-auto" />
@@ -469,8 +381,8 @@ function Main() {
           <div className="mt-2 text-xs text-center">GitBranchIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="GitCommitHorizontal" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">GitCommitHorizontal</div>
+          <Lucide icon="GitCommit" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">GitCommitIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="GitMerge" className="block mx-auto" />
@@ -493,7 +405,7 @@ function Main() {
           <div className="mt-2 text-xs text-center">GlobeIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="LayoutGrid" className="block mx-auto" />
+          <Lucide icon="Grid" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">GridIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
@@ -553,7 +465,7 @@ function Main() {
           <div className="mt-2 text-xs text-center">LayersIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="PanelsTopLeft" className="block mx-auto" />
+          <Lucide icon="Layout" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">LayoutIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
@@ -645,14 +557,6 @@ function Main() {
           <div className="mt-2 text-xs text-center">MinimizeIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="MinusCircle" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">MinusCircleIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="MinusSquare" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">MinusSquareIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Minus" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">MinusIcon</div>
         </div>
@@ -703,10 +607,6 @@ function Main() {
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Paperclip" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">PaperclipIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="PauseCircle" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">PauseCircleIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Pause" className="block mx-auto" />
@@ -869,6 +769,10 @@ function Main() {
           <div className="mt-2 text-xs text-center">ShuffleIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
+          <Lucide icon="Sidebar" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">SidebarIcon</div>
+        </div>
+        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="SkipBack" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">SkipBackIcon</div>
         </div>
@@ -879,6 +783,10 @@ function Main() {
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Slack" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">SlackIcon</div>
+        </div>
+        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
+          <Lucide icon="Slash" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">SlashIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Sliders" className="block mx-auto" />
@@ -957,16 +865,16 @@ function Main() {
           <div className="mt-2 text-xs text-center">ToggleRightIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
+          <Lucide icon="Tool" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">ToolIcon</div>
+        </div>
+        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Trash2" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">Trash2Icon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Trash" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">TrashIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="Trello" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">TrelloIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="TrendingDown" className="block mx-auto" />
@@ -1013,12 +921,12 @@ function Main() {
           <div className="mt-2 text-xs text-center">UnlockIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="UploadCloud" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">UploadCloudIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="Upload" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">UploadIcon</div>
+        </div>
+        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
+          <Lucide icon="UploadCloud" className="block mx-auto" />
+          <div className="mt-2 text-xs text-center">UploadCloudIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="UserCheck" className="block mx-auto" />
@@ -1091,10 +999,6 @@ function Main() {
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="XCircle" className="block mx-auto" />
           <div className="mt-2 text-xs text-center">XCircleIcon</div>
-        </div>
-        <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
-          <Lucide icon="XOctagon" className="block mx-auto" />
-          <div className="mt-2 text-xs text-center">XOctagonIcon</div>
         </div>
         <div className="col-span-6 sm:col-span-3 lg:col-span-2 xl:col-span-1">
           <Lucide icon="XSquare" className="block mx-auto" />

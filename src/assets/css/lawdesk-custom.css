@@ -1,0 +1,54 @@
+/* Midone Template - Minimal Required Styles Only */
+
+/* Dark mode text adaptations - only essential ones */
+.dark .text-slate-500 {
+  color: rgb(148 163 184) !important;
+}
+
+.dark .text-slate-600 {
+  color: rgb(203 213 225) !important;
+}
+
+.dark .text-slate-700 {
+  color: rgb(226 232 240) !important;
+}
+
+.dark .text-slate-800 {
+  color: rgb(241 245 249) !important;
+}
+
+.dark .text-slate-900 {
+  color: rgb(248 250 252) !important;
+}
+
+/* Dark mode background adaptations */
+.dark .bg-slate-100 {
+  background-color: rgb(30 41 59) !important;
+}
+
+.dark .bg-slate-200 {
+  background-color: rgb(51 65 85) !important;
+}
+
+/* Image fit utility */
+.image-fit {
+  object-fit: cover;
+  object-position: center;
+}
+
+.image-fit img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Basic box-sizing */
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}

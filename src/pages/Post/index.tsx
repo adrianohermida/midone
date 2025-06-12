@@ -3,81 +3,284 @@ import clsx from "clsx";
 import { useState } from "react";
 import fakerData from "@/utils/faker";
 import Button from "@/components/Base/Button";
-import { FormInput, FormLabel, FormSwitch } from "@/components/Base/Form";
+import {
+  FormInput,
+  FormLabel,
+  FormSwitch,
+  FormSelect,
+} from "@/components/Base/Form";
 import Lucide from "@/components/Base/Lucide";
 import Tippy from "@/components/Base/Tippy";
-import Litepicker from "@/components/Base/Litepicker";
 import TomSelect from "@/components/Base/TomSelect";
 import { ClassicEditor } from "@/components/Base/Ckeditor";
-import { Menu, Tab } from "@/components/Base/Headless";
+import { Menu, Tab, Dialog } from "@/components/Base/Headless";
 
 function Main() {
-  const [categories, setCategories] = useState(["1", "2"]);
-  const [tags, setTags] = useState(["1", "2"]);
-  const [salesReportFilter, setSalesReportFilter] = useState<string>();
-  const [editorData, setEditorData] = useState("<p>Content of the editor.</p>");
+  const [documentType, setDocumentType] = useState("peticao");
+  const [client, setClient] = useState("");
+  const [caseNumber, setCaseNumber] = useState("");
+  const [editorData, setEditorData] = useState(`
+    <h2>EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO</h2>
+    <p></p>
+    <p>[NOME DO CLIENTE], [QUALIFICAÇÃO], por seu advogado que ao final subscreve, vem respeitosamente à presença de Vossa Excelência, para expor e requerer o que segue:</p>
+    <p></p>
+    <h3>DOS FATOS</h3>
+    <p>[Descrever os fatos relevantes para o caso]</p>
+    <p></p>
+    <h3>DO DIREITO</h3>
+    <p>[Fundamentação jurídica]</p>
+    <p></p>
+    <h3>DOS PEDIDOS</h3>
+    <p>Diante do exposto, requer:</p>
+    <p>a) [Primeiro pedido];</p>
+    <p>b) [Segundo pedido];</p>
+    <p>c) A condenação da parte contrária ao pagamento das custas processuais e honorários advocatícios.</p>
+    <p></p>
+    <p>Termos em que pede deferimento.</p>
+    <p></p>
+    <p>[Local], [Data]</p>
+    <p></p>
+    <p>_______________________________</p>
+    <p>[Nome do Advogado]</p>
+    <p>OAB/[Estado] [Número]</p>
+  `);
+
+  const documentTemplates = [
+    {
+      type: "peticao",
+      name: "Petição Inicial",
+      icon: "FileText",
+      description: "Petição para iniciar processo judicial",
+    },
+    {
+      type: "contestacao",
+      name: "Contestação",
+      icon: "Shield",
+      description: "Resposta à petição inicial",
+    },
+    {
+      type: "recurso",
+      name: "Recurso",
+      icon: "ArrowUp",
+      description: "Recurso de apelação ou outros",
+    },
+    {
+      type: "contrato",
+      name: "Contrato",
+      icon: "FileSignature",
+      description: "Contratos diversos",
+    },
+    {
+      type: "procuracao",
+      name: "Procuração",
+      icon: "UserCheck",
+      description: "Procuração para representação",
+    },
+    {
+      type: "parecer",
+      name: "Parecer Jurídico",
+      icon: "BookOpen",
+      description: "Parecer técnico jurídico",
+    },
+    {
+      type: "ata",
+      name: "Ata de Reunião",
+      icon: "Users",
+      description: "Ata de reunião ou assembleia",
+    },
+    {
+      type: "notificacao",
+      name: "Notificação",
+      icon: "Bell",
+      description: "Notificação extrajudicial",
+    },
+  ];
+
+  const clients = ["João Silva", "Maria Santos", "Carlos Lima", "Ana Costa"];
+  const cases = ["001/2024", "002/2024", "003/2024", "004/2024"];
+
+  const [previewModal, setPreviewModal] = useState(false);
+  const [templateModal, setTemplateModal] = useState(false);
+
+  const handleTemplateSelect = (template: any) => {
+    setDocumentType(template.type);
+
+    // Load template content based on type
+    let templateContent = "";
+    switch (template.type) {
+      case "peticao":
+        templateContent = `
+          <h2>EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO</h2>
+          <p></p>
+          <p>[NOME DO CLIENTE], [QUALIFICAÇÃO], por seu advogado que ao final subscreve, vem respeitosamente à presença de Vossa Excelência, para expor e requerer o que segue:</p>
+          <p></p>
+          <h3>DOS FATOS</h3>
+          <p>[Descrever os fatos relevantes para o caso]</p>
+          <p></p>
+          <h3>DO DIREITO</h3>
+          <p>[Fundamentação jurídica]</p>
+          <p></p>
+          <h3>DOS PEDIDOS</h3>
+          <p>Diante do exposto, requer:</p>
+          <p>a) [Primeiro pedido];</p>
+          <p>b) [Segundo pedido];</p>
+          <p>c) A condenação da parte contrária ao pagamento das custas processuais e honorários advocatícios.</p>
+          <p></p>
+          <p>Termos em que pede deferimento.</p>
+          <p></p>
+          <p>[Local], [Data]</p>
+          <p></p>
+          <p>_______________________________</p>
+          <p>[Nome do Advogado]</p>
+          <p>OAB/[Estado] [Número]</p>
+        `;
+        break;
+      case "contestacao":
+        templateContent = `
+          <h2>CONTESTAÇÃO</h2>
+          <p></p>
+          <p>[NOME DO RÉU], [QUALIFICAÇÃO], por seu advogado que ao final subscreve, vem respeitosamente à presença de Vossa Excelência, apresentar CONTESTAÇÃO à ação proposta por [NOME DO AUTOR], pelas razões de fato e de direito a seguir expostas:</p>
+          <p></p>
+          <h3>PRELIMINARES</h3>
+          <p>[Preliminares processuais, se houver]</p>
+          <p></p>
+          <h3>DO MÉRITO</h3>
+          <p>[Contestação do mérito da ação]</p>
+          <p></p>
+          <h3>DOS PEDIDOS</h3>
+          <p>Ante o exposto, requer:</p>
+          <p>a) A improcedência total dos pedidos;</p>
+          <p>b) A condenação do autor ao pagamento das custas e honorários advocatícios.</p>
+          <p></p>
+          <p>Termos em que pede deferimento.</p>
+        `;
+        break;
+      case "contrato":
+        templateContent = `
+          <h2>CONTRATO DE [TIPO DE CONTRATO]</h2>
+          <p></p>
+          <p><strong>CONTRATANTE:</strong> [Nome, qualificação]</p>
+          <p><strong>CONTRATADO:</strong> [Nome, qualificação]</p>
+          <p></p>
+          <h3>CLÁUSULA PRIMEIRA - DO OBJETO</h3>
+          <p>[Descrição do objeto do contrato]</p>
+          <p></p>
+          <h3>CLÁUSULA SEGUNDA - DO VALOR E FORMA DE PAGAMENTO</h3>
+          <p>[Valor e condições de pagamento]</p>
+          <p></p>
+          <h3>CLÁUSULA TERCEIRA - DAS OBRIGAÇÕES</h3>
+          <p>[Obrigações das partes]</p>
+          <p></p>
+          <h3>CLÁUSULA QUARTA - DA VIGÊNCIA</h3>
+          <p>[Prazo de vigência do contrato]</p>
+          <p></p>
+          <p>E por estarem justas e contratadas, as partes assinam o presente instrumento.</p>
+        `;
+        break;
+      case "procuracao":
+        templateContent = `
+          <h2>PROCURAÇÃO</h2>
+          <p></p>
+          <p><strong>OUTORGANTE:</strong> [Nome completo], [estado civil], [profissão], [nacionalidade], portador do RG nº [número] e CPF nº [número], residente e domiciliado à [endereço completo].</p>
+          <p></p>
+          <p><strong>OUTORGADO:</strong> [Nome do Advogado], advogado, inscrito na OAB/[Estado] sob o nº [número], com escritório à [endereço].</p>
+          <p></p>
+          <p>Pelo presente instrumento particular de mandato, o outorgante nomeia e constitui seu bastante procurador o outorgado, para que em seu nome e representação possa:</p>
+          <p></p>
+          <p>a) Propor e acompanhar ações judiciais de qualquer natureza;</p>
+          <p>b) Apresentar defesas, recursos e petições;</p>
+          <p>c) Praticar todos os atos necessários ao fiel desempenho do mandato;</p>
+          <p>d) Substabelecer esta procuração, no todo ou em parte.</p>
+          <p></p>
+          <p>[Local], [Data]</p>
+          <p></p>
+          <p>_______________________________</p>
+          <p>[Nome do Outorgante]</p>
+        `;
+        break;
+      default:
+        templateContent = "<p>Selecione um template para começar a editar.</p>";
+    }
+
+    setEditorData(templateContent);
+    setTemplateModal(false);
+  };
+
+  const handleSave = (action: string) => {
+    console.log(`Saving document as: ${action}`, {
+      type: documentType,
+      client,
+      caseNumber,
+      content: editorData,
+    });
+  };
+
+  const handlePreview = () => {
+    setPreviewModal(true);
+  };
 
   return (
     <>
       <div className="flex flex-col items-center mt-8 intro-y sm:flex-row">
-        <h2 className="mr-auto text-lg font-medium">Add New Post</h2>
+        <h2 className="mr-auto text-lg font-medium">
+          Editor de Documentos Jurídicos
+        </h2>
         <div className="flex w-full mt-4 sm:w-auto sm:mt-0">
-          <Menu className="mr-2">
-            <Menu.Button as={Button} className="flex items-center !box">
-              English <Lucide icon="ChevronDown" className="w-4 h-4 ml-2" />
-            </Menu.Button>
-            <Menu.Items className="w-40">
-              <Menu.Item>
-                <Lucide icon="Activity" className="w-4 h-4 mr-2" />
-                <span className="truncate">English</span>
-              </Menu.Item>
-              <Menu.Item>
-                <Lucide icon="Activity" className="w-4 h-4 mr-2" />
-                <span className="truncate">Indonesian</span>
-              </Menu.Item>
-            </Menu.Items>
-          </Menu>
+          <Button
+            variant="outline-secondary"
+            className="mr-2"
+            onClick={() => setTemplateModal(true)}
+          >
+            <Lucide icon="FileText" className="w-4 h-4 mr-2" />
+            Templates
+          </Button>
           <Button
             type="button"
             className="flex items-center ml-auto mr-2 !box sm:ml-0"
+            onClick={handlePreview}
           >
-            <Lucide icon="Eye" className="w-4 h-4 mr-2" /> Preview
+            <Lucide icon="Eye" className="w-4 h-4 mr-2" />
+            Visualizar
           </Button>
           <Menu>
             <Menu.Button
-              as={Button}
+              as="button"
               variant="primary"
               className="flex items-center shadow-md"
             >
-              Save <Lucide icon="ChevronDown" className="w-4 h-4 ml-2" />
+              Salvar <Lucide icon="ChevronDown" className="w-4 h-4 ml-2" />
             </Menu.Button>
-            <Menu.Items className="w-40">
-              <Menu.Item>
-                <Lucide icon="FileText" className="w-4 h-4 mr-2" /> As New Post
+            <Menu.Items className="w-48">
+              <Menu.Item onClick={() => handleSave("draft")}>
+                <Lucide icon="FileText" className="w-4 h-4 mr-2" />
+                Salvar como Rascunho
               </Menu.Item>
-              <Menu.Item>
-                <Lucide icon="FileText" className="w-4 h-4 mr-2" /> As Draft
+              <Menu.Item onClick={() => handleSave("final")}>
+                <Lucide icon="Check" className="w-4 h-4 mr-2" />
+                Finalizar Documento
               </Menu.Item>
-              <Menu.Item>
-                <Lucide icon="FileText" className="w-4 h-4 mr-2" /> Export to
-                PDF
+              <Menu.Item onClick={() => handleSave("pdf")}>
+                <Lucide icon="Download" className="w-4 h-4 mr-2" />
+                Exportar para PDF
               </Menu.Item>
-              <Menu.Item>
-                <Lucide icon="FileText" className="w-4 h-4 mr-2" /> Export to
-                Word
+              <Menu.Item onClick={() => handleSave("word")}>
+                <Lucide icon="Download" className="w-4 h-4 mr-2" />
+                Exportar para Word
               </Menu.Item>
             </Menu.Items>
           </Menu>
         </div>
       </div>
+
       <div className="grid grid-cols-12 gap-5 mt-5 intro-y">
-        {/* BEGIN: Post Content */}
+        {/* Document Content */}
         <div className="col-span-12 intro-y lg:col-span-8">
           <FormInput
             type="text"
             className="px-4 py-3 pr-10 intro-y !box"
-            placeholder="Title"
+            placeholder="Título do documento (ex: Petição Inicial - João Silva vs. Maria Santos)"
           />
+
           <Tab.Group className="mt-5 overflow-hidden intro-y box">
             <Tab.List className="flex-col border-transparent dark:border-transparent sm:flex-row bg-slate-200 dark:bg-darkmode-800">
               <Tab fullWidth={false}>
@@ -93,13 +296,11 @@ function Main() {
                     as="button"
                   >
                     <Tippy
-                      content="Fill in the article content"
+                      content="Editar conteúdo do documento"
                       className="flex items-center justify-center w-full py-4"
-                      aria-controls="content"
-                      aria-selected="true"
                     >
-                      <Lucide icon="FileText" className="w-4 h-4 mr-2" />{" "}
-                      Content
+                      <Lucide icon="FileText" className="w-4 h-4 mr-2" />
+                      Conteúdo
                     </Tippy>
                   </Tab.Button>
                 )}
@@ -117,102 +318,113 @@ function Main() {
                     as="button"
                   >
                     <Tippy
-                      content="Adjust the meta title"
+                      content="Configurações do documento"
                       className="flex items-center justify-center w-full py-4"
-                      aria-selected="false"
                     >
-                      <Lucide icon="Code" className="w-4 h-4 mr-2" /> Meta Title
-                    </Tippy>
-                  </Tab.Button>
-                )}
-              </Tab>
-              <Tab fullWidth={false}>
-                {({ selected }) => (
-                  <Tab.Button
-                    className={clsx([
-                      "flex items-center justify-center w-full px-0 py-0 sm:w-40 text-slate-500",
-                      !selected &&
-                        "hover:border-transparent hover:bg-transparent hover:text-slate-600 hover:dark:bg-transparent hover:dark:text-slate-300",
-                      selected &&
-                        "text-primary border-transparent dark:bg-darkmode-600 dark:border-x-transparent dark:border-t-transparent dark:text-white",
-                    ])}
-                    as="button"
-                  >
-                    <Tippy
-                      content="Use search keywords"
-                      className="flex items-center justify-center w-full py-4"
-                      aria-selected="false"
-                    >
-                      <Lucide icon="AlignLeft" className="w-4 h-4 mr-2" />{" "}
-                      Keywords
+                      <Lucide icon="Settings" className="w-4 h-4 mr-2" />
+                      Configurações
                     </Tippy>
                   </Tab.Button>
                 )}
               </Tab>
             </Tab.List>
-            <Tab.Panels>
-              <Tab.Panel className="p-5">
-                <div className="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
-                  <div className="flex items-center pb-5 font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-                    <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Text
-                    Content
-                  </div>
-                  <div className="mt-5">
-                    <ClassicEditor
-                      value={editorData}
-                      onChange={setEditorData}
-                    />
-                  </div>
+
+            <Tab.Panels className="p-5">
+              <Tab.Panel>
+                <div className="border border-slate-200/60 rounded-md p-5 dark:border-darkmode-400">
+                  <ClassicEditor
+                    value={editorData}
+                    onChange={setEditorData}
+                    config={{
+                      toolbar: [
+                        "heading",
+                        "|",
+                        "bold",
+                        "italic",
+                        "underline",
+                        "|",
+                        "bulletedList",
+                        "numberedList",
+                        "|",
+                        "outdent",
+                        "indent",
+                        "|",
+                        "blockQuote",
+                        "insertTable",
+                        "|",
+                        "undo",
+                        "redo",
+                      ],
+                    }}
+                  />
                 </div>
-                <div className="p-5 mt-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
-                  <div className="flex items-center pb-5 font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-                    <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" />{" "}
-                    Caption & Images
-                  </div>
-                  <div className="mt-5">
+              </Tab.Panel>
+              <Tab.Panel>
+                <div className="leading-relaxed">
+                  <div className="space-y-4">
                     <div>
-                      <FormLabel htmlFor="post-form-7">Caption</FormLabel>
-                      <FormInput
-                        id="post-form-7"
-                        type="text"
-                        placeholder="Write caption"
-                      />
+                      <FormLabel>Formatação</FormLabel>
+                      <div className="grid grid-cols-2 gap-4">
+                        <FormSelect>
+                          <option>Fonte: Times New Roman</option>
+                          <option>Fonte: Arial</option>
+                          <option>Fonte: Calibri</option>
+                        </FormSelect>
+                        <FormSelect>
+                          <option>Tamanho: 12pt</option>
+                          <option>Tamanho: 11pt</option>
+                          <option>Tamanho: 14pt</option>
+                        </FormSelect>
+                      </div>
                     </div>
-                    <div className="mt-3">
-                      <FormLabel>Upload Image</FormLabel>
-                      <div className="pt-4 border-2 border-dashed rounded-md dark:border-darkmode-400">
-                        <div className="flex flex-wrap px-4">
-                          {_.take(fakerData, 4).map((faker, fakerKey) => (
-                            <div
-                              key={fakerKey}
-                              className="relative w-24 h-24 mb-5 mr-5 cursor-pointer image-fit zoom-in"
-                            >
-                              <img
-                                className="rounded-md"
-                                alt="Midone Tailwind HTML Admin Template"
-                                src={faker.images[0]}
-                              />
-                              <Tippy
-                                as="div"
-                                content="Remove this image?"
-                                className="absolute top-0 right-0 flex items-center justify-center w-5 h-5 -mt-2 -mr-2 text-white rounded-full bg-danger"
-                              >
-                                <Lucide icon="X" className="w-4 h-4" />
-                              </Tippy>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="relative flex items-center px-4 pb-4 cursor-pointer">
-                          <Lucide icon="Image" className="w-4 h-4 mr-2" />
-                          <span className="mr-1 text-primary">
-                            Upload a file
-                          </span>{" "}
-                          or drag and drop
-                          <FormInput
-                            type="file"
-                            className="absolute top-0 left-0 w-full h-full opacity-0"
-                          />
-                        </div>
+
+                    <div>
+                      <FormLabel>Margens (cm)</FormLabel>
+                      <div className="grid grid-cols-4 gap-2">
+                        <FormInput
+                          type="number"
+                          placeholder="Superior"
+                          defaultValue="3"
+                        />
+                        <FormInput
+                          type="number"
+                          placeholder="Inferior"
+                          defaultValue="2"
+                        />
+                        <FormInput
+                          type="number"
+                          placeholder="Esquerda"
+                          defaultValue="3"
+                        />
+                        <FormInput
+                          type="number"
+                          placeholder="Direita"
+                          defaultValue="2"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <FormLabel>Outras Configurações</FormLabel>
+                      <div className="space-y-2">
+                        <FormSwitch>
+                          <FormSwitch.Input type="checkbox" defaultChecked />
+                          <FormSwitch.Label className="ml-2">
+                            Numeração de páginas
+                          </FormSwitch.Label>
+                        </FormSwitch>
+                        <FormSwitch>
+                          <FormSwitch.Input type="checkbox" defaultChecked />
+                          <FormSwitch.Label className="ml-2">
+                            Espaçamento 1.5
+                          </FormSwitch.Label>
+                        </FormSwitch>
+                        <FormSwitch>
+                          <FormSwitch.Input type="checkbox" />
+                          <FormSwitch.Label className="ml-2">
+                            Justificar texto
+                          </FormSwitch.Label>
+                        </FormSwitch>
                       </div>
                     </div>
                   </div>
@@ -221,116 +433,220 @@ function Main() {
             </Tab.Panels>
           </Tab.Group>
         </div>
-        {/* END: Post Content */}
-        {/* BEGIN: Post Info */}
-        <div className="col-span-12 lg:col-span-4">
-          <div className="p-5 intro-y box">
-            <div>
-              <FormLabel>Written By</FormLabel>
-              <Menu className="[&>div:nth-child(2)]:w-full">
-                <Menu.Button
-                  as={Button}
-                  variant="outline-secondary"
-                  className="flex items-center justify-start w-full dark:bg-darkmode-800 dark:border-darkmode-800"
-                  role="button"
+
+        {/* Document Info Sidebar */}
+        <div className="col-span-12 intro-y lg:col-span-4">
+          <div className="p-5 box">
+            <div className="space-y-4">
+              <div>
+                <FormLabel>Tipo de Documento</FormLabel>
+                <FormSelect
+                  value={documentType}
+                  onChange={(e) => setDocumentType(e.target.value)}
                 >
-                  <div className="w-6 h-6 mr-3 image-fit">
-                    <img
-                      className="rounded"
-                      alt="Midone Tailwind HTML Admin Template"
-                      src={fakerData[0].photos[0]}
-                    />
-                  </div>
-                  <div className="truncate">{fakerData[0].users[0].name}</div>
-                  <Lucide icon="ChevronDown" className="w-4 h-4 ml-auto" />
-                </Menu.Button>
-                <Menu.Items>
-                  {_.take(fakerData, 5).map((faker, fakerKey) => (
-                    <Menu.Item key={fakerKey}>
-                      <div className="absolute w-6 h-6 mr-3 image-fit">
-                        <img
-                          className="rounded"
-                          alt="Midone Tailwind HTML Admin Template"
-                          src={faker.photos[0]}
-                        />
-                      </div>
-                      <div className="pl-1 ml-8">{faker.users[0].name}</div>
-                    </Menu.Item>
+                  {documentTemplates.map((template) => (
+                    <option key={template.type} value={template.type}>
+                      {template.name}
+                    </option>
                   ))}
-                </Menu.Items>
-              </Menu>
+                </FormSelect>
+              </div>
+
+              <div>
+                <FormLabel>Cliente</FormLabel>
+                <TomSelect
+                  value={client}
+                  onChange={setClient}
+                  options={{
+                    placeholder: "Selecione o cliente...",
+                  }}
+                  className="w-full"
+                >
+                  {clients.map((clientName, index) => (
+                    <option key={index} value={clientName}>
+                      {clientName}
+                    </option>
+                  ))}
+                </TomSelect>
+              </div>
+
+              <div>
+                <FormLabel>Número do Caso</FormLabel>
+                <TomSelect
+                  value={caseNumber}
+                  onChange={setCaseNumber}
+                  options={{
+                    placeholder: "Selecione o caso...",
+                  }}
+                  className="w-full"
+                >
+                  {cases.map((caseNum, index) => (
+                    <option key={index} value={caseNum}>
+                      Caso {caseNum}
+                    </option>
+                  ))}
+                </TomSelect>
+              </div>
+
+              <div>
+                <FormLabel>Status</FormLabel>
+                <FormSelect>
+                  <option value="draft">Rascunho</option>
+                  <option value="review">Em Revisão</option>
+                  <option value="approved">Aprovado</option>
+                  <option value="sent">Enviado</option>
+                </FormSelect>
+              </div>
             </div>
-            <div className="mt-3">
-              <FormLabel htmlFor="post-form-2">Post Date</FormLabel>
-              <Litepicker
-                value={salesReportFilter}
-                onChange={(e) => {
-                  setSalesReportFilter(e.target.value);
-                }}
-                options={{
-                  autoApply: false,
-                  showWeekNumbers: true,
-                  dropdowns: {
-                    minYear: 1990,
-                    maxYear: null,
-                    months: true,
-                    years: true,
-                  },
-                }}
-              />
+          </div>
+
+          <div className="p-5 mt-5 box">
+            <div className="mb-4">
+              <h3 className="font-medium">Ações Rápidas</h3>
             </div>
-            <div className="mt-3">
-              <FormLabel htmlFor="post-form-3">Categories</FormLabel>
-              <TomSelect
-                id="post-form-3"
-                value={categories}
-                onChange={(e) => {
-                  setCategories(e.target.value);
-                }}
-                className="w-full"
-                multiple
+            <div className="space-y-2">
+              <Button
+                variant="outline-primary"
+                className="w-full justify-start"
               >
-                <option value="1">Horror</option>
-                <option value="2">Sci-fi</option>
-                <option value="3">Action</option>
-                <option value="4">Drama</option>
-                <option value="5">Comedy</option>
-              </TomSelect>
-            </div>
-            <div className="mt-3">
-              <FormLabel htmlFor="post-form-4">Tags</FormLabel>
-              <TomSelect
-                id="post-form-4"
-                value={tags}
-                onChange={(e) => {
-                  setTags(e.target.value);
-                }}
-                className="w-full"
-                multiple
+                <Lucide icon="Copy" className="w-4 h-4 mr-2" />
+                Duplicar Documento
+              </Button>
+              <Button
+                variant="outline-secondary"
+                className="w-full justify-start"
               >
-                <option value="1">Leonardo DiCaprio</option>
-                <option value="2">Johnny Deep</option>
-                <option value="3">Robert Downey, Jr</option>
-                <option value="4">Samuel L. Jackson</option>
-                <option value="5">Morgan Freeman</option>
-              </TomSelect>
+                <Lucide icon="Share" className="w-4 h-4 mr-2" />
+                Compartilhar
+              </Button>
+              <Button
+                variant="outline-secondary"
+                className="w-full justify-start"
+              >
+                <Lucide icon="Archive" className="w-4 h-4 mr-2" />
+                Arquivar
+              </Button>
+              <Button
+                variant="outline-secondary"
+                className="w-full justify-start"
+              >
+                <Lucide icon="Clock" className="w-4 h-4 mr-2" />
+                Histórico de Versões
+              </Button>
             </div>
-            <FormSwitch className="flex flex-col items-start mt-3">
-              <FormSwitch.Label htmlFor="post-form-5" className="mb-2 ml-0">
-                Published
-              </FormSwitch.Label>
-              <FormSwitch.Input id="post-form-5" type="checkbox" />
-            </FormSwitch>
-            <FormSwitch className="flex flex-col items-start mt-3">
-              <FormSwitch.Label htmlFor="post-form-6" className="mb-2 ml-0">
-                Show Author Name
-              </FormSwitch.Label>
-              <FormSwitch.Input id="post-form-6" type="checkbox" />
-            </FormSwitch>
+          </div>
+
+          <div className="p-5 mt-5 box">
+            <div className="mb-4">
+              <h3 className="font-medium">Informações</h3>
+            </div>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span className="text-slate-600">Criado em:</span>
+                <span>{new Date().toLocaleDateString("pt-BR")}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-600">Última edição:</span>
+                <span>Agora</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-600">Palavras:</span>
+                <span>247</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-600">Caracteres:</span>
+                <span>1,523</span>
+              </div>
+            </div>
           </div>
         </div>
-        {/* END: Post Info */}
       </div>
+
+      {/* Templates Modal */}
+      <Dialog
+        open={templateModal}
+        onClose={() => setTemplateModal(false)}
+        className="w-4xl"
+      >
+        <Dialog.Panel>
+          <Dialog.Title>
+            <h2 className="mr-auto text-base font-medium">
+              Templates de Documentos Jurídicos
+            </h2>
+          </Dialog.Title>
+          <Dialog.Description>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {documentTemplates.map((template) => (
+                <button
+                  key={template.type}
+                  onClick={() => handleTemplateSelect(template)}
+                  className="p-4 border border-slate-200 rounded-lg hover:border-primary hover:bg-primary/5 transition-colors text-left"
+                >
+                  <div className="flex items-center mb-2">
+                    <Lucide
+                      icon={template.icon as any}
+                      className="w-6 h-6 text-primary mr-2"
+                    />
+                    <h3 className="font-medium">{template.name}</h3>
+                  </div>
+                  <p className="text-sm text-slate-600">
+                    {template.description}
+                  </p>
+                </button>
+              ))}
+            </div>
+          </Dialog.Description>
+          <Dialog.Footer>
+            <Button
+              variant="outline-secondary"
+              onClick={() => setTemplateModal(false)}
+              className="w-20"
+            >
+              Fechar
+            </Button>
+          </Dialog.Footer>
+        </Dialog.Panel>
+      </Dialog>
+
+      {/* Preview Modal */}
+      <Dialog
+        open={previewModal}
+        onClose={() => setPreviewModal(false)}
+        className="w-4xl"
+      >
+        <Dialog.Panel>
+          <Dialog.Title>
+            <h2 className="mr-auto text-base font-medium">
+              Visualização do Documento
+            </h2>
+          </Dialog.Title>
+          <Dialog.Description>
+            <div className="bg-white p-8 border border-slate-200 rounded-lg max-h-96 overflow-y-auto">
+              <div
+                className="prose prose-sm max-w-none"
+                dangerouslySetInnerHTML={{ __html: editorData }}
+              />
+            </div>
+          </Dialog.Description>
+          <Dialog.Footer>
+            <Button
+              variant="outline-secondary"
+              onClick={() => setPreviewModal(false)}
+              className="w-20 mr-1"
+            >
+              Fechar
+            </Button>
+            <Button
+              variant="primary"
+              onClick={() => handleSave("pdf")}
+              className="w-32"
+            >
+              <Lucide icon="Download" className="w-4 h-4 mr-2" />
+              Baixar PDF
+            </Button>
+          </Dialog.Footer>
+        </Dialog.Panel>
+      </Dialog>
     </>
   );
 }

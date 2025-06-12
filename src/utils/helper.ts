@@ -87,7 +87,7 @@ const diffTimeByNow = (time: string) => {
   const hours = Math.round((milliseconds % 86400000) / 3600000);
   let minutes = Math.round(((milliseconds % 86400000) % 3600000) / 60000);
   const seconds = Math.round(
-    (((milliseconds % 86400000) % 3600000) % 60000) / 1000
+    (((milliseconds % 86400000) % 3600000) % 60000) / 1000,
   );
 
   if (seconds < 30 && seconds >= 0) {
@@ -140,8 +140,14 @@ const stringToHTML = (arg: string) => {
 const slideUp = (
   el: HTMLElement,
   duration = 300,
-  callback = (el: HTMLElement) => {}
+  callback = (el: HTMLElement) => {},
 ) => {
+  // Null/undefined check to prevent errors
+  if (!el || !el.style) {
+    console.warn("slideUp: Element is null or undefined");
+    return;
+  }
+
   el.style.transitionProperty = "height, margin, padding";
   el.style.transitionDuration = duration + "ms";
   el.style.height = el.offsetHeight + "px";
@@ -153,6 +159,10 @@ const slideUp = (
   el.style.marginTop = "0";
   el.style.marginBottom = "0";
   window.setTimeout(() => {
+    // Additional check inside timeout to ensure element still exists
+    if (!el || !el.style) {
+      return;
+    }
     el.style.display = "none";
     el.style.removeProperty("height");
     el.style.removeProperty("padding-top");
@@ -162,15 +172,23 @@ const slideUp = (
     el.style.removeProperty("overflow");
     el.style.removeProperty("transition-duration");
     el.style.removeProperty("transition-property");
-    callback(el);
+    if (callback && el) {
+      callback(el);
+    }
   }, duration);
 };
 
 const slideDown = (
   el: HTMLElement,
   duration = 300,
-  callback = (el: HTMLElement) => {}
+  callback = (el: HTMLElement) => {},
 ) => {
+  // Null/undefined check to prevent errors
+  if (!el || !el.style) {
+    console.warn("slideDown: Element is null or undefined");
+    return;
+  }
+
   el.style.removeProperty("display");
   let display = window.getComputedStyle(el).display;
   if (display === "none") display = "block";
@@ -191,11 +209,17 @@ const slideDown = (
   el.style.removeProperty("margin-top");
   el.style.removeProperty("margin-bottom");
   window.setTimeout(() => {
+    // Additional check inside timeout to ensure element still exists
+    if (!el || !el.style) {
+      return;
+    }
     el.style.removeProperty("height");
     el.style.removeProperty("overflow");
     el.style.removeProperty("transition-duration");
     el.style.removeProperty("transition-property");
-    callback(el);
+    if (callback && el) {
+      callback(el);
+    }
   }, duration);
 };
 

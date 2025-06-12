@@ -13,7 +13,14 @@ type FormInputRef = React.ComponentPropsWithRef<"input">["ref"];
 const FormInput = forwardRef((props: FormInputProps, ref: FormInputRef) => {
   const formInline = useContext(formInlineContext);
   const inputGroup = useContext(inputGroupContext);
-  const { formInputSize, rounded, ...computedProps } = props;
+  const {
+    formInputSize,
+    rounded,
+    children,
+    dangerouslySetInnerHTML,
+    ...computedProps
+  } = props;
+
   return (
     <input
       {...computedProps}

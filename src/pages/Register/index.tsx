@@ -99,12 +99,12 @@ function Main() {
                     type="checkbox"
                     className="mr-2 border"
                   />
-                  <label
+                  <FormCheck.Label
                     className="cursor-pointer select-none"
                     htmlFor="remember-me"
                   >
                     I agree to the Envato
-                  </label>
+                  </FormCheck.Label>
                   <a className="ml-1 text-primary dark:text-slate-200" href="">
                     Privacy Policy
                   </a>

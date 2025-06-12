@@ -11,414 +11,602 @@ import {
 import Lucide from "@/components/Base/Lucide";
 import { Menu, Tab, Dialog } from "@/components/Base/Headless";
 
+// Mock legal cases data
+const legalCases = [
+  {
+    id: 1,
+    number: "001/2024",
+    client: "João Silva",
+    type: "Direito Civil",
+    status: "Em andamento",
+    value: 15000,
+    paid: 5000,
+    installments: [
+      {
+        id: 1,
+        value: 5000,
+        dueDate: "2024-01-15",
+        status: "Pago",
+        paidDate: "2024-01-14",
+      },
+      { id: 2, value: 5000, dueDate: "2024-02-15", status: "Pendente" },
+      { id: 3, value: 5000, dueDate: "2024-03-15", status: "Pendente" },
+    ],
+  },
+  {
+    id: 2,
+    number: "002/2024",
+    client: "Maria Santos",
+    type: "Direito Trabalhista",
+    status: "Finalizado",
+    value: 25000,
+    paid: 25000,
+    installments: [
+      {
+        id: 1,
+        value: 12500,
+        dueDate: "2024-01-10",
+        status: "Pago",
+        paidDate: "2024-01-09",
+      },
+      {
+        id: 2,
+        value: 12500,
+        dueDate: "2024-02-10",
+        status: "Pago",
+        paidDate: "2024-02-08",
+      },
+    ],
+  },
+  {
+    id: 3,
+    number: "003/2024",
+    client: "Carlos Lima",
+    type: "Direito Penal",
+    status: "Em andamento",
+    value: 30000,
+    paid: 10000,
+    installments: [
+      {
+        id: 1,
+        value: 10000,
+        dueDate: "2024-01-20",
+        status: "Pago",
+        paidDate: "2024-01-19",
+      },
+      { id: 2, value: 10000, dueDate: "2024-02-20", status: "Atrasado" },
+      { id: 3, value: 10000, dueDate: "2024-03-20", status: "Pendente" },
+    ],
+  },
+];
+
 function Main() {
-  const [newOrderModal, setNewOrderModal] = useState(false);
-  const [addItemModal, setAddItemModal] = useState(false);
-  const createTicketRef = useRef(null);
-  const addItemRef = useRef(null);
+  const [newCaseModal, setNewCaseModal] = useState(false);
+  const [paymentModal, setPaymentModal] = useState(false);
+  const [selectedCase, setSelectedCase] = useState<any>(null);
+  const [newCaseData, setNewCaseData] = useState({
+    number: "",
+    client: "",
+    type: "",
+    value: "",
+    installments: 1,
+    description: "",
+  });
+
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(value);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Pago":
+        return "text-success";
+      case "Pendente":
+        return "text-warning";
+      case "Atrasado":
+        return "text-danger";
+      default:
+        return "text-slate-500";
+    }
+  };
+
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case "Pago":
+        return "bg-success/10 text-success";
+      case "Pendente":
+        return "bg-warning/10 text-warning";
+      case "Atrasado":
+        return "bg-danger/10 text-danger";
+      default:
+        return "bg-slate-100 text-slate-500";
+    }
+  };
+
+  const handleCreateCase = () => {
+    console.log("Creating new case:", newCaseData);
+    setNewCaseModal(false);
+    setNewCaseData({
+      number: "",
+      client: "",
+      type: "",
+      value: "",
+      installments: 1,
+      description: "",
+    });
+  };
+
+  const handlePayment = (caseData: any, installment: any) => {
+    setSelectedCase({ case: caseData, installment });
+    setPaymentModal(true);
+  };
+
+  const confirmPayment = () => {
+    console.log("Processing payment for:", selectedCase);
+    setPaymentModal(false);
+    setSelectedCase(null);
+  };
 
   return (
     <>
       <div className="flex flex-col items-center mt-8 intro-y sm:flex-row">
-        <h2 className="mr-auto text-lg font-medium">Point of Sale</h2>
+        <h2 className="mr-auto text-lg font-medium">Gestão de Honorários</h2>
         <div className="flex w-full mt-4 sm:w-auto sm:mt-0">
           <Button
-            as="a"
-            href="#"
             variant="primary"
-            onClick={(event: React.MouseEvent) => {
-              event.preventDefault();
-              setNewOrderModal(true);
-            }}
+            onClick={() => setNewCaseModal(true)}
             className="mr-2 shadow-md"
           >
-            New Order
+            <Lucide icon="Plus" className="w-4 h-4 mr-2" />
+            Novo Caso
           </Button>
           <Menu className="ml-auto sm:ml-0">
-            <Menu.Button as={Button} className="px-2 !box">
+            <Menu.Button as="button" className="px-2 !box">
               <span className="flex items-center justify-center w-5 h-5">
                 <Lucide icon="ChevronDown" className="w-4 h-4" />
               </span>
             </Menu.Button>
-            <Menu.Items>
+            <Menu.Items className="w-48">
               <Menu.Item>
-                <Lucide icon="Activity" className="w-4 h-4 mr-2" />
-                <span className="truncate">
-                  INV-0206020 - {fakerData[3].users[0].name}
-                </span>
+                <Lucide icon="FileText" className="w-4 h-4 mr-2" />
+                Relatório Financeiro
               </Menu.Item>
               <Menu.Item>
-                <Lucide icon="Activity" className="w-4 h-4 mr-2" />
-                <span className="truncate">
-                  INV-0206022 - {fakerData[4].users[0].name}
-                </span>
+                <Lucide icon="Download" className="w-4 h-4 mr-2" />
+                Exportar Dados
               </Menu.Item>
               <Menu.Item>
-                <Lucide icon="Activity" className="w-4 h-4 mr-2" />
-                <span className="truncate">
-                  INV-0206021 - {fakerData[5].users[0].name}
-                </span>
+                <Lucide icon="Settings" className="w-4 h-4 mr-2" />
+                Configurações
               </Menu.Item>
             </Menu.Items>
           </Menu>
         </div>
       </div>
+
+      {/* Financial Summary Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-5 intro-y">
+        <div className="p-5 box">
+          <div className="flex items-center">
+            <div className="flex-none w-2/4">
+              <div className="text-lg font-medium text-success">Recebido</div>
+              <div className="mt-1 text-2xl font-bold text-success">
+                {formatCurrency(40000)}
+              </div>
+            </div>
+            <div className="flex-none ml-auto">
+              <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                <Lucide icon="TrendingUp" className="w-6 h-6 text-success" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-5 box">
+          <div className="flex items-center">
+            <div className="flex-none w-2/4">
+              <div className="text-lg font-medium text-warning">Pendente</div>
+              <div className="mt-1 text-2xl font-bold text-warning">
+                {formatCurrency(25000)}
+              </div>
+            </div>
+            <div className="flex-none ml-auto">
+              <div className="w-12 h-12 bg-warning/10 rounded-lg flex items-center justify-center">
+                <Lucide icon="Clock" className="w-6 h-6 text-warning" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-5 box">
+          <div className="flex items-center">
+            <div className="flex-none w-2/4">
+              <div className="text-lg font-medium text-danger">Atrasado</div>
+              <div className="mt-1 text-2xl font-bold text-danger">
+                {formatCurrency(5000)}
+              </div>
+            </div>
+            <div className="flex-none ml-auto">
+              <div className="w-12 h-12 bg-danger/10 rounded-lg flex items-center justify-center">
+                <Lucide icon="AlertTriangle" className="w-6 h-6 text-danger" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-5 box">
+          <div className="flex items-center">
+            <div className="flex-none w-2/4">
+              <div className="text-lg font-medium text-primary">Total</div>
+              <div className="mt-1 text-2xl font-bold text-primary">
+                {formatCurrency(70000)}
+              </div>
+            </div>
+            <div className="flex-none ml-auto">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                <Lucide icon="DollarSign" className="w-6 h-6 text-primary" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-12 gap-5 mt-5 intro-y">
-        {/* BEGIN: Item List */}
-        <div className="col-span-12 intro-y lg:col-span-8">
-          <div className="lg:flex intro-y">
-            <div className="relative">
-              <FormInput
-                type="text"
-                className="w-full px-4 py-3 pr-10 lg:w-64 !box"
-                placeholder="Search item..."
-              />
-              <Lucide
-                icon="Search"
-                className="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3 text-slate-500"
-              />
-            </div>
-            <FormSelect className="w-full px-4 py-3 mt-3 ml-auto !box lg:w-auto lg:mt-0">
-              <option>Sort By</option>
-              <option>A to Z</option>
-              <option>Z to A</option>
-              <option>Lowest Price</option>
-              <option>Highest Price</option>
-            </FormSelect>
-          </div>
-          <div className="grid grid-cols-12 gap-5 mt-5">
-            <div className="col-span-12 p-5 cursor-pointer sm:col-span-4 2xl:col-span-3 box zoom-in">
-              <div className="text-base font-medium">Soup</div>
-              <div className="text-slate-500">5 Items</div>
-            </div>
-            <div className="col-span-12 p-5 cursor-pointer sm:col-span-4 2xl:col-span-3 box bg-primary zoom-in">
-              <div className="text-base font-medium text-white">
-                Pancake & Toast
-              </div>
-              <div className="text-white text-opacity-80 dark:text-slate-500">
-                8 Items
-              </div>
-            </div>
-            <div className="col-span-12 p-5 cursor-pointer sm:col-span-4 2xl:col-span-3 box zoom-in">
-              <div className="text-base font-medium">Pasta</div>
-              <div className="text-slate-500">4 Items</div>
-            </div>
-            <div className="col-span-12 p-5 cursor-pointer sm:col-span-4 2xl:col-span-3 box zoom-in">
-              <div className="text-base font-medium">Waffle</div>
-              <div className="text-slate-500">3 Items</div>
-            </div>
-            <div className="col-span-12 p-5 cursor-pointer sm:col-span-4 2xl:col-span-3 box zoom-in">
-              <div className="text-base font-medium">Snacks</div>
-              <div className="text-slate-500">8 Items</div>
-            </div>
-            <div className="col-span-12 p-5 cursor-pointer sm:col-span-4 2xl:col-span-3 box zoom-in">
-              <div className="text-base font-medium">Deserts</div>
-              <div className="text-slate-500">8 Items</div>
-            </div>
-            <div className="col-span-12 p-5 cursor-pointer sm:col-span-4 2xl:col-span-3 box zoom-in">
-              <div className="text-base font-medium">Beverage</div>
-              <div className="text-slate-500">9 Items</div>
-            </div>
-          </div>
-          <div className="grid grid-cols-12 gap-5 pt-5 mt-5 border-t">
-            {_.take(fakerData, 8).map((faker, fakerKey) => (
-              <a
-                key={fakerKey}
-                href="#"
-                onClick={(event) => {
-                  event.preventDefault();
-                  setAddItemModal(true);
-                }}
-                className="block col-span-12 intro-y sm:col-span-4 2xl:col-span-3"
-              >
-                <div className="relative p-3 rounded-md box zoom-in">
-                  <div className="flex-none relative block before:block before:w-full before:pt-[100%]">
-                    <div className="absolute top-0 left-0 w-full h-full image-fit">
-                      <img
-                        alt="Midone Tailwind HTML Admin Template"
-                        className="rounded-md"
-                        src={faker.foods[0].image}
-                      />
+        {/* Cases List */}
+        <div className="col-span-12 intro-y">
+          <div className="overflow-auto lg:overflow-visible">
+            {legalCases.map((legalCase) => (
+              <div key={legalCase.id} className="mb-6 box">
+                <div className="p-5 border-b border-slate-200">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold">
+                        Caso {legalCase.number} - {legalCase.client}
+                      </h3>
+                      <div className="flex items-center mt-1 space-x-4 text-sm text-slate-600">
+                        <span className="flex items-center">
+                          <Lucide icon="Scale" className="w-4 h-4 mr-1" />
+                          {legalCase.type}
+                        </span>
+                        <span className="flex items-center">
+                          <Lucide icon="Activity" className="w-4 h-4 mr-1" />
+                          {legalCase.status}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-lg font-bold text-primary">
+                        {formatCurrency(legalCase.value)}
+                      </div>
+                      <div className="text-sm text-slate-600">
+                        Pago: {formatCurrency(legalCase.paid)}
+                        <span className="text-success">
+                          (
+                          {Math.round((legalCase.paid / legalCase.value) * 100)}
+                          %)
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  <div className="block mt-3 font-medium text-center truncate">
-                    {faker.foods[0].name}
+                </div>
+
+                <div className="p-5">
+                  <div className="mb-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="font-medium">Parcelas de Honorários</h4>
+                      <Button variant="outline-primary" size="sm">
+                        <Lucide icon="Plus" className="w-3 h-3 mr-1" />
+                        Nova Parcela
+                      </Button>
+                    </div>
+                    <div className="space-y-3">
+                      {legalCase.installments.map((installment) => (
+                        <div
+                          key={installment.id}
+                          className="flex items-center justify-between p-3 border border-slate-200 rounded-lg"
+                        >
+                          <div className="flex items-center space-x-4">
+                            <div>
+                              <div className="font-medium">
+                                {formatCurrency(installment.value)}
+                              </div>
+                              <div className="text-sm text-slate-500">
+                                Vencimento:{" "}
+                                {new Date(
+                                  installment.dueDate,
+                                ).toLocaleDateString("pt-BR")}
+                              </div>
+                            </div>
+                            <div>
+                              <span
+                                className={`px-2 py-1 text-xs rounded-full ${getStatusBadge(installment.status)}`}
+                              >
+                                {installment.status}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            {installment.status === "Pago" &&
+                              installment.paidDate && (
+                                <span className="text-sm text-success">
+                                  Pago em{" "}
+                                  {new Date(
+                                    installment.paidDate,
+                                  ).toLocaleDateString("pt-BR")}
+                                </span>
+                              )}
+                            {installment.status !== "Pago" && (
+                              <Button
+                                variant={
+                                  installment.status === "Atrasado"
+                                    ? "danger"
+                                    : "primary"
+                                }
+                                size="sm"
+                                onClick={() =>
+                                  handlePayment(legalCase, installment)
+                                }
+                              >
+                                <Lucide
+                                  icon="CreditCard"
+                                  className="w-3 h-3 mr-1"
+                                />
+                                Registrar Pagamento
+                              </Button>
+                            )}
+                            <Menu>
+                              <Menu.Button
+                                as={Button}
+                                variant="outline-secondary"
+                                size="sm"
+                              >
+                                <Lucide
+                                  icon="MoreVertical"
+                                  className="w-3 h-3"
+                                />
+                              </Menu.Button>
+                              <Menu.Items className="w-40">
+                                <Menu.Item>
+                                  <Lucide
+                                    icon="FilePenLine"
+                                    className="w-4 h-4 mr-2"
+                                  />
+                                  Editar
+                                </Menu.Item>
+                                <Menu.Item>
+                                  <Lucide
+                                    icon="Send"
+                                    className="w-4 h-4 mr-2"
+                                  />
+                                  Enviar Cobrança
+                                </Menu.Item>
+                                <Menu.Item>
+                                  <Lucide
+                                    icon="Download"
+                                    className="w-4 h-4 mr-2"
+                                  />
+                                  Gerar Recibo
+                                </Menu.Item>
+                              </Menu.Items>
+                            </Menu>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         </div>
-        {/* END: Item List */}
-        {/* BEGIN: Ticket */}
-        <Tab.Group className="col-span-12 lg:col-span-4">
-          <div className="pr-1 intro-y">
-            <div className="p-2 box">
-              <Tab.List variant="pills">
-                <Tab>
-                  <Tab.Button as="button" className="w-full py-2">
-                    Ticket
-                  </Tab.Button>
-                </Tab>
-                <Tab>
-                  <Tab.Button as="button" className="w-full py-2">
-                    Details
-                  </Tab.Button>
-                </Tab>
-              </Tab.List>
-            </div>
-          </div>
-          <Tab.Panels>
-            <Tab.Panel>
-              <div className="p-2 mt-5 box">
-                {_.take(fakerData, 5).map((faker, fakerKey) => (
-                  <a
-                    href="#"
-                    key={fakerKey}
-                    onClick={(event: React.MouseEvent) => {
-                      event.preventDefault();
-                      setAddItemModal(true);
-                    }}
-                    className="flex items-center p-3 transition duration-300 ease-in-out bg-white rounded-md cursor-pointer dark:bg-darkmode-600 hover:bg-slate-100 dark:hover:bg-darkmode-400"
-                  >
-                    <div className="max-w-[50%] truncate mr-1">
-                      {faker.foods[0].name}
-                    </div>
-                    <div className="text-slate-500">x 1</div>
-                    <Lucide
-                      icon="FilePenLine"
-                      className="w-4 h-4 ml-2 text-slate-500"
-                    />
-                    <div className="ml-auto font-medium">
-                      ${faker.totals[0]}
-                    </div>
-                  </a>
-                ))}
-              </div>
-              <div className="flex p-5 mt-5 box">
-                <FormInput
-                  type="text"
-                  className="w-full px-4 py-3 pr-10 bg-slate-100 border-slate-200/60"
-                  placeholder="Use coupon code..."
-                />
-                <Button variant="primary" className="ml-2">
-                  Apply
-                </Button>
-              </div>
-              <div className="p-5 mt-5 box">
-                <div className="flex">
-                  <div className="mr-auto">Subtotal</div>
-                  <div className="font-medium">$250</div>
-                </div>
-                <div className="flex mt-4">
-                  <div className="mr-auto">Discount</div>
-                  <div className="font-medium text-danger">-$20</div>
-                </div>
-                <div className="flex mt-4">
-                  <div className="mr-auto">Tax</div>
-                  <div className="font-medium">15%</div>
-                </div>
-                <div className="flex pt-4 mt-4 border-t border-slate-200/60 dark:border-darkmode-400">
-                  <div className="mr-auto text-base font-medium">
-                    Total Charge
-                  </div>
-                  <div className="text-base font-medium">$220</div>
-                </div>
-              </div>
-              <div className="flex mt-5">
-                <Button className="w-32 border-slate-300 dark:border-darkmode-400 text-slate-500">
-                  Clear Items
-                </Button>
-                <Button variant="primary" className="w-32 ml-auto shadow-md">
-                  Charge
-                </Button>
-              </div>
-            </Tab.Panel>
-            <Tab.Panel>
-              <div className="p-5 mt-5 box">
-                <div className="flex items-center pb-5 border-b border-slate-200 dark:border-darkmode-400">
-                  <div>
-                    <div className="text-slate-500">Time</div>
-                    <div className="mt-1">02/06/20 02:10 PM</div>
-                  </div>
-                  <Lucide
-                    icon="Clock"
-                    className="w-4 h-4 ml-auto text-slate-500"
-                  />
-                </div>
-                <div className="flex items-center py-5 border-b border-slate-200 dark:border-darkmode-400">
-                  <div>
-                    <div className="text-slate-500">Customer</div>
-                    <div className="mt-1">{fakerData[0].users[0].name}</div>
-                  </div>
-                  <Lucide
-                    icon="User"
-                    className="w-4 h-4 ml-auto text-slate-500"
-                  />
-                </div>
-                <div className="flex items-center py-5 border-b border-slate-200 dark:border-darkmode-400">
-                  <div>
-                    <div className="text-slate-500">People</div>
-                    <div className="mt-1">3</div>
-                  </div>
-                  <Lucide
-                    icon="Users"
-                    className="w-4 h-4 ml-auto text-slate-500"
-                  />
-                </div>
-                <div className="flex items-center pt-5">
-                  <div>
-                    <div className="text-slate-500">Table</div>
-                    <div className="mt-1">21</div>
-                  </div>
-                  <Lucide
-                    icon="Mic"
-                    className="w-4 h-4 ml-auto text-slate-500"
-                  />
-                </div>
-              </div>
-            </Tab.Panel>
-          </Tab.Panels>
-        </Tab.Group>
-        {/* END: Ticket */}
       </div>
-      {/* BEGIN: New Order Modal */}
+
+      {/* New Case Modal */}
       <Dialog
-        open={newOrderModal}
-        onClose={() => {
-          setNewOrderModal(false);
-        }}
-        initialFocus={createTicketRef}
+        open={newCaseModal}
+        onClose={() => setNewCaseModal(false)}
+        className="w-96"
       >
         <Dialog.Panel>
           <Dialog.Title>
-            <h2 className="mr-auto text-base font-medium">New Order</h2>
+            <h2 className="mr-auto text-base font-medium">Novo Caso</h2>
           </Dialog.Title>
-          <Dialog.Description className="grid grid-cols-12 gap-4 gap-y-3">
-            <div className="col-span-12">
-              <FormLabel htmlFor="pos-form-1">Name</FormLabel>
-              <FormInput
-                id="pos-form-1"
-                type="text"
-                className="flex-1"
-                placeholder="Customer name"
-              />
-            </div>
-            <div className="col-span-12">
-              <FormLabel htmlFor="pos-form-2">Table</FormLabel>
-              <FormInput
-                id="pos-form-2"
-                type="text"
-                className="flex-1"
-                placeholder="Customer table"
-              />
-            </div>
-            <div className="col-span-12">
-              <FormLabel htmlFor="pos-form-3">Number of People</FormLabel>
-              <FormInput
-                id="pos-form-3"
-                type="text"
-                className="flex-1"
-                placeholder="People"
-              />
+          <Dialog.Description>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <FormLabel>Número do Caso</FormLabel>
+                  <FormInput
+                    type="text"
+                    placeholder="Ex: 001/2024"
+                    value={newCaseData.number}
+                    onChange={(e) =>
+                      setNewCaseData({ ...newCaseData, number: e.target.value })
+                    }
+                  />
+                </div>
+                <div>
+                  <FormLabel>Cliente</FormLabel>
+                  <FormInput
+                    type="text"
+                    placeholder="Nome do cliente"
+                    value={newCaseData.client}
+                    onChange={(e) =>
+                      setNewCaseData({ ...newCaseData, client: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <FormLabel>Área do Direito</FormLabel>
+                  <FormSelect
+                    value={newCaseData.type}
+                    onChange={(e) =>
+                      setNewCaseData({ ...newCaseData, type: e.target.value })
+                    }
+                  >
+                    <option value="">Selecione...</option>
+                    <option value="Direito Civil">Direito Civil</option>
+                    <option value="Direito Penal">Direito Penal</option>
+                    <option value="Direito Trabalhista">
+                      Direito Trabalhista
+                    </option>
+                    <option value="Direito Tributário">
+                      Direito Tributário
+                    </option>
+                    <option value="Direito de Família">
+                      Direito de Família
+                    </option>
+                    <option value="Direito Empresarial">
+                      Direito Empresarial
+                    </option>
+                  </FormSelect>
+                </div>
+                <div>
+                  <FormLabel>Valor Total</FormLabel>
+                  <FormInput
+                    type="number"
+                    placeholder="0,00"
+                    value={newCaseData.value}
+                    onChange={(e) =>
+                      setNewCaseData({ ...newCaseData, value: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
+
+              <div>
+                <FormLabel>Número de Parcelas</FormLabel>
+                <FormSelect
+                  value={newCaseData.installments}
+                  onChange={(e) =>
+                    setNewCaseData({
+                      ...newCaseData,
+                      installments: parseInt(e.target.value),
+                    })
+                  }
+                >
+                  <option value={1}>À vista</option>
+                  <option value={2}>2 parcelas</option>
+                  <option value={3}>3 parcelas</option>
+                  <option value={4}>4 parcelas</option>
+                  <option value={6}>6 parcelas</option>
+                  <option value={12}>12 parcelas</option>
+                </FormSelect>
+              </div>
+
+              <div>
+                <FormLabel>Descrição</FormLabel>
+                <FormTextarea
+                  placeholder="Detalhes do caso..."
+                  value={newCaseData.description}
+                  onChange={(e) =>
+                    setNewCaseData({
+                      ...newCaseData,
+                      description: e.target.value,
+                    })
+                  }
+                  rows={3}
+                />
+              </div>
             </div>
           </Dialog.Description>
-          <Dialog.Footer className="text-right">
+          <Dialog.Footer>
             <Button
               variant="outline-secondary"
-              type="button"
-              onClick={() => {
-                setNewOrderModal(false);
-              }}
-              className="w-32 mr-1"
+              onClick={() => setNewCaseModal(false)}
+              className="w-20 mr-1"
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               variant="primary"
-              type="button"
-              className="w-32"
-              ref={createTicketRef}
+              onClick={handleCreateCase}
+              className="w-20"
             >
-              Create Ticket
+              Criar
             </Button>
           </Dialog.Footer>
         </Dialog.Panel>
       </Dialog>
-      {/* END: New Order Modal */}
-      {/* BEGIN: Add Item Modal */}
+
+      {/* Payment Modal */}
       <Dialog
-        open={addItemModal}
-        onClose={() => {
-          setAddItemModal(false);
-        }}
-        initialFocus={addItemRef}
+        open={paymentModal}
+        onClose={() => setPaymentModal(false)}
+        className="w-96"
       >
         <Dialog.Panel>
           <Dialog.Title>
             <h2 className="mr-auto text-base font-medium">
-              {fakerData[0].foods[0].name}
+              Registrar Pagamento
             </h2>
           </Dialog.Title>
-          <Dialog.Description className="grid grid-cols-12 gap-4 gap-y-3">
-            <div className="col-span-12">
-              <FormLabel htmlFor="pos-form-4" className="form-label">
-                Quantity
-              </FormLabel>
-              <div className="flex flex-1">
-                <Button
-                  type="button"
-                  className="w-12 mr-1 border-slate-200 bg-slate-100 dark:bg-darkmode-700 dark:border-darkmode-500 text-slate-500"
-                >
-                  -
-                </Button>
-                <FormInput
-                  id="pos-form-4"
-                  type="text"
-                  className="w-24 text-center"
-                  placeholder="Item quantity"
-                  value="2"
-                  onChange={() => {}}
-                />
-                <Button
-                  type="button"
-                  className="w-12 ml-1 border-slate-200 bg-slate-100 dark:bg-darkmode-700 dark:border-darkmode-500 text-slate-500"
-                >
-                  +
-                </Button>
+          <Dialog.Description>
+            {selectedCase && (
+              <div className="space-y-4">
+                <div className="p-4 bg-slate-50 rounded-lg">
+                  <div className="text-sm text-slate-600">
+                    Caso: {selectedCase.case.number}
+                  </div>
+                  <div className="text-sm text-slate-600">
+                    Cliente: {selectedCase.case.client}
+                  </div>
+                  <div className="text-lg font-semibold mt-2">
+                    Valor: {formatCurrency(selectedCase.installment.value)}
+                  </div>
+                </div>
+
+                <div>
+                  <FormLabel>Data do Pagamento</FormLabel>
+                  <FormInput
+                    type="date"
+                    defaultValue={new Date().toISOString().split("T")[0]}
+                  />
+                </div>
+
+                <div>
+                  <FormLabel>Forma de Pagamento</FormLabel>
+                  <FormSelect>
+                    <option value="dinheiro">Dinheiro</option>
+                    <option value="transferencia">
+                      Transferência Bancária
+                    </option>
+                    <option value="pix">PIX</option>
+                    <option value="cartao">Cartão de Crédito</option>
+                    <option value="boleto">Boleto</option>
+                  </FormSelect>
+                </div>
+
+                <div>
+                  <FormLabel>Observações</FormLabel>
+                  <FormTextarea
+                    placeholder="Observações sobre o pagamento..."
+                    rows={3}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="col-span-12">
-              <FormLabel htmlFor="pos-form-5">Notes</FormLabel>
-              <FormTextarea
-                id="pos-form-5"
-                placeholder="Item notes"
-              ></FormTextarea>
-            </div>
+            )}
           </Dialog.Description>
-          <Dialog.Footer className="text-right">
+          <Dialog.Footer>
             <Button
               variant="outline-secondary"
-              type="button"
-              onClick={() => {
-                setAddItemModal(false);
-              }}
-              className="w-24 mr-1"
+              onClick={() => setPaymentModal(false)}
+              className="w-20 mr-1"
             >
-              Cancel
+              Cancelar
             </Button>
-            <Button
-              variant="primary"
-              type="button"
-              className="w-24"
-              ref={addItemRef}
-            >
-              Add Item
+            <Button variant="primary" onClick={confirmPayment} className="w-20">
+              Confirmar
             </Button>
           </Dialog.Footer>
         </Dialog.Panel>
       </Dialog>
-      {/* END: Add Item Modal */}
     </>
   );
 }

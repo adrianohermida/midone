@@ -2,7 +2,7 @@ import "@/assets/css/vendors/litepicker.css";
 import { createRef, useEffect, useRef } from "react";
 import { setValue, init, reInit } from "./litepicker";
 import LitepickerJs from "litepicker";
-import { FormInput } from "@/components/Base/Form";
+import FormInput from "@/components/Base/Form/FormInput";
 import { ILPConfiguration } from "litepicker/dist/types/interfaces";
 
 export interface LitepickerElement extends HTMLInputElement {
@@ -66,14 +66,12 @@ function Litepicker({
   return (
     <FormInput
       ref={litepickerRef}
-      type="text"
-      value={props.value}
+      {...computedProps}
       onChange={(e) => {
         if (props.onChange) {
           props.onChange(e);
         }
       }}
-      {...computedProps}
     />
   );
 }
