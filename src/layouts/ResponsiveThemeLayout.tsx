@@ -489,7 +489,7 @@ const ResponsiveThemeLayout: React.FC<ResponsiveThemeLayoutProps> = ({
         {renderTopBar()}
 
         {/* Header inline para Rubick e Tinker */}
-        {(theme === "rubrick" || theme === "tinker") && renderInlineHeader()}
+        {(theme === "rubick" || theme === "tinker") && renderInlineHeader()}
 
         {/* Navegação Superior (apenas para top-menu) */}
         {renderTopNavigation()}
