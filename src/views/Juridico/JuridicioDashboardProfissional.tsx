@@ -626,10 +626,10 @@ const JuridicioDashboardProfissional: React.FC = () => {
                                 {processo.responsavel}
                               </span>
                               <div className="flex space-x-2">
-                                <Button variant="ghost" size="sm">
+                                <Button variant="outline-secondary" size="sm">
                                   <Eye className="w-4 h-4" />
                                 </Button>
-                                <Button variant="ghost" size="sm">
+                                <Button variant="outline-secondary" size="sm">
                                   <MessageSquare className="w-4 h-4" />
                                 </Button>
                               </div>
